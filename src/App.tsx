@@ -1,7 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
+
+import { router } from './routes/routes';
+
 function App() {
   return (
     <div>
-      <h1>메인입니다.</h1>
+      <RouterProvider router={router} />
     </div>
   );
 }
