@@ -5,8 +5,6 @@ import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
-  const number: number = '넘버';
-  console.log(number);
 
   return (
     <>
