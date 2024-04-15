@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 
 import Layout from './layout';
 import MainPage from '../pages/Main';
-import ReservationStatus from '../pages/ReservationStaus';
+import ReservationStatus from '../pages/ReservationStatus';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import NotFound from '../pages/NotFound';
