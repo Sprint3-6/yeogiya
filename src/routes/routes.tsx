@@ -17,15 +17,15 @@ const PrimaryRoute = (
   <>
     <Route element={<Layout />}>
       <Route index element={<MainPage />} />
-      <Route path='reservation-status' element={<ReservationStatus />} />
-      <Route path='reservation-details' element={<ReservationDetails />} />
-      <Route path='my-info' element={<MyInfo />} />
-      <Route path='activity/:id' element={<ActivityDetails />} />
-      <Route path='activity-management' element={<ActivityManagement />} />
+      <Route path="reservation-status" element={<ReservationStatus />} />
+      <Route path="reservation-details" element={<ReservationDetails />} />
+      <Route path="my-info" element={<MyInfo />} />
+      <Route path="activity/:id" element={<ActivityDetails />} />
+      <Route path="activity-management" element={<ActivityManagement />} />
     </Route>
-    <Route path='sign-up' element={<SignUp />} />
-    <Route path='sign-in' element={<SignIn />} />
-    <Route path='*' element={<NotFound />} />
+    <Route path="sign-up" element={<SignUp />} />
+    <Route path="sign-in" element={<SignIn />} />
+    <Route path="*" element={<NotFound />} />
   </>
 );
 

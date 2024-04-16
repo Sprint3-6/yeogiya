@@ -1,0 +1,47 @@
+.button {
+  // 모바일
+  display: flex;
+  width: fit-content;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  // 태블릿
+  @media (min-width: 768px) {
+    padding: 12px 24px;
+    font-size: 1.6rem;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    padding: 14px 28px;
+  }
+}
+
+.buttonBlack {
+  @extend .button;
+  background: var(--black20);
+  border: 2px solid var(--black20);
+  color: var(--white);
+
+  &:hover {
+    background: var(--gray70);
+    border: 2px solid var(--gray70);
+  }
+}
+
+.buttonWhite {
+  @extend .button;
+  background: var(--white);
+  border: 2px solid var(--black20);
+  color: var(--black);
+
+  &:hover {
+    background: var(--gray10);
+  }
+}
