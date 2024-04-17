@@ -1,6 +1,6 @@
 #!/bin/sh
-echo "s"
-# . "$(dirname "$0")/_/husky.sh"
 
-# npx lint-staged
-echo "d"
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+
