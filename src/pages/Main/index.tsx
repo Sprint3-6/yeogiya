@@ -20,9 +20,9 @@ export default function MainPage() {
       <br />
       <Link to={'activity/1'}>체험상세 1번</Link>
       <br />
-      <Link to={'activity/1'}>체험상세 2번</Link>
+      <Link to={'activity/2'}>체험상세 2번</Link>
       <br />
-      <Link to={'activity/1'}>체험상세 3번</Link>
+      <Link to={'activity/3'}>체험상세 3번</Link>
     </main>
   );
 }
