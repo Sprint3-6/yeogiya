@@ -7,7 +7,7 @@ type Type = {
 const Temp = ({ closeModal }: Type) => {
   return (
     <div className="temp">
-      임시 컴포넌트 입니다
+      임시 컴포넌트 입니다!
       <button onClick={closeModal}>모달 닫기</button>
     </div>
   );
