@@ -20,6 +20,7 @@ export default function ActivityDetails() {
     console.log(userInfo);
     localStorage.setItem('accessToken', userInfo.data.accessToken);
     localStorage.setItem('refreshToken', userInfo.data.refreshToken);
+    alert('jyp1@jyp.com 으로 로그인 되었습니다. 비번:12345678');
   };
 
   const viewList = async () => {
