@@ -9,7 +9,7 @@ const toasting = (text: string, type: string) => {
 
   setTimeout(() => {
     const toastDiv = document.getElementById('toast') as HTMLElement;
-    toastDiv.classList.add('out');
+    if (toastDiv) toastDiv.classList.add('out');
   }, 2000);
 
   setTimeout(() => {
