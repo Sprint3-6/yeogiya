@@ -6,10 +6,13 @@
   align-items: center;
   gap: 10px;
   background-color: #fff;
+  color: #fff;
   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.3);
   animation: toast-in 0.3s ease-in-out;
   border-radius: 30px;
   overflow: hidden;
+  user-select: none;
+  cursor: default;
 
   position: fixed;
   bottom: 20px;
@@ -28,15 +31,12 @@
   }
 
   &.success {
-    color: white;
     background-color: rgb(116, 188, 116);
   }
   &.warning {
-    color: white;
     background-color: rgb(239, 198, 83);
   }
   &.error {
-    color: white;
     background-color: rgb(246, 146, 146);
   }
 

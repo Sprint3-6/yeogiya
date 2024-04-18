@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 const domNode = document.getElementById('toast-root') as HTMLElement;
 
-const toasting = (text: string, type: string = 'success') => {
+const toasting = (text: string, type: string) => {
   const root = createRoot(domNode);
   root.render(<ToastContainer message={text} onClick={() => root.unmount()} type={type} />);
 
