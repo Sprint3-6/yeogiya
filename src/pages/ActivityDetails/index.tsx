@@ -30,7 +30,7 @@ export default function ActivityDetails() {
 
   return (
     <>
-      <main>
+      <main className="activityDetailContainer">
         {id}번 체험상세 페이지 입니다.
         <br />
         <button onClick={() => toast.success('성공 토스트 입니다.')}>성공토스트</button>
@@ -41,7 +41,7 @@ export default function ActivityDetails() {
         <button onClick={() => openModal('a')}>모달</button>
         <button onClick={viewList}>내 체험리스트 조회</button>
       </main>
-      <button className="temp-login" onClick={login}>
+      <button className="tempLogin" onClick={login}>
         로그인
       </button>
       <Modal type="a">
