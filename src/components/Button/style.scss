@@ -23,7 +23,7 @@
   }
 }
 
-.buttonBlack {
+.button-black {
   @extend .button;
   background: var(--black20);
   border: 2px solid var(--black20);
@@ -35,7 +35,7 @@
   }
 }
 
-.buttonWhite {
+.button-white {
   @extend .button;
   background: var(--white);
   border: 2px solid var(--black20);

@@ -1,4 +1,4 @@
-.loadingWrapper {
+.loading-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@
   gap: 10px;
 }
 
-.loadingLogo {
+.loading-logo {
   width: 150px;
   height: 150px;
 
@@ -18,19 +18,19 @@
   }
 }
 
-.loadingSpinner {
+.loading-spinner {
   width: 70px;
   height: 70px;
   padding: 10px;
 }
 
-.loadingTextContainer {
+.loading-text-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 
-  .loadingText {
+  .loading-text {
     font-size: 2rem;
     font-weight: bold;
 
@@ -39,7 +39,7 @@
     }
   }
 
-  .loadingWaitText {
+  .loading-wait-text {
     font-size: 1.4rem;
 
     @media screen and (min-width: 768px) {
