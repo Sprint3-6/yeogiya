@@ -1,4 +1,4 @@
-.notFoundWrapper {
+.not-found-wrapper {
   display: flex;
   background: url(../assets/images/background-emptyRoom.jpg) no-repeat center center/cover;
   flex-direction: column;
@@ -9,7 +9,7 @@
   height: 100vh;
 }
 
-.notFoundLogo {
+.not-found-logo {
   width: 150px;
   height: 150px;
 
@@ -19,13 +19,13 @@
   }
 }
 
-.notFoundTextContainer {
+.not-found-text-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 
-  .notFoundErrorText {
+  .not-found-error-text {
     font-size: 2rem;
     font-weight: bold;
 
@@ -34,7 +34,7 @@
     }
   }
 
-  .notFoundTextContent {
+  .not-found-error-text-content {
     font-size: 1.4rem;
 
     @media screen and (min-width: 768px) {
