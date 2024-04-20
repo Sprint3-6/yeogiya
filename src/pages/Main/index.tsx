@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const MainPage = () => {
+export default function MainPage() {
   return (
     <main>
       메인페이지 입니다.
@@ -20,11 +20,9 @@ const MainPage = () => {
       <br />
       <Link to={'activity/1'}>체험상세 1번</Link>
       <br />
-      <Link to={'activity/1'}>체험상세 2번</Link>
+      <Link to={'activity/2'}>체험상세 2번</Link>
       <br />
-      <Link to={'activity/1'}>체험상세 3번</Link>
+      <Link to={'activity/3'}>체험상세 3번</Link>
     </main>
   );
-};
-
-export default MainPage;
+}

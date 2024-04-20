@@ -1,4 +1,50 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+
+  --black10: #333236;
+  --black20: #1b1b1b;
+
+  --gray10: #fafafa;
+  --gray20: #eeeeee;
+  --gray30: #dddddd;
+  --gray40: #cbc9cf;
+  --gray50: #adaeb8;
+  --gray60: #79747e;
+  --gray70: #4b4b4b;
+
+  --green10: #6d9d88;
+
+  --red10: #ffe4e0;
+  --red20: #ffdbdb;
+  --red30: #ff472e;
+
+  --orange10: #ffdfae;
+  --orange20: #f08b41;
+
+  --yellow10: #fff7e0;
+  --yellow20: #ffc23d;
+
+  --blue10: #e5f3ff;
+  --blue20: #8bc2e0;
+  --blue30: #3b8fdd;
+}
+
 * {
   box-sizing: border-box;
+  font-size: 1.6rem;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+  font-family: 'Pretendard Variable', sans-serif;
 }
