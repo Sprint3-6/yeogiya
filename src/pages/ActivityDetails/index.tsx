@@ -1,18 +1,22 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../components/modal/useModal';
-import instance from '../../api/instance/defaultInstance';
 import { BASE_URL } from '../../api/constants/url';
 
+import instance from '../../api/instance/defaultInstance';
 import toast from '../../utils/toast';
 import Temp from '../../components/temp';
+import Loading from '../Loading';
 
 import './style.scss';
 
 export default function ActivityDetails() {
   const { id } = useParams();
   const { Modal, openModal, closeModal } = useModal();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = async () => {
+    setIsLoading(true);
     const userInfo = await instance.post(`${BASE_URL}auth/login`, {
       email: 'jyp1@jyp.com',
       password: '12345678',
@@ -21,15 +25,17 @@ export default function ActivityDetails() {
     localStorage.setItem('accessToken', userInfo.data.accessToken);
     localStorage.setItem('refreshToken', userInfo.data.refreshToken);
     alert('jyp1@jyp.com 으로 로그인 되었습니다. 비번:12345678');
+    setIsLoading(false);
   };
 
   const viewList = async () => {
-    const myList = await instance.get(`${BASE_URL}my-activities?size=20`);
-    console.log(myList);
+    const myList = await instance.get(`${BASE_URL}activities/718`);
+    console.log(myList.data);
   };
 
   return (
     <>
+      {isLoading && <Loading />}
       <main className="activityDetailContainer">
         {id}번 체험상세 페이지 입니다.
         <br />
@@ -39,7 +45,7 @@ export default function ActivityDetails() {
         <br />
         <button onClick={() => toast.error('에러 토스트 입니다.')}>에러토스트</button>
         <button onClick={() => openModal('a')}>모달</button>
-        <button onClick={viewList}>내 체험리스트 조회</button>
+        <button onClick={viewList}>체험 상세 조회</button>
       </main>
       <button className="tempLogin" onClick={login}>
         로그인
