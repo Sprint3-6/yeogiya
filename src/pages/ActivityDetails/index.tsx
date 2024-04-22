@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useModal } from '../../components/modal/useModal';
+import { useModal } from '../../hooks/useModal/useModal';
 import instance from '../../api/instance/defaultInstance';
 import { BASE_URL } from '../../api/constants/url';
 
@@ -37,7 +37,7 @@ export default function ActivityDetails() {
         <button onClick={viewMyActivity}>내 체험 조회</button>
         <button onClick={viewActivityDetail}>체험 상세 조회</button>
       </main>
-      <Modal type="a">
+      <Modal name="a">
         <Temp closeModal={closeModal} />
       </Modal>
     </>
