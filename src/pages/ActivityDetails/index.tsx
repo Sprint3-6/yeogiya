@@ -13,8 +13,8 @@ export default function ActivityDetails() {
   const { Modal, openModal, closeModal } = useModal();
 
   const viewActivityDetail = async () => {
-    const myList = await instance.get(`${BASE_URL}activities/718`);
-    console.log(myList.data);
+    const detail = await instance.get(`${BASE_URL}activities/718`);
+    console.log(detail.data);
   };
   const viewMyActivity = async () => {
     const myList = await instance.get(`${BASE_URL}my-activities?size=20`);
@@ -23,7 +23,7 @@ export default function ActivityDetails() {
 
   return (
     <>
-      <main className="activityDetailContainer">
+      <main className="activity-detail-container">
         {id}번 체험상세 페이지 입니다.
         <br />
         <button onClick={() => toast.success('성공 토스트 입니다.')}>성공토스트</button>
