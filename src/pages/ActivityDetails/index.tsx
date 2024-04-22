@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../components/modal/useModal';
+import instance from '../../api/instance/defaultInstance';
 import { BASE_URL } from '../../api/constants/url';
 
-import instance from '../../api/instance/defaultInstance';
 import toast from '../../utils/toast';
 import Temp from '../../components/temp';
 
