@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from '../../api/constants/url';
 import instance from '../../api/instance/defaultInstance';
 import Loading from '../Loading';
+import toast from '../../utils/toast';
 
 import './style.scss';
-import { useState } from 'react';
 
 interface ErrorType {
   response: {
@@ -28,15 +29,15 @@ export default function MainPage() {
             email: id,
             password: password,
           });
-          alert(`${id}로 로그인 되었습니다.(자세한건 콘솔창)`);
+          toast.success(`${id}로 로그인 되었습니다.(자세한건 콘솔창)`);
           console.log(response);
           localStorage.setItem('accessToken', response.data.accessToken);
           localStorage.setItem('refreshToken', response.data.refreshToken);
         } else {
-          alert('취소함');
+          alert('취소');
         }
       } else {
-        alert('취소함');
+        alert('취소');
       }
     } catch (err) {
       const error = err as ErrorType;
