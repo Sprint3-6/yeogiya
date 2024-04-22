@@ -1,5 +1,5 @@
 import instance from './instance/defaultInstance';
-import { CreateActivityBody } from './types/activities';
+import { CreateActivityBody, MyActivitiesList } from './types/activities';
 
 export const uploadImage = async (imageFile: File) => {
   try {
@@ -48,4 +48,14 @@ export const uploadImageAndPostData = async (body: CreateActivityBody, imageFile
   } catch (error) {
     console.error('이미지 업로드 및 데이터 전송 오류:', error);
   }
+};
+
+export const getMyActivities = async (size: number, cursorId: number | null): Promise<MyActivitiesList> => {
+  const response = await instance.get('my-activities', {
+    params: {
+      cursorId: cursorId,
+      size: size,
+    },
+  });
+  return response.data;
 };
