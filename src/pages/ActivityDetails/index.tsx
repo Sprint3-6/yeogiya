@@ -5,7 +5,6 @@ import { BASE_URL } from '../../api/constants/url';
 import { myInfo } from '../../redux/myInfoSlice';
 import instance from '../../api/instance/defaultInstance';
 
-import toast from '../../utils/toast';
 import Temp from '../../components/temp';
 
 import './style.scss';
@@ -30,15 +29,10 @@ export default function ActivityDetails() {
       <main className="activity-detail-container">
         {id}번 체험상세 페이지 입니다.
         <br />
-        <button onClick={() => toast.success('성공 토스트 입니다.')}>성공토스트</button>
-        <br />
-        <button onClick={() => toast.warning('경고 토스트 입니다.')}>경고토스트</button>
-        <br />
-        <button onClick={() => toast.error('에러 토스트 입니다.')}>에러토스트</button>
-        <br />
         <button onClick={() => openModal('a')}>모달</button>
         <br />
         <button onClick={viewMyActivity}>내 체험 조회</button>
+        <br />
         <button onClick={viewActivityDetail}>체험 상세 조회</button>
       </main>
       <Modal name="a">
