@@ -8,14 +8,17 @@ export default function MyActivityCard({ activity }: MyActivityCardProps) {
       <img className="my-activity-card-img" src={activity.bannerImageUrl} alt="메인 사진" />
       <div className="my-activity-card-imf">
         <div>
-          <img className="my-activity-card-star" src="/img/icon-star.svg" alt="rating star" />
-          <span>
-            {activity.rating}({activity.reviewCount})
-          </span>
+          <div className="my-activity-card-star-box">
+            <img className="my-activity-card-star" src="/assets/icons/icon-star.svg" alt="rating star" />
+            <span>
+              {activity.rating}({activity.reviewCount})
+            </span>
+          </div>
+          <h3>{activity.title}</h3>
         </div>
-        <h3>{activity.title}</h3>
-        <div>
-          <span>\{formattedPrice}</span>
+        <div className="my-activity-card-price">
+          <span>￦{formattedPrice}</span>
+          <img src="assets/icons/icon-meatball.svg" alt="관리하기 열기" />
         </div>
       </div>
     </div>

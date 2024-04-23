@@ -3,6 +3,7 @@ import useIntersectionObserver from '../../../../hooks/useIntersectionObserver/u
 import { ActivityBasic } from '../../../../api/types/activities';
 import { getMyActivities } from '../../../../api/activitiesApi';
 import MyActivityCard from '../MyActivityCard';
+import './MyActivityList.scss';
 
 export default function MyActivityList() {
   const [myActivities, setMyActivities] = useState<ActivityBasic[]>([]);
@@ -13,7 +14,7 @@ export default function MyActivityList() {
     if (hasNotNext) {
       return;
     }
-    const { activities, cursorId: newCursorId } = await getMyActivities(5, cursorId.current);
+    const { activities, cursorId: newCursorId } = await getMyActivities(10, cursorId.current);
     cursorId.current = newCursorId;
     setMyActivities((pre) => [...pre, ...activities]);
   };
@@ -22,7 +23,7 @@ export default function MyActivityList() {
   return (
     <div>
       {myActivities.length > 0 ? (
-        <div>
+        <div className="my-activity-list-box">
           {myActivities.map((activity) => (
             <MyActivityCard activity={activity} key={activity.id} />
           ))}
