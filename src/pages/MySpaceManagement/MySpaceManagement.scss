@@ -1,0 +1,34 @@
+.activity-management {
+  width: 344px;
+  margin: 0 auto;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    width: 430px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 800px;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+  }
+
+  h3 {
+    margin: 6px 0;
+    font-size: 1.4rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.8rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 2rem;
+    }
+  }
+}
