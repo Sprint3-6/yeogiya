@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-import ActivityDetails from '../pages/ActivityDetails';
-import ActivityManagement from '../pages/ActivityManagement';
+import SpaceDetails from '../pages/SpaceDetails';
+import MySpaceManagement from '../pages/MySpaceManagement';
 import Loading from '../pages/Loading';
 import MainPage from '../pages/Main';
 import MyInfo from '../pages/MyInfo';
@@ -21,8 +21,8 @@ const PrimaryRoute = (
       <Route path="reservation-status" element={<ReservationStatus />} />
       <Route path="reservation-details" element={<ReservationDetails />} />
       <Route path="my-info" element={<MyInfo />} />
-      <Route path="activity/:id" element={<ActivityDetails />} />
-      <Route path="activity-management" element={<ActivityManagement />} />
+      <Route path="space/:id" element={<SpaceDetails />} />
+      <Route path="my-space-management" element={<MySpaceManagement />} />
     </Route>
     <Route path="loading" element={<Loading />} />
     <Route path="sign-up" element={<SignUp />} />

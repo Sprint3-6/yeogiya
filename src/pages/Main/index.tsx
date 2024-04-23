@@ -62,14 +62,14 @@ export default function MainPage() {
       <br />
       <Link to={'reservation-status'}>예약현황</Link>
       <br />
-      <Link to={'activity-management'}>내 체험 관리</Link>
+      <Link to={'my-space-management'}>내 공간 관리</Link>
       <br />
       <br />
-      <Link to={'activity/1'}>체험상세 1번</Link>
+      <Link to={'space/1'}>공간상세 1번</Link>
       <br />
-      <Link to={'activity/2'}>체험상세 2번</Link>
+      <Link to={'space/2'}>공간상세 2번</Link>
       <br />
-      <Link to={'activity/3'}>체험상세 3번</Link>
+      <Link to={'space/3'}>공간상세 3번</Link>
       <button className="temp-login" onClick={handleTempLogin}>
         로그인하기
       </button>
