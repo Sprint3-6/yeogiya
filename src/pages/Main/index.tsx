@@ -1,50 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../api/constants/url';
-import instance from '../../api/instance/defaultInstance';
+import { useDispatch } from 'react-redux';
+import { setMyInfo } from '../../redux/myInfoSlice';
 import Loading from '../Loading';
-import toast from '../../utils/toast';
+import getMyInfo from '../../api/getMyInfo';
 
 import './style.scss';
 
-interface ErrorType {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}
-
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleTempLogin = async () => {
     const id = prompt('이메일');
-    try {
-      if (id) {
-        const password = prompt('비밀번호');
-        if (password) {
-          setIsLoading(true);
-          const response = await instance.post(`${BASE_URL}auth/login`, {
-            email: id,
-            password: password,
-          });
-          toast.success(`${id}로 로그인 되었습니다.(자세한건 콘솔창)`);
-          console.log(response);
-          localStorage.setItem('accessToken', response.data.accessToken);
-          localStorage.setItem('refreshToken', response.data.refreshToken);
-        } else {
-          alert('취소');
-        }
-      } else {
-        alert('취소');
-      }
-    } catch (err) {
-      const error = err as ErrorType;
-      alert(error.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const password = prompt('비밀번호');
+    setIsLoading(true);
+    dispatch(setMyInfo(await getMyInfo(id, password)));
+    setIsLoading(false);
   };
 
   return (

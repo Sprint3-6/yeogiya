@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal/useModal';
-import instance from '../../api/instance/defaultInstance';
+import { useSelector } from 'react-redux';
 import { BASE_URL } from '../../api/constants/url';
+import { myInfo } from '../../redux/myInfoSlice';
+import instance from '../../api/instance/defaultInstance';
 
 import toast from '../../utils/toast';
 import Temp from '../../components/temp';
@@ -11,6 +13,7 @@ import './style.scss';
 export default function ActivityDetails() {
   const { id } = useParams();
   const { Modal, openModal, closeModal } = useModal();
+  const userInfo = useSelector(myInfo);
 
   const viewActivityDetail = async () => {
     const detail = await instance.get(`${BASE_URL}activities/718`);
@@ -20,6 +23,7 @@ export default function ActivityDetails() {
     const myList = await instance.get(`${BASE_URL}my-activities?size=20`);
     console.log(myList.data);
   };
+  console.log(userInfo);
 
   return (
     <>
