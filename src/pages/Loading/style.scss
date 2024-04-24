@@ -1,4 +1,7 @@
 .loading-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,6 +9,7 @@
   width: 100%;
   height: 100vh;
   gap: 10px;
+  background: rgba(0, 0, 0, 0.189);
 }
 
 .loading-logo {
@@ -33,6 +37,7 @@
   .loading-text {
     font-size: 2rem;
     font-weight: bold;
+    color: var(--black);
 
     @media screen and (min-width: 768px) {
       font-size: 2.5rem;
@@ -41,6 +46,7 @@
 
   .loading-wait-text {
     font-size: 1.4rem;
+    color: var(--black);
 
     @media screen and (min-width: 768px) {
       font-size: 1.6rem;
