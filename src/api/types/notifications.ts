@@ -1,3 +1,7 @@
+export interface MyNotificationsProps {
+  onClose: () => void;
+}
+
 export interface NotificationsType {
   cursorId?: number;
   notifications: [
