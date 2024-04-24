@@ -28,13 +28,13 @@ export default function MainPage() {
       <br />
       <Link to={'sign-up'}>회원가입</Link>
       <br />
-      <Link to={'my-info'}>내정보</Link>
+      <Link to={'mypage'}>내정보</Link>
       <br />
-      <Link to={'reservation-details'}>예약내역</Link>
+      <Link to={'mypage/reservation'}>예약내역</Link>
       <br />
-      <Link to={'reservation-status'}>예약현황</Link>
+      <Link to={'mypage/admin/status'}>예약현황</Link>
       <br />
-      <Link to={'my-space-management'}>내 공간 관리</Link>
+      <Link to={'mypage/admin'}>내 공간 관리</Link>
       <br />
       <Link to={'space/718'}>공간상세</Link>
       <button className="temp-login" onClick={handleTempLogin}>
