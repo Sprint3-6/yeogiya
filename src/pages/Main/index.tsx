@@ -38,7 +38,7 @@ export default function MainPage() {
       <br />
       <Link to={'space/718'}>공간상세(내꺼)</Link>
       <br />
-      <Link to={'space/706'}>공간상세(내꺼아님)</Link>
+      <Link to={'space/704'}>공간상세(내꺼아님)</Link>
       <button className="temp-login" onClick={handleTempLogin}>
         로그인하기
       </button>

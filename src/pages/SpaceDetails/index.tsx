@@ -1,43 +1,71 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useModal } from '../../hooks/useModal/useModal';
-import { useSelector } from 'react-redux';
-import { BASE_URL } from '../../api/constants/url';
-import { myInfo } from '../../redux/myInfoSlice';
-import instance from '../../api/instance/defaultInstance';
-
-import Temp from '../../components/temp';
-
+// import { useModal } from '../../hooks/useModal/useModal';
+import { useAppSelector } from '@/redux/store/store';
+import { DetailType } from './Types/DetailType';
+import getSpaceDetail from '@/api/getSpaceDetail';
+import categoryFilter from '@/utils/categoryFilter';
+// import Temp from '../../components/temp';
 import './style.scss';
 
 export default function SpaceDetails() {
   const { id } = useParams();
-  const { Modal, openModal, closeModal } = useModal();
-  const userInfo = useSelector(myInfo);
+  // const { Modal, openModal, closeModal } = useModal();
+  const [detail, SetDetail] = useState<DetailType>();
 
-  const viewSpaceDetail = async () => {
-    const detail = await instance.get(`${BASE_URL}activities/718`);
-    console.log(detail.data);
-  };
-  const viewMySpace = async () => {
-    const myList = await instance.get(`${BASE_URL}my-activities?size=20`);
-    console.log(myList.data);
-  };
+  const userInfo = useAppSelector((state) => state.myInfo);
+
   console.log(userInfo);
 
+  const setSpaceDetail = async () => {
+    const detailData = await getSpaceDetail(id);
+    SetDetail(detailData);
+  };
+
+  useEffect(() => {
+    setSpaceDetail();
+  }, [detail?.userId]);
+
   return (
-    <>
-      <main className="space-detail-container">
-        {id}번 공간상세 페이지 입니다.
+    <div className="space-detail-wrapper">
+      <section className="space-detail-container">
+        <div className="space-detail-container-header">
+          <h3>{categoryFilter(detail?.category)}</h3>
+          <h1>{detail?.title}</h1>
+          <div>
+            <img src="/public/assets/icons/icon-star.svg" />
+            <h2>{`${detail?.rating} (${detail?.reviewCount})`}</h2>
+            <img src="/favicon.svg" />
+            <h3>{detail?.address}</h3>
+          </div>
+          {detail?.userId === userInfo.id && (
+            <img src="/public/assets/icons/icon-meatball.svg" className="space-detail-kebab" />
+          )}
+        </div>
+
+        <article className="space-detail-container-article">
+          <div>
+            <img src={detail?.bannerImageUrl} />
+          </div>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index} className={detail?.subImages[index] ? '' : 'empty-image'}>
+              {
+                <img
+                  src={
+                    detail?.subImages[index] ? detail.subImages[index].imageUrl : '/public/assets/logos/logo-icon.svg'
+                  }
+                />
+              }
+            </div>
+          ))}
+        </article>
         <br />
-        <button onClick={() => openModal('a')}>모달</button>
-        <br />
-        <button onClick={viewMySpace}>내 공간 조회</button>
-        <br />
-        <button onClick={viewSpaceDetail}>공간 상세 조회</button>
-      </main>
-      <Modal name="a">
+        {/* <button onClick={() => openModal('a')}>모달</button> */}
+      </section>
+
+      {/* <Modal name="a">
         <Temp closeModal={closeModal} />
-      </Modal>
-    </>
+      </Modal> */}
+    </div>
   );
 }
