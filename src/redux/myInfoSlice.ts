@@ -32,5 +32,5 @@ const myInfoSlice = createSlice({
 });
 
 export const { setMyInfo, clearMyInfo } = myInfoSlice.actions;
-export const myInfo = (state: { myInfo: UserType }) => state.myInfo;
+//export const myInfo = (state: { myInfo: UserType }) => state.myInfo;
 export default myInfoSlice.reducer;
