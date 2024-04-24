@@ -1,50 +1,22 @@
-import { BASE_URL } from '@/api/constants/url';
-import instance from '@/api/instance/defaultInstance';
-import toast from '@/utils/toast';
+import getMyInfo from '@/api/getMyInfo';
+import { setMyInfo } from '@/redux/myInfoSlice';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 
 import './style.scss';
 
-interface ErrorType {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}
-
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleTempLogin = async () => {
     const id = prompt('이메일');
-    try {
-      if (id) {
-        const password = prompt('비밀번호');
-        if (password) {
-          setIsLoading(true);
-          const response = await instance.post(`${BASE_URL}auth/login`, {
-            email: id,
-            password: password,
-          });
-          toast.success(`${id}로 로그인 되었습니다.(자세한건 콘솔창)`);
-          console.log(response);
-          localStorage.setItem('accessToken', response.data.accessToken);
-          localStorage.setItem('refreshToken', response.data.refreshToken);
-        } else {
-          alert('취소');
-        }
-      } else {
-        alert('취소');
-      }
-    } catch (err) {
-      const error = err as ErrorType;
-      alert(error.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const password = prompt('비밀번호');
+    setIsLoading(true);
+    dispatch(setMyInfo(await getMyInfo(id, password)));
+    setIsLoading(false);
   };
 
   return (
@@ -64,12 +36,7 @@ export default function MainPage() {
       <br />
       <Link to={'activity-management'}>내 체험 관리</Link>
       <br />
-      <br />
-      <Link to={'activity/1'}>체험상세 1번</Link>
-      <br />
-      <Link to={'activity/2'}>체험상세 2번</Link>
-      <br />
-      <Link to={'activity/3'}>체험상세 3번</Link>
+      <Link to={'activity/718'}>체험상세</Link>
       <button className="temp-login" onClick={handleTempLogin}>
         로그인하기
       </button>
