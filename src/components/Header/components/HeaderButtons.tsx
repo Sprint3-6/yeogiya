@@ -48,7 +48,7 @@ export default function HeaderButtons() {
           </Modal>
           <Modal name="header-dropdown">
             <div className="header-dropdown-container">
-              <HeaderDropDown />
+              <HeaderDropDown onClose={closeModal} />
             </div>
           </Modal>
         </div>

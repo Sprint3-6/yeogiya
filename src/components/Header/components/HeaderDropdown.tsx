@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import { clearMyInfo } from '@/redux/myInfoSlice';
 import { Link } from 'react-router-dom';
 
-export default function HeaderDropDown() {
+interface DropDownProp {
+  onClose: () => void;
+}
+
+export default function HeaderDropDown({ onClose }: DropDownProp) {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -15,7 +19,7 @@ export default function HeaderDropDown() {
 
   return (
     <ul className="header-dropdown-list">
-      <Link to="mypage">
+      <Link to="mypage" onClick={onClose}>
         <li>마이페이지</li>
       </Link>
       <li onClick={handleLogout}>로그아웃</li>
