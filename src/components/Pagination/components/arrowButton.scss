@@ -1,0 +1,15 @@
+.pagination-arrow-button {
+  display: flex;
+  padding: 17px;
+  border-radius: 15px;
+  background: #fff;
+  border: 1px solid;
+}
+
+.pagination-arrow-button.enabled {
+  border-color: #1b1b1b;
+}
+
+.pagination-arrow-button.disabled {
+  border-color: #ddd;
+}
