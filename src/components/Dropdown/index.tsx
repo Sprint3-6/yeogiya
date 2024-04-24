@@ -1,32 +1,77 @@
 import { useState } from 'react';
 import './style.scss';
 
-export const DropDown = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [select, setSelect] = useState(null);
+interface DropDwonProps {
+  title?: string;
+  image?: string;
+  arrowUp?: string;
+  arrowDown?: string;
+  items: DropdownItem[];
+  onClickItem: (value: string) => void;
+}
+
+interface DropDwonItemProps {
+  item: string;
+  value: string;
+  handleClickItem: (item: string, value: string) => void;
+}
+
+export interface DropdownItem {
+  value: string;
+  itemname: string;
+}
+
+export const DropDown = (props: DropDwonProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [select, setSelect] = useState<string | null>(null);
 
   // 드롭다운 타이틀
   const title = props.title;
+  const image = props.image;
   const arrowUp = props.arrowUp;
   const arrowDown = props.arrowDown;
-  const array = props.children;
+  const items = props.items;
+  const onClickItem = props.onClickItem;
 
   // 드롭다운 아이템
   // 가격이 낮은 순, 가격이 높은 순, 예약 신청, 예약 취소
 
-  const handleSelect = (e) => {
-    const selectOption = e.target.outerText;
-    setSelect(selectOption);
-    console.log(select);
+  // const handleSelect = (e) => {
+  //   const selectOption = e.target.outerText;
+  //   setSelect(selectOption);
+  //   console.log('타이틀', title);
+  //   console.log('타이틀', items);
+  // };
+
+  const handleShowTitle = () => {
+    if (image) {
+      return (
+        <div>
+          <div>
+            <img src={image} />
+          </div>
+          <div>{title ? title : null}</div>
+        </div>
+      );
+    } else if (title) {
+      return <div>{select ? select : title}</div>;
+    }
   };
 
-  const handleTitle = (arrow) => {
+  const handleTitle = (arrow?: string) => {
     return (
       <div className="dropdown-title">
-        <div>{select === null ? title : select}</div>
+        <div>{handleShowTitle()}</div>
         <div>{arrow}</div>
       </div>
     );
+  };
+
+  const handleClickItem = (item: string, value: string) => {
+    setSelect(item);
+    onClickItem(value);
+    console.log('아이템', item);
+    console.log('키값', value);
   };
 
   return (
@@ -37,32 +82,21 @@ export const DropDown = (props) => {
           setIsOpen(!isOpen);
         }}
       >
-        {
-          isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)
-
-          // <div className="dropdown-title">
-          //   <div>{title}</div>
-          //   <div>{arrowDown}</div>
-          // </div>
-        }
+        {isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}
       </div>
       <ul className="dropdown-option-list">
-        {/* {isOpen &&
-          array.map((e) => (
-            <li className="dropdown-option" onClick={console.log(e.props.children[0])}>
-              {e.props.children}
-            </li>
-          ))} */}
-        {isOpen && (
-          <li className="dropdown-option" onClick={handleSelect}>
-            {array}
-          </li>
-        )}
+        {isOpen &&
+          items.map((e) => <DropdownItem value={e.value} item={e.itemname} handleClickItem={handleClickItem} />)}
       </ul>
     </div>
   );
 };
 
-export const DropdownItem = (props) => {
-  return <div>{props.children}</div>;
+export const DropdownItem = ({ item, value, handleClickItem }: DropDwonItemProps) => {
+  // return <div onClick={props.onClick}>{props.children}</div>;
+  return (
+    <li className="dropdown-item" onClick={() => handleClickItem(item, value)}>
+      {item}
+    </li>
+  );
 };

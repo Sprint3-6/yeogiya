@@ -9,6 +9,10 @@
 
 .dropdown-select {
   position: relative;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
 
 .dropdown-select .dropdown-option-list {
@@ -18,14 +22,19 @@
   width: 100%;
   overflow: hidden;
   max-height: 0;
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
 .dropdown-title {
   display: flex;
   justify-content: space-between;
 }
+.dropdown-item {
+  list-style: none;
+}
 
-.dropdown-option {
-  :hover {
-    background-color: red;
-  }
+.dropdown-item:hover {
+  background-color: #eeeeee;
 }
