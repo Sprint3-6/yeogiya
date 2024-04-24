@@ -43,7 +43,7 @@ export default function SpaceDetails() {
           )}
         </div>
 
-        <article className="space-detail-container-article">
+        <figure className="space-detail-container-pictures">
           <div>
             <img src={detail?.bannerImageUrl} />
           </div>
@@ -58,7 +58,14 @@ export default function SpaceDetails() {
               }
             </div>
           ))}
-        </article>
+        </figure>
+
+        <section className="space-detail-container-description">
+          <h2>공간 설명</h2>
+          <p>{detail?.description}</p>
+        </section>
+
+        <aside></aside>
         <br />
         {/* <button onClick={() => openModal('a')}>모달</button> */}
       </section>
