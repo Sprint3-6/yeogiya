@@ -7,8 +7,8 @@ interface ArrowButtonProp {
 
 export default function ArrowButton({ fillColor = 'enabled', direction = 'left' }: ArrowButtonProp) {
   const colors = {
-    enabled: '#1B1B1B',
-    disabled: '#A1A1A1',
+    enabled: 'var(--black20)',
+    disabled: 'var(--gray50)',
   };
 
   const arrows = {
