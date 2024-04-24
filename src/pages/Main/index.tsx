@@ -1,9 +1,9 @@
+import { BASE_URL } from '@/api/constants/url';
+import instance from '@/api/instance/defaultInstance';
+import toast from '@/utils/toast';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../api/constants/url';
-import instance from '../../api/instance/defaultInstance';
 import Loading from '../Loading';
-import toast from '../../utils/toast';
 
 import './style.scss';
 

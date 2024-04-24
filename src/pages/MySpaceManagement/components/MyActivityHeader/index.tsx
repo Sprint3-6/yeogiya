@@ -1,4 +1,4 @@
-import Button from '../../../../components/Button';
+import Button from '@/components/Button';
 import './MyActivityHeader.scss';
 
 export default function MyActivityHeader() {

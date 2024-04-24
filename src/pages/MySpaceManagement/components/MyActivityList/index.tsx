@@ -1,7 +1,7 @@
+import { getMyActivities } from '@/api/activitiesApi';
+import { ActivityBasic } from '@/api/types/activities';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 import { useRef, useState } from 'react';
-import useIntersectionObserver from '../../../../hooks/useIntersectionObserver/useIntersectionObserver';
-import { ActivityBasic } from '../../../../api/types/activities';
-import { getMyActivities } from '../../../../api/activitiesApi';
 import MyActivityCard from '../MyActivityCard';
 import './MyActivityList.scss';
 
