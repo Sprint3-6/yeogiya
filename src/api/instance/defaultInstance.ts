@@ -3,6 +3,7 @@ import { refreshToken } from '../authApi';
 import { BASE_URL } from '../constants/url';
 
 const instance = axios.create({
+  timeout: 5000,
   baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
 });
