@@ -16,10 +16,6 @@
 
 .header-login {
   @extend .header-buttons;
-  img {
-    position: relative;
-    cursor: pointer;
-  }
 }
 
 .header-login-user {
@@ -51,7 +47,8 @@
 }
 
 .header-button:hover,
-.header-login-user:hover {
+.header-login-user:hover,
+.header-notifications-icon {
   cursor: pointer;
   color: var(--blue20);
 }
