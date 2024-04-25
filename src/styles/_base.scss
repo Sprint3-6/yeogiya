@@ -30,11 +30,19 @@
   --blue10: #e5f3ff;
   --blue20: #8bc2e0;
   --blue30: #3b8fdd;
+
+  --success: #a4a4a4;
+  --success-hover: #7f7f7f;
+  --reservation: #77bee0;
+  --reservation-hover: #44afe0;
+  --approve: #f495a8;
+  --approve-hover: #f17f94;
 }
 
 * {
   box-sizing: border-box;
   font-size: 1.6rem;
+  margin: 0;
 }
 
 html {
@@ -43,11 +51,17 @@ html {
 }
 
 body {
-  margin: 0;
+  font-family: 'Pretendard Variable', sans-serif;
   height: 100%;
   padding: 0;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+button,
+textarea {
   font-family: 'Pretendard Variable', sans-serif;
-  button {
-    font-family: inherit;
-  }
 }
