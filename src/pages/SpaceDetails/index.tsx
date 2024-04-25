@@ -7,6 +7,7 @@ import getSpaceDetail from '@/api/getSpaceDetail';
 import categoryFilter from '@/utils/categoryFilter';
 // import Temp from '../../components/temp';
 import './style.scss';
+import KakaoMap from '@/components/KakaoMap';
 
 export default function SpaceDetails() {
   const { id } = useParams();
@@ -65,7 +66,7 @@ export default function SpaceDetails() {
           <p>{detail?.description}</p>
         </section>
 
-        <aside></aside>
+        <KakaoMap />
         <br />
         {/* <button onClick={() => openModal('a')}>모달</button> */}
       </section>
