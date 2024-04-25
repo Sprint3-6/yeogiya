@@ -1,102 +1,130 @@
-import { useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import './style.scss';
 
 interface DropDwonProps {
+  id?: string;
   title?: string;
   image?: string;
   arrowUp?: string;
   arrowDown?: string;
-  items: DropdownItem[];
+  children: React.ReactNode;
+  titleStyle?: React.CSSProperties;
+  listStyle?: React.CSSProperties;
   onClickItem: (value: string) => void;
 }
 
-interface DropDwonItemProps {
-  item: string;
+interface DropdownItem {
   value: string;
-  handleClickItem: (item: string, value: string) => void;
+  children: React.ReactNode;
+  itemStyle?: React.CSSProperties;
 }
 
-export interface DropdownItem {
-  value: string;
-  itemname: string;
+interface DropdownContextProps {
+  handleClickItem?: (children: React.ReactNode, value: string) => void;
 }
+
+export const DropdownContext = createContext<DropdownContextProps>({});
 
 export const DropDown = (props: DropDwonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [select, setSelect] = useState<string | null>(null);
+  const [select, setSelect] = useState<React.ReactNode | null>(null);
 
-  // 드롭다운 타이틀
+  const dropDownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // 클릭시 드롭다운 내부에 속해 있는지 확인
+      if (dropDownRef.current && !dropDownRef.current.contains(event.target as Node)) {
+        // 드롭다운 외부 클릭했을 때 상태 변경
+        setIsOpen(false);
+      }
+    };
+
+    // 클릭시 이벤트 리스너 등록
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // 드롭다운 props
   const title = props.title;
   const image = props.image;
   const arrowUp = props.arrowUp;
   const arrowDown = props.arrowDown;
-  const items = props.items;
+  const array = props.children;
+  const id = props.id;
+  const titleStyle = props.titleStyle;
+  const listStyle = props.listStyle;
   const onClickItem = props.onClickItem;
 
-  // 드롭다운 아이템
-  // 가격이 낮은 순, 가격이 높은 순, 예약 신청, 예약 취소
-
-  // const handleSelect = (e) => {
-  //   const selectOption = e.target.outerText;
-  //   setSelect(selectOption);
-  //   console.log('타이틀', title);
-  //   console.log('타이틀', items);
-  // };
-
+  // 드롭다운 셀렉터 보여주는 함수
   const handleShowTitle = () => {
     if (image) {
       return (
-        <div>
-          <div>
+        <div className="dropdown-text">
+          <div className="dropdown-image">
             <img src={image} />
           </div>
-          <div>{title ? title : null}</div>
+          <div className="dropdown-text">{title ? title : null}</div>
         </div>
       );
     } else if (title) {
-      return <div>{select ? select : title}</div>;
+      return <div className="dropdown-text">{select ? select : title}</div>;
     }
   };
 
+  // 드롭다운 셀렉터
   const handleTitle = (arrow?: string) => {
     return (
-      <div className="dropdown-title">
+      <div className="dropdown-text">
         <div>{handleShowTitle()}</div>
-        <div>{arrow}</div>
+        {arrow ? <div>{arrow}</div> : null}
       </div>
     );
   };
 
-  const handleClickItem = (item: string, value: string) => {
-    setSelect(item);
+  // 드롭다운 클릭시 실행 함수
+  const handleClickItem = (children: React.ReactNode, value: string) => {
+    setSelect(children);
     onClickItem(value);
-    console.log('아이템', item);
-    console.log('키값', value);
+    console.log('아이템', children);
   };
 
+  const contextValue = {
+    handleClickItem,
+  };
+
+  console.log('선택한 드롭다운 id,', id);
   return (
-    <div>
+    <DropdownContext.Provider value={contextValue}>
       <div
-        className="dropdown-select"
+        className="dropdown"
         onClick={() => {
           setIsOpen(!isOpen);
         }}
+        id={id}
+        ref={dropDownRef}
       >
-        {isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}
+        <div className="dropdown-title" style={titleStyle}>
+          {isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}
+        </div>
+        <div></div>
+        <ul className="dropdown-list" style={Object.assign({}, listStyle, { width: titleStyle?.width })}>
+          {isOpen && array}
+        </ul>
       </div>
-      <ul className="dropdown-option-list">
-        {isOpen &&
-          items.map((e) => <DropdownItem value={e.value} item={e.itemname} handleClickItem={handleClickItem} />)}
-      </ul>
-    </div>
+    </DropdownContext.Provider>
   );
 };
 
-export const DropdownItem = ({ item, value, handleClickItem }: DropDwonItemProps) => {
-  // return <div onClick={props.onClick}>{props.children}</div>;
+export const DropdownItem = ({ children, value, itemStyle }: DropdownItem) => {
+  const { handleClickItem } = useContext(DropdownContext);
   return (
-    <li className="dropdown-item" onClick={() => handleClickItem(item, value)}>
-      {item}
+    <li className="dropdown-item" onClick={() => handleClickItem?.(children, value)} style={itemStyle}>
+      {children}
     </li>
   );
 };
