@@ -1,4 +1,15 @@
 .header {
-  border: 1px solid black;
-  font-size: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    padding: 20px 0;
+  }
+}
+
+.header-logo {
+  width: 130px;
 }
