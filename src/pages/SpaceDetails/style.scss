@@ -1,0 +1,116 @@
+.space-detail-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--gray10);
+
+  .space-detail-container {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
+    .space-detail-container-header {
+      position: relative;
+      padding-top: 78px;
+      padding-bottom: 42px;
+
+      h1 {
+        font-size: 3.2rem;
+        margin: 10px 0 16px;
+      }
+
+      h2 {
+        margin-right: 12px;
+      }
+
+      h3 {
+        opacity: 0.75;
+      }
+
+      h2,
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+
+        img:nth-of-type(1) {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+        }
+        img:nth-of-type(2) {
+          width: 18px;
+          height: 18px;
+          margin-right: 2px;
+        }
+      }
+
+      .space-detail-kebab {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        cursor: pointer;
+      }
+    }
+
+    .space-detail-container-pictures {
+      width: 1198px;
+      height: 534px;
+      margin: 0 0 85px;
+      display: grid;
+      grid-template-columns: 595px 293.5px 293.5px;
+      gap: 8px;
+
+      div:nth-child(1) {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        height: 534px;
+        img {
+          border-radius: 12px 0 0 12px;
+        }
+      }
+
+      div:nth-child(3) {
+        img {
+          border-radius: 0 12px 0 0;
+        }
+      }
+
+      div:nth-child(5) {
+        img {
+          border-radius: 0 0 12px 0;
+        }
+      }
+
+      div {
+        height: 263px;
+        border-radius: 12px;
+      }
+
+      .empty-image {
+        background-color: var(--gray20);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .space-detail-container-description {
+      width: 790px;
+      margin: 0 auto;
+      padding: 40px 0 40px;
+      line-height: 26px;
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
