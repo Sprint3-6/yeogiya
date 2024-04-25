@@ -12,14 +12,12 @@ export const useModal = () => {
 
   // 모달을 열기 위한 함수
   const openModal = (name: string) => {
-    document.body.style.overflow = 'hidden';
     setModalName(name);
     document.addEventListener('mousedown', handleClickOutside);
   };
 
   // 모달을 닫기 위한 함수
   const closeModal = () => {
-    document.body.style.overflow = 'unset';
     setModalName('');
     document.removeEventListener('mousedown', handleClickOutside);
   };

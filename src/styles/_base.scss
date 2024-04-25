@@ -53,6 +53,7 @@ html {
 body {
   font-family: 'Pretendard Variable', sans-serif;
   height: 100%;
+  overflow: hidden;
   padding: 0;
 }
 
@@ -64,4 +65,11 @@ a {
 button,
 textarea {
   font-family: 'Pretendard Variable', sans-serif;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
 }
