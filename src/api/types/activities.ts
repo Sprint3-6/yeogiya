@@ -11,8 +11,6 @@ export interface CreateActivityBody {
   price: number;
   address: string;
   schedules: Schedule[];
-  bannerImageUrl: string;
-  subImageUrls: string[];
 }
 
 export interface MyActivitiesList {

@@ -1,5 +1,5 @@
 import { ActivityBasic } from '@/api/types/activities';
 
-export interface MyActivityCardProps {
+export interface MySpaceCardProps {
   activity: ActivityBasic;
 }
