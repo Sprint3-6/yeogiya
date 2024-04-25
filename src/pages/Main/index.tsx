@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import './style.scss';
+
 export default function MainPage() {
   return (
     <main>
@@ -9,20 +11,17 @@ export default function MainPage() {
       <br />
       <Link to={'sign-up'}>회원가입</Link>
       <br />
-      <Link to={'my-info'}>내정보</Link>
+      <Link to={'mypage'}>내정보</Link>
       <br />
-      <Link to={'reservation-details'}>예약내역</Link>
+      <Link to={'mypage/reservation'}>예약내역</Link>
       <br />
-      <Link to={'reservation-status'}>예약현황</Link>
+      <Link to={'mypage/admin/status'}>예약현황</Link>
       <br />
-      <Link to={'activity-management'}>내 체험 관리</Link>
+      <Link to={'mypage/admin'}>내 공간 관리</Link>
       <br />
+      <Link to={'space/735'}>공간상세(내꺼)</Link>
       <br />
-      <Link to={'activity/1'}>체험상세 1번</Link>
-      <br />
-      <Link to={'activity/2'}>체험상세 2번</Link>
-      <br />
-      <Link to={'activity/3'}>체험상세 3번</Link>
+      <Link to={'space/704'}>공간상세(내꺼아님)</Link>
     </main>
   );
 }

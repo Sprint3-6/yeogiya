@@ -1,29 +1,24 @@
-import { ReactNode, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './useModal.scss';
+import { ModalProps } from './types';
 
-interface ModalProps {
-  type: string;
-  children: ReactNode;
-}
 export const useModal = () => {
   // 모달의 열림/닫힘 상태를 관리하는 state
-  const [modalType, setModalType] = useState('');
+  const [modalName, setModalName] = useState('');
 
   // 모달 안과 밖을 구분하게 해주는 ref
   const modalRef = useRef<HTMLDivElement>(null);
 
   // 모달을 열기 위한 함수
-  const openModal = (type: string) => {
-    document.body.style.overflow = 'hidden';
-    setModalType(type);
+  const openModal = (name: string) => {
+    setModalName(name);
     document.addEventListener('mousedown', handleClickOutside);
   };
 
   // 모달을 닫기 위한 함수
   const closeModal = () => {
-    document.body.style.overflow = 'unset';
-    setModalType('');
+    setModalName('');
     document.removeEventListener('mousedown', handleClickOutside);
   };
 
@@ -39,10 +34,10 @@ export const useModal = () => {
   const modalRoot = document.body as HTMLElement;
 
   // 기본 스타일을 인라인 스타일로 고정
-  const Modal = ({ type, children }: ModalProps) => {
+  const Modal = ({ name, children }: ModalProps) => {
     return ReactDOM.createPortal(
       <>
-        {type === modalType && (
+        {name === modalName && (
           <div
             style={{
               position: 'fixed',

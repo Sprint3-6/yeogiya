@@ -11,6 +11,25 @@ export interface CreateActivityBody {
   price: number;
   address: string;
   schedules: Schedule[];
+}
+
+export interface MyActivitiesList {
+  activities: ActivityBasic[];
+  totalCount: number;
+  cursorId: number;
+}
+
+export interface ActivityBasic {
+  id: number;
+  userId: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  address: string;
   bannerImageUrl: string;
-  subImageUrls: string[];
+  rating: number;
+  reviewCount: number;
+  createdAt: string;
+  updatedAt: string;
 }
