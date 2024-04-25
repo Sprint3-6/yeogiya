@@ -19,7 +19,9 @@ export default function MainPage() {
       <br />
       <Link to={'mypage/admin'}>내 공간 관리</Link>
       <br />
-      <Link to={'space/718'}>공간상세</Link>
+      <Link to={'space/735'}>공간상세(내꺼)</Link>
+      <br />
+      <Link to={'space/704'}>공간상세(내꺼아님)</Link>
     </main>
   );
 }

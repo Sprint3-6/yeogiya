@@ -1,16 +1,17 @@
 import './headerButton.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setMyInfo, myInfo } from '@/redux/myInfoSlice';
+import { useDispatch } from 'react-redux';
+import { setMyInfo } from '@/redux/myInfoSlice';
 import { useModal } from '@/hooks/useModal/useModal';
+import { useAppSelector } from '@/redux/store/store';
 import getMyInfo from '@/api/getMyInfo';
 import MyNotifications from '@/components/MyNotifications';
 import HeaderDropDown from './HeaderDropdown';
 import Loading from '@/pages/Loading';
 
 export default function HeaderButtons() {
-  const userData = useSelector(myInfo);
+  const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
   const defaultProfileImage = '/public/assets/images/profile-default.png';
 
