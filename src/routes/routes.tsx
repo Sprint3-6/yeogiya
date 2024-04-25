@@ -14,7 +14,6 @@ import MyPage from '@/pages/MyPage';
 import MyReservation from '@/pages/MyReservation';
 import EditSpace from '@/pages/EditSpace';
 import AddSpace from '@/pages/AddSpace';
-import '../styles/_base.scss';
 
 const PrimaryRoute = (
   <>
