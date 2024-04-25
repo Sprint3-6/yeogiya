@@ -1,12 +1,12 @@
-import './MySpaceManagement.scss';
-import MyActivityHeader from './components/MyActivityHeader';
-import MyActivityList from './components/MyActivityList';
+import './style.scss';
+import MySpaceList from './components/MySpaceList';
+import MySpaceHeader from './components/MySpaceHeader';
 
 export default function MySpaceManagement() {
   return (
-    <main className="activity-management">
-      <MyActivityHeader />
-      <MyActivityList />
+    <main className="space-management">
+      <MySpaceHeader />
+      <MySpaceList />
     </main>
   );
 }
