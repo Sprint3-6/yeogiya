@@ -67,7 +67,7 @@ export default function SpaceDetails() {
         </section>
 
         <section className="kakao-map-box">
-          <KakaoMap />
+          <KakaoMap address={detail?.address} title={detail?.title} />
           <div>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
