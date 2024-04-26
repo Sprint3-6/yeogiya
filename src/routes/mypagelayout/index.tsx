@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import './style.scss';
-import MypageSide from '@/components/MypageSide';
+import MypageSidebar from '@/components/MypageSidebar';
 
 export default function MypageLayout() {
   return (
     <>
       <sub>
-        <MypageSide />
+        <MypageSidebar />
         <Outlet />
       </sub>
     </>
