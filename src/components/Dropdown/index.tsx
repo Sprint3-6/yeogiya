@@ -2,15 +2,13 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import './style.scss';
 
 interface DropDwonProps {
-  id?: string;
+  id: string;
   title?: string;
   image?: string;
   arrowUp?: string;
   arrowDown?: string;
   children: React.ReactNode;
-  titleStyle?: React.CSSProperties;
-  listStyle?: React.CSSProperties;
-  onClickItem: (value: string) => void;
+  onClickItem?: (value: string, id: string) => void;
 }
 
 interface DropdownItem {
@@ -56,30 +54,28 @@ export const DropDown = (props: DropDwonProps) => {
   const arrowDown = props.arrowDown;
   const array = props.children;
   const id = props.id;
-  const titleStyle = props.titleStyle;
-  const listStyle = props.listStyle;
   const onClickItem = props.onClickItem;
 
   // 드롭다운 셀렉터 보여주는 함수
   const handleShowTitle = () => {
     if (image) {
       return (
-        <div className="dropdown-text">
+        <div className="dropdown-title">
           <div className="dropdown-image">
             <img src={image} />
           </div>
-          <div className="dropdown-text">{title ? title : null}</div>
+          <div className="dropdown-title">{title ? title : null}</div>
         </div>
       );
     } else if (title) {
-      return <div className="dropdown-text">{select ? select : title}</div>;
+      return <div className="dropdown-title">{select ? select : title}</div>;
     }
   };
 
   // 드롭다운 셀렉터
   const handleTitle = (arrow?: string) => {
     return (
-      <div className="dropdown-text">
+      <div className="dropdown-title">
         <div>{handleShowTitle()}</div>
         {arrow ? <div>{arrow}</div> : null}
       </div>
@@ -89,7 +85,7 @@ export const DropDown = (props: DropDwonProps) => {
   // 드롭다운 클릭시 실행 함수
   const handleClickItem = (children: React.ReactNode, value: string) => {
     setSelect(children);
-    onClickItem(value);
+    onClickItem?.(id, value);
     console.log('아이템', children);
   };
 
@@ -97,7 +93,6 @@ export const DropDown = (props: DropDwonProps) => {
     handleClickItem,
   };
 
-  console.log('선택한 드롭다운 id,', id);
   return (
     <DropdownContext.Provider value={contextValue}>
       <div
@@ -108,13 +103,9 @@ export const DropDown = (props: DropDwonProps) => {
         id={id}
         ref={dropDownRef}
       >
-        <div className="dropdown-title" style={titleStyle}>
-          {isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}
-        </div>
+        <div className="dropdown-select">{isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}</div>
         <div></div>
-        <ul className="dropdown-list" style={Object.assign({}, listStyle, { width: titleStyle?.width })}>
-          {isOpen && array}
-        </ul>
+        <ul className="dropdown-list">{isOpen && array}</ul>
       </div>
     </DropdownContext.Provider>
   );
