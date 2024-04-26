@@ -1,5 +1,5 @@
 import instance from './instance/defaultInstance';
-import { CreateActivityBody, MyActivitiesList } from './types/activities';
+import { CreateActivityBody, EditActivityBody, MyActivitiesList } from './types/myActivities';
 
 export const uploadImage = async (imageFile: File) => {
   try {
@@ -58,4 +58,9 @@ export const getMyActivities = async (size: number, cursorId: number | null): Pr
     },
   });
   return response.data;
+};
+
+export const editMyActivities = async (id: string, body: EditActivityBody) => {
+  const response = await instance.patch(`my-activities/${id}`, body);
+  console.log(response.data);
 };

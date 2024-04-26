@@ -13,6 +13,19 @@ export interface CreateActivityBody {
   schedules: Schedule[];
 }
 
+export interface EditActivityBody {
+  title: string;
+  category: string;
+  description: string;
+  price: number;
+  address: string;
+  bannerImageUrl: string;
+  subImageIdsToRemove: number[];
+  subImageUrlsToAdd: string[];
+  scheduleIdsToRemove: number[];
+  schedulesToAdd: Schedule[];
+}
+
 export interface MyActivitiesList {
   activities: ActivityBasic[];
   totalCount: number;
