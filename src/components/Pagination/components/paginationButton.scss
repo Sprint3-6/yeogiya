@@ -1,0 +1,25 @@
+.pagination-button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: var(--white);
+  border: 1px solid var(--black20);
+  color: var(--black20);
+  font-size: 1.8rem;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    width: 55px;
+    height: 55px;
+    padding: 17px;
+  }
+}
+
+.disabled {
+  border-color: var(--gray40);
+  color: var(--gray40);
+}
