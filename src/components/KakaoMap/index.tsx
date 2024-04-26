@@ -44,10 +44,11 @@ export default function KakaoMap({ address, title }: KakaoMapType) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         const content = `<div style="display:flex; width:auto;background-color:#fff;border:2px solid #0085FF;padding:10px;border-radius:12px;"><img src="../../../favicon.svg"></img><div style="font-weight:600;">${title}</div></div>`;
-        const position = new kakao.maps.LatLng(coords.Ma + 0.00057, result[0].x);
+        const position = new kakao.maps.LatLng(result[0].y, result[0].x);
         const customOverlay = new kakao.maps.CustomOverlay({
           position: position,
           content: content,
+          yAnchor: 2,
         });
         customOverlay.setMap(map, marker);
 
