@@ -1,0 +1,76 @@
+// 드롭다운
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+// 드롭다운 - select
+.dropdown-title {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  color: black;
+  background-color: white;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+// 드롭다운 - 리스트
+.dropdown-list {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+  max-height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+  z-index: 9999;
+  background-color: white;
+  gap: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding-inline-start: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  cursor: pointer;
+}
+
+.dropdown-text {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-image {
+  width: 30px;
+  height: 30px;
+}
+
+.dropdown-image img {
+  width: 100%;
+  height: 100%;
+}
+.dropdown-item {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  // padding: 10px;
+}
+
+.dropdown-item:hover {
+  background-color: #eeeeee;
+}
