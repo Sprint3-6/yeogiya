@@ -1,4 +1,4 @@
-import { uploadImageAndPostData } from '@/api/activitiesApi';
+import { uploadImageAndPostData } from '@/api/myActivitiesApi';
 import { useState } from 'react';
 import { PlaceInputValue } from '../../types';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -22,7 +22,6 @@ export default function AddPlaceForm() {
   } = useForm<PlaceInputValue>();
 
   const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
-    console.log(data);
     setIsSubmitted(true);
     if (bannerImage.length > 0) {
       const imageData = [...bannerImage, ...subimages];
