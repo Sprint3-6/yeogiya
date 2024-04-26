@@ -1,5 +1,5 @@
-import { getMyActivities } from '@/api/activitiesApi';
-import { ActivityBasic } from '@/api/types/activities';
+import { getMyActivities } from '@/api/myActivitiesApi';
+import { ActivityBasic } from '@/api/types/myActivities';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 import { useRef, useState } from 'react';
 import './style.scss';
@@ -19,7 +19,6 @@ export default function MySpaceList() {
     setMySpace((pre) => [...pre, ...activities]);
   };
   const { sentinelRef } = useIntersectionObserver(handleMySpaceList);
-  console.log();
   return (
     <div>
       {mySpace.length > 0 ? (

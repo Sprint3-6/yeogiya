@@ -12,14 +12,12 @@ export const useModal = () => {
 
   // 모달을 열기 위한 함수
   const openModal = (name: string) => {
-    document.body.style.overflow = 'hidden';
     setModalName(name);
     document.addEventListener('mousedown', handleClickOutside);
   };
 
   // 모달을 닫기 위한 함수
   const closeModal = () => {
-    document.body.style.overflow = 'unset';
     setModalName('');
     document.removeEventListener('mousedown', handleClickOutside);
   };
@@ -35,31 +33,13 @@ export const useModal = () => {
   // createPortal을 이용하여 z-index 쌓임맥락으로 인한 예상치 못한 레이아웃 문제 해결
   const modalRoot = document.body as HTMLElement;
 
-  // 기본 스타일을 인라인 스타일로 고정
-  const Modal = ({ name, children }: ModalProps) => {
+  // 기본 스타일을 or 프롭스로 스타일을 바꿀 수 있다
+  const Modal = ({ name, children, classNameModal, classNameLayout }: ModalProps) => {
     return ReactDOM.createPortal(
       <>
         {name === modalName && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              right: 0,
-              bottom: 0,
-              left: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              zIndex: 9999,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div
-              style={{
-                animation: 'slideIn 0.3s ease forwards',
-              }}
-              ref={modalRef}
-            >
+          <div className={classNameLayout ? classNameLayout : 'defaultLayout'}>
+            <div className={classNameModal ? classNameModal : 'defaultModal'} ref={modalRef}>
               {children}
             </div>
           </div>
