@@ -19,7 +19,6 @@ export default function MySpaceList() {
     setMySpace((pre) => [...pre, ...activities]);
   };
   const { sentinelRef } = useIntersectionObserver(handleMySpaceList);
-  console.log();
   return (
     <div>
       {mySpace.length > 0 ? (
