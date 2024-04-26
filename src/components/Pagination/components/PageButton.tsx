@@ -7,7 +7,7 @@ interface PageButtonProps {
 }
 
 export default function PageButton({ isDisabled, page, onClick }: PageButtonProps) {
-  const buttonClassName = `pagination-button ${isDisabled ? 'disabled' : ''}`;
+  const buttonClassName = `pagination-button ${isDisabled ? '' : 'selected'}`;
 
   return (
     <button onClick={onClick} className={buttonClassName}>
