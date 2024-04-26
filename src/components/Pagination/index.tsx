@@ -3,8 +3,6 @@ import usePaginator from '@/hooks/usePaginator/usePaginator';
 import PageButton from './components/PageButton';
 import './style.scss';
 
-//TODO hover
-
 interface PaginationProps {
   totalCount?: number;
   size: number;

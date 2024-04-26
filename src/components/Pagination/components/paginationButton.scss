@@ -11,6 +11,11 @@
   color: var(--black20);
   font-size: 1.8rem;
   font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--gray20);
+  }
 
   @media (min-width: 768px) {
     width: 55px;
@@ -22,9 +27,17 @@
 .disabled {
   border-color: var(--gray40);
   color: var(--gray40);
+
+  &:hover {
+    background: inherit;
+  }
 }
 
 .selected {
   color: var(--white);
   background-color: var(--black20);
+
+  &:hover {
+    background: var(--black20);
+  }
 }
