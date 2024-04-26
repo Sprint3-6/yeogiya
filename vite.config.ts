@@ -1,8 +1,23 @@
 import { defineConfig } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import { loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), viteTsconfigPaths()],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd());
+  return {
+    plugins: [
+      react(),
+      viteTsconfigPaths(),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            kakaoApiKey: env.VITE_KAKAO_MAP_KEY,
+          },
+        },
+      }),
+    ],
+  };
 });
