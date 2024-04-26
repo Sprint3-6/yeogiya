@@ -14,7 +14,10 @@ export type KakaoMapType = {
   title: string | undefined;
 };
 
-export default function KakaoMap({ address, title }: KakaoMapType) {
+export default function KakaoMap({
+  address = '서울특별시 중구 청계천로 100 시그니쳐타워 동관 10층 코드잇',
+  title,
+}: KakaoMapType) {
   useEffect(() => {
     const container = document.getElementById('kakao-map'); //지도를 담을 영역의 DOM 레퍼런스
     const options = {
