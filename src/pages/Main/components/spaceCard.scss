@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  width: 168px;
+  width: max(168px, 100%);
 
   @media (min-width: 768px) {
-    width: 221px;
+    width: max(221px, 100%);
   }
 
   @media (min-width: 1024px) {
-    width: 283px;
+    width: max(283px, 100%);
   }
 }
 

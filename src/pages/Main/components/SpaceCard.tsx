@@ -6,8 +6,8 @@
 // bannerImageUrl: 배너이미지
 
 import { Link } from 'react-router-dom';
-import './spaceCard.scss';
 import { Spaces } from '../types/spaces-type';
+import './spaceCard.scss';
 
 type SpaceCardProps = { item: Pick<Spaces, Exclude<keyof Spaces, 'address' | 'createdAt' | 'updatedAt'>> };
 
