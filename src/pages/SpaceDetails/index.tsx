@@ -66,7 +66,13 @@ export default function SpaceDetails() {
           <p>{detail?.description}</p>
         </section>
 
-        <KakaoMap />
+        <section className="kakao-map-box">
+          <KakaoMap />
+          <div>
+            <img src="/favicon.svg" />
+            <h3>{detail?.address}</h3>
+          </div>
+        </section>
         <br />
         {/* <button onClick={() => openModal('a')}>모달</button> */}
       </section>

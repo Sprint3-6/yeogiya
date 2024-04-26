@@ -112,5 +112,27 @@
         font-size: 2rem;
       }
     }
+
+    .kakao-map-box {
+      width: 790px;
+      margin: 0 auto;
+
+      div {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 18px;
+          height: 18px;
+          margin-right: 2px;
+        }
+
+        h3 {
+          font-size: 1.4rem;
+          font-weight: 400;
+          opacity: 0.75;
+        }
+      }
+    }
   }
 }
