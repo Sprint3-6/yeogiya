@@ -35,7 +35,7 @@ export default function SpaceDetails() {
           <h1>{detail?.title}</h1>
           <div>
             <img src="/public/assets/icons/icon-star.svg" />
-            <h2>{`${detail?.rating} (${detail?.reviewCount})`}</h2>
+            <h2>{`${detail?.rating.toFixed(1)} (${detail?.reviewCount})`}</h2>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
@@ -66,7 +66,7 @@ export default function SpaceDetails() {
           <p>{detail?.description}</p>
         </section>
 
-        <section className="kakao-map-box">
+        <section className="space-detail-container-map">
           <KakaoMap address={detail?.address} title={detail?.title} />
           <div>
             <img src="/favicon.svg" />
