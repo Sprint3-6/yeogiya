@@ -63,9 +63,7 @@ export default function SpaceDetails() {
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
-          {detail?.userId === userInfo.id && (
-            <img src="/public/assets/icons/icon-meatball.svg" className="space-detail-kebab" />
-          )}
+
           {userInfo.id === detail?.userId && (
             <DropDown
               id="space-detail-kebab"
