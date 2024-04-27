@@ -1,14 +1,7 @@
 import { BASE_URL } from './constants/url';
 import toast from '../utils/toast';
 import instance from './instance/defaultInstance';
-
-interface ErrorType {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}
+import { ErrorType } from './types/axiosErrorType';
 
 async function getMyInfo(id: string | null, password: string | null) {
   try {
