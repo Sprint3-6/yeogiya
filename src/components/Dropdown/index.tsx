@@ -64,7 +64,7 @@ export const DropDown = (props: DropDwonProps) => {
           <div className="dropdown-image">
             <img src={image} />
           </div>
-          <div className="dropdown-title">{title ? title : null}</div>
+          {title ? <div className="dropdown-title">title</div> : null}
         </div>
       );
     } else if (title) {
@@ -85,8 +85,7 @@ export const DropDown = (props: DropDwonProps) => {
   // 드롭다운 클릭시 실행 함수
   const handleClickItem = (children: React.ReactNode, value: string) => {
     setSelect(children);
-    onClickItem?.(id, value);
-    console.log('아이템', children);
+    onClickItem?.(value, id);
   };
 
   const contextValue = {
@@ -97,7 +96,8 @@ export const DropDown = (props: DropDwonProps) => {
     <DropdownContext.Provider value={contextValue}>
       <div
         className="dropdown"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setIsOpen(!isOpen);
         }}
         id={id}
@@ -111,10 +111,10 @@ export const DropDown = (props: DropDwonProps) => {
   );
 };
 
-export const DropdownItem = ({ children, value, itemStyle }: DropdownItem) => {
+export const DropdownItem = ({ children, value }: DropdownItem) => {
   const { handleClickItem } = useContext(DropdownContext);
   return (
-    <li className="dropdown-item" onClick={() => handleClickItem?.(children, value)} style={itemStyle}>
+    <li className="dropdown-item" onClick={() => handleClickItem?.(children, value)}>
       {children}
     </li>
   );
