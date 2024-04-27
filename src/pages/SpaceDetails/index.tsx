@@ -5,25 +5,23 @@ import { useModal } from '../../hooks/useModal/useModal';
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
 import getSpaceDetail from '@/api/getSpaceDetail';
+import getUserReview from '@/api/getUserReview';
+import KakaoMap from '@/components/KakaoMap';
 import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
-import './style.scss';
-import KakaoMap from '@/components/KakaoMap';
-import getUserReview from '@/api/getUserReview';
 import Loading from '../Loading';
+import './style.scss';
 
 export default function SpaceDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
   const userInfo = useAppSelector((state) => state.myInfo);
-
   // console.log(userInfo);
 
   const setSpaceDetail = async () => {
