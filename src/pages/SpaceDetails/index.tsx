@@ -66,14 +66,16 @@ export default function SpaceDetails() {
           {detail?.userId === userInfo.id && (
             <img src="/public/assets/icons/icon-meatball.svg" className="space-detail-kebab" />
           )}
-          <DropDown
-            id="space-detail-kebab"
-            image="/public/assets/icons/icon-meatball.svg"
-            onClickItem={handleKebabButton}
-          >
-            <DropdownItem value="edit">수정하기</DropdownItem>
-            <DropdownItem value="delete">삭제하기</DropdownItem>
-          </DropDown>
+          {userInfo.id === detail?.userId && (
+            <DropDown
+              id="space-detail-kebab"
+              image="/public/assets/icons/icon-meatball.svg"
+              onClickItem={handleKebabButton}
+            >
+              <DropdownItem value="edit">수정하기</DropdownItem>
+              <DropdownItem value="delete">삭제하기</DropdownItem>
+            </DropDown>
+          )}
         </div>
 
         <figure className="space-detail-container-pictures">
