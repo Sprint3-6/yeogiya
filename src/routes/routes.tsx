@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 import SpaceDetails from '@/pages/SpaceDetails';
@@ -14,18 +15,21 @@ import MyPage from '@/pages/MyPage';
 import MyReservation from '@/pages/MyReservation';
 import EditSpace from '@/pages/EditSpace';
 import AddSpace from '@/pages/AddSpace';
+import MypageLayout from './mypagelayout';
 
 const PrimaryRoute = (
   <>
     <Route element={<Layout />}>
       <Route index element={<MainPage />} />
       <Route path="space/:id" element={<SpaceDetails />} />
-      <Route path="mypage/admin/status" element={<ReservationStatus />} />
-      <Route path="mypage/admin/edit/:id" element={<EditSpace />} />
-      <Route path="mypage/admin/add" element={<AddSpace />} />
-      <Route path="mypage/admin" element={<MySpaceManagement />} />
-      <Route path="mypage/reservation" element={<MyReservation />} />
-      <Route path="mypage" element={<MyPage />} />
+      <Route element={<MypageLayout />}>
+        <Route path="mypage/admin/status" element={<ReservationStatus />} />
+        <Route path="mypage/admin/edit/:id" element={<EditSpace />} />
+        <Route path="mypage/admin/add" element={<AddSpace />} />
+        <Route path="mypage/admin" element={<MySpaceManagement />} />
+        <Route path="mypage/reservation" element={<MyReservation />} />
+        <Route path="mypage" element={<MyPage />} />
+      </Route>
     </Route>
     <Route path="loading" element={<Loading />} />
     <Route path="sign-up" element={<SignUp />} />
