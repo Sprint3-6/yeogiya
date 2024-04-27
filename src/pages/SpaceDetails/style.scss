@@ -48,28 +48,26 @@
         }
       }
 
-      .space-detail-kebab {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        cursor: pointer;
-      }
-
       .dropdown {
         position: absolute;
-        right: 0;
+        right: -140px;
         top: 50%;
-        width: 40px;
-        height: 40px;
 
         .dropdown-select {
           background-color: var(--gray10);
           box-shadow: 0 0 0;
           border: 0;
+          width: 50px;
+          height: 50px;
+
+          div {
+            justify-content: center;
+          }
 
           img {
             width: 40px;
             height: 40px;
+            margin: 0;
           }
         }
 
