@@ -26,3 +26,17 @@ export interface DetailType {
   updatedAt: string;
   userId: number;
 }
+
+export interface ReviewType {
+  activityId: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  rating: number;
+  updatedAt: string;
+  user: {
+    id: number;
+    nickname: string;
+    profileImageUrl: string | undefined;
+  };
+}
