@@ -10,6 +10,7 @@ import ratingFilter from '@/utils/ratingFilter';
 import './style.scss';
 import KakaoMap from '@/components/KakaoMap';
 import getUserReview from '@/api/getUserReview';
+import { DropDown, DropdownItem } from '@/components/Dropdown';
 
 export default function SpaceDetails() {
   const { id } = useParams();
@@ -38,6 +39,14 @@ export default function SpaceDetails() {
     setRating(Math.floor(Number(detail?.rating) * 10) / 10);
   }, [detail?.userId]);
 
+  function abc(id: string, value: string) {
+    if (value === 'edit') {
+      console.log('edit실행');
+    } else if (value === 'delete') {
+      console.log('delete실행');
+    }
+  }
+
   return (
     <div className="space-detail-wrapper">
       <section className="space-detail-container">
@@ -53,6 +62,10 @@ export default function SpaceDetails() {
           {detail?.userId === userInfo.id && (
             <img src="/public/assets/icons/icon-meatball.svg" className="space-detail-kebab" />
           )}
+          <DropDown id="space-detail-kebab" image="/public/assets/icons/icon-meatball.svg" onClickItem={abc}>
+            <DropdownItem value="edit">수정하기</DropdownItem>
+            <DropdownItem value="delete">삭제하기</DropdownItem>
+          </DropDown>
         </div>
 
         <figure className="space-detail-container-pictures">
@@ -72,52 +85,55 @@ export default function SpaceDetails() {
           ))}
         </figure>
 
-        <section className="space-detail-container-description">
-          <h2>공간 설명</h2>
-          <p>{detail?.description}</p>
-        </section>
+        <div className="space-detail-container-body">
+          <section className="body-description">
+            <h2>공간 설명</h2>
+            <p>{detail?.description}</p>
+          </section>
 
-        <section className="space-detail-container-map">
-          <KakaoMap address={detail?.address} title={detail?.title} />
-          <div>
-            <img src="/favicon.svg" />
-            <h3>{detail?.address}</h3>
-          </div>
-        </section>
-
-        <section className="space-detail-container-review">
-          <h2>후기</h2>
-          <div className="review-scoreboard">
-            <h3>{rating.toString()}</h3>
-            <h4>{ratingFilter(rating)}</h4>
+          <section className="body-map">
+            <KakaoMap address={detail?.address} title={detail?.title} />
             <div>
-              <img src="/public/assets/icons/icon-star.svg" />
-              <h5>{detail?.reviewCount}개 후기</h5>
+              <img src="/favicon.svg" />
+              <h3>{detail?.address}</h3>
             </div>
-          </div>
-          {reviews &&
-            reviews.map((review) => (
-              <div className="review-detail" key={review.id}>
-                <img
-                  src={
-                    review.user.profileImageUrl
-                      ? review.user.profileImageUrl
-                      : '/public/assets/images/profile-default.png'
-                  }
-                />
-                <div>
-                  <h2>{review.user.nickname}</h2>
-                  <h3>|</h3>
-                  <h4>{review.updatedAt.slice(0, 10)}</h4>
-                </div>
-                <p>{review.content}</p>
-              </div>
-            ))}
-        </section>
+          </section>
 
-        <nav className="space-detail-container-pagination">페이지네이션</nav>
-        <div className="bottom-space"> </div>
-        {/* <button onClick={() => openModal('a')}>모달</button> */}
+          <section className="body-review">
+            <h2>후기</h2>
+            <div className="review-scoreboard">
+              <h3>{rating.toString()}</h3>
+              <h4>{ratingFilter(rating)}</h4>
+              <div>
+                <img src="/public/assets/icons/icon-star.svg" />
+                <h5>{detail?.reviewCount}개 후기</h5>
+              </div>
+            </div>
+            {reviews &&
+              reviews.map((review) => (
+                <div className="review-detail" key={review.id}>
+                  <img
+                    src={
+                      review.user.profileImageUrl
+                        ? review.user.profileImageUrl
+                        : '/public/assets/images/profile-default.png'
+                    }
+                  />
+                  <div>
+                    <h2>{review.user.nickname}</h2>
+                    <h3>|</h3>
+                    <h4>{review.updatedAt.slice(0, 10)}</h4>
+                  </div>
+                  <p>{review.content}</p>
+                </div>
+              ))}
+          </section>
+
+          <nav className="body-pagination">페이지네이션</nav>
+          <div className="bottom-space"> </div>
+          {/* <button onClick={() => openModal('a')}>모달</button> */}
+        </div>
+        <div className="calendar">달력</div>
       </section>
 
       {/* <Modal name="a">
