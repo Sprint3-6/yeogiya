@@ -1,36 +1,49 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-// import { useModal } from '../../hooks/useModal/useModal';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/redux/store/store';
+import { useModal } from '../../hooks/useModal/useModal';
+import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
-// import Temp from '../../components/temp';
+import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import './style.scss';
 import KakaoMap from '@/components/KakaoMap';
 import getUserReview from '@/api/getUserReview';
-import { DropDown, DropdownItem } from '@/components/Dropdown';
+import Loading from '../Loading';
 
 export default function SpaceDetails() {
   const { id } = useParams();
-  // const { Modal, openModal, closeModal } = useModal();
+  const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const userInfo = useAppSelector((state) => state.myInfo);
 
   // console.log(userInfo);
 
   const setSpaceDetail = async () => {
+    setIsLoading(true);
     const detailData = await getSpaceDetail(id);
     setDetail(detailData);
+    setIsLoading(false);
   };
 
   const setReview = async () => {
     const reviewData = await getUserReview(id, 1);
     setReviews(reviewData);
+  };
+
+  const handleKebabButton = (value: string) => {
+    if (value === 'edit') {
+      navigate(`/mypage/admin/edit/${id}`);
+    } else if (value === 'delete') {
+      openModal('a');
+    }
   };
 
   useEffect(() => {
@@ -39,16 +52,9 @@ export default function SpaceDetails() {
     setRating(Math.floor(Number(detail?.rating) * 10) / 10);
   }, [detail?.userId]);
 
-  function abc(id: string, value: string) {
-    if (value === 'edit') {
-      console.log('edit실행');
-    } else if (value === 'delete') {
-      console.log('delete실행');
-    }
-  }
-
   return (
     <div className="space-detail-wrapper">
+      {isLoading && <Loading />}
       <section className="space-detail-container">
         <div className="space-detail-container-header">
           <h3>{categoryFilter(detail?.category)}</h3>
@@ -62,7 +68,11 @@ export default function SpaceDetails() {
           {detail?.userId === userInfo.id && (
             <img src="/public/assets/icons/icon-meatball.svg" className="space-detail-kebab" />
           )}
-          <DropDown id="space-detail-kebab" image="/public/assets/icons/icon-meatball.svg" onClickItem={abc}>
+          <DropDown
+            id="space-detail-kebab"
+            image="/public/assets/icons/icon-meatball.svg"
+            onClickItem={handleKebabButton}
+          >
             <DropdownItem value="edit">수정하기</DropdownItem>
             <DropdownItem value="delete">삭제하기</DropdownItem>
           </DropDown>
@@ -131,14 +141,13 @@ export default function SpaceDetails() {
 
           <nav className="body-pagination">페이지네이션</nav>
           <div className="bottom-space"> </div>
-          {/* <button onClick={() => openModal('a')}>모달</button> */}
         </div>
         <div className="calendar">달력</div>
       </section>
 
-      {/* <Modal name="a">
-        <Temp closeModal={closeModal} />
-      </Modal> */}
+      <Modal name="a">
+        <DeleteModal closeModal={closeModal} title={detail?.title} id={id} />
+      </Modal>
     </div>
   );
 }
