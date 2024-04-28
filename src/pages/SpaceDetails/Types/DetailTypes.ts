@@ -40,3 +40,9 @@ export interface ReviewType {
     profileImageUrl: string | undefined;
   };
 }
+
+export type DeleteModalType = {
+  closeModal: () => void;
+  title: string | undefined;
+  id: string | undefined;
+};
