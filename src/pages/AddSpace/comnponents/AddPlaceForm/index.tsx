@@ -8,36 +8,50 @@ import './style.scss';
 import PriceInput from '../PriceInput';
 import TitleInput from '../TitleInput';
 import DescriptionInput from '../DescriptionInput';
+import Schedules from '../Schdules';
+import { Schedule } from '@/api/types/myActivities';
+import CategoryDropdown from '../CategoryDropdown';
+import { useNavigate } from 'react-router-dom';
+import toast from '@/utils/toast';
 
 export default function AddPlaceForm() {
   const [bannerImage, setBannerImage] = useState<File[]>([]);
   const [subimages, setSubImages] = useState<File[]>([]);
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
+  const [category, setCategory] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
     getValues,
-  } = useForm<PlaceInputValue>();
+  } = useForm<PlaceInputValue>({ mode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
     setIsSubmitted(true);
-    if (bannerImage.length > 0) {
+
+    if (bannerImage.length > 0 && category && schedules.length > 0) {
       const imageData = [...bannerImage, ...subimages];
       const body = {
         title: data.title,
-        category: '스포츠', //임시
+        category: category,
         description: data.description,
         price: parseInt(data.price),
         address: data.address,
-        schedules: [], //임시
+        schedules: schedules,
       };
-      uploadImageAndPostData(body, imageData);
+      uploadImageAndPostData(body, imageData).then(() => {
+        // 업로드 성공 시 페이지 이동
+        navigate('/mypage/admin');
+      });
     } else {
+      toast.warning('필수사항을 입력하세요!');
       return;
     }
   };
+
   return (
     <form className="place-form-box" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
@@ -48,9 +62,13 @@ export default function AddPlaceForm() {
       </div>
       <section className="form-content">
         <TitleInput register={register} />
+        <span className="input-title">카테고리</span>
+        <CategoryDropdown setCategory={setCategory} />
         <DescriptionInput register={register} />
         <PriceInput register={register} />
         <KakaoPostSearch register={register} setValue={setValue} error={!!errors.address} getValues={getValues} />
+        <span className="input-title">예약 가능 시간대</span>
+        <Schedules schedules={schedules} setSchedules={setSchedules} />
         <span className="input-title">배너 이미지</span>
         <ImageUploader
           id="bannerImage"

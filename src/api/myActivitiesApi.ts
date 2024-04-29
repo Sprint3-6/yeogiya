@@ -1,3 +1,4 @@
+import toast from '@/utils/toast';
 import { postData, uploadImage } from './activitiesApi';
 import instance from './instance/defaultInstance';
 import { CreateActivityBody, EditActivityBody, MyActivitiesList } from './types/myActivities';
@@ -13,7 +14,9 @@ export const uploadImageAndPostData = async (body: CreateActivityBody, imageFile
         bannerImageUrl: imageUrls[0],
         subImageUrls: [...subImageUrls],
       }; // 이미지 URL을 body에 추가
-      await postData(modifiedBody); // 데이터 전송
+      const response = await postData(modifiedBody); // 데이터 전송
+      toast.success('등록이 완료되었습니다!');
+      return response;
     } else {
       console.error('이미지 업로드 실패');
     }
