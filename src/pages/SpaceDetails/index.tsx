@@ -30,7 +30,7 @@ export default function SpaceDetails() {
 
   const setSpaceDetail = async () => {
     setIsLoading(true);
-    const detailData = await getSpaceDetail(id);
+    const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
     setIsLoading(false);
   };
