@@ -10,11 +10,14 @@ interface PaginationProps {
 
 export default function Pagination({ totalCount, size }: PaginationProps) {
   const count = totalCount ?? 0;
-
   const { page, currentPageGroup, hasPrev, hasNext, handlePageClick, handlePrevClick, handleNextClick } = usePaginator(
     count,
     size,
   );
+
+  if (count === 0) {
+    return null;
+  }
 
   return (
     <div className="pagination-wrapper">
