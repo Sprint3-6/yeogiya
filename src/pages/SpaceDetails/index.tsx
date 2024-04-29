@@ -4,6 +4,9 @@ import { useAppSelector } from '@/redux/store/store';
 import { useModal } from '../../hooks/useModal/useModal';
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
+import { isSameDate } from '@/utils/calendarUtils';
+import { format } from 'date-fns';
+import Calendar from '@/components/Calendar';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import getUserReview from '@/api/getUserReview';
 import KakaoMap from '@/components/KakaoMap';
@@ -14,13 +17,14 @@ import Loading from '../Loading';
 import './style.scss';
 
 export default function SpaceDetails() {
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
   const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const userInfo = useAppSelector((state) => state.myInfo);
   // console.log(userInfo);
 
@@ -42,6 +46,10 @@ export default function SpaceDetails() {
     } else if (value === 'delete') {
       openModal('a');
     }
+  };
+
+  const handleDateChange = (date: Date) => {
+    console.log(date);
   };
 
   useEffect(() => {
@@ -140,7 +148,33 @@ export default function SpaceDetails() {
           <nav className="body-pagination">페이지네이션</nav>
           <div className="bottom-space"> </div>
         </div>
-        <div className="calendar">달력</div>
+        <div className="space-detail-container-calendar">
+          <h2>
+            ₩ {detail?.price} <span>/ 인</span>
+          </h2>
+
+          <div className="calendar-box">
+            <h3>날짜</h3>
+            <Calendar
+              value={selectedDate}
+              onChange={handleDateChange}
+              size="small"
+              tileContent={(date: Date) => {
+                return (
+                  <div
+                    className={`calendar-date-box ${isSameDate(selectedDate, date) ? 'selected-date' : ''}`}
+                    onClick={() => setSelectedDate(date)}
+                  >
+                    {format(date, 'd')}
+                  </div>
+                );
+              }}
+            />
+            <h3>예약 가능한 시간</h3>
+            <h3>참여 인원 수</h3>
+            <h3>총 합계</h3>
+          </div>
+        </div>
       </section>
 
       <Modal name="a">
