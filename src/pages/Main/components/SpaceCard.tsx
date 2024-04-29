@@ -8,6 +8,8 @@
 
 import { Link } from 'react-router-dom';
 import { Spaces } from '../types/spaces-type';
+import { intToFloat } from '@/utils/intToFloat';
+import { formatPrice } from '@/utils/formatPrice';
 import './spaceCard.scss';
 
 type SpaceCardProps = { item: Pick<Spaces, Exclude<keyof Spaces, 'address' | 'createdAt' | 'updatedAt'>> };
@@ -24,14 +26,14 @@ export default function SpaceCard({ item }: SpaceCardProps) {
             <div className="space-card-detail-review-wrapper">
               <span>⭐</span>
               <p>
-                {item.rating}
+                {intToFloat(item.rating, 1)}
                 <span> ({item.reviewCount})</span>
               </p>
             </div>
             <h1>{item.title}</h1>
           </div>
           <div className="space-card-detail-price-wrapper">
-            <p>₩ {item.price}</p>
+            <p>₩ {formatPrice(item.price)}</p>
             <span>/ 인</span>
           </div>
         </div>
