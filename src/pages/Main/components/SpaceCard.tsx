@@ -1,3 +1,4 @@
+//TODO 기본 이미지 설정 , 조건부 렌더링 (인기 공간)
 // id: activityId 로 link 넘기기
 // title: 체험 이름
 // price: 가격
