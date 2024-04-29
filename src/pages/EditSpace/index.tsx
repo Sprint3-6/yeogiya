@@ -47,7 +47,6 @@ export default function EditSpace() {
       setSubImages([...initialValue.subImages.map((subData: UrlSubData) => subData.imageUrl)]);
       preSubimages.current = initialValue.subImages;
       preSchedules.current = initialValue.schedules;
-      console.log(initialValue);
     };
     handleinitialValue();
   }, []);
@@ -77,6 +76,7 @@ export default function EditSpace() {
       };
       editMyActivities(id!, body).then(() => {
         // 업로드 성공 시 페이지 이동
+        toast.success('수정이 되었습니다!');
         navigate('/mypage/admin');
       });
     } else {
