@@ -29,8 +29,8 @@ export interface KakaoPostSearchProps extends InputHTMLAttributes<HTMLInputEleme
 }
 
 export interface ImageUploaderProps extends InputHTMLAttributes<HTMLInputElement> {
-  images: File[];
-  setImages: (value: File[]) => void;
+  images: string[];
+  setImages: (value: string[]) => void;
   id: string;
   maxImageCount?: number;
   isSubmitted?: boolean;

@@ -1,16 +1,18 @@
 import { DropDown, DropdownItem } from '@/components/Dropdown';
+import { InputHTMLAttributes } from 'react';
 
-interface CategoryDropdownProps {
+interface CategoryDropdownProps extends InputHTMLAttributes<HTMLInputElement> {
+  initValue?: string;
   setCategory: (value: string) => void;
 }
 
-export default function CategoryDropdown({ setCategory }: CategoryDropdownProps) {
+export default function CategoryDropdown({ setCategory, initValue }: CategoryDropdownProps) {
   const handleDropdown = (value: string) => {
     setCategory(value);
   };
   return (
     <div>
-      <DropDown id="category" title="카테고리" onClickItem={handleDropdown}>
+      <DropDown id="category" title={initValue ? initValue : `카테고리`} onClickItem={handleDropdown}>
         <DropdownItem value="문화 · 예술">파티룸</DropdownItem>
         <DropdownItem value="식음료">이벤트홀</DropdownItem>
         <DropdownItem value="스포츠">스튜디오</DropdownItem>

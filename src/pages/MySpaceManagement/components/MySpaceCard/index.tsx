@@ -7,13 +7,13 @@ import DeleteConfirmationDialog from '../DeleteConfirmationDialog';
 
 export default function MySpaceCard({ activity }: MySpaceCardProps) {
   const navigate = useNavigate();
-  const handleDropdown = (value: string, id: string) => {
+  const handleDropdown = (value: string) => {
     switch (value) {
       case 'delete':
         openModal('delete');
         break;
       case 'edit':
-        navigate(`edit/${id}`);
+        navigate(`edit/${activity.id}`);
     }
   };
   const { Modal, openModal, closeModal } = useModal();

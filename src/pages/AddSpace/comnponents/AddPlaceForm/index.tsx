@@ -1,4 +1,3 @@
-import { uploadImageAndPostData } from '@/api/myActivitiesApi';
 import { useState } from 'react';
 import { PlaceInputValue } from '../../types';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -13,10 +12,11 @@ import { Schedule } from '@/api/types/myActivities';
 import CategoryDropdown from '../CategoryDropdown';
 import { useNavigate } from 'react-router-dom';
 import toast from '@/utils/toast';
+import { postData } from '@/api/activitiesApi';
 
 export default function AddPlaceForm() {
-  const [bannerImage, setBannerImage] = useState<File[]>([]);
-  const [subimages, setSubImages] = useState<File[]>([]);
+  const [bannerImage, setBannerImage] = useState<string[]>([]);
+  const [subimages, setSubImages] = useState<string[]>([]);
   const [schedules, setSchedules] = useState<Schedule[]>([]);
   const [category, setCategory] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -33,7 +33,6 @@ export default function AddPlaceForm() {
     setIsSubmitted(true);
 
     if (bannerImage.length > 0 && category && schedules.length > 0) {
-      const imageData = [...bannerImage, ...subimages];
       const body = {
         title: data.title,
         category: category,
@@ -41,8 +40,10 @@ export default function AddPlaceForm() {
         price: parseInt(data.price),
         address: data.address,
         schedules: schedules,
+        bannerImageUrl: bannerImage[0],
+        subImageUrls: subimages,
       };
-      uploadImageAndPostData(body, imageData).then(() => {
+      postData(body).then(() => {
         // 업로드 성공 시 페이지 이동
         navigate('/mypage/admin');
       });
