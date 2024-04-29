@@ -13,11 +13,12 @@ interface DataType {
 
 export default function MainPage() {
   const [data, setData] = useState<DataType | null>(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const getSpaces = async () => {
       try {
-        const res = await instance.get(`${BASE_URL}activities?method=offset`);
+        const res = await instance.get(`${BASE_URL}activities?method=offset&page=${page}&size=10`);
         setData(res.data);
         console.log(res.data);
       } catch (err) {
@@ -25,7 +26,7 @@ export default function MainPage() {
       }
     };
     getSpaces();
-  }, []);
+  }, [page]);
 
   return (
     <main>
@@ -47,7 +48,7 @@ export default function MainPage() {
       <br />
       <Link to={'space/704'}>공간상세(내꺼아님)</Link>
       {data?.activities && <SpaceCardList spaces={data.activities} />}
-      <Pagination totalCount={data?.totalCount} size={6} />
+      <Pagination totalCount={data?.totalCount} size={10} page={page} setPage={setPage} />
     </main>
   );
 }
