@@ -1,0 +1,38 @@
+.delete-modal {
+  width: 400px;
+  height: 180px;
+  padding: 20px;
+  background-color: var(--gray20);
+  border-radius: 12px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    padding-top: 10px;
+
+    span {
+      color: var(--red30);
+    }
+  }
+
+  div:nth-of-type(2) {
+    display: flex;
+    gap: 10px;
+
+    .delete-modal-button {
+      width: 100%;
+      height: 40px;
+    }
+
+    .delete-modal-button:hover {
+      background-color: var(--gray30);
+    }
+  }
+}
