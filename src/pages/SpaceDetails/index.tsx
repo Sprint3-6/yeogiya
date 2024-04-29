@@ -9,12 +9,14 @@ import { format } from 'date-fns';
 import Calendar from '@/components/Calendar';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import getUserReview from '@/api/getUserReview';
+import getOpenedSchedule from '@/api/getOpenedSchedule';
 import KakaoMap from '@/components/KakaoMap';
 import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import Loading from '../Loading';
 import './style.scss';
+import Button from '@/components/Button';
 
 export default function SpaceDetails() {
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ export default function SpaceDetails() {
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [schedule, SetSchedule] = useState();
+  const [howMany, setHowMany] = useState<number>(1);
   const userInfo = useAppSelector((state) => state.myInfo);
   // console.log(userInfo);
 
@@ -40,6 +44,14 @@ export default function SpaceDetails() {
     setReviews(reviewData);
   };
 
+  const setOpenedSchedule = async () => {
+    const year = selectedDate.toString().slice(11, 15);
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+    const scheduleData = await getOpenedSchedule(id, year, month);
+    SetSchedule(scheduleData);
+    console.log(schedule);
+  };
+
   const handleKebabButton = (value: string) => {
     if (value === 'edit') {
       navigate(`/mypage/admin/edit/${id}`);
@@ -48,13 +60,22 @@ export default function SpaceDetails() {
     }
   };
 
-  const handleDateChange = (date: Date) => {
-    console.log(date);
+  const handleDateChange = () => {
+    console.log(selectedDate);
+  };
+
+  const handleHowManyCustomer = (type: string) => {
+    if (type === '-' && howMany !== 1) {
+      setHowMany((state) => state - 1);
+    } else if (type === '+') {
+      setHowMany((state) => state + 1);
+    }
   };
 
   useEffect(() => {
     setSpaceDetail();
     setReview();
+    setOpenedSchedule();
     setRating(Math.floor(Number(detail?.rating) * 10) / 10);
   }, [detail?.userId]);
 
@@ -150,7 +171,7 @@ export default function SpaceDetails() {
         </div>
         <div className="space-detail-container-calendar">
           <h2>
-            ₩ {detail?.price} <span>/ 인</span>
+            ₩ {detail?.price.toLocaleString()} <span>/ 인</span>
           </h2>
 
           <div className="calendar-box">
@@ -171,8 +192,21 @@ export default function SpaceDetails() {
               }}
             />
             <h3>예약 가능한 시간</h3>
+          </div>
+
+          <div className="howmany-box">
             <h3>참여 인원 수</h3>
+            <div className="howmany-box-control">
+              <img src="/assets/icons/icon-minus.svg" onClick={() => handleHowManyCustomer('-')} />
+              <input value={howMany} type="number" onChange={(e) => setHowMany(Math.max(1, Number(e.target.value)))} />
+              <img src="/assets/icons/icon-plus.svg" onClick={() => handleHowManyCustomer('+')} />
+            </div>
+            <Button className="button-black">예약하기</Button>
+          </div>
+
+          <div className="total-box">
             <h3>총 합계</h3>
+            <h3>₩ {detail && (detail.price * howMany).toLocaleString()}</h3>
           </div>
         </div>
       </section>

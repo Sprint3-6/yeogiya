@@ -276,7 +276,7 @@
     .space-detail-container-calendar {
       float: right;
       width: 384px;
-      height: 746px;
+      height: auto;
       padding: 24px;
       background-color: var(--white);
       border: 1px solid rgba(0, 0, 0, 0.1);
@@ -295,16 +295,61 @@
         }
       }
 
+      h3 {
+        font-size: 2rem;
+        line-height: 26px; /* 130% */
+        padding: 16px 0 16px;
+      }
+
       .calendar-box {
-        h3 {
-          font-size: 2rem;
-          line-height: 26px; /* 130% */
-          padding: 16px 0 16px;
-        }
+        border-bottom: 1px solid var(--gray30);
+
         .calendar-wrapper {
           width: 305px;
           height: 100%;
           margin: 0 auto;
+        }
+      }
+
+      .howmany-box {
+        border-bottom: 1px solid var(--gray30);
+
+        .howmany-box-control {
+          width: 120px;
+          height: 40px;
+          border-radius: 6px;
+          border: 1px solid var(--gray40);
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 24px;
+
+          input {
+            width: 24px;
+            border: 0;
+            text-align: center;
+          }
+
+          img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+          }
+        }
+
+        button {
+          width: 100%;
+          margin-bottom: 24px;
+        }
+      }
+
+      .total-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+          padding-bottom: 0;
         }
       }
     }
