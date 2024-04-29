@@ -5,16 +5,35 @@ import { useState } from 'react';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { SignLogo } from '@/components/SignLogo';
+import { login } from '@/api/authApi';
 
 export default function SignIn() {
   const [LoginValue, setLoginValue] = useState({
     email: '',
     password: '',
   });
-  const handleLogin = (value) => {
+  const handleLogin = async (value) => {
     setLoginValue(value);
     console.log('로그인페이지 함수', LoginValue);
+
+    try {
+      const response = await login(value);
+      console.log('로그인 시도', response);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('로그인 성공', data);
+      } else if (response.status === 400) {
+        console.log('로그인 400 오류', data);
+      } else if (response.status === 404) {
+        console.log('로그인 404 오류', data);
+      }
+    } catch (error) {
+      console.log('로그인 실패');
+    }
   };
+
   return (
     <main>
       로그인 페이지 입니다.
