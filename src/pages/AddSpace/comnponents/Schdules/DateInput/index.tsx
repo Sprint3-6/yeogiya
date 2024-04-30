@@ -1,9 +1,8 @@
-import { InputHTMLAttributes } from 'react';
-import Calendar from '@/components/Calendar';
+import { Schedule } from '@/api/types/myActivities';
+import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { useState } from 'react';
-import { Schedule } from '@/api/types/myActivities';
+import { InputHTMLAttributes, useState } from 'react';
 import './style.scss';
 
 interface DateInput extends InputHTMLAttributes<HTMLInputElement> {
@@ -12,7 +11,7 @@ interface DateInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function DateInput({ preViewValue, setPreViewValue }: DateInput) {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const { Calendar, selectedDate, setSelectedDate } = useCalendar();
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const openCalendar = () => {
     setIsOpenCalendar((pre) => !pre);
@@ -24,6 +23,9 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setPreViewValue({ ...preViewValue, date: value });
+  };
+  const handleMonthChange = (month: Date) => {
+    console.debug('Month changed:', month.getFullYear(), month.getMonth() + 1);
   };
   return (
     <div className="calendar-box">
@@ -40,8 +42,8 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
       {isOpenCalendar && (
         <div className="calendar-popup-box">
           <Calendar
-            value={selectedDate} // 선택한 날짜
             onChange={handleDateChange} // 날짜 클릭했을 때 동작하는 핸들러
+            onChangeMonth={handleMonthChange}
             size="small" // 여러분들이 쓰실 사이즈는 스몰입니다
             tileContent={(date: Date) => {
               // 날짜 셀입니다. 그냥 복붙해주시면 됩니다.

@@ -13,9 +13,9 @@ interface CalendarHeaderProps {
 }
 
 interface CalendarProps {
-  value: Date;
   size: CalendarSize;
   onChange: (date: Date) => void;
+  onChangeMonth?: (month: Date) => void;
   tileContent: (date: Date) => JSX.Element | null;
 }
 
