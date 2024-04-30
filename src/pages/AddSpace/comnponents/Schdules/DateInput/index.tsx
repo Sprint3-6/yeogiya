@@ -21,10 +21,20 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
     const formattedDate = format(date, 'yyyy-MM-dd');
     setPreViewValue({ ...preViewValue, date: formattedDate });
   };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setPreViewValue({ ...preViewValue, date: value });
+  };
   return (
     <div className="calendar-box">
       <label className="calendar-label" htmlFor="date-input">
-        <input className="calendar-input" value={preViewValue.date} id="date-input" onClick={openCalendar} />
+        <input
+          className="calendar-input"
+          value={preViewValue.date}
+          onChange={handleInputChange}
+          id="date-input"
+          onClick={openCalendar}
+        />
         <img className="calendar-icon-img" src="/assets/icons/icon-calendar-minimalistic.svg" alt="달력 불러오기" />
       </label>
       {isOpenCalendar && (
