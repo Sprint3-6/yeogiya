@@ -64,10 +64,12 @@
 import axios from 'axios';
 import { TokenResponse } from './types/auth';
 import { BASE_URL } from './constants/url';
+import instance from './instance/defaultInstance';
+import { ErrorType } from './types/axiosErrorType';
 
 export const login = async (email: string, password: string) => {
   try {
-    const response = await axios.post(
+    const response = await instance.post(
       `${BASE_URL}auth/login`,
       {
         email: email,
@@ -89,9 +91,11 @@ export const login = async (email: string, password: string) => {
 
     return response;
   } catch (error) {
+    // const axiosError = error as AxiosError;
     // 로그인 실패 시 처리
+    const responseError = error as ErrorType;
     console.error('로그인 실패:', error);
-    return error;
+    return responseError.response?.data?.message || '알 수 없는 오류';
   }
 };
 

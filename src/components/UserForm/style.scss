@@ -83,4 +83,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: 20px; /* 125% */
+
+  &:disabled {
+    background-color: gray;
+  }
 }
