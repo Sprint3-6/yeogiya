@@ -1,5 +1,10 @@
 .form-box {
   width: 350px;
+
+  // 태블릿
+  @media (min-width: 768px) {
+    width: 640px;
+  }
 }
 
 .input-container {
