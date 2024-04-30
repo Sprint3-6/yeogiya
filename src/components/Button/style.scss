@@ -22,26 +22,3 @@
     padding: 14px 28px;
   }
 }
-
-.button-black {
-  @extend .button;
-  background: var(--black20);
-  border: 2px solid var(--black20);
-  color: var(--white);
-
-  &:hover {
-    background: var(--gray70);
-    border: 2px solid var(--gray70);
-  }
-}
-
-.button-white {
-  @extend .button;
-  background: var(--white);
-  border: 2px solid var(--black20);
-  color: var(--black);
-
-  &:hover {
-    background: var(--gray10);
-  }
-}

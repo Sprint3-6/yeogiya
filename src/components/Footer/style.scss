@@ -1,6 +1,9 @@
 .footer {
-  border: 1px solid black;
-  font-size: 4rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  padding: 30px 40px 70px;
+  background-color: var(--black20);
+  color: var(--gray60);
 }
