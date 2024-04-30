@@ -6,7 +6,7 @@ import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import Calendar from '@/components/Calendar';
+import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import getUserReview from '@/api/getUserReview';
 import getOpenedSchedule from '@/api/getOpenedSchedule';
@@ -22,11 +22,11 @@ export default function SpaceDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { Modal, openModal, closeModal } = useModal();
+  const { Calendar, selectedDate, setSelectedDate } = useCalendar();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [schedule, SetSchedule] = useState();
   const [howMany, setHowMany] = useState<number>(1);
   const userInfo = useAppSelector((state) => state.myInfo);
@@ -62,6 +62,10 @@ export default function SpaceDetails() {
 
   const handleDateChange = () => {
     console.log(selectedDate);
+  };
+
+  const handleMonthChange = (month: Date) => {
+    console.log('Month changed:', month.getFullYear(), month.getMonth() + 1);
   };
 
   const handleHowManyCustomer = (type: string) => {
@@ -177,8 +181,8 @@ export default function SpaceDetails() {
           <div className="calendar-box">
             <h3>날짜</h3>
             <Calendar
-              value={selectedDate}
               onChange={handleDateChange}
+              onChangeMonth={handleMonthChange}
               size="small"
               tileContent={(date: Date) => {
                 return (
