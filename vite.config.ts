@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      viteTsconfigPaths(),
+      viteTsconfigPaths({ root: '.' }),
       createHtmlPlugin({
         minify: true,
         inject: {
