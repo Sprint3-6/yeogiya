@@ -87,8 +87,8 @@ export default function EditSpace() {
   return (
     <form className="place-form-box" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
-        <h2>편집하기 {id}</h2>
-        <button className="form-button" type="submit" disabled={isSubmitting}>
+        <h2>편집하기</h2>
+        <button className="form-button button-black" type="submit" disabled={isSubmitting}>
           등록하기
         </button>
       </div>

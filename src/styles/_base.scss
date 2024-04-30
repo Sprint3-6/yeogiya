@@ -42,7 +42,6 @@
 
 * {
   box-sizing: border-box;
-  font-size: 1.6rem;
   margin: 0;
 }
 
@@ -55,6 +54,14 @@ body {
   font-family: 'Pretendard Variable', sans-serif;
   height: 100%;
   overflow: hidden;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
