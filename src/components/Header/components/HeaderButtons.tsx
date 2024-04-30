@@ -13,7 +13,7 @@ import Loading from '@/pages/Loading';
 export default function HeaderButtons() {
   const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
-  const defaultProfileImage = '/public/assets/images/profile-default.png';
+  const defaultProfileImage = '/assets/images/profile-default.png';
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -32,12 +32,12 @@ export default function HeaderButtons() {
       {userData.id !== null ? (
         <div className="header-login">
           <img
-            src="/public/assets/icons/icon-notification.svg"
+            src="/assets/icons/icon-notification.svg"
             alt="알림 아이콘"
             onClick={() => openModal('header-notifications')}
             className="header-notifications-icon"
           />
-          <img src="/public/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
+          <img src="/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
           <div className="header-login-user" onClick={() => openModal('header-dropdown')}>
             <img src={userData.profileImageUrl || defaultProfileImage} alt="프로필 사진" />
             <span>{userData.nickname}</span>
