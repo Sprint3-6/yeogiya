@@ -25,7 +25,7 @@ export default function CalendarCells({ currentMonth, onChange, size = 'large', 
         <div
           key={index + weekdays.length}
           className={`calendar-date ${isSameDate(today, date) ? 'today' : ''}`}
-          onClick={() => date && onChange(date)}
+          onClick={() => date && onChange?.(date)}
         >
           {date && tileContent(date)}
         </div>
