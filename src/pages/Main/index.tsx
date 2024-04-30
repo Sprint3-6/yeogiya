@@ -43,10 +43,6 @@ export default function MainPage() {
       <Link to={'mypage/admin/status'}>예약현황</Link>
       <br />
       <Link to={'mypage/admin'}>내 공간 관리</Link>
-      <br />
-      <Link to={'space/735'}>공간상세(내꺼)</Link>
-      <br />
-      <Link to={'space/704'}>공간상세(내꺼아님)</Link>
       {data?.activities && <SpaceCardList spaces={data.activities} />}
       <Pagination totalCount={data?.totalCount} size={10} page={page} setPage={setPage} />
     </main>
