@@ -1,0 +1,43 @@
+.schedule-input-box {
+  display: flex;
+  gap: 4px;
+  height: 56px;
+
+  input {
+    height: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--gray60, #79747e);
+  }
+}
+
+.start-time-input {
+  width: 80px;
+  @media (min-width: 768px) {
+    width: 104px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 140px;
+  }
+}
+
+.end-time-input {
+  width: 80px;
+  @media (min-width: 768px) {
+    width: 104px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 140px;
+  }
+}
+
+.button-with-image {
+  display: inline-block;
+  border: none;
+  background: none;
+  padding: 0;
+}
