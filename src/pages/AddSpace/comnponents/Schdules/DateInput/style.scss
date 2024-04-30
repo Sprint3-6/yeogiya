@@ -1,6 +1,6 @@
 .calendar-box {
-  width: 100%;
-  height: 56px;
+  flex: 1;
+  height: 100%;
   position: relative;
 }
 
@@ -23,13 +23,5 @@
 }
 
 .calendar-input {
-  width: 132px;
-  @media (min-width: 768px) {
-    width: 150px;
-  }
-
-  // 데스크탑
-  @media (min-width: 1024px) {
-    width: 380px;
-  }
+  width: 100%;
 }
