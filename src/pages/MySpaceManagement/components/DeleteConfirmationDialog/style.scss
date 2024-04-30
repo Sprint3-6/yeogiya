@@ -1,0 +1,34 @@
+.delete-dialog-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 327px;
+  height: 220px;
+  background-color: var(--white);
+  border-radius: 8px;
+  span {
+    margin-top: 81px;
+    margin-bottom: 48px;
+    color: var(--black10, #333236);
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+}
+
+.button-box {
+  display: flex;
+  gap: 10px;
+  .cancel-button {
+    color: var(--white);
+    border-radius: 8px;
+    background: var(--black20, #1b1b1b);
+    border: none;
+  }
+  .delete-button {
+    color: var(--white);
+    background: tomato;
+    border-radius: 8px;
+    border: none;
+  }
+}

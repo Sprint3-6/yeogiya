@@ -1,0 +1,35 @@
+.calendar-box {
+  width: 100%;
+  height: 56px;
+  position: relative;
+}
+
+.calendar-popup-box {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+}
+
+.calendar-label {
+  position: relative;
+}
+
+.calendar-icon-img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.calendar-input {
+  width: 132px;
+  @media (min-width: 768px) {
+    width: 150px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 380px;
+  }
+}
