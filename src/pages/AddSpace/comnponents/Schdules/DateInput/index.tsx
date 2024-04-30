@@ -21,7 +21,7 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
     setPreViewValue({ ...preViewValue, date: formattedDate });
   };
   const handleMonthChange = (month: Date) => {
-    console.debug('Month changed:', month.getFullYear(), month.getMonth());
+    console.debug('Month changed:', month.getFullYear(), month.getMonth() + 1);
   };
   return (
     <div className="calendar-box">

@@ -4,9 +4,9 @@ import CalendarCells from '../components/CalendarCells';
 import CalendarHeader from '../components/CalendarHeader';
 import '../style.scss';
 
-export default function useCalendar(currentDate = new Date()) {
-  const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
-  const [currentMonth, setCurrentMonth] = useState<Date>(currentDate);
+export default function useCalendar(defaultDate = new Date()) {
+  const [selectedDate, setSelectedDate] = useState<Date>(defaultDate);
+  const [currentMonth, setCurrentMonth] = useState<Date>(defaultDate);
 
   const handleDateClick = (date: Date) => {
     setSelectedDate(date);
@@ -14,13 +14,15 @@ export default function useCalendar(currentDate = new Date()) {
 
   function Calendar({ onChange, onChangeMonth, size, tileContent }: CalendarProps) {
     const nextMonth = () => {
-      setCurrentMonth((prevMonth) => addMonths(prevMonth, 1));
-      onChangeMonth?.(currentMonth);
+      const newMonth = addMonths(currentMonth, 1);
+      setCurrentMonth(newMonth);
+      onChangeMonth?.(newMonth);
     };
 
     const prevMonth = () => {
-      setCurrentMonth((prevMonth) => subMonths(prevMonth, 1));
-      onChangeMonth?.(currentMonth);
+      const newMonth = subMonths(currentMonth, 1);
+      setCurrentMonth(newMonth);
+      onChangeMonth?.(newMonth);
     };
 
     return (
