@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '@/redux/store/store';
+import { useAppSelector } from '@/redux/store';
 import { useModal } from '../../hooks/useModal/useModal';
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';

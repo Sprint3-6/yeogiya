@@ -2,13 +2,16 @@
   display: flex;
   width: 100%;
   height: 128px;
-  gap: 8px;
   border-radius: 24px;
-  box-shadow: 11px 11px 11px 0 rgba(17, 34, 17, 0.05);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 11px 11px 5px 5px rgba(17, 34, 17, 0.05);
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   // 태블릿
@@ -28,21 +31,38 @@
   justify-content: space-between;
   margin: 12px 0;
   margin-right: 14px;
-  width: 100%;
+  margin-left: 8px;
+  flex: 1;
+
+  h3 {
+    margin-top: 16px;
+  }
+  @media (min-width: 1024px) {
+    margin: 21px 24px;
+  }
 }
 
 .my-space-card-star-box {
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  .my-space-card-star {
+    width: 16px;
+  }
 }
 
-.my-space-card-star {
-  font-size: 14px;
-}
-
-.my-space-card-img {
+.my-space-card-img-box {
+  overflow: hidden;
   width: 128px;
   height: 128px;
+  background-size: cover;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
   // 태블릿
   @media (min-width: 768px) {
     width: 156px;
@@ -56,6 +76,11 @@
   }
 }
 
+.my-space-card-img {
+  width: 100%;
+  height: 100%;
+}
+
 .my-space-card-star {
   width: 16px;
   height: 16px;
@@ -65,6 +90,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.6rem;
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.4rem;
+  }
+  .price-person {
+    font-size: 1.6rem;
+    color: var(--gray70);
+  }
 }
 
 .my-space-card-price .dropdown {
@@ -76,7 +113,10 @@
     border: 0;
     background-color: var(--white);
     box-shadow: 0 0 0;
-
+    border-radius: 50%;
+    &:hover {
+      background-color: var(--gray20);
+    }
     .dropdown-image {
       width: 40px;
       height: 40px;
@@ -95,6 +135,7 @@
     left: -130px;
 
     li {
+      font-size: 1.6rem;
       padding: 18px 46px;
       border-radius: 6px;
     }

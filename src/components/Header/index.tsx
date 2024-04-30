@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="header">
       <Link to="/">
-        <img src="/public/assets/logos/logo-small.svg" alt="로고이미지" className="header-logo" />
+        <img src="/assets/logos/logo-small.svg" alt="로고이미지" className="header-logo" />
       </Link>
       <HeaderButtons />
     </header>

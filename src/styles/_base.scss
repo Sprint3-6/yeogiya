@@ -19,7 +19,8 @@
 
   --red10: #ffe4e0;
   --red20: #ffdbdb;
-  --red30: #ff472e;
+  --red30: #ff5b45;
+  --red40: #ff472e;
 
   --orange10: #ffdfae;
   --orange20: #f08b41;
@@ -41,7 +42,6 @@
 
 * {
   box-sizing: border-box;
-  font-size: 1.6rem;
   margin: 0;
 }
 
@@ -54,6 +54,14 @@ body {
   font-family: 'Pretendard Variable', sans-serif;
   height: 100%;
   overflow: hidden;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
@@ -82,4 +90,35 @@ textarea {
 ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 12px;
+}
+
+.button-black {
+  background: var(--black20);
+  border: 1px solid var(--black20);
+  color: var(--white);
+
+  &:hover {
+    border: 1px solid var(--gray70);
+    color: var(--gray40);
+  }
+}
+
+.button-white {
+  background: var(--white);
+  border: 1px solid var(--black20);
+  color: var(--black);
+
+  &:hover {
+    background: var(--gray40);
+  }
+}
+
+.button-special {
+  background-color: var(--red30);
+  color: var(--white);
+  border: 1px solid var(--red30);
+
+  &:hover {
+    background-color: var(--red40);
+  }
 }
