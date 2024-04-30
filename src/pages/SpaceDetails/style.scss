@@ -303,11 +303,33 @@
 
       .calendar-box {
         border-bottom: 1px solid var(--gray30);
+        height: 100%;
 
         .calendar-wrapper {
           width: 305px;
-          height: 100%;
           margin: 0 auto;
+        }
+
+        & > div {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 16px;
+
+          .time-box {
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 26px;
+            cursor: pointer;
+
+            &.selected {
+              background-color: var(--black);
+              color: var(--white);
+            }
+          }
         }
       }
 
@@ -325,7 +347,7 @@
           margin-bottom: 24px;
 
           input {
-            width: 24px;
+            width: 40px;
             border: 0;
             text-align: center;
           }
@@ -334,6 +356,7 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
+            user-select: none;
           }
         }
 

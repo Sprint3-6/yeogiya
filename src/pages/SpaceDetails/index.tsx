@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/redux/store';
 import { useModal } from '../../hooks/useModal/useModal';
 import { DropDown, DropdownItem } from '@/components/Dropdown';
-import { DetailType, ReviewType } from './Types/DetailTypes';
+import { DetailType, ReviewType, ScheduleType } from './Types/DetailTypes';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
@@ -15,8 +15,8 @@ import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import Loading from '../Loading';
-import './style.scss';
 import Button from '@/components/Button';
+import './style.scss';
 
 export default function SpaceDetails() {
   const navigate = useNavigate();
@@ -27,26 +27,24 @@ export default function SpaceDetails() {
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [schedule, SetSchedule] = useState();
+  const [schedule, SetSchedule] = useState<ScheduleType[]>();
   const [howMany, setHowMany] = useState<number>(1);
+  const [year, setYear] = useState(new Date().getFullYear().toString());
+  const [month, setMonth] = useState((new Date().getMonth() + 1).toString().padStart(2, '0'));
+  const [selectedSchedule, setSelectedSchedule] = useState<number | null>(null);
   const userInfo = useAppSelector((state) => state.myInfo);
-  // console.log(userInfo);
 
-  const setSpaceDetail = async () => {
+  const setInitialData = async () => {
     setIsLoading(true);
     const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
+    const reviewData = await getUserReview(id, 1);
+    setReviews(reviewData);
+    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
     setIsLoading(false);
   };
 
-  const setReview = async () => {
-    const reviewData = await getUserReview(id, 1);
-    setReviews(reviewData);
-  };
-
   const setOpenedSchedule = async () => {
-    const year = selectedDate.toString().slice(11, 15);
-    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
     const scheduleData = await getOpenedSchedule(id, year, month);
     SetSchedule(scheduleData);
     console.log(schedule);
@@ -60,12 +58,9 @@ export default function SpaceDetails() {
     }
   };
 
-  const handleDateChange = () => {
-    console.log(selectedDate);
-  };
-
   const handleMonthChange = (month: Date) => {
-    console.log('Month changed:', month.getFullYear(), month.getMonth() + 1);
+    setYear(month.getFullYear().toString());
+    setMonth((month.getMonth() + 1).toString().padStart(2, '0'));
   };
 
   const handleHowManyCustomer = (type: string) => {
@@ -76,16 +71,24 @@ export default function SpaceDetails() {
     }
   };
 
+  const handleSelectedSchedule = (id: number) => {
+    setSelectedSchedule(id);
+  };
+
   useEffect(() => {
-    setSpaceDetail();
-    setReview();
-    setOpenedSchedule();
-    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
+    setInitialData();
   }, [detail?.userId]);
+
+  useEffect(() => {
+    setOpenedSchedule();
+  }, [month]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="space-detail-wrapper">
-      {isLoading && <Loading />}
       <section className="space-detail-container">
         <div className="space-detail-container-header">
           <h3>{categoryFilter(detail?.category)}</h3>
@@ -181,7 +184,6 @@ export default function SpaceDetails() {
           <div className="calendar-box">
             <h3>날짜</h3>
             <Calendar
-              onChange={handleDateChange}
               onChangeMonth={handleMonthChange}
               size="small"
               tileContent={(date: Date) => {
@@ -196,6 +198,22 @@ export default function SpaceDetails() {
               }}
             />
             <h3>예약 가능한 시간</h3>
+            <div>
+              {schedule &&
+                schedule.map(
+                  (schedule) =>
+                    selectedDate.getDate().toString().padStart(2, '0') === schedule.date.slice(8, 10) &&
+                    schedule.times.map((time) => (
+                      <div
+                        key={time.id}
+                        className={`time-box ${time.id === selectedSchedule ? 'selected' : ''}`}
+                        onClick={() => handleSelectedSchedule(time.id)}
+                      >
+                        {time.startTime}~{time.endTime}
+                      </div>
+                    )),
+                )}
+            </div>
           </div>
 
           <div className="howmany-box">
