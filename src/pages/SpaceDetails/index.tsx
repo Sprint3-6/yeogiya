@@ -12,6 +12,7 @@ import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import Loading from '../Loading';
 import CalendarContainer from './Components/CalendarContainer';
+import Pagination from '@/components/Pagination';
 import './style.scss';
 
 export default function SpaceDetails() {
@@ -22,29 +23,37 @@ export default function SpaceDetails() {
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const userInfo = useAppSelector((state) => state.myInfo);
 
-  const setInitialData = async () => {
+  const setDetailData = async () => {
     setIsLoading(true);
     const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
-    const reviewData = await getUserReview(id, 1);
-    setReviews(reviewData);
     setRating(Math.floor(Number(detail?.rating) * 10) / 10);
     setIsLoading(false);
+  };
+
+  const setReviewData = async () => {
+    const reviewData = await getUserReview(id, page);
+    setReviews(reviewData);
   };
 
   const handleKebabButton = (value: string) => {
     if (value === 'edit') {
       navigate(`/mypage/admin/edit/${id}`);
     } else if (value === 'delete') {
-      openModal('a');
+      openModal('delete-modal');
     }
   };
 
   useEffect(() => {
-    setInitialData();
+    setDetailData();
   }, [detail?.userId]);
+
+  useEffect(() => {
+    setReviewData();
+  }, [page]);
 
   if (isLoading) {
     return <Loading />;
@@ -128,14 +137,16 @@ export default function SpaceDetails() {
               ))}
           </section>
 
-          <nav className="body-pagination">페이지네이션</nav>
+          <nav className="body-pagination">
+            <Pagination totalCount={detail?.reviewCount} size={3} page={page} setPage={setPage} />
+          </nav>
           <div className="bottom-space"> </div>
         </div>
 
         {userInfo.id !== detail?.userId && <CalendarContainer id={id} detail={detail} />}
       </section>
 
-      <Modal name="a">
+      <Modal name="delete-modal">
         <DeleteModal closeModal={closeModal} title={detail?.title} id={id} />
       </Modal>
     </div>
