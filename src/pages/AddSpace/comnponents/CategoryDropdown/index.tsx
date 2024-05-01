@@ -16,7 +16,13 @@ export default function CategoryDropdown({ setCategory, initValue }: CategoryDro
 
   return (
     <div>
-      <DropDown id="category" title={initValue ? changedInitValue : `카테고리`} onClickItem={handleDropdown}>
+      <DropDown
+        id="category"
+        title={initValue ? changedInitValue : `카테고리`}
+        onClickItem={handleDropdown}
+        arrowUp="∧"
+        arrowDown="∨"
+      >
         <DropdownItem value="문화 · 예술">파티룸</DropdownItem>
         <DropdownItem value="식음료">이벤트홀</DropdownItem>
         <DropdownItem value="스포츠">스튜디오</DropdownItem>
