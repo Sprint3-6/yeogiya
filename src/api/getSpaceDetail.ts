@@ -9,15 +9,8 @@ async function getSpaceDetail(id: string | undefined, navigate: (path: string) =
     return detail.data;
   } catch (err) {
     const error = err as ErrorType;
-    if (error.response.status === 404) {
-      navigate('404');
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
-    } else {
-      toast.warning(error.response.data.message);
-      navigate('/');
-    }
+    toast.error(error.response.data.message);
+    navigate('/');
   }
 }
 
