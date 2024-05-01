@@ -363,6 +363,16 @@
         button {
           width: 100%;
           margin-bottom: 24px;
+
+          &:disabled {
+            cursor: default;
+            background-color: var(--gray30);
+            border: 1px solid var(--gray30);
+          }
+
+          &:disabled:hover {
+            color: var(--white);
+          }
         }
       }
 

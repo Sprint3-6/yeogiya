@@ -5,6 +5,8 @@ import { DetailType, ScheduleType } from '../../Types/DetailTypes';
 import getOpenedSchedule from '@/api/getOpenedSchedule';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import Button from '@/components/Button';
+import postReservation from '@/api/postReservation';
+import Loading from '@/pages/Loading';
 
 interface A {
   id: string | undefined;
@@ -18,11 +20,11 @@ export default function CalendarContainer({ id, detail }: A) {
   const [year, setYear] = useState(new Date().getFullYear().toString());
   const [month, setMonth] = useState((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [howMany, setHowMany] = useState<number>(1);
+  const [loading, isLoading] = useState(false);
 
   const setOpenedSchedule = async () => {
     const scheduleData = await getOpenedSchedule(id, year, month);
     SetSchedule(scheduleData);
-    console.log(schedule);
   };
 
   const handleMonthChange = (month: Date) => {
@@ -43,12 +45,19 @@ export default function CalendarContainer({ id, detail }: A) {
     }
   };
 
+  const handleSubmitReservation = async () => {
+    isLoading(true);
+    await postReservation(id, selectedSchedule, howMany);
+    isLoading(false);
+  };
+
   useEffect(() => {
     setOpenedSchedule();
   }, [month]);
 
   return (
     <div className="space-detail-container-calendar">
+      {loading && <Loading />}
       <h2>
         ₩ {detail?.price.toLocaleString()} <span>/ 인</span>
       </h2>
@@ -96,7 +105,9 @@ export default function CalendarContainer({ id, detail }: A) {
           <input value={howMany} type="number" onChange={(e) => setHowMany(Math.max(1, Number(e.target.value)))} />
           <img src="/assets/icons/icon-plus.svg" onClick={() => handleHowManyCustomer('+')} />
         </div>
-        <Button className="button-black">예약하기</Button>
+        <Button className="button-black" onClick={handleSubmitReservation} disabled={selectedSchedule ? false : true}>
+          예약하기
+        </Button>
       </div>
 
       <div className="total-box">
