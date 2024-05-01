@@ -131,6 +131,10 @@
     .space-detail-container-body {
       float: left;
 
+      &.no-calendar {
+        float: none;
+      }
+
       .body-description {
         width: 790px;
         margin: 0 auto;

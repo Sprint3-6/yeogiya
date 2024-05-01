@@ -86,7 +86,7 @@ export default function SpaceDetails() {
           ))}
         </figure>
 
-        <div className="space-detail-container-body">
+        <div className={`space-detail-container-body ${userInfo.id === detail?.userId ? 'no-calendar' : ''}`}>
           <section className="body-description">
             <h2>공간 설명</h2>
             <p>{detail?.description}</p>
@@ -132,7 +132,7 @@ export default function SpaceDetails() {
           <div className="bottom-space"> </div>
         </div>
 
-        <CalendarContainer id={id} detail={detail} />
+        {userInfo.id !== detail?.userId && <CalendarContainer id={id} detail={detail} />}
       </section>
 
       <Modal name="a">
