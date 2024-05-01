@@ -5,8 +5,8 @@ import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { SignLogo } from '@/components/SignLogo';
 import { login } from '@/api/authApi';
-import { setMyInfo } from '@/redux/myInfoSlice';
-import getMyInfo from '@/api/getMyInfo';
+// import { setMyInfo } from '@/redux/myInfoSlice';
+// import getMyInfo from '@/api/getMyInfo';
 import { useDispatch } from 'react-redux';
 
 export interface LoginResponse {
@@ -30,7 +30,8 @@ export default function SignIn() {
     const password: string = value.password || '';
 
     try {
-      const response = await login(email, password);
+      // const response = await login(email, password);
+      const response = await login(value);
       console.log('로그인 시도', response);
 
       // if (response.status === 201) {

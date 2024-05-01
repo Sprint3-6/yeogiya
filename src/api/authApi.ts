@@ -66,14 +66,15 @@ import { TokenResponse } from './types/auth';
 import { BASE_URL } from './constants/url';
 import instance from './instance/defaultInstance';
 import { ErrorType } from './types/axiosErrorType';
+import { InputValue } from '@/components/UserForm';
 
-export const login = async (email: string, password: string) => {
+export const login = async (value: InputValue) => {
   try {
     const response = await instance.post(
       `${BASE_URL}auth/login`,
       {
-        email: email,
-        password: password,
+        email: value.email,
+        password: value.password,
       },
       {
         headers: {

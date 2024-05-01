@@ -1,9 +1,10 @@
 import { SignLogo } from '@/components/SignLogo';
 import './style.scss';
-import { UserForm } from '@/components/UserForm';
+import { InputValue, UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { Link } from 'react-router-dom';
+import { signUpApi } from '@/api/UsersApi';
 
 export default function SignUp() {
   const SignUpValue = {
@@ -12,7 +13,14 @@ export default function SignUp() {
     password: '',
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async (value: InputValue): Promise<void> => {
+    try {
+      const response = await signUpApi(value);
+      console.log('회원가입 시도', response);
+    } catch (error) {
+      console.log('회원가입 페이지 실패', error);
+    }
+
     console.log('회원가입 페이지 함수', SignUpValue);
   };
   return (

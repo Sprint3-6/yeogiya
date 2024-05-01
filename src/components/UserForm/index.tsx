@@ -82,20 +82,6 @@ export const UserForm = (props: LoginFormProps) => {
         ...prevError,
         email: !inputValue.email || !emailCheck.test(inputValue.email) ? '잘못된 이메일입니다.' : '',
       }));
-
-      //   if (!inputValue.email || !emailCheck.test(inputValue.email)) {
-      //     console.log('이메일 에러남');
-      //     setError({
-      //       ...error,
-      //       email: '잘못된 이메일입니다.',
-      //     });
-      //   } else {
-      //     setError({
-      //       ...error,
-      //       email: '',
-      //     });
-      //     console.log('이메일 에러 안 남');
-      //   }
     }
 
     if (id == 'nickname') {
@@ -110,19 +96,13 @@ export const UserForm = (props: LoginFormProps) => {
         ...prevError,
         password: !inputValue.password || inputValue.password?.length < 8 ? '8자 이상 입력해주세요' : '',
       }));
+    }
 
-      // if (!inputValue.password || inputValue.password.length < 8) {
-      //   // newError.password = '비밀번호 8자 입력';
-      //   setError({
-      //     ...error,
-      //     password: '8자 이상 입력해주세요',
-      //   });
-      // } else {
-      //   setError({
-      //     ...error,
-      //     password: '',
-      //   });
-      // }
+    if (id === 'passwordCheck') {
+      setError((prevError) => ({
+        ...prevError,
+        passwordCheck: inputValue.passwordCheck !== inputValue.password ? '비밀번호가 일치하지 않습니다' : '',
+      }));
     }
 
     const isAllError = Object.values(error).every((value) => value.trim() === '');
