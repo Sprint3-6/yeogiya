@@ -3,3 +3,11 @@ sub {
   // flex-direction: column;
   // color: red;
 }
+
+.mypage-side {
+  display: none;
+  // 태블릿
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
