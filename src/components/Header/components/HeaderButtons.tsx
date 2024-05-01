@@ -26,18 +26,20 @@ export default function HeaderButtons() {
     setIsLoading(false);
   };
 
+  //TODO 이미지 앞에 public 앞에 삭제
+
   return (
     <>
       {isLoading && <Loading />}
       {userData.id !== null ? (
         <div className="header-login">
           <img
-            src="/public/assets/icons/icon-notification.svg"
+            src="/assets/icons/icon-notification.svg"
             alt="알림 아이콘"
             onClick={() => openModal('header-notifications')}
             className="header-notifications-icon"
           />
-          <img src="/public/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
+          <img src="/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
           <div className="header-login-user" onClick={() => openModal('header-dropdown')}>
             <img src={userData.profileImageUrl || defaultProfileImage} alt="프로필 사진" />
             <span>{userData.nickname}</span>
