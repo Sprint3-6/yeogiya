@@ -3,7 +3,7 @@ import './style.scss';
 import { useState, useEffect } from 'react';
 import instance from '@/api/instance/defaultInstance';
 import { BASE_URL } from '@/api/constants/url';
-import { Spaces } from './types/spaces-type';
+import { Category, Spaces } from './types/spaces-type';
 import SpaceCardList from './components/SpaceCardList';
 import Pagination from '@/components/Pagination';
 interface DataType {
@@ -11,14 +11,41 @@ interface DataType {
   totalCount: number;
 }
 
+//api 호출은 위에서?
+
 export default function MainPage() {
   const [data, setData] = useState<DataType | null>(null);
   const [page, setPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<Category>('');
+  const [sortedSpaces, setSortedSpaces] = useState('');
+
+  const handleClickCategory = (name: Category) => {
+    setSelectedCategory((prev) => (prev === name ? '' : name));
+  };
+
+  const handleSortSpaces = (value: string) => {
+    if (value === '') {
+      return;
+    } else if (value === 'high') {
+      setSortedSpaces('price_desc');
+    } else if (value === 'row') {
+      setSortedSpaces('price_asc');
+    }
+  };
 
   useEffect(() => {
     const getSpaces = async () => {
       try {
-        const res = await instance.get(`${BASE_URL}activities?method=offset&page=${page}&size=10`);
+        let url = `${BASE_URL}activities?method=offset&page=${page}&size=10`;
+        // selectedCategory가 빈 문자열이 아닌 경우에만 카테고리 쿼리 파라미터를 추가
+        if (selectedCategory) {
+          url += `&category=${selectedCategory}`;
+        }
+        if (sortedSpaces) {
+          url += `&sort=${sortedSpaces}`;
+        }
+
+        const res = await instance.get(url);
         setData(res.data);
         console.log(res.data);
       } catch (err) {
@@ -26,7 +53,7 @@ export default function MainPage() {
       }
     };
     getSpaces();
-  }, [page]);
+  }, [page, selectedCategory, sortedSpaces]);
 
   return (
     <main>
@@ -47,7 +74,13 @@ export default function MainPage() {
       <Link to={'space/735'}>공간상세(내꺼)</Link>
       <br />
       <Link to={'space/704'}>공간상세(내꺼아님)</Link>
-      {data?.activities && <SpaceCardList spaces={data.activities} />}
+      {data?.activities && (
+        <SpaceCardList
+          spaces={data.activities}
+          handleClickCategory={handleClickCategory}
+          handleSortSpaces={handleSortSpaces}
+        />
+      )}
       <Pagination totalCount={data?.totalCount} size={10} page={page} setPage={setPage} />
     </main>
   );
