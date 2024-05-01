@@ -1,6 +1,6 @@
 interface CalendarCellsProps {
   currentMonth: Date;
-  onChange: (date: Date) => void;
+  onChange?: (date: Date) => void;
   size: CalendarSize;
   tileContent: (date: Date) => JSX.Element | null;
 }
@@ -14,7 +14,7 @@ interface CalendarHeaderProps {
 
 interface CalendarProps {
   size: CalendarSize;
-  onChange: (date: Date) => void;
+  onChange?: (date: Date) => void;
   onChangeMonth?: (month: Date) => void;
   tileContent: (date: Date) => JSX.Element | null;
 }

@@ -11,28 +11,31 @@ import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import Loading from '../Loading';
+import CalendarContainer from './Components/CalendarContainer';
+import Pagination from '@/components/Pagination';
 import './style.scss';
 
 export default function SpaceDetails() {
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
   const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const userInfo = useAppSelector((state) => state.myInfo);
-  // console.log(userInfo);
 
-  const setSpaceDetail = async () => {
+  const setDetailData = async () => {
     setIsLoading(true);
-    const detailData = await getSpaceDetail(id);
+    const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
+    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
     setIsLoading(false);
   };
 
-  const setReview = async () => {
-    const reviewData = await getUserReview(id, 1);
+  const setReviewData = async () => {
+    const reviewData = await getUserReview(id, page);
     setReviews(reviewData);
   };
 
@@ -40,36 +43,37 @@ export default function SpaceDetails() {
     if (value === 'edit') {
       navigate(`/mypage/admin/edit/${id}`);
     } else if (value === 'delete') {
-      openModal('a');
+      openModal('delete-modal');
     }
   };
 
   useEffect(() => {
-    setSpaceDetail();
-    setReview();
-    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
+    setDetailData();
   }, [detail?.userId]);
+
+  useEffect(() => {
+    setReviewData();
+  }, [page]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="space-detail-wrapper">
-      {isLoading && <Loading />}
       <section className="space-detail-container">
         <div className="space-detail-container-header">
           <h3>{categoryFilter(detail?.category)}</h3>
           <h1>{detail?.title}</h1>
           <div>
-            <img src="/public/assets/icons/icon-star.svg" />
+            <img src="/assets/icons/icon-star.svg" />
             <h2>{`${rating} (${detail?.reviewCount})`}</h2>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
 
           {userInfo.id === detail?.userId && (
-            <DropDown
-              id="space-detail-kebab"
-              image="/public/assets/icons/icon-meatball.svg"
-              onClickItem={handleKebabButton}
-            >
+            <DropDown id="space-detail-kebab" image="/assets/icons/icon-meatball.svg" onClickItem={handleKebabButton}>
               <DropdownItem value="edit">수정하기</DropdownItem>
               <DropdownItem value="delete">삭제하기</DropdownItem>
             </DropDown>
@@ -84,16 +88,14 @@ export default function SpaceDetails() {
             <div key={index} className={detail?.subImages[index] ? '' : 'empty-image'}>
               {
                 <img
-                  src={
-                    detail?.subImages[index] ? detail.subImages[index].imageUrl : '/public/assets/logos/logo-icon.svg'
-                  }
+                  src={detail?.subImages[index] ? detail.subImages[index].imageUrl : '/assets/logos/logo-icon.svg'}
                 />
               }
             </div>
           ))}
         </figure>
 
-        <div className="space-detail-container-body">
+        <div className={`space-detail-container-body ${userInfo.id === detail?.userId ? 'no-calendar' : ''}`}>
           <section className="body-description">
             <h2>공간 설명</h2>
             <p>{detail?.description}</p>
@@ -113,7 +115,7 @@ export default function SpaceDetails() {
               <h3>{rating.toString()}</h3>
               <h4>{ratingFilter(rating)}</h4>
               <div>
-                <img src="/public/assets/icons/icon-star.svg" />
+                <img src="/assets/icons/icon-star.svg" />
                 <h5>{detail?.reviewCount}개 후기</h5>
               </div>
             </div>
@@ -122,9 +124,7 @@ export default function SpaceDetails() {
                 <div className="review-detail" key={review.id}>
                   <img
                     src={
-                      review.user.profileImageUrl
-                        ? review.user.profileImageUrl
-                        : '/public/assets/images/profile-default.png'
+                      review.user.profileImageUrl ? review.user.profileImageUrl : '/assets/images/profile-default.png'
                     }
                   />
                   <div>
@@ -137,13 +137,16 @@ export default function SpaceDetails() {
               ))}
           </section>
 
-          <nav className="body-pagination">페이지네이션</nav>
+          <nav className="body-pagination">
+            <Pagination totalCount={detail?.reviewCount} size={3} page={page} setPage={setPage} />
+          </nav>
           <div className="bottom-space"> </div>
         </div>
-        <div className="calendar">달력</div>
+
+        {userInfo.id !== detail?.userId && <CalendarContainer id={id} detail={detail} />}
       </section>
 
-      <Modal name="a">
+      <Modal name="delete-modal">
         <DeleteModal closeModal={closeModal} title={detail?.title} id={id} />
       </Modal>
     </div>
