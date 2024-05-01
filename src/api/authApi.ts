@@ -96,7 +96,7 @@ export const login = async (value: InputValue) => {
     // 로그인 실패 시 처리
     const responseError = error as ErrorType;
     console.error('로그인 실패:', error);
-    return responseError.response?.data?.message || '알 수 없는 오류';
+    throw responseError.response?.data?.message || '알 수 없는 오류';
   }
 };
 

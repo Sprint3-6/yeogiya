@@ -5,13 +5,15 @@ import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { SignLogo } from '@/components/SignLogo';
 import { login } from '@/api/authApi';
-// import { setMyInfo } from '@/redux/myInfoSlice';
-// import getMyInfo from '@/api/getMyInfo';
+import { setMyInfo } from '@/redux/myInfoSlice';
+import getMyInfo from '@/api/getMyInfo';
 import { useDispatch } from 'react-redux';
 
-export interface LoginResponse {
+export interface LoginResponse<T> {
+  data: string;
   status: number;
   message: string;
+  result: T;
 }
 
 export default function SignIn() {
@@ -34,13 +36,13 @@ export default function SignIn() {
       const response = await login(value);
       console.log('로그인 시도', response);
 
-      // if (response.status === 201) {
-      //   console.log('로그인성공선영');
-      navigate('/');
-      dispatch(setMyInfo(await getMyInfo(email, password)));
-      // } else {
-      //   console.log('로그인실패선영');
-      // }
+      if (response.status === 201) {
+        console.log('로그인성공선영');
+        navigate('/');
+        dispatch(setMyInfo(await getMyInfo(email, password)));
+      } else {
+        console.log('로그인실패선영');
+      }
 
       console.log('메시지', response);
     } catch (error) {
