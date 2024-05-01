@@ -5,7 +5,7 @@ sub {
 }
 
 .mypage-side {
-  display: none;
+  // display: none;
   // 태블릿
   @media (min-width: 768px) {
     display: flex;
