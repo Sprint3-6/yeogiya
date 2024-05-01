@@ -29,6 +29,7 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
   };
   return (
     <div className="calendar-box">
+      <div className="calendar-input-title">날짜</div>
       <label className="calendar-label" htmlFor="date-input">
         <input
           className="calendar-input"
