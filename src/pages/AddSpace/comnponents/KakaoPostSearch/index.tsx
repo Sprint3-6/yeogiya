@@ -33,7 +33,7 @@ export default function KakaoPostSearch({ register, setValue, error, getValues }
           placeholder="주소를 검색해주세요"
           {...register('address', { required: true })}
         />
-        <button className="post-search-button" type="button" onClick={handleClick}>
+        <button className="post-search-button button-black" type="button" onClick={handleClick}>
           주소검색
         </button>
       </div>

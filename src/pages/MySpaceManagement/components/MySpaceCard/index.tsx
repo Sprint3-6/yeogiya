@@ -3,7 +3,7 @@ import { MySpaceCardProps } from '../../types';
 import './style.scss';
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
-import DeleteConfirmationDialog from '../DeleteConfirmationDialog';
+import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 
 export default function MySpaceCard({ activity }: MySpaceCardProps) {
   const navigate = useNavigate();
@@ -22,7 +22,9 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
     <>
       <Link to={`/space/${activity.id}`}>
         <div className="my-space-card-box">
-          <img className="my-space-card-img" src={activity.bannerImageUrl} alt="메인 사진" />
+          <div className="my-space-card-img-box">
+            <img className="my-space-card-img" src={activity.bannerImageUrl} alt="메인 사진" />
+          </div>
           <div className="my-space-card-imf">
             <div>
               <div className="my-space-card-star-box">
@@ -34,7 +36,9 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
               <h3>{activity.title}</h3>
             </div>
             <div className="my-space-card-price">
-              <span>￦{formattedPrice}</span>
+              <span>
+                ￦{formattedPrice} <span className="price-person">/인</span>
+              </span>
               <DropDown id="kabab" image="/assets/icons/icon-meatball.svg" onClickItem={handleDropdown}>
                 <DropdownItem value="edit">수정하기</DropdownItem>
                 <DropdownItem value="delete">삭제하기</DropdownItem>
@@ -44,7 +48,7 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
         </div>
       </Link>
       <Modal name="delete">
-        <DeleteConfirmationDialog closeModal={closeModal} />
+        <DeleteModal closeModal={closeModal} title={activity.title} id={activity.id.toString()} />
       </Modal>
     </>
   );

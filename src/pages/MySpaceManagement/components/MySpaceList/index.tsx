@@ -28,7 +28,10 @@ export default function MySpaceList() {
           ))}
         </div>
       ) : (
-        <div>없음</div>
+        <div className="not-found-file-box">
+          <img src="/assets/images/not-found-file.svg" alt="관리할 방이 없습니다" />
+          <span>아직 등록한 방이 없어요</span>
+        </div>
       )}
       <div ref={sentinelRef}></div>
     </div>

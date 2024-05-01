@@ -57,7 +57,7 @@ export default function AddPlaceForm() {
     <form className="place-form-box" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
         <h2>내 체험 등록</h2>
-        <button className="form-button" type="submit" disabled={isSubmitting}>
+        <button className="form-button button-black" type="submit" disabled={isSubmitting}>
           등록하기
         </button>
       </div>

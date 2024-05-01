@@ -1,38 +1,39 @@
 .delete-modal {
   width: 400px;
-  height: 180px;
-  padding: 20px;
+  height: 240px;
+  padding: 28px;
   background-color: var(--gray20);
   border-radius: 12px;
   text-align: center;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  h1 {
-    font-size: 2rem;
+  h3 {
+    font-size: 2.4rem;
+    padding-top: 20px;
   }
 
   p {
-    padding-top: 10px;
-
-    span {
+    padding-top: 20px;
+    font-size: 1.8rem;
+    .delete-modal-title {
+      font-size: 2rem;
+    }
+    .delete-modal-special {
       color: var(--red40);
+      font-size: 1.8rem;
     }
   }
 
   div:nth-of-type(2) {
     display: flex;
+    justify-content: center;
     gap: 10px;
 
     .delete-modal-button {
-      width: 100%;
+      width: 100px;
       height: 40px;
-    }
-
-    .delete-modal-button:hover {
-      background-color: var(--gray30);
     }
   }
 }
