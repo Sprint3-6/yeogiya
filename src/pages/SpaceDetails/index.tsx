@@ -57,18 +57,14 @@ export default function SpaceDetails() {
           <h3>{categoryFilter(detail?.category)}</h3>
           <h1>{detail?.title}</h1>
           <div>
-            <img src="/public/assets/icons/icon-star.svg" />
+            <img src="/assets/icons/icon-star.svg" />
             <h2>{`${rating} (${detail?.reviewCount})`}</h2>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
 
           {userInfo.id === detail?.userId && (
-            <DropDown
-              id="space-detail-kebab"
-              image="/public/assets/icons/icon-meatball.svg"
-              onClickItem={handleKebabButton}
-            >
+            <DropDown id="space-detail-kebab" image="/assets/icons/icon-meatball.svg" onClickItem={handleKebabButton}>
               <DropdownItem value="edit">수정하기</DropdownItem>
               <DropdownItem value="delete">삭제하기</DropdownItem>
             </DropDown>
@@ -83,9 +79,7 @@ export default function SpaceDetails() {
             <div key={index} className={detail?.subImages[index] ? '' : 'empty-image'}>
               {
                 <img
-                  src={
-                    detail?.subImages[index] ? detail.subImages[index].imageUrl : '/public/assets/logos/logo-icon.svg'
-                  }
+                  src={detail?.subImages[index] ? detail.subImages[index].imageUrl : '/assets/logos/logo-icon.svg'}
                 />
               }
             </div>
@@ -112,7 +106,7 @@ export default function SpaceDetails() {
               <h3>{rating.toString()}</h3>
               <h4>{ratingFilter(rating)}</h4>
               <div>
-                <img src="/public/assets/icons/icon-star.svg" />
+                <img src="/assets/icons/icon-star.svg" />
                 <h5>{detail?.reviewCount}개 후기</h5>
               </div>
             </div>
@@ -121,9 +115,7 @@ export default function SpaceDetails() {
                 <div className="review-detail" key={review.id}>
                   <img
                     src={
-                      review.user.profileImageUrl
-                        ? review.user.profileImageUrl
-                        : '/public/assets/images/profile-default.png'
+                      review.user.profileImageUrl ? review.user.profileImageUrl : '/assets/images/profile-default.png'
                     }
                   />
                   <div>
