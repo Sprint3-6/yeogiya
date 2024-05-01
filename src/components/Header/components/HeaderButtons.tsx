@@ -13,7 +13,7 @@ import Loading from '@/pages/Loading';
 export default function HeaderButtons() {
   const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
-  const defaultProfileImage = '/public/assets/images/profile-default.png';
+  const defaultProfileImage = '/assets/images/profile-default.png';
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
