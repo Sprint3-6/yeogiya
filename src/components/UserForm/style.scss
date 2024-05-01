@@ -1,4 +1,4 @@
-.form-box {
+.userform-box {
   width: 350px;
 
   // 태블릿
@@ -7,8 +7,8 @@
   }
 }
 
-.input-container {
-  border: 1px solid black;
+.userinput-container {
+  // border: 1px solid black;
   height: 100%;
   margin: 0 0 28px 0;
 
@@ -19,7 +19,7 @@
   gap: 8px;
 }
 
-.label {
+.userinput-label {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -44,6 +44,11 @@
   border-radius: 6px;
   border: 1px solid var(--gray-gray_79747E, #79747e);
   background: var(--white-white_FFFFFF, #fff);
+
+  &:focus-within {
+    border-color: black;
+  }
+
   input {
     color: var(--gray-gray_1b1b1b, #1b1b1b);
     font-family: Pretendard;
@@ -54,10 +59,11 @@
     width: 100%;
     height: 100%;
     border: 0;
+    outline: none;
   }
 }
 
-.error {
+.userinput-error {
   color: var(--red-red_FF472E, #ff472e);
   font-family: Pretendard;
   font-size: 12px;
@@ -69,8 +75,9 @@
   height: 16px;
 }
 
-.user-button {
+.sign-button {
   width: 100%;
+  height: 48px;
   border-radius: 6px;
   background: var(--gray-gray_1b1b1b, #1b1b1b);
 
