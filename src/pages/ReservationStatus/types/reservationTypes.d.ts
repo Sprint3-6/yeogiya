@@ -7,7 +7,7 @@ interface ReservationInformationProps {
   activityId: number;
 }
 
-type UpdateReservationStatus = 'pending' | 'confirmed' | 'rejected';
+type UpdateReservationStatus = 'pending' | 'confirmed' | 'declined';
 
 interface UpdateReservationStatusProps {
   status?: UpdateReservation;
