@@ -113,7 +113,7 @@ export default function SpaceDetails() {
             <h2>후기</h2>
             <div className="review-scoreboard">
               <h3>{rating.toString()}</h3>
-              <h4>{ratingFilter(rating)}</h4>
+              <h4>{detail?.reviewCount === 0 ? `첫번째 후기를 남겨주세요!` : ratingFilter(rating)}</h4>
               <div>
                 <img src="/assets/icons/icon-star.svg" />
                 <h5>{detail?.reviewCount}개 후기</h5>
