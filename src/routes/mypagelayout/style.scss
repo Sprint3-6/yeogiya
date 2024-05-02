@@ -27,10 +27,10 @@ sub {
 
   // width: 375px;
   // height: 740px;
-  // display: none;
+  display: none;
   // background-color: green;
   // 태블릿
   @media (min-width: 768px) {
-    // display: flex;
+    display: inline-block;
   }
 }
