@@ -2,6 +2,9 @@ import { Schedule } from '@/api/types/myActivities';
 import { useState } from 'react';
 import DateInput from './DateInput';
 import './style.scss';
+import TimeDropdown from './TimeDropdown';
+import compareTime from '@/utils/compareTime';
+import toast from '@/utils/toast';
 
 interface SchedulesProps {
   schedules: Schedule[];
@@ -9,17 +12,24 @@ interface SchedulesProps {
 }
 
 export default function Schedules({ schedules, setSchedules }: SchedulesProps) {
-  const [inputValue, setInputValue] = useState<Schedule>({ date: 'yy-mm-dd', startTime: '0', endTime: '1' });
+  const [inputValue, setInputValue] = useState<Schedule>({ date: '', startTime: '00:00', endTime: '00:00' });
 
-  const handleStartTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({ ...inputValue, startTime: event.target.value });
+  const handleStartTime = (value: string) => {
+    setInputValue((prev) => ({ ...prev, startTime: value }));
   };
 
-  const handleEndTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({ ...inputValue, endTime: event.target.value });
+  const handleEndTime = (value: string) => {
+    setInputValue((prev) => ({ ...prev, endTime: value }));
   };
 
   const handleScheduleButton = () => {
+    if (!inputValue.date) {
+      toast.warning('날짜를 확인해 주세요!');
+      return;
+    } else if (!compareTime(inputValue.startTime, inputValue.endTime)) {
+      toast.warning('시간을 확인해 주세요!');
+      return;
+    }
     setSchedules([...schedules, inputValue]);
   };
 
@@ -34,12 +44,12 @@ export default function Schedules({ schedules, setSchedules }: SchedulesProps) {
         <DateInput preViewValue={inputValue} setPreViewValue={setInputValue} />
         <div className="start-time-input-box">
           <div className="start-time-title">시작 시간</div>
-          <input className="start-time-input" value={inputValue.startTime} onChange={handleStartTime}></input>
+          <TimeDropdown onClick={handleStartTime} />
         </div>
         <div className="between-time">~</div>
         <div className="end-time-input-box">
           <div className="end-time-title">종료 시간</div>
-          <input className="end-time-input" value={inputValue.endTime} onChange={handleEndTime}></input>
+          <TimeDropdown onClick={handleEndTime} />
         </div>
         <button type="button" className="button-with-image" onClick={handleScheduleButton}>
           <img src="/assets/icons/icon-schedule-plus.svg" alt="스케줄 추가하기" />

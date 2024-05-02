@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { PlaceInputValue } from '../AddSpace/types';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useRef, useState } from 'react';
 import TitleInput from '../AddSpace/comnponents/TitleInput';
 import DescriptionInput from '../AddSpace/comnponents/DescriptionInput';
@@ -14,6 +14,7 @@ import { Schedule } from '@/api/types/myActivities';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import { findMissingImgIds, findMissingScheduleIds, findNewImgUrl, findNewScheduleData } from '@/utils/findMissingIds';
 import { editMyActivities } from '@/api/myActivitiesApi';
+import removeCommas from '@/utils/removeCommas';
 
 interface UrlSubData {
   id: number;
@@ -30,13 +31,14 @@ export default function EditSpace() {
   const { id } = useParams();
   const preSubimages = useRef([]);
   const preSchedules = useRef([]);
+
   useEffect(() => {
     const handleinitialValue = async () => {
-      const initialValue = await getSpaceDetail(id);
+      const initialValue = await getSpaceDetail(id, navigate);
       setValue('title', initialValue.title);
       setValue('description', initialValue.description);
       setCategory(initialValue.category);
-      setValue('price', initialValue.price);
+      setValue('price', initialValue.price.toString());
       setValue('address', initialValue.address);
       setSchedules(
         initialValue.schedules.map((schedule: Schedule) => {
@@ -58,15 +60,21 @@ export default function EditSpace() {
     setValue,
     getValues,
   } = useForm<PlaceInputValue>({ mode: 'onSubmit' });
+
   const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
     setIsSubmitted(true);
-
-    if (bannerImage.length > 0 && category && schedules.length > 0) {
+    if (!category) {
+      toast.warning('카테고리를 선택해주세요!');
+    } else if (schedules.length === 0) {
+      toast.warning('스케줄을 하나 이상 추가해 주세요!');
+    } else if (bannerImage.length === 0) {
+      toast.warning('배너 이미지를 넣어 주세요!');
+    } else {
       const body = {
         title: data.title,
         category: category,
         description: data.description,
-        price: parseInt(data.price),
+        price: parseInt(removeCommas(data.price)),
         address: data.address,
         schedulesToAdd: findNewScheduleData(preSchedules.current, schedules),
         bannerImageUrl: bannerImage[0],
@@ -79,13 +87,24 @@ export default function EditSpace() {
         toast.success('수정이 되었습니다!');
         navigate('/mypage/admin');
       });
-    } else {
-      toast.warning('필수사항을 입력하세요!');
-      return;
+    }
+    return;
+  };
+
+  const onError: SubmitErrorHandler<PlaceInputValue> = (errors) => {
+    if (errors.title) {
+      toast.warning(`제목을 적어주세요!`);
+    } else if (errors.description) {
+      toast.warning(`설명을 적어주세요!`);
+    } else if (errors.price) {
+      toast.warning(`가격을 적어주세요!`);
+    } else if (errors.address) {
+      toast.warning(`주소를 적어주세요!`);
     }
   };
+
   return (
-    <form className="place-form-box" onSubmit={handleSubmit(onSubmit)}>
+    <form className="place-form-box" onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="form-header">
         <h2>편집하기</h2>
         <button className="form-button button-black" type="submit" disabled={isSubmitting}>
