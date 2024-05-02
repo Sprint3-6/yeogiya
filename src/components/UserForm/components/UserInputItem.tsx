@@ -6,7 +6,7 @@ interface LoginItem extends InputHTMLAttributes<HTMLInputElement> {
   children: React.ReactNode;
   id: string;
   type: string;
-  text: string;
+  text?: string;
 }
 
 export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem) => {

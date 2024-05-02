@@ -53,7 +53,7 @@ export const MyPageList = () => {
         <UserInputItem id="nickname" type="text" text={myInfoValue.nickname}>
           닉네임
         </UserInputItem>
-        <UserInputItem id="email" type="email" text={myInfoValue.email} disabled={true}>
+        <UserInputItem id="email" type="email" value={myInfoValue.email} disabled={true}>
           이메일
         </UserInputItem>
         <UserInputItem id="password" type="password" text="8자 이상 입력해 주세요">
