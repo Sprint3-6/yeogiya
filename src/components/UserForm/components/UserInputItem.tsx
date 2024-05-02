@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react';
+import { InputHTMLAttributes, useContext, useState } from 'react';
 import { LoginContext } from '@/components/UserForm';
 import '../style.scss';
 
-interface LoginItem {
+interface LoginItem extends InputHTMLAttributes<HTMLInputElement> {
   children: React.ReactNode;
   id: string;
   type: string;
   text: string;
 }
 
-export const UserInputItem = ({ children, id, type, text }: LoginItem) => {
+export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem) => {
   const { handleInput, handleError, inputValue, error } = useContext(LoginContext);
 
   const [isType, setIsType] = useState(type);
@@ -42,6 +42,7 @@ export const UserInputItem = ({ children, id, type, text }: LoginItem) => {
             placeholder={text}
             onChange={(e) => handleInput(e)}
             onBlur={() => handleError(id)}
+            {...props}
           />
           {type === 'password' ? <img src={isEye} alt="비밀번호 표시" onClick={() => handleIsPassword()} /> : null}
         </div>
