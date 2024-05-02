@@ -1,4 +1,5 @@
 .mypage-side-container {
+  position: sticky;
   display: flex;
   width: 344px;
   padding: 24px;
@@ -6,14 +7,31 @@
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
+  top: 94px;
+  // height: 100%;
 
   border-radius: 12px;
   border: 1px solid var(--gray-gray_DDDDDD, #ddd);
   background: var(--white-white_FFFFFF, #fff);
   box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 
-  // background-color: green;
+  background-color: green;
+  // 태블릿
+  @media (min-width: 768px) {
+    width: 251px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 384px;
+    top: 142 px;
+  }
 }
+
+// .mypage-side-container > * {
+//   height: 100%;
+//   border: 1px solid red;
+// }
 
 .mypage-side-profile-container {
   display: flex;
@@ -21,7 +39,8 @@
   align-items: flex-start;
   gap: 227px;
   align-self: stretch;
-  height: 160px;
+  // height: 160px;
+  height: auto;
 }
 
 .mypage-side-profile {
@@ -47,7 +66,7 @@
 
   img {
     width: 100%;
-    height: 100%;
+    // height: 100%;
     object-fit: cover;
   }
 }
@@ -70,9 +89,10 @@
 .mapage-side-list {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  // align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+  height: auto;
 }
 
 .mypage-side-item {
