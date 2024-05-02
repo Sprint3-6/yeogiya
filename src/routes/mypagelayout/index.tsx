@@ -6,7 +6,9 @@ export default function MypageLayout() {
   return (
     <>
       <sub>
-        <MypageSidebar />
+        <div className="mypage-side">
+          <MypageSidebar />
+        </div>
         <Outlet />
       </sub>
     </>
