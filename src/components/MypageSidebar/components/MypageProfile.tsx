@@ -12,6 +12,10 @@ export const MypageProfile = () => {
     }
   }, [userData]);
 
+  const handleProfile = () => {
+    console.log('프로필 변경');
+  };
+
   // "/assets/images/profile-image.svg"
   return (
     <div className="mypage-side-profile-container">
@@ -19,7 +23,7 @@ export const MypageProfile = () => {
         <div className="side-profile">
           <img src={isProfile} alt="프로필" />
           <div className="side-icon">
-            <img src="/assets/icons/icon-pen.svg" />
+            <img src="/assets/icons/icon-pen.svg" onClick={handleProfile} />
           </div>
         </div>
       </div>

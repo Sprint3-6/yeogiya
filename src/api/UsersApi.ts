@@ -37,3 +37,6 @@ export const myinfoGetApi = async () => {
     console.log('내 정보 조회 실패', error);
   }
 };
+
+// // 내 정보 수정
+// export

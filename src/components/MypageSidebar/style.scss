@@ -83,7 +83,11 @@
   right: 0px;
 
   border-radius: 45px;
-  background: var(--green-gray_1b1b1b, #1b1b1b);
+  background: var(--green-gray_1b1b1b, gray);
+  cursor: pointer;
+  &:hover {
+    background: var(--green-gray_1b1b1b, #1b1b1b);
+  }
 }
 
 .mapage-side-list {
