@@ -2,7 +2,6 @@ import { addDays, getDaysInMonth, startOfMonth } from 'date-fns';
 
 export interface DateWithStatus {
   date?: Date;
-  status?: ReservationStatus;
 }
 
 export default function generateDates(currentMonth: Date): DateWithStatus[] {
@@ -12,10 +11,10 @@ export default function generateDates(currentMonth: Date): DateWithStatus[] {
 
   const datesArray: DateWithStatus[] = [];
   for (let i = 0; i < startingWeekday; i++) {
-    datesArray.push({ date: undefined, status: undefined });
+    datesArray.push({ date: undefined });
   }
   for (let i = 1; i <= daysInMonth; i++) {
-    datesArray.push({ date: addDays(firstDayOfMonth, i - 1), status: status[(i - 1) % status.length] });
+    datesArray.push({ date: addDays(firstDayOfMonth, i - 1) });
   }
   return datesArray;
 }
@@ -28,10 +27,17 @@ export const isSameDate = (selectedDate: Date, date?: Date) => {
   );
 };
 
-export const status: ReservationStatus[] = ['승인', '완료', '예약'];
+export const statusChips: ReservationChip[] = ['pending', 'confirmed', 'completed'];
 
 export const statusMap = {
-  승인: 'approve',
-  완료: 'success',
-  예약: 'reservation',
+  pending: 'reservation',
+  confirmed: 'approve',
+  completed: 'success',
+};
+
+export const translateMap = {
+  pending: '예약',
+  confirmed: '승인',
+  completed: '완료',
+  declined: '거절',
 };

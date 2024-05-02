@@ -1,0 +1,80 @@
+.reservation-status-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  gap: 20px;
+
+  .reservation-status-title {
+    padding: 0 10px;
+
+    @media screen and (min-width: 768px) {
+      padding: 0 30px;
+    }
+  }
+
+  .reservation-status-dropdown-title {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    z-index: 1;
+    padding: 0 5px;
+    background-color: var(--white);
+    color: var(--black20);
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    @media screen and (min-width: 768px) {
+      top: 80px;
+      left: 50px;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.reservation-status-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--black20);
+}
+
+.reservation-status-dropdown-box {
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    padding: 30px;
+  }
+
+  div.dropdown-title {
+    height: 30px;
+    font-size: 1.4rem;
+
+    @media screen and (min-width: 768px) {
+      height: 40px;
+      padding: 0 5px;
+      font-size: 1.6rem;
+    }
+  }
+
+  #activityNames {
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      width: 100%;
+    }
+
+    li.dropdown-item {
+      padding: 10px 0;
+      font-size: 1.4rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .dropdown-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}

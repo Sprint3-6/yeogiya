@@ -20,9 +20,3 @@ interface CalendarProps {
 }
 
 type CalendarSize = 'small' | 'large';
-
-interface ReservationInformationChipProps {
-  status?: ReservationStatus;
-}
-
-type ReservationStatus = '승인' | '완료' | '예약';
