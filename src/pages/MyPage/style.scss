@@ -1,0 +1,41 @@
+.mypage-list {
+  margin-top: 16px;
+
+  // width: 344px;
+
+  // // 태블릿
+  // @media (min-width: 768px) {
+  //   width: 429px;
+  // }
+  // // 데스크탑
+  // @media (min-width: 1024px) {
+  //   width: 792px;
+  // }
+
+  label {
+    color: var(--black-black_1B1B1B, #1b1b1b);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 108.333% */
+    gap: 16px;
+  }
+}
+
+.mypage-list .userinput-container {
+  margin: 0 0 32px 0;
+}
+
+.mypage-list .userform-box {
+  width: 344px;
+
+  // 태블릿
+  @media (min-width: 768px) {
+    width: 429px;
+  }
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 792px;
+  }
+}
