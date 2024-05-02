@@ -97,17 +97,27 @@
   flex: 1;
 }
 
-.set-schedule div:nth-child(2),
-.set-schedule div:nth-child(4) {
+.schedule-hr {
+  margin: 16px 0;
+}
+
+.schedule-input-box .dropdown {
   width: 80px;
+  height: 44px;
   @media (min-width: 768px) {
     width: 104px;
   }
   @media (min-width: 1024px) {
     width: 140px;
   }
-}
-
-.schedule-hr {
-  margin: 16px 0;
+  .dropdown-select {
+    height: 100%;
+    justify-content: center;
+  }
+  .dropdown-list {
+    max-height: 300px;
+  }
+  .dropdown-item {
+    padding: 12px 0;
+  }
 }

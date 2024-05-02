@@ -37,6 +37,7 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
           onChange={handleInputChange}
           id="date-input"
           onClick={openCalendar}
+          placeholder="YY/MM/DD"
         />
         <img className="calendar-icon-img" src="/assets/icons/icon-calendar-minimalistic.svg" alt="달력 불러오기" />
       </label>
