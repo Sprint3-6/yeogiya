@@ -38,7 +38,7 @@ export default function EditSpace() {
       setValue('title', initialValue.title);
       setValue('description', initialValue.description);
       setCategory(initialValue.category);
-      setValue('price', initialValue.price);
+      setValue('price', initialValue.price.toString());
       setValue('address', initialValue.address);
       setSchedules(
         initialValue.schedules.map((schedule: Schedule) => {
