@@ -8,13 +8,13 @@ interface mypagesideProps {
 
 export const MyPageSideList = ({ image, link, text }: mypagesideProps) => {
   return (
-    <div className="mypage-side-item">
-      <div className="mypage-side-item-image">
-        <img src={image} alt={text} />
+    <Link to={link}>
+      <div className="mypage-side-item">
+        <div className="mypage-side-item-image">
+          <img src={image} alt={text} />
+        </div>
+        <div className="mypage-side-item-text">{text}</div>
       </div>
-      <div className="mypage-side-item-text">
-        <Link to={link}>{text}</Link>
-      </div>
-    </div>
+    </Link>
   );
 };

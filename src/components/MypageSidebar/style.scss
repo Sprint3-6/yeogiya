@@ -103,6 +103,13 @@
   align-self: stretch;
   gap: 14px;
   background-color: white;
+
+  &:hover {
+    .mypage-side-item-text {
+      color: var(--gray-gray_1b1b1b, #1b1b1b);
+    }
+    background-color: red;
+  }
 }
 
 .mypage-side-item-image {
@@ -121,5 +128,3 @@
   font-weight: 700;
   line-height: 26px; /* 162.5% */
 }
-
-// color: var(--gray-gray_1b1b1b, #1B1B1B);
