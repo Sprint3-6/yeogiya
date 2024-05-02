@@ -1,3 +1,14 @@
+import { MypageHeader } from '../../components/MypageHeader';
+
 export default function MyPage() {
-  return <main>내 정보 페이지 입니다.</main>;
+  const handleButton = () => {
+    console.log('버튼 눌렀지롱');
+  };
+  return (
+    <main>
+      <div className="mypage-space">
+        <MypageHeader title="내 정보" onClick={handleButton} buttonText="저장하기"></MypageHeader>
+      </div>
+    </main>
+  );
 }
