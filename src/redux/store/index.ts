@@ -4,12 +4,10 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import myInfo from '../myInfoSlice';
 
-import reservationStatus from '../reservationStatusSlice';
 import { reservationStatusApi } from '@/api/reservationStatusApi';
 
 const rootReducer = combineReducers({
   myInfo,
-  reservationStatus,
   [reservationStatusApi.reducerPath]: reservationStatusApi.reducer,
   // reservationStatusApi: reservationStatusApi, // 이렇게 하면 틀릴 수도 있음
 });
