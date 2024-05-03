@@ -4,7 +4,7 @@
   background-color: var(--gray10);
 
   .space-detail-container {
-    width: 1200px;
+    max-width: 1200px;
     height: auto;
     margin: 0 auto;
 
@@ -51,7 +51,7 @@
       .dropdown {
         position: absolute;
         right: 0;
-        top: 50%;
+        top: 45%;
         width: 50px;
         height: 50px;
 
@@ -139,6 +139,10 @@
         .body-review,
         #kakao-map {
           width: 1198px;
+        }
+
+        .body-pagination {
+          width: 696px;
         }
       }
 
@@ -314,6 +318,10 @@
         border-bottom: 1px solid var(--gray30);
         height: 100%;
 
+        h4 {
+          display: none;
+        }
+
         .calendar-wrapper {
           width: 305px;
           margin: 0 auto;
@@ -337,6 +345,10 @@
             &.selected {
               background-color: var(--black);
               color: var(--white);
+            }
+
+            &.time-box-pc {
+              display: none;
             }
           }
         }
@@ -394,6 +406,105 @@
           padding-bottom: 0;
         }
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .space-detail-container {
+      width: 696px;
+
+      .space-detail-container-header {
+        padding: 24px 0 33px;
+      }
+
+      .space-detail-container-pictures {
+        width: 696px;
+        height: 310px;
+        grid-template-columns: 346px 170px 170px;
+        margin-bottom: 32px;
+        gap: 5px;
+
+        div:nth-child(1) {
+          height: 310px;
+        }
+
+        div {
+          height: 153px;
+        }
+      }
+
+      .space-detail-container-body {
+        width: 429px;
+
+        &.no-calendar {
+          float: none;
+
+          .body-description,
+          .body-map,
+          .body-review,
+          #kakao-map {
+            width: 696px;
+          }
+        }
+
+        .body-description {
+          width: 429px;
+          float: left;
+        }
+
+        .body-map {
+          width: 100%;
+          float: left;
+
+          #kakao-map {
+            width: 100%;
+            height: 276px;
+          }
+        }
+
+        .body-review {
+          width: 429px;
+          float: left;
+        }
+
+        .body-pagination {
+          float: left;
+        }
+
+        .bottom-space {
+          float: left;
+          height: 265px;
+        }
+      }
+
+      .space-detail-container-calendar {
+        width: 251px;
+
+        .calendar-box {
+          h4 {
+            display: inherit;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 26px;
+            cursor: pointer;
+          }
+
+          .calendar-wrapper {
+            display: none;
+          }
+
+          h3:nth-of-type(2) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 375px) {
+    .space-detail-container {
+      background-color: bisque;
     }
   }
 }

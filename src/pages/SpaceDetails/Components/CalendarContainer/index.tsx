@@ -2,11 +2,14 @@ import { isSameDate } from '@/utils/calendarUtils';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { DetailType, ScheduleType } from '../../Types/DetailTypes';
+import { useModal } from '@/hooks/useModal/useModal';
 import getOpenedSchedule from '@/api/getOpenedSchedule';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import Button from '@/components/Button';
 import postReservation from '@/api/postReservation';
 import Loading from '@/pages/Loading';
+import './style.scss';
+//import CalendarTablet from '../CalendarTablet(Temp)';
 
 interface A {
   id: string | undefined;
@@ -14,6 +17,7 @@ interface A {
 }
 
 export default function CalendarContainer({ id, detail }: A) {
+  const { Modal, openModal, closeModal } = useModal();
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
   const [schedule, SetSchedule] = useState<ScheduleType[]>();
   const [selectedSchedule, setSelectedSchedule] = useState<number | null>(null);
@@ -21,6 +25,7 @@ export default function CalendarContainer({ id, detail }: A) {
   const [month, setMonth] = useState((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [howMany, setHowMany] = useState<number>(1);
   const [loading, isLoading] = useState(false);
+  const [selectedDateString, setSelectedDateString] = useState<string>();
 
   const setOpenedSchedule = async () => {
     const scheduleData = await getOpenedSchedule(id, year, month);
@@ -47,7 +52,7 @@ export default function CalendarContainer({ id, detail }: A) {
 
   const handleSubmitReservation = async () => {
     isLoading(true);
-    await postReservation(id, selectedSchedule, howMany);
+    await postReservation(Number(id), selectedSchedule, howMany);
     isLoading(false);
   };
 
@@ -76,6 +81,15 @@ export default function CalendarContainer({ id, detail }: A) {
 
       <div className="calendar-box">
         <h3>날짜</h3>
+        <h4
+          onClick={() => {
+            console.log('모달열림');
+            openModal('calendar-tablet');
+          }}
+        >
+          {selectedDateString ? selectedDateString : '날짜 선택하기'}
+        </h4>
+
         <Calendar
           onChange={() => setSelectedSchedule(null)}
           onChangeMonth={handleMonthChange}
@@ -100,7 +114,7 @@ export default function CalendarContainer({ id, detail }: A) {
                 schedule.times.map((time) => (
                   <div
                     key={time.id}
-                    className={`time-box ${time.id === selectedSchedule ? 'selected' : ''}`}
+                    className={`time-box time-box-pc ${time.id === selectedSchedule ? 'selected' : ''}`}
                     onClick={() => handleSelectedSchedule(time.id)}
                   >
                     {time.startTime}~{time.endTime}
@@ -126,6 +140,70 @@ export default function CalendarContainer({ id, detail }: A) {
         <h3>총 합계</h3>
         <h3>₩ {detail && (detail.price * howMany).toLocaleString()}</h3>
       </div>
+
+      <Modal name="calendar-tablet" classNameModal="no-animation">
+        <aside className="calendar-tablet">
+          <div className="calendar-tablet-header">
+            <h3>날짜</h3>
+            <img
+              src="/assets/icons/icon-closed.svg"
+              onClick={() => {
+                closeModal();
+                setSelectedSchedule(null);
+                setSelectedDate(new Date());
+                setSelectedDateString('');
+              }}
+            />
+          </div>
+          <Calendar
+            onChange={() => setSelectedSchedule(null)}
+            onChangeMonth={handleMonthChange}
+            size="small"
+            tileContent={(date: Date) => {
+              return (
+                <div
+                  className={`calendar-date-box ${isSameDate(selectedDate, date) ? 'selected-date' : ''}`}
+                  onClick={() => setSelectedDate(date)}
+                >
+                  {format(date, 'd')}
+                </div>
+              );
+            }}
+          />
+          <h3>예약 가능한 시간</h3>
+          <div className="time-box-parent">
+            {schedule &&
+              schedule.map(
+                (schedule) =>
+                  selectedDate.getDate().toString().padStart(2, '0') === schedule.date.slice(8, 10) &&
+                  schedule.times.map((time) => (
+                    <div
+                      key={time.id}
+                      className={`time-box ${time.id === selectedSchedule ? 'selected' : ''}`}
+                      onClick={() => {
+                        handleSelectedSchedule(time.id);
+                        setSelectedDateString(`${schedule.date} ${time.startTime} ~ ${time.endTime}`);
+                      }}
+                    >
+                      {time.startTime}~{time.endTime}
+                    </div>
+                  )),
+              )}
+          </div>
+          <Button className="button-black" onClick={closeModal}>
+            예약하기
+          </Button>
+        </aside>
+        {/* <CalendarTablet
+          closeModal={closeModal}
+          setSelectedSchedule={setSelectedSchedule}
+          setSelectedDateString={setSelectedDateString}
+          handleMonthChange={handleMonthChange}
+          schedule={schedule}
+          selectedSchedule={selectedSchedule}
+          handleSelectedSchedule={handleSelectedSchedule}
+        /> */}
+      </Modal>
     </div>
   );
 }
