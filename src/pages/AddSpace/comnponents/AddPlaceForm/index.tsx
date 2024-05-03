@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PlaceInputValue } from '../../types';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import KakaoPostSearch from '../KakaoPostSearch';
 import ImageUploader from '../ImageUploader';
 import './style.scss';
@@ -13,6 +13,8 @@ import CategoryDropdown from '../CategoryDropdown';
 import { useNavigate } from 'react-router-dom';
 import toast from '@/utils/toast';
 import { postData } from '@/api/activitiesApi';
+import Button from '@/components/Button';
+import removeCommas from '@/utils/removeCommas';
 
 export default function AddPlaceForm() {
   const [bannerImage, setBannerImage] = useState<string[]>([]);
@@ -31,13 +33,18 @@ export default function AddPlaceForm() {
 
   const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
     setIsSubmitted(true);
-
-    if (bannerImage.length > 0 && category && schedules.length > 0) {
+    if (!category) {
+      toast.warning('카테고리를 선택해주세요!');
+    } else if (schedules.length === 0) {
+      toast.warning('스케줄을 하나 이상 추가해 주세요!');
+    } else if (bannerImage.length === 0) {
+      toast.warning('배너 이미지를 넣어 주세요!');
+    } else {
       const body = {
         title: data.title,
         category: category,
         description: data.description,
-        price: parseInt(data.price),
+        price: parseInt(removeCommas(data.price)),
         address: data.address,
         schedules: schedules,
         bannerImageUrl: bannerImage[0],
@@ -47,19 +54,28 @@ export default function AddPlaceForm() {
         // 업로드 성공 시 페이지 이동
         navigate('/mypage/admin');
       });
-    } else {
-      toast.warning('필수사항을 입력하세요!');
-      return;
+    }
+  };
+
+  const onError: SubmitErrorHandler<PlaceInputValue> = (errors) => {
+    if (errors.title) {
+      toast.warning(`제목을 적어주세요!`);
+    } else if (errors.description) {
+      toast.warning(`설명을 적어주세요!`);
+    } else if (errors.price) {
+      toast.warning(`가격을 적어주세요!`);
+    } else if (errors.address) {
+      toast.warning(`주소를 적어주세요!`);
     }
   };
 
   return (
-    <form className="place-form-box" onSubmit={handleSubmit(onSubmit)}>
+    <form className="place-form-box" onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="form-header">
         <h2>내 체험 등록</h2>
-        <button className="form-button button-black" type="submit" disabled={isSubmitting}>
+        <Button className="form-button button-black" type="submit" disabled={isSubmitting}>
           등록하기
-        </button>
+        </Button>
       </div>
       <section className="form-content">
         <TitleInput register={register} />

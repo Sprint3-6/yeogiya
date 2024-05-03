@@ -27,6 +27,7 @@
   left: 0;
   width: 100%;
   overflow: visible;
+
   max-height: auto;
   border-radius: 5px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -43,6 +44,12 @@
   margin-block-start: 0;
   margin-block-end: 0;
   cursor: pointer;
+
+  // 추가
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 // 드롭다운 셀렉트 영역 안 텍스트
