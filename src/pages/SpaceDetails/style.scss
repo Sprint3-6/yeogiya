@@ -133,6 +133,13 @@
 
       &.no-calendar {
         float: none;
+
+        .body-description,
+        .body-map,
+        .body-review,
+        #kakao-map {
+          width: 1198px;
+        }
       }
 
       .body-description {
