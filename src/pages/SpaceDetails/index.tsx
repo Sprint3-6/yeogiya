@@ -21,7 +21,6 @@ export default function SpaceDetails() {
   const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
-  const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const userInfo = useAppSelector((state) => state.myInfo);
@@ -30,7 +29,6 @@ export default function SpaceDetails() {
     setIsLoading(true);
     const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
-    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
     setIsLoading(false);
   };
 
@@ -67,7 +65,7 @@ export default function SpaceDetails() {
           <h1>{detail?.title}</h1>
           <div>
             <img src="/assets/icons/icon-star.svg" />
-            <h2>{`${rating} (${detail?.reviewCount})`}</h2>
+            <h2>{`${detail && Math.floor(detail.rating * 10) / 10} (${detail?.reviewCount})`}</h2>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
@@ -112,8 +110,12 @@ export default function SpaceDetails() {
           <section className="body-review">
             <h2>후기</h2>
             <div className="review-scoreboard">
-              <h3>{rating.toString()}</h3>
-              <h4>{detail?.reviewCount === 0 ? `첫번째 후기를 남겨주세요!` : ratingFilter(rating)}</h4>
+              <h3>{detail && Math.floor(detail.rating * 10) / 10}</h3>
+              <h4>
+                {detail?.reviewCount === 0
+                  ? `첫번째 후기를 남겨주세요!`
+                  : ratingFilter(detail && Number(detail.rating))}
+              </h4>
               <div>
                 <img src="/assets/icons/icon-star.svg" />
                 <h5>{detail?.reviewCount}개 후기</h5>
