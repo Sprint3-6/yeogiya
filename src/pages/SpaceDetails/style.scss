@@ -51,7 +51,7 @@
       .dropdown {
         position: absolute;
         right: 0;
-        top: 45%;
+        top: 45px;
         width: 50px;
         height: 50px;
 
@@ -125,6 +125,10 @@
       img {
         width: 100%;
         height: 100%;
+      }
+
+      .slider {
+        display: none;
       }
     }
 
@@ -409,9 +413,9 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .space-detail-container {
-      width: 696px;
+      width: 697px;
 
       .space-detail-container-header {
         padding: 24px 0 33px;
@@ -502,9 +506,111 @@
     }
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 430px) {
     .space-detail-container {
-      background-color: bisque;
+      max-width: 375px;
+
+      .space-detail-container-header {
+        padding: 20px 16px;
+
+        h1 {
+          font-size: 2.4rem;
+        }
+
+        h2 {
+          min-width: 30px;
+        }
+
+        .dropdown {
+          top: 30px;
+          right: 20px;
+        }
+      }
+
+      .space-detail-container-pictures {
+        position: relative;
+        width: 375px;
+        height: 310px;
+
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0;
+
+        .images {
+          transition: 0.5s;
+
+          img {
+            width: 375px;
+            height: 310px;
+            border-radius: 0 !important;
+          }
+        }
+
+        .slider {
+          display: inherit;
+          position: absolute;
+          opacity: 0.7;
+          width: 24px;
+          height: 47px;
+          top: 40%;
+          cursor: pointer;
+
+          &.left-button {
+            left: 0;
+            margin-left: 10px;
+          }
+
+          &.right-button {
+            right: 8px;
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .space-detail-container-body {
+        width: 375px;
+        padding: 0 24px;
+
+        &.no-calendar {
+          float: none;
+
+          .body-description,
+          .body-map,
+          .body-review,
+          #kakao-map {
+            width: 100%;
+            float: none;
+          }
+
+          .body-pagination {
+            width: 100%;
+          }
+        }
+
+        .body-description {
+          width: 100%;
+          border-top: none;
+          padding-top: 0;
+          padding-bottom: 15px;
+          margin-bottom: 16px;
+        }
+
+        .body-map {
+          border-bottom: 0;
+
+          #kakao-map {
+            width: 100%;
+            height: 450px;
+            margin: 0;
+            margin-bottom: 8px;
+          }
+        }
+      }
+
+      .space-detail-container-calendar {
+        display: none;
+      }
     }
   }
 }
