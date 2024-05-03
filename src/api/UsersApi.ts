@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { BASE_URL } from './constants/url';
-import { InputValue } from '@/components/UserForm';
 import instance from './instance/defaultInstance';
 // import { myInfoValue } from '@/pages/MyPage/components/MyPageList';
 import { ErrorType } from './types/axiosErrorType';
 import toast from '@/utils/toast';
+import { InputValue } from '@/components/UserForm/types';
 
 // 회원가입 api
 export const signUpApi = async (value: InputValue) => {

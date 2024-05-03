@@ -1,13 +1,7 @@
-import { InputHTMLAttributes, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { LoginContext } from '@/components/UserForm';
 import '../style.scss';
-
-interface LoginItem extends InputHTMLAttributes<HTMLInputElement> {
-  children: React.ReactNode;
-  id: string;
-  type: string;
-  text?: string;
-}
+import { LoginItem } from '../types';
 
 export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem) => {
   const { handleInput, handleError, inputValue, error } = useContext(LoginContext);
