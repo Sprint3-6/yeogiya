@@ -44,6 +44,7 @@
 }
 
 .mypage-side-profile {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,8 +53,8 @@
 }
 
 .side-profile {
-  position: relative;
   flex-shrink: 0;
+  // z-index: 999;
 
   border-radius: 160px;
   background:
@@ -62,6 +63,7 @@
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
   width: 160px;
   height: 160px;
+  overflow: hidden;
   background-color: red;
 
   img {
@@ -81,6 +83,7 @@
 
   bottom: 0px;
   right: 0px;
+  overflow: initial;
 
   border-radius: 45px;
   background: var(--green-gray_1b1b1b, gray);

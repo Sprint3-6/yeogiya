@@ -15,7 +15,7 @@ interface LoginFormProps {
 
 interface LoginContextProps {
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleError: (id: string) => void;
+  handleError: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickForm: () => void;
   isValid: boolean;
   inputValue: InputValue;
@@ -53,7 +53,7 @@ export const UserForm = (props: LoginFormProps) => {
     console.log('로그인폼 컴포넌트 값', inputValue);
 
     if (isErrorCheck) {
-      handleError(id);
+      handleError(e);
     }
   };
 
@@ -71,7 +71,12 @@ export const UserForm = (props: LoginFormProps) => {
   // console.log('뉴에러불린반대값', isButton);
   // !newError && setIsButton(!isButton);
 
-  const handleError = (id: string) => {
+  const handleError = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    console.log(value);
+
     setIsErrorCheck(true);
     console.log('에러 검사', error);
     console.log('에러검사할 아이디', id);
@@ -80,33 +85,34 @@ export const UserForm = (props: LoginFormProps) => {
     if (id === 'email') {
       setError((prevError) => ({
         ...prevError,
-        email: !inputValue.email || !emailCheck.test(inputValue.email) ? '잘못된 이메일입니다.' : '',
+        email: !value || !emailCheck.test(value) ? '잘못된 이메일입니다.' : '',
       }));
     }
 
     if (id == 'nickname') {
       setError((prevError) => ({
         ...prevError,
-        nickname: !inputValue.nickname || inputValue.nickname?.length < 2 ? '닉네임을 입력해주세요' : '',
+        nickname: !value || value?.length < 2 ? '닉네임을 입력해주세요' : '',
       }));
     }
 
     if (id === 'password') {
       setError((prevError) => ({
         ...prevError,
-        password: !inputValue.password || inputValue.password?.length < 8 ? '8자 이상 입력해주세요' : '',
+        password: !value || value?.length < 8 ? '8자 이상 입력해주세요' : '',
       }));
     }
 
     if (id === 'passwordCheck') {
       setError((prevError) => ({
         ...prevError,
-        passwordCheck: inputValue.passwordCheck !== inputValue.password ? '비밀번호가 일치하지 않습니다' : '',
+        passwordCheck: inputValue.password !== value ? '비밀번호가 일치하지 않습니다' : '',
       }));
     }
 
     const isAllError = Object.values(error).every((value) => value.trim() === '');
     const isAllInput = Object.values(inputValue).every((value) => value.trim() !== '');
+    console.log(inputValue);
 
     setIsValid(isAllInput && isAllError);
     console.log('에러', isAllError);

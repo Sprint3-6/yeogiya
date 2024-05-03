@@ -67,6 +67,7 @@ import { BASE_URL } from './constants/url';
 import instance from './instance/defaultInstance';
 import { ErrorType } from './types/axiosErrorType';
 import { InputValue } from '@/components/UserForm';
+import toast from '@/utils/toast';
 
 export const login = async (value: InputValue) => {
   try {
@@ -92,11 +93,10 @@ export const login = async (value: InputValue) => {
 
     return response;
   } catch (error) {
-    // const axiosError = error as AxiosError;
     // 로그인 실패 시 처리
     const responseError = error as ErrorType;
     console.error('로그인 실패:', error);
-    throw responseError.response?.data?.message || '알 수 없는 오류';
+    toast.error(responseError.response.data.message || '알 수 없는 오류');
   }
 };
 

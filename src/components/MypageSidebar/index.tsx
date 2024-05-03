@@ -1,6 +1,6 @@
 import './style.scss';
 import { MyPageSideList } from './components/MypageSideList';
-import { MypageProfile } from './components/MypageProfile';
+// import { MypageProfile } from './components/MypageProfile';
 
 export default function MypageSidebar() {
   const MYPAGE_BASIC_URL = 'mypage';
@@ -33,7 +33,7 @@ export default function MypageSidebar() {
 
   return (
     <div className="mypage-side-container">
-      <MypageProfile />
+      {/* <MypageProfile /> */}
 
       <div className="mapage-side-list">
         <MyPageSideList text={'내정보'} link={mypageLink} image={mypageIcon} clickImage={mypageIconHover} />

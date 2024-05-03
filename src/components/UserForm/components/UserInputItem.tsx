@@ -31,7 +31,7 @@ export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem)
   };
 
   return (
-    <div className="userinput-container">
+    <div className={`userinput-container ${error[id as keyof typeof error] ? 'error' : ''}`}>
       <label htmlFor={id} className="userinput-label">
         {children}
         <div className="userinput-box">
@@ -41,7 +41,7 @@ export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem)
             value={inputValue[id as keyof typeof inputValue]}
             placeholder={text}
             onChange={(e) => handleInput(e)}
-            onBlur={() => handleError(id)}
+            onBlur={(e) => handleError(e)}
             {...props}
           />
           {type === 'password' ? <img src={isEye} alt="비밀번호 표시" onClick={() => handleIsPassword()} /> : null}
