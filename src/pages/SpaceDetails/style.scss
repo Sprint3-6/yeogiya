@@ -350,10 +350,6 @@
               background-color: var(--black);
               color: var(--white);
             }
-
-            &.time-box-pc {
-              display: none;
-            }
           }
         }
       }
@@ -492,6 +488,10 @@
             font-weight: 600;
             line-height: 26px;
             cursor: pointer;
+          }
+
+          .time-box-pc {
+            display: none;
           }
 
           .calendar-wrapper {
