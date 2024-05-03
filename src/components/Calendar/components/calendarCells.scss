@@ -35,6 +35,12 @@
       height: fit-content;
     }
 
+    div.booked-date {
+      background-color: var(--approve);
+      color: var(--white);
+      border-radius: 10px;
+    }
+
     div.selected-date {
       background-color: var(--blue20);
       color: var(--white);

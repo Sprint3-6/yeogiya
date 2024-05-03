@@ -55,6 +55,18 @@ export default function CalendarContainer({ id, detail }: A) {
     setOpenedSchedule();
   }, [month]);
 
+  useEffect(() => {
+    const days = document.getElementsByClassName('calendar-date-box');
+
+    for (let x = 0; x < days.length; x++) {
+      schedule?.map((item) => {
+        if (item.date.slice(8, 10) === days[x].innerHTML.padStart(2, '0')) {
+          days[x].classList.add('booked-date');
+        }
+      });
+    }
+  });
+
   return (
     <div className="space-detail-container-calendar">
       {loading && <Loading />}
