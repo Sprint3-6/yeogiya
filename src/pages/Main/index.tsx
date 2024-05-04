@@ -3,18 +3,31 @@ import './style.scss';
 import { useState, useEffect } from 'react';
 import instance from '@/api/instance/defaultInstance';
 import { BASE_URL } from '@/api/constants/url';
-import { Category, Spaces } from './types/spaces-type';
+import { Category, Spaces } from '@/api/types/activities';
 import SpaceCardList from './components/SpaceCardList';
 import Pagination from '@/components/Pagination';
+import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
 interface DataType {
   activities: Spaces[];
   totalCount: number;
 }
 
-//api 호출은 위에서?
+const calculateLimit = (deviceType: string | undefined) => {
+  if (!deviceType) return;
+  switch (deviceType) {
+    case 'pc':
+      return 8;
+    case 'tablet':
+      return 9;
+    default:
+      return 4;
+  }
+};
 
 export default function MainPage() {
+  const deviceType = useDeviceType();
   const [data, setData] = useState<DataType | null>(null);
+  const [size, setSize] = useState(calculateLimit(deviceType));
   const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<Category>('');
   const [sortedSpaces, setSortedSpaces] = useState('');
@@ -36,7 +49,7 @@ export default function MainPage() {
   useEffect(() => {
     const getSpaces = async () => {
       try {
-        let url = `${BASE_URL}activities?method=offset&page=${page}&size=10`;
+        let url = `${BASE_URL}activities?method=offset&page=${page}&size=${size}`;
         // selectedCategory가 빈 문자열이 아닌 경우에만 카테고리 쿼리 파라미터를 추가
         if (selectedCategory) {
           url += `&category=${selectedCategory}`;
@@ -53,7 +66,12 @@ export default function MainPage() {
       }
     };
     getSpaces();
-  }, [page, selectedCategory, sortedSpaces]);
+  }, [page, selectedCategory, sortedSpaces, size]);
+
+  useEffect(() => {
+    setPage(1);
+    setSize(calculateLimit(deviceType));
+  }, [deviceType]);
 
   return (
     <main>
