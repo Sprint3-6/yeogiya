@@ -15,10 +15,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
-  h2 {
-    font-size: 3.2rem;
-    margin: 0;
-  }
+}
+
+.add-place-title {
+  font-size: 3.2rem;
+  margin: 0;
 }
 
 .form-button {

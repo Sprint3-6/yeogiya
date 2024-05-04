@@ -5,7 +5,7 @@ import MySpaceHeader from './components/MySpaceHeader';
 export default function MySpaceManagement() {
   return (
     <main>
-      <div className="space-management">
+      <div className="my-space-container">
         <MySpaceHeader />
         <MySpaceList />
       </div>

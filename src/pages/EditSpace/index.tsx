@@ -15,6 +15,7 @@ import getSpaceDetail from '@/api/getSpaceDetail';
 import { findMissingImgIds, findMissingScheduleIds, findNewImgUrl, findNewScheduleData } from '@/utils/findMissingIds';
 import { editMyActivities } from '@/api/myActivitiesApi';
 import removeCommas from '@/utils/removeCommas';
+import './styles.scss';
 
 interface UrlSubData {
   id: number;
@@ -106,7 +107,7 @@ export default function EditSpace() {
   return (
     <form className="place-form-box" onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="form-header">
-        <h2>편집하기</h2>
+        <h1 className="edit-space-title">편집하기</h1>
         <button className="form-button button-black" type="submit" disabled={isSubmitting}>
           등록하기
         </button>
