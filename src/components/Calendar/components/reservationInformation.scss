@@ -1,0 +1,237 @@
+@mixin status($bg-color, $text-color) {
+  background: $bg-color;
+  color: $text-color;
+}
+
+.reservation-information-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 30px 20px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 500px;
+    padding: 40px;
+  }
+}
+
+.reservation-information-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--gray10);
+  border-bottom: 1px solid var(--gray30);
+  border-left: 1px solid var(--gray30);
+  border-right: 1px solid var(--gray30);
+  border-radius: 10px;
+}
+
+.reservation-information-title {
+  width: 100%;
+  color: var(--black20);
+  font-size: 2.3rem;
+  font-weight: bold;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2.8rem;
+  }
+}
+
+.reservation-information-tab {
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid var(--gray30);
+  gap: 1px;
+}
+
+div.active {
+  background-color: var(--blue10);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: var(--blue30);
+  border-bottom: 2px solid var(--blue20);
+  color: var(--black);
+}
+
+.reservation-information-tab-item {
+  width: 100%;
+  flex: 1;
+  padding: 10px;
+  background-color: var(--white);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  color: var(--gray60);
+  font-weight: bold;
+  text-align: center;
+
+  &:hover {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 2px solid var(--reservation-hover);
+    color: var(--black);
+  }
+}
+
+.reservation-information-content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px 25px;
+}
+
+.reservation-information-content-title-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .reservation-information-content-title-content {
+    color: var(--gray60);
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.reservation-information-content-item {
+  font-size: 1.6rem;
+  font-weight: bold;
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.reservation-information-content-booking-history {
+  width: 100%;
+  height: 175px;
+  background-color: var(--white);
+  border: 1px solid var(--gray30);
+  border-radius: 10px;
+  padding: 20px 10px;
+
+  @media screen and (min-width: 768px) {
+    padding: 30px;
+    height: 200px;
+  }
+}
+
+.reservation-information-content-booking-history-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.reservation-information-content-booking-history-item {
+  color: var(--black20);
+  font-weight: bold;
+  font-size: 1.4rem;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.reservation-information-content-booking-history-item-content {
+  color: var(--gray60);
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.reservation-information-content-booking-history-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  .button-booking-approve,
+  .button-booking-reject {
+    font-size: 1.3rem;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 50px;
+  }
+}
+
+.reservation-information-chip-wrapper {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  align-items: flex-end;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 26px;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.approve {
+  @include status(var(--reservation), var(--white));
+}
+
+.reject {
+  @include status(var(--red20), var(--red40));
+}
+
+.reservation-information-content-reservation-status {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reservation-time-dropdown-box {
+  div.dropdown {
+    width: 100%;
+  }
+
+  div.dropdown-title {
+    height: 30px;
+    font-size: 1.4rem;
+
+    @media screen and (min-width: 768px) {
+      height: 30px;
+      padding: 0 5px;
+      font-size: 1.6rem;
+    }
+  }
+
+  #reservedTime {
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      width: 100%;
+    }
+
+    li.dropdown-item {
+      padding: 10px 0;
+      font-size: 1.4rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .dropdown-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}

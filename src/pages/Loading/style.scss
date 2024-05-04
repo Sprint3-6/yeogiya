@@ -10,6 +10,10 @@
   height: 100vh;
   gap: 10px;
   background: rgba(0, 0, 0, 0.189);
+
+  &.loading-screen {
+    background-color: var(--white);
+  }
 }
 
 .loading-logo {

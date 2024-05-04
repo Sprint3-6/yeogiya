@@ -8,17 +8,19 @@ interface DropDwonProps {
   arrowUp?: string;
   arrowDown?: string;
   children: React.ReactNode;
-  onClickItem?: (value: string, id: string) => void;
+  onClickItem?: (value: DropDownValue, id: string) => void;
 }
 
 interface DropdownItem {
-  value: string;
+  value: DropDownValue;
   children: React.ReactNode;
   itemStyle?: React.CSSProperties;
 }
 
+export type DropDownValue = string | number;
+
 interface DropdownContextProps {
-  handleClickItem?: (children: React.ReactNode, value: string) => void;
+  handleClickItem?: (children: React.ReactNode, value: DropDownValue) => void;
 }
 
 export const DropdownContext = createContext<DropdownContextProps>({});
@@ -77,13 +79,13 @@ export const DropDown = (props: DropDwonProps) => {
     return (
       <div className="dropdown-title">
         <div>{handleShowTitle()}</div>
-        {arrow ? <div>{arrow}</div> : null}
+        {arrow ? <div className="dropdown-arrow">{arrow}</div> : null}
       </div>
     );
   };
 
   // 드롭다운 클릭시 실행 함수
-  const handleClickItem = (children: React.ReactNode, value: string) => {
+  const handleClickItem = (children: React.ReactNode, value: DropDownValue) => {
     setSelect(children);
     onClickItem?.(value, id);
   };
