@@ -36,7 +36,7 @@ export default function SignIn() {
       const response = await login(value);
       console.log('로그인 시도', response);
 
-      if (response.status === 201) {
+      if (response?.status === 201) {
         console.log('로그인성공선영');
         navigate('/');
         dispatch(setMyInfo(await getMyInfo(email, password)));

@@ -3,20 +3,30 @@ import './style.scss';
 import { InputValue, UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signUpApi } from '@/api/UsersApi';
+import toast from '@/utils/toast';
 
 export default function SignUp() {
   const SignUpValue = {
     email: '',
     nickname: '',
     password: '',
+    passwordCheck: '',
   };
+
+  const navigate = useNavigate();
 
   const handleSignUp = async (value: InputValue): Promise<void> => {
     try {
       const response = await signUpApi(value);
       console.log('회원가입 시도', response);
+
+      if (response?.status === 201) {
+        console.log('회원가입 성공');
+        toast.success('회원가입을 축하합니다');
+        navigate('/sign-in');
+      }
     } catch (error) {
       console.log('회원가입 페이지 실패', error);
     }
