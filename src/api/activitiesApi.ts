@@ -9,11 +9,7 @@ export const uploadImage = async (imageFile: File) => {
     formData.append('image', imageFile);
 
     // Axios를 사용하여 POST 요청 전송
-    const response = await instance.post('activities/image', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await instance.post('activities/image', formData);
 
     return response.data.activityImageUrl;
   } catch (error) {

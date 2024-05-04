@@ -57,3 +57,8 @@ export interface ScheduleType {
   date: string;
   times: TimesType[];
 }
+
+export interface CalendarContainerType {
+  id: string | undefined;
+  detail: DetailType | undefined;
+}

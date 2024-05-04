@@ -1,0 +1,49 @@
+.error-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 250px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--white);
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+    gap: 10px;
+    padding: 30px;
+  }
+
+  .error-logo {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+
+    @media screen and (min-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .error-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    @media screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .error-message {
+    font-size: 1.4rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  .error-button {
+    margin-top: 30px;
+  }
+}

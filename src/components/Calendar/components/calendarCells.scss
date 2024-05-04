@@ -7,7 +7,6 @@
 .calendar-date {
   display: flex;
   color: var(--black20);
-  cursor: pointer;
 }
 
 .today {
@@ -30,9 +29,16 @@
   .calendar-date {
     display: flex;
     height: fit-content;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
       height: fit-content;
+    }
+
+    div.booked-date {
+      background-color: var(--approve);
+      color: var(--white);
+      border-radius: 10px;
     }
 
     div.selected-date {
@@ -98,14 +104,14 @@
     flex-direction: column;
     justify-content: flex-start;
     height: fit-content;
-    min-height: 70px;
+    min-height: 90px;
     padding: 3px;
     border-bottom: 1px solid var(--gray30);
 
     @media screen and (min-width: 768px) {
       padding: 10px;
       height: fit-content;
-      min-height: 110px;
+      min-height: 137px;
     }
 
     .calendar-date-box {
@@ -127,6 +133,7 @@
     align-items: center;
     border-bottom: 1px solid var(--gray30);
     font-weight: bold;
+    min-width: 45px;
     height: 25px;
     padding: 10px;
 
@@ -158,17 +165,17 @@
   }
 }
 
-.approve {
+.confirmed {
   @extend .calendar-icon-circle;
-  fill: var(--approve);
+  background-color: var(--approve);
 }
 
-.success {
+.completed {
   @extend .calendar-icon-circle;
-  fill: var(--success);
+  background-color: var(--success);
 }
 
-.reservation {
+.pending {
   @extend .calendar-icon-circle;
-  fill: var(--reservation);
+  background-color: var(--reservation);
 }

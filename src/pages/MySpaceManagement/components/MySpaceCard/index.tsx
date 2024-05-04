@@ -33,7 +33,7 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
                   {activity.rating}({activity.reviewCount})
                 </span>
               </div>
-              <h3>{activity.title}</h3>
+              <h2 className="my-space-card-title">{activity.title}</h2>
             </div>
             <div className="my-space-card-price">
               <span>

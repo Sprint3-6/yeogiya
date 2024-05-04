@@ -3,7 +3,7 @@ import { BASE_URL } from './constants/url';
 import instance from './instance/defaultInstance';
 import toast from '@/utils/toast';
 
-async function postReservation(id: string | undefined, scheduleId: number | null, howMany: number) {
+async function postReservation(id: number | undefined, scheduleId: number | null, howMany: number) {
   try {
     await instance.post(`${BASE_URL}activities/${id}/reservations`, {
       scheduleId: scheduleId,
