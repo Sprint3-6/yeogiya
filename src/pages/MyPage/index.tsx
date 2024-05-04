@@ -8,8 +8,8 @@ export default function MyPage() {
   return (
     <main>
       <div className="mypage-space">
-        {/* <MypageHeader title="내 정보" onClick={handleButton} buttonText="저장하기"></MypageHeader>
-        <MyPageList /> */}
+        {/* <MypageHeader title="내 정보" onClick={handleButton} buttonText="저장하기"></MypageHeader> */}
+        {/* <MyPageList /> */}
       </div>
     </main>
   );

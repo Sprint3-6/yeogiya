@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './style.scss';
-import { InputValue, UserForm } from '@/components/UserForm';
+import { UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { SignLogo } from '@/components/SignLogo';
@@ -8,6 +8,7 @@ import { login } from '@/api/authApi';
 import { setMyInfo } from '@/redux/myInfoSlice';
 import getMyInfo from '@/api/getMyInfo';
 import { useDispatch } from 'react-redux';
+import { InputValue } from '@/components/UserForm/types';
 
 export interface LoginResponse<T> {
   data: string;

@@ -136,3 +136,21 @@
   font-weight: 700;
   line-height: 26px; /* 162.5% */
 }
+
+.profile-change-modal {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.profile-change-modal-title {
+  padding: 20px;
+}
+
+.profile-change-modal-button {
+  display: flex;
+  // flex-direction: column;
+  gap: 10px;
+}

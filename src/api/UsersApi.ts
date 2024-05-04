@@ -64,11 +64,9 @@ export const createProfileImageUrl = async (imageFile: File) => {
     const formData = new FormData();
     formData.append('image', imageFile);
 
-    const response = await instance.post(`${BASE_URL}user/me/image`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    console.log('이미지 파일', imageFile);
+
+    const response = await instance.post(`${BASE_URL}users/me/image`, formData);
 
     return response.data;
   } catch (error) {
