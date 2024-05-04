@@ -21,16 +21,17 @@ export default function SpaceDetails() {
   const { Modal, openModal, closeModal } = useModal();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
-  const [rating, setRating] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const userInfo = useAppSelector((state) => state.myInfo);
+  const [imagePosition, setImagePosition] = useState(1);
+  const [currentImage, setCurrentImage] = useState(1);
+  const [totalImages, setTotalImages] = useState<number | undefined>(1);
 
   const setDetailData = async () => {
     setIsLoading(true);
     const detailData = await getSpaceDetail(id, navigate);
     setDetail(detailData);
-    setRating(Math.floor(Number(detail?.rating) * 10) / 10);
     setIsLoading(false);
   };
 
@@ -47,13 +48,47 @@ export default function SpaceDetails() {
     }
   };
 
+  const handleImagesGoLeft = () => {
+    if (totalImages && currentImage < totalImages) {
+      setImagePosition((state) => state - 375);
+      setCurrentImage((state) => state + 1);
+    } else {
+      setImagePosition(0);
+      setCurrentImage(1);
+    }
+  };
+
+  const handleImagesGoRight = () => {
+    if (totalImages && currentImage === 1) {
+      setImagePosition(375 * -totalImages + 375);
+      setCurrentImage(totalImages);
+    } else {
+      setImagePosition((state) => state + 375);
+      setCurrentImage((state) => state - 1);
+    }
+  };
+
   useEffect(() => {
     setDetailData();
+    setTotalImages(detail?.subImages.length ? detail.subImages.length + 1 : 1);
   }, [detail?.userId]);
 
   useEffect(() => {
     setReviewData();
   }, [page]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowSize = window.innerWidth;
+      if (windowSize > 375) {
+        setImagePosition(0);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -67,7 +102,7 @@ export default function SpaceDetails() {
           <h1>{detail?.title}</h1>
           <div>
             <img src="/assets/icons/icon-star.svg" />
-            <h2>{`${rating} (${detail?.reviewCount})`}</h2>
+            <h2>{`${detail && Math.floor(detail.rating * 10) / 10} (${detail?.reviewCount})`}</h2>
             <img src="/favicon.svg" />
             <h3>{detail?.address}</h3>
           </div>
@@ -81,11 +116,15 @@ export default function SpaceDetails() {
         </div>
 
         <figure className="space-detail-container-pictures">
-          <div>
+          <div className="images" style={{ transform: `translateX(${imagePosition}px)` }}>
             <img src={detail?.bannerImageUrl} />
           </div>
           {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className={detail?.subImages[index] ? '' : 'empty-image'}>
+            <div
+              key={index}
+              className={`images ${detail?.subImages[index] ? '' : 'empty-image'}`}
+              style={{ transform: `translateX(${imagePosition}px)` }}
+            >
               {
                 <img
                   src={detail?.subImages[index] ? detail.subImages[index].imageUrl : '/assets/logos/logo-icon.svg'}
@@ -93,6 +132,8 @@ export default function SpaceDetails() {
               }
             </div>
           ))}
+          <img src="/assets/icons/icon-left-slider.svg" className="slider left-button" onClick={handleImagesGoRight} />
+          <img src="/assets/icons/icon-right-slider.svg" className="slider right-button" onClick={handleImagesGoLeft} />
         </figure>
 
         <div className={`space-detail-container-body ${userInfo.id === detail?.userId ? 'no-calendar' : ''}`}>
@@ -112,8 +153,12 @@ export default function SpaceDetails() {
           <section className="body-review">
             <h2>후기</h2>
             <div className="review-scoreboard">
-              <h3>{rating.toString()}</h3>
-              <h4>{ratingFilter(rating)}</h4>
+              <h3>{detail && Math.floor(detail.rating * 10) / 10}</h3>
+              <h4>
+                {detail?.reviewCount === 0
+                  ? `첫번째 후기를 남겨주세요!`
+                  : ratingFilter(detail && Number(detail.rating))}
+              </h4>
               <div>
                 <img src="/assets/icons/icon-star.svg" />
                 <h5>{detail?.reviewCount}개 후기</h5>
