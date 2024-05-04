@@ -13,7 +13,10 @@ instance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem('accessToken');
     config.headers['Authorization'] = `Bearer ${accessToken}`;
-
+    // formData 형식일 경우 헤더값
+    if (config.data instanceof FormData) {
+      config.headers['Content-Type'] = 'multipart/form-data';
+    }
     return config;
   },
   (error) => {
