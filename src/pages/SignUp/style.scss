@@ -1,0 +1,40 @@
+.signup-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.signup-logo {
+  margin-bottom: 27.52px;
+  // 태블릿
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+  }
+}
+
+.signup-text {
+  margin-top: 16px;
+  color: var(--black-black_333236, #333236);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  // 태블릿
+  @media (min-width: 768px) {
+    margin-top: 32px;
+  }
+  // 데스크탑
+  @media (min-width: 1024px) {
+    margin-top: 23px;
+  }
+}

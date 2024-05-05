@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setMyInfo } from '@/redux/myInfoSlice';
 import { useModal } from '@/hooks/useModal/useModal';
-import { useAppSelector } from '@/redux/store/store';
+import { useAppSelector } from '@/redux/store';
 import getMyInfo from '@/api/getMyInfo';
 import MyNotifications from '@/components/MyNotifications';
 import HeaderDropDown from './HeaderDropdown';

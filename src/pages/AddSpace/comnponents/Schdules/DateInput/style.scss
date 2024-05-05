@@ -1,0 +1,27 @@
+.calendar-box {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+.calendar-popup-box {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+}
+
+.calendar-label {
+  position: relative;
+}
+
+.calendar-icon-img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.calendar-input {
+  width: 100%;
+}

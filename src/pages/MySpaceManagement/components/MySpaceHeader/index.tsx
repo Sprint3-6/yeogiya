@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 export default function MySpaceHeader() {
   return (
     <div className="my-space-header">
-      <h2>내 체험 관리</h2>
+      <h1 className="my-space-title">내 공간 관리</h1>
       <Link to="add">
-        <Button className="my-space-header-button">체험 등록하기</Button>
+        <Button className="my-space-header-button button-black">공간 등록하기</Button>
       </Link>
     </div>
   );

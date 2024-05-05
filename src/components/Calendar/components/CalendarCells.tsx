@@ -17,15 +17,15 @@ export default function CalendarCells({ currentMonth, onChange, size = 'large', 
   return (
     <div className={`calendar-days-wrapper ${size}`}>
       {weekdays.map((weekday, index) => (
-        <div key={index} className="calendar-weekday">
+        <div key={`weekday-${index}`} className="calendar-weekday">
           {weekday}
         </div>
       ))}
       {dates.map(({ date }, index) => (
         <div
-          key={index + weekdays.length}
+          key={`date-${index}`}
           className={`calendar-date ${isSameDate(today, date) ? 'today' : ''}`}
-          onClick={() => date && onChange(date)}
+          onClick={() => date && onChange?.(date)}
         >
           {date && tileContent(date)}
         </div>

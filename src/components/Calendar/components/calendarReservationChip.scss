@@ -1,0 +1,80 @@
+@mixin status($bg-color, $text-color) {
+  background: $bg-color;
+  color: $text-color;
+}
+
+.calendar-chips-wrapper {
+  font-size: 1rem;
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+    width: 100%;
+    height: fit-content;
+    border-radius: 5px;
+    padding: 3px 0;
+    font-size: 1.4rem;
+  }
+}
+
+.calendar-chip {
+  width: 100%;
+  display: inline-flex;
+  padding: 4px 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+  }
+}
+
+.approve-chip {
+  @include status(var(--approve), var(--white));
+  cursor: pointer;
+
+  &:hover {
+    background: var(--approve-hover);
+  }
+
+  @media (min-width: 769px) {
+    &:active,
+    &:hover {
+      animation: moveDownUp 0.2s linear;
+    }
+  }
+}
+
+.reservation-chip {
+  @include status(var(--reservation), var(--white));
+  cursor: pointer;
+
+  &:hover {
+    background: var(--reservation-hover);
+  }
+
+  @media (min-width: 769px) {
+    &:active,
+    &:hover {
+      animation: moveDownUp 0.2s linear;
+    }
+  }
+}
+
+.success-chip {
+  @include status(var(--success), var(--white));
+}
+
+@keyframes moveDownUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px); /* 아래로 1px 이동 */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

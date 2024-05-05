@@ -1,3 +1,4 @@
+import toast from '@/utils/toast';
 import instance from './instance/defaultInstance';
 import { CreateActivityBody } from './types/myActivities';
 
@@ -8,11 +9,7 @@ export const uploadImage = async (imageFile: File) => {
     formData.append('image', imageFile);
 
     // Axios를 사용하여 POST 요청 전송
-    const response = await instance.post('activities/image', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await instance.post('activities/image', formData);
 
     return response.data.activityImageUrl;
   } catch (error) {
@@ -24,7 +21,8 @@ export const uploadImage = async (imageFile: File) => {
 export const postData = async (body: CreateActivityBody) => {
   try {
     const response = await instance.post('activities', body);
-    console.log(response.data); // 성공한 경우 응답 데이터 출력
+    toast.success('등록이 완료되었습니다!');
+    return response;
   } catch (error) {
     console.error('내 체험 등록 오류:', error);
   }

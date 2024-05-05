@@ -3,3 +3,22 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.not-found-file-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  img {
+    width: 110px;
+    @media (min-width: 1024px) {
+      width: 140px;
+    }
+  }
+  span {
+    color: var(--gray60, #79747e);
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+}

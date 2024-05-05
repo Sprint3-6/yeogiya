@@ -1,33 +1,26 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { ImageUploaderProps } from '../../types';
 import './style.scss';
+import { uploadImage } from '@/api/activitiesApi';
 
 export default function ImageUploader({ id, images, setImages, maxImageCount = 1, isSubmitted }: ImageUploaderProps) {
-  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const newFiles = Array.from(e.target.files || []);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    const newImages = [...images, ...files].slice(0, maxImageCount);
-    setImages(newImages);
-
-    const newPreviewImages = newImages.map((image) => URL.createObjectURL(image));
-    setPreviewImages(newPreviewImages);
+    const newImages = await Promise.all(newFiles.map(uploadImage));
+    setImages([...images, ...newImages].slice(0, maxImageCount));
   };
 
   const handleRemove = (index: number) => {
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
-
-    const newPreviewImages = [...previewImages];
-    newPreviewImages.splice(index, 1);
-    setPreviewImages(newPreviewImages);
   };
 
   return (
     <div className={`image-uploader-box ${isSubmitted && images.length === 0 ? 'form-error' : ''}`}>
       {/* 이미지 미리보기 */}
-      {previewImages.map((preview, index) => (
+      {images.map((preview, index) => (
         <div
           className="preview-image-box"
           key={index}
@@ -42,7 +35,7 @@ export default function ImageUploader({ id, images, setImages, maxImageCount = 1
         htmlFor={id}
         className="preview-image"
         style={{
-          display: previewImages.length === maxImageCount ? 'none' : 'block',
+          display: images.length === maxImageCount ? 'none' : 'block',
         }}
       >
         <img alt="이미지 추가" src="/assets/images/add-img-button.png" />

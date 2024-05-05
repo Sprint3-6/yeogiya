@@ -15,10 +15,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
-  h2 {
-    font-size: 3.2rem;
-    margin: 0;
-  }
+}
+
+.add-place-title {
+  font-size: 3.2rem;
+  margin: 0;
 }
 
 .form-button {
@@ -31,6 +32,7 @@
   background: var(--black20, #1b1b1b);
   color: var(--white, #fff);
   font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .form-content {
@@ -79,6 +81,7 @@ input::-webkit-inner-spin-button {
   background-color: var(--black20);
   color: var(--white);
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .input-box {

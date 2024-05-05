@@ -1,0 +1,47 @@
+.signin-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.signin-logo {
+  margin-bottom: 31.52px;
+  // 태블릿
+  @media (min-width: 768px) {
+    margin-bottom: 72px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    margin-bottom: 48px;
+  }
+}
+
+.signin-text {
+  margin-top: 24px;
+  color: var(--black-black_333236, #333236);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  // 태블릿
+  @media (min-width: 768px) {
+    margin-top: 32px;
+  }
+}
+
+.sign-link {
+  color: var(--green-gray_1b1b1b, #1b1b1b);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+}

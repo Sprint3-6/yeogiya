@@ -46,3 +46,19 @@ export type DeleteModalType = {
   title: string | undefined;
   id: string | undefined;
 };
+
+interface TimesType {
+  id: number;
+  startTime: string;
+  endTime: string;
+}
+
+export interface ScheduleType {
+  date: string;
+  times: TimesType[];
+}
+
+export interface CalendarContainerType {
+  id: string | undefined;
+  detail: DetailType | undefined;
+}

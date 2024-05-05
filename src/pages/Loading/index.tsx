@@ -1,8 +1,9 @@
 import './style.scss';
+import { LoadingProps } from './types/loadingType';
 
-export default function Loading() {
+export default function Loading({ type }: LoadingProps) {
   return (
-    <main className="loading-wrapper">
+    <main className={`loading-wrapper ${type}`}>
       <img src="/public/assets/logos/logo-icon.svg" alt="로고" className="loading-logo" />
       <img src="/public/assets/icons/icon-loading.svg" alt="로딩 중" className="loading-spinner" />
       <div className="loading-text-container">

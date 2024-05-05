@@ -1,0 +1,165 @@
+.calendar-tablet {
+  width: 480px;
+  height: 100%;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 35px 24px;
+
+  .calendar-tablet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 27px;
+
+    h3 {
+      font-size: 2.8rem;
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .calendar-wrapper {
+    margin: 0 auto;
+    height: auto;
+    margin-bottom: 32px;
+  }
+  h3 {
+    margin-bottom: 14px;
+  }
+  .time-box-parent {
+    display: flex;
+
+    .time-box {
+      border: 1px solid black;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 26px;
+      margin-bottom: 64px;
+      cursor: pointer;
+
+      &.selected {
+        background-color: var(--black);
+        color: var(--white);
+      }
+    }
+  }
+
+  .button-black {
+    width: 100%;
+    height: 56px;
+  }
+
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+}
+
+.customer-counter-mobile {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  .customer-counter-mobile-control {
+    width: 120px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid var(--gray40);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    input {
+      width: 40px;
+      border: 0;
+      text-align: center;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 24px;
+
+    &:disabled {
+      cursor: default;
+      background-color: var(--gray30);
+      border: 1px solid var(--gray30);
+    }
+
+    &:disabled:hover {
+      color: var(--white);
+    }
+  }
+}
+
+.calendar-mobile {
+  display: none;
+}
+
+@media (max-width: 430px) {
+  .calendar-mobile {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 130px;
+    background-color: var(--white);
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid var(--gray40);
+    padding: 16px;
+    z-index: 2;
+
+    h2 {
+      font-size: 2rem;
+      line-height: 26px;
+
+      span {
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 26px;
+        text-decoration-line: underline;
+        cursor: pointer;
+      }
+    }
+
+    h4 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+
+    button {
+      position: absolute;
+      right: 16px;
+      bottom: 22px;
+
+      &:disabled {
+        cursor: default;
+        background-color: var(--gray30);
+        border: 1px solid var(--gray30);
+      }
+
+      &:disabled:hover {
+        color: var(--white);
+      }
+    }
+  }
+}
