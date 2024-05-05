@@ -7,6 +7,8 @@ import { Category, Spaces } from '@/api/types/activities';
 import SpaceCardList from './components/SpaceCardList';
 import Pagination from '@/components/Pagination';
 import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
+import SearchBar from './components/SearchBar';
+import { FormEvent, MouseEvent, ChangeEvent } from 'react';
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -31,6 +33,8 @@ export default function MainPage() {
   const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<Category>('');
   const [sortedSpaces, setSortedSpaces] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState(''); // 검색한 결과
 
   const handleClickCategory = (name: Category) => {
     setSelectedCategory((prev) => (prev === name ? '' : name));
@@ -46,6 +50,26 @@ export default function MainPage() {
     }
   };
 
+  const handleSearchText = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchSubmit = (
+    e: FormEvent<HTMLFormElement> | MouseEvent<HTMLDivElement> | MouseEvent<HTMLButtonElement>,
+    text?: string,
+  ) => {
+    e.preventDefault();
+
+    if (text !== undefined) {
+      setSearchValue(text);
+      setSearchResult(text);
+    } else {
+      setSearchResult(searchValue);
+    }
+    setSelectedCategory('');
+    setSortedSpaces('latest');
+  };
+
   useEffect(() => {
     const getSpaces = async () => {
       try {
@@ -56,6 +80,9 @@ export default function MainPage() {
         }
         if (sortedSpaces) {
           url += `&sort=${sortedSpaces}`;
+        }
+        if (searchValue) {
+          url += `&keyword=${searchResult}`;
         }
 
         const res = await instance.get(url);
@@ -92,6 +119,11 @@ export default function MainPage() {
       <Link to={'space/735'}>공간상세(내꺼)</Link>
       <br />
       <Link to={'space/704'}>공간상세(내꺼아님)</Link>
+      <SearchBar
+        searchValue={searchValue}
+        handleSearchText={handleSearchText}
+        handleSearchSubmit={handleSearchSubmit}
+      />
       {data?.activities && (
         <SpaceCardList
           spaces={data.activities}
@@ -99,7 +131,7 @@ export default function MainPage() {
           handleSortSpaces={handleSortSpaces}
         />
       )}
-      <Pagination totalCount={data?.totalCount} size={10} page={page} setPage={setPage} />
+      <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
     </main>
   );
 }
