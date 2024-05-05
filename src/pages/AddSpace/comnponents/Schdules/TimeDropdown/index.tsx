@@ -1,7 +1,7 @@
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 
 interface TimeDropdownProps {
-  onClick: (value: string | number) => void;
+  onClick: (value: string) => void;
 }
 
 export default function 그렴TimeDropdown({ onClick }: TimeDropdownProps) {

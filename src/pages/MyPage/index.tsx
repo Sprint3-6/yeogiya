@@ -1,15 +1,107 @@
-// import { MypageHeader } from '../../components/MypageHeader';
-// import { MyPageList } from './components/MyPageList';
+import { UserForm } from '@/components/UserForm';
+import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
+import { useAppSelector } from '@/redux/store';
+import { useEffect } from 'react';
+import { myInfoEditApi, myInfoGetApi } from '@/api/UsersApi';
+import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
+import { useDispatch } from 'react-redux';
+import { setMyInfo } from '@/redux/myInfoSlice';
+import './style.scss';
+import { MypageProfile } from '@/components/MypageSidebar/components/MypageProfile';
+import { myInfoValue } from './types';
+import toast from '@/utils/toast';
 
 export default function MyPage() {
-  // const handleButton = () => {
-  //   console.log('버튼 눌렀지롱');
-  // };
+  const userData = useAppSelector((state) => state.myInfo);
+
+  useEffect(() => {}, [userData]);
+
+  const UpdateInfoValue = {
+    nickname: '',
+    password: '',
+    passwordCheck: '',
+  };
+
+  console.log('유저데이터', userData);
+
+  // const [myInfoValue, setMyInfoValue] = useState({
+  //   nickname: userData.nickname,
+  //   email: userData.email,
+  // });
+
+  // updateInfo(updateInfoValue);
+
+  // useEffect(() => {
+  //   const myInfoGet = async () => {
+  //     try {
+  //       const response = await myInfoGetApi();
+
+  //       setMyInfoValue({
+  //         nickname: response.nickname,
+  //         email: response.email,
+  //         profileImageUrl: response.profileImageUrl,
+  //       });
+  //       console.log('내 정보 조회', response);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   myInfoGet();
+  // }, []);
+
+  const dispatch = useDispatch();
+
+  const handleEditMyInfo = async (value: myInfoValue): Promise<void> => {
+    // const email: string = userData.email;
+    try {
+      const response = await myInfoEditApi(value);
+
+      console.log('내 정보 수정 페이지 성공', response);
+      if (response?.status === 200) {
+        console.log('내 정보 수정 완료');
+        toast.success('내 정보 변경 완료');
+        dispatch(setMyInfo(await myInfoGetApi()));
+      }
+      // updateMyInfo
+    } catch (error) {
+      console.log('내 정보 수정 페이지 실패', error);
+    }
+  };
+
   return (
     <main>
       <div className="mypage-space">
-        {/* <MypageHeader title="내 정보" onClick={handleButton} buttonText="저장하기"></MypageHeader> */}
-        {/* <MyPageList /> */}
+        <UserForm onClickForm={handleEditMyInfo} value={UpdateInfoValue}>
+          <div className="my-profile-header">
+            <div className="my-profile-header-title">
+              <h2>내 정보</h2>
+
+              {/* <Button className="my-profile-show-Image" onClick={handleShowProfile}>
+                <img src={mypageIcon} /> */}
+              <div className="my-profile-show-Image">
+                <MypageProfile />
+              </div>
+              {/* </Button> */}
+            </div>
+            <div className="my-profile-header-button">
+              <UserButtonItem>저장하기</UserButtonItem>
+            </div>
+          </div>
+          <div className="mypage-list">
+            <UserInputItem id="nickname" type="text" text={userData.nickname}>
+              닉네임
+            </UserInputItem>
+            <UserInputItem id="email" type="email" value={userData.email} disabled={true}>
+              이메일
+            </UserInputItem>
+            <UserInputItem id="password" type="password" text="8자 이상 입력해 주세요">
+              비밀번호
+            </UserInputItem>
+            <UserInputItem id="passwordCheck" type="password" text="비밀번호를 한 번 더 입력해주세요">
+              비밀번호 재입력
+            </UserInputItem>
+          </div>
+        </UserForm>
       </div>
     </main>
   );
