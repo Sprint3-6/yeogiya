@@ -4,7 +4,7 @@ interface TimeDropdownProps {
   onClick: (value: string) => void;
 }
 
-export default function 그렴TimeDropdown({ onClick }: TimeDropdownProps) {
+export default function TimeDropdown({ onClick }: TimeDropdownProps) {
   return (
     <DropDown id="category" title="00:00" onClickItem={onClick} arrowUp="∧" arrowDown="∨">
       {[...Array(49)].map((_, index) => {
