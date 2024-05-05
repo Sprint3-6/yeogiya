@@ -14,7 +14,9 @@ import toast from '@/utils/toast';
 export default function MyPage() {
   const userData = useAppSelector((state) => state.myInfo);
 
-  useEffect(() => {}, [userData]);
+  useEffect(() => {
+    console.log('정보 변경됨 useEffect');
+  }, [userData]);
 
   const UpdateInfoValue = {
     nickname: '',

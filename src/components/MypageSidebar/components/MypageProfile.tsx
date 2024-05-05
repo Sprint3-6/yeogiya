@@ -1,8 +1,10 @@
-import { createProfileImageUrl, myInfoEditApi } from '@/api/UsersApi';
+import { createProfileImageUrl, myInfoEditApi, myInfoGetApi } from '@/api/UsersApi';
 import Button from '@/components/Button';
 import { useModal } from '@/hooks/useModal/useModal';
+import { setMyInfo } from '@/redux/myInfoSlice';
 import { useAppSelector } from '@/redux/store';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const MypageProfile: FC = () => {
   const userData = useAppSelector((state) => state.myInfo);
@@ -32,6 +34,7 @@ export const MypageProfile: FC = () => {
     openModal(PROFILE_MODAL);
   };
 
+  const dispatch = useDispatch();
   const handleProfileUpload = async (): Promise<void> => {
     if (!uploadProfile) return;
     try {
@@ -40,6 +43,12 @@ export const MypageProfile: FC = () => {
 
       // 이미지 정보 수정
       const response = await myInfoEditApi(newProfile);
+
+      if (response?.status === 200) {
+        console.log('프로필 변경 완료');
+        dispatch(setMyInfo(await myInfoGetApi()));
+      }
+      closeModal();
 
       console.log('프로필 이미지 변경', response);
     } catch (error) {
