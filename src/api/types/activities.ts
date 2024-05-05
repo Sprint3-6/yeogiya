@@ -15,7 +15,6 @@ export interface Spaces {
   updatedAt: string;
 }
 export interface GetSpacesParam {
-  method: 'offset' | 'cursor';
   cursorId?: number | null;
   category?: Category;
   keyword?: string;
