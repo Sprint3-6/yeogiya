@@ -93,7 +93,7 @@ export default function MainPage() {
       }
     };
     getSpaces();
-  }, [page, selectedCategory, sortedSpaces, size]);
+  }, [page, selectedCategory, sortedSpaces, size, searchResult]);
 
   useEffect(() => {
     setPage(1);
@@ -101,7 +101,7 @@ export default function MainPage() {
   }, [deviceType]);
 
   return (
-    <main>
+    <main className="main-container">
       메인페이지 입니다.
       <br />
       <Link to={'sign-in'}>로그인</Link>
