@@ -35,15 +35,3 @@ sub {
   }
 }
 
-.mypage-outlet {
-  width: 344px;
-
-  // 태블릿
-  @media (min-width: 768px) {
-    width: 429px;
-  }
-  // 데스크탑
-  @media (min-width: 1024px) {
-    width: 792px;
-  }
-}
