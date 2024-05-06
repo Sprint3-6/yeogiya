@@ -26,6 +26,8 @@ export default function HeaderButtons() {
     setIsLoading(false);
   };
 
+  //TODO 이미지 앞에 public 앞에 삭제
+
   return (
     <>
       {isLoading && <Loading />}
