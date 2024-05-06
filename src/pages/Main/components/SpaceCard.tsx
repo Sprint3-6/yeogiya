@@ -7,7 +7,7 @@
 // bannerImageUrl: 배너이미지
 
 import { Link } from 'react-router-dom';
-import { Spaces } from '../types/spaces-type';
+import { Spaces } from '@/api/types/activities';
 import { intToFloat } from '@/utils/intToFloat';
 import { formatPrice } from '@/utils/formatPrice';
 import './spaceCard.scss';

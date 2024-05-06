@@ -13,7 +13,7 @@ const categoryFilter = (word: string | undefined) => {
     case '웰빙':
       return '연습실';
     default:
-      return '카테고리';
+      return '전체';
   }
 };
 
