@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './style.scss';
 import { useState, useEffect } from 'react';
 import instance from '@/api/instance/defaultInstance';
@@ -103,13 +102,6 @@ export default function MainPage() {
 
   return (
     <main className="main-container">
-      <Link to={'mypage'}>내정보</Link>
-      <br />
-      <Link to={'mypage/reservation'}>예약내역</Link>
-      <br />
-      <Link to={'mypage/admin/status'}>예약현황</Link>
-      <br />
-      <Link to={'mypage/admin'}>내 공간 관리</Link>
       <SearchBar
         searchValue={searchValue}
         handleSearchText={handleSearchText}
