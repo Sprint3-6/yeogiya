@@ -6,6 +6,7 @@ import MypageSidebar from '@/components/MypageSidebar';
 import { useModal } from '@/hooks/useModal/useModal';
 import Button from '@/components/Button';
 import toast from '@/utils/toast';
+import { useNavigate } from 'react-router-dom';
 
 interface DropDownProp {
   nickname: string;
@@ -15,6 +16,7 @@ interface DropDownProp {
 export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
   const { Modal, openModal, closeModal } = useModal();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   console.log(nickname);
 
@@ -27,6 +29,7 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
 
   // 로그아웃 했을 때
   const handleLogout = () => {
+    navigate('/');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     dispatch(clearMyInfo());
