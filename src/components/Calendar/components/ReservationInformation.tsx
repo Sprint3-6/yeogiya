@@ -1,12 +1,20 @@
-import { useGetReservedScheduleQuery, useGetTimeReservationsQuery } from '@/api/reservationStatusApi';
+import {
+  useGetReservedScheduleQuery,
+  useLazyGetTimeReservationsQuery,
+  useUpdateReservationStatusMutation,
+} from '@/api/reservationStatusApi';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
+import { useModal } from '@/hooks/useModal/useModal';
+import ErrorModal from '@/pages/ErrorModal';
 import { translateMap } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../Button';
 import './reservationInformation.scss';
-import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
+import toast from '@/utils/toast';
 
 interface HistoryProps {
+  activityId: number;
   reservation: ReservationMoreInfo;
   selectedTab: UpdateReservationStatus;
 }
@@ -16,19 +24,19 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
     chip === 'completed' ? 'pending' : chip ?? 'pending',
   ); // 예약 상태 선택
   const { data: scheduleList } = useGetReservedScheduleQuery({ activityId, date: selectedDate }); // 내 체험 날짜별 예약 정보 조회 엔드포인트
-  const [scheduleId, setScheduleId] = useState<number>(scheduleList?.[0].scheduleId ?? 0); // 체험명 선택
-  const { data: reservationList } = useGetTimeReservationsQuery({
-    activityId,
-    scheduleId,
-    status: selectedTab,
-  }); // 내 체험 예약 시간대별 예약 내역 조회
+  const [getTimeReservations, { data, originalArgs }] = useLazyGetTimeReservationsQuery(); // 내 체험 예약 시간대별 예약 내역 조회
+  const reservationList = originalArgs?.status === selectedTab ? data : { reservations: [], totalCount: 0 };
 
   const handleTabClick = (tab: UpdateReservationStatus) => {
     setSelectedTab(tab);
   };
 
   const onClickTimeItem = (scheduleId: DropDownValue) => {
-    setScheduleId(scheduleId as number);
+    getTimeReservations({
+      activityId,
+      scheduleId: scheduleId as number,
+      status: selectedTab,
+    });
   };
 
   return (
@@ -70,28 +78,55 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
               onClickItem={onClickTimeItem}
             >
               {scheduleList?.map((reservation) => (
-                <DropdownItem key={reservation.scheduleId} value={reservation.scheduleId}>
-                  {reservation.startTime + ' ~ ' + reservation.endTime}
+                <DropdownItem key={`${selectedTab}-${reservation.scheduleId}`} value={reservation.scheduleId}>
+                  {selectedTab}-{reservation.scheduleId} {reservation.startTime + ' ~ ' + reservation.endTime}
                 </DropdownItem>
               ))}
             </DropDown>
           </div>
           <div className="reservation-information-content-item">예약 내역</div>
           {reservationList?.reservations.map((reservation) => (
-            <History key={reservation.id} reservation={reservation} selectedTab={selectedTab} />
+            <History activityId={activityId} key={reservation.id} reservation={reservation} selectedTab={selectedTab} />
           ))}
           {reservationList?.reservations.length === 0 && '예약 내역이 없습니다.'}
         </div>
       </div>
       <div className="reservation-information-content-reservation-status">
         <div className="reservation-information-content-item">예약 현황</div>
-        <div className="reservation-information-content-item">{reservationList?.totalCount}</div>
+        <div className="reservation-information-content-item">
+          {reservationList?.totalCount}개 / {scheduleList?.reduce((prev, cur) => prev + cur.count[selectedTab], 0)}개
+        </div>
       </div>
     </div>
   );
 }
 
-function History({ reservation, selectedTab }: HistoryProps) {
+function History({ activityId, reservation, selectedTab }: HistoryProps) {
+  const { Modal, openModal, closeModal } = useModal();
+  const [updateReservationStatus, { isError }] = useUpdateReservationStatusMutation();
+
+  useEffect(() => {
+    if (isError) openModal('error');
+  }, [isError]);
+
+  if (isError) {
+    return (
+      <Modal name="error">
+        <ErrorModal onClose={closeModal} />
+      </Modal>
+    );
+  }
+
+  const handleApproveClick = async (reservationId: number) => {
+    await updateReservationStatus({ activityId, reservationId, status: 'confirmed' });
+    toast.success('예약을 승인했습니다.');
+  };
+
+  const handleRejectClick = async (reservationId: number) => {
+    await updateReservationStatus({ activityId, reservationId, status: 'declined' });
+    toast.error('예약을 거절했습니다.');
+  };
+
   return (
     <div className="reservation-information-content-booking-history">
       <div className="reservation-information-content-booking-history-content">
@@ -104,11 +139,25 @@ function History({ reservation, selectedTab }: HistoryProps) {
       </div>
       {selectedTab === 'pending' ? (
         <div className="reservation-information-content-booking-history-buttons">
-          <Button type="submit" className="button-black button-booking-approve" children="승인하기" />
-          <Button type="submit" className="button-white button-booking-reject" children="거절하기" />
+          <Button
+            type="button"
+            className="button-black button-booking-approve"
+            onClick={() => handleApproveClick(reservation.id)}
+            onClose={closeModal}
+          >
+            승인하기
+          </Button>
+          <Button
+            type="button"
+            className="button-white button-booking-reject"
+            onClick={() => handleRejectClick(reservation.id)}
+            onClose={closeModal}
+          >
+            거절하기
+          </Button>
         </div>
       ) : (
-        <div className={'reservation-information-chip-wrapper approve'}>예약 {translateMap[selectedTab]}</div>
+        <div className={`reservation-information-chip-wrapper ${selectedTab}`}>예약 {translateMap[selectedTab]}</div>
       )}
     </div>
   );
