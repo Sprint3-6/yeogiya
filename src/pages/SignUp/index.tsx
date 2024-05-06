@@ -16,6 +16,13 @@ export default function SignUp() {
     passwordCheck: '',
   };
 
+  const requiredValue = {
+    email: '',
+    nickname: '',
+    password: '',
+    passwordCheck: '',
+  };
+
   const navigate = useNavigate();
 
   const handleSignUp = async (value: InputValue): Promise<void> => {
@@ -39,7 +46,7 @@ export default function SignUp() {
       <div className="signup-logo">
         <SignLogo />
       </div>
-      <UserForm onClickForm={handleSignUp} value={SignUpValue}>
+      <UserForm onClickForm={handleSignUp} value={SignUpValue} requiredValue={requiredValue}>
         <UserInputItem id="email" type="email" text="이메일을 입력해 주세요">
           이메일
         </UserInputItem>

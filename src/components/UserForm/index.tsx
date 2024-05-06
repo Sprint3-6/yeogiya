@@ -13,12 +13,12 @@ export const LoginContext = createContext<LoginContextProps>({
 export const UserForm = (props: LoginFormProps) => {
   const { children, onClickForm } = props;
   const [inputValue, setInputValue] = useState<InputValue>(props.value);
+  const [requiredValue, setRequiredValue] = useState<InputValue>(props.requiredValue);
   const [error, setError] = useState<InputValue>({});
   const [isErrorCheck, setIsErrorCheck] = useState(false);
   const [isValid, setIsValid] = useState(false);
-
-  const isAllError = Object.values(error).every((value) => value.trim() === '');
-  const isAllInput = Object.values(inputValue).every((value) => value.trim() !== '');
+  const isAllError = Object.values(error).every((value) => value?.trim() === '');
+  const isAllInput = Object.values(requiredValue).every((value) => value?.trim() !== '');
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id;
@@ -27,6 +27,15 @@ export const UserForm = (props: LoginFormProps) => {
       ...inputValue,
       [id]: value,
     });
+
+    // 필수값일 경우
+
+    if (id in requiredValue) {
+      setRequiredValue({
+        ...requiredValue,
+        [id]: value,
+      });
+    }
 
     if (isErrorCheck) {
       handleError(e);

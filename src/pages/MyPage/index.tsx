@@ -8,8 +8,8 @@ import { useDispatch } from 'react-redux';
 import { setMyInfo } from '@/redux/myInfoSlice';
 import './style.scss';
 import { MypageProfile } from '@/components/MypageSidebar/components/MypageProfile';
-import { myInfoValue } from './types';
 import toast from '@/utils/toast';
+import { InputValue } from '@/components/UserForm/types';
 
 export default function MyPage() {
   const userData = useAppSelector((state) => state.myInfo);
@@ -25,7 +25,18 @@ export default function MyPage() {
     passwordCheck: '',
   };
 
-  const handleEditMyInfo = async (value: myInfoValue): Promise<void> => {
+  const requiredValue = {};
+
+  const handleEditMyInfo = async (value: InputValue): Promise<void> => {
+    for (const key in value) {
+      if (value[key] === '' || value[key] === null) {
+        delete value[key];
+      }
+      // if (value.hasOwnProperty(key) && (value[key] === '' || value[key] === null)) {
+      //   delete value[key];
+      // }
+    }
+    console.log(value);
     try {
       const response = await myInfoEditApi(value);
 
@@ -42,7 +53,7 @@ export default function MyPage() {
   return (
     <main>
       <div className="mypage-space">
-        <UserForm onClickForm={handleEditMyInfo} value={UpdateInfoValue}>
+        <UserForm onClickForm={handleEditMyInfo} value={UpdateInfoValue} requiredValue={requiredValue}>
           <div className="my-profile-header">
             <div className="my-profile-header-title">
               <h2>내 정보</h2>

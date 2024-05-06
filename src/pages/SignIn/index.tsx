@@ -22,6 +22,10 @@ export default function SignIn() {
     email: '',
     password: '',
   };
+  const requiredValue = {
+    email: '',
+    password: '',
+  };
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -54,7 +58,7 @@ export default function SignIn() {
       <div className="signin-logo">
         <SignLogo />
       </div>
-      <UserForm onClickForm={handleSignIn} value={SignInValue}>
+      <UserForm onClickForm={handleSignIn} value={SignInValue} requiredValue={requiredValue}>
         <UserInputItem id="email" type="email" text="이메일을 입력해 주세요">
           이메일
         </UserInputItem>

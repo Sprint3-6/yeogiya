@@ -40,7 +40,7 @@ export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem)
           <input
             id={id}
             type={isType}
-            value={inputValue[id as keyof typeof inputValue]}
+            value={inputValue[id as keyof typeof inputValue] || ''}
             placeholder={text}
             onChange={(e) => handleInput(e)}
             onBlur={(e) => handleError(e)}
