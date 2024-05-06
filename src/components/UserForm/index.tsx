@@ -88,13 +88,18 @@ export const UserForm = (props: LoginFormProps) => {
 
     if (key === 'Enter') {
       const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.userinput-box input');
-      const inputsValue: string[] = Array.from(inputs).map((input) => input.id);
+      // const inputsValue: string[] = Array.from(inputs).filter((input) =>{ !input.disabled return input.id;});
+      const inputsValue: string[] = Array.from(inputs)
+        .filter((input) => !input.disabled)
+        .map((input) => input.id);
       const currentIndex: number = inputsValue.findIndex((input: string) => input === currentInput);
-      if (currentIndex === inputs.length - 1) {
+      console.log(inputs[currentIndex].disabled);
+      if (currentIndex === inputsValue.length - 1) {
         handleClickForm();
       } else {
         const nextIndex = currentIndex + 1;
         const nextValue = inputsValue[nextIndex];
+        console.log('다음값', nextValue);
         const currentValue = document.getElementById(nextValue);
         if (currentValue) {
           currentValue.focus();
