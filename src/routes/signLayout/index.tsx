@@ -10,9 +10,7 @@ export default function SignLayout() {
 
   return (
     <>
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 }
