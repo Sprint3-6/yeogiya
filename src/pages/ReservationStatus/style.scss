@@ -9,14 +9,6 @@ div.reservation-status-wrapper {
     min-width: 100%;
   }
 
-  .reservation-status-title {
-    padding: 0 10px;
-
-    @media screen and (min-width: 768px) {
-      padding: 0 30px;
-    }
-  }
-
   .reservation-status-dropdown-title {
     position: absolute;
     top: 60px;
@@ -80,5 +72,27 @@ div.reservation-status-wrapper {
   .dropdown-arrow {
     font-size: 2rem;
     font-weight: bold;
+  }
+}
+
+.not-found-reservation-file-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+
+  @media screen and (min-width: 768px) {
+    gap: 50px;
+  }
+
+  .not-reservation-title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--gray60);
+
+    @media screen and (min-width: 768px) {
+      font-size: 2.4rem;
+    }
   }
 }
