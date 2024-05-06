@@ -1,36 +1,17 @@
 import './headerButton.scss';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setMyInfo } from '@/redux/myInfoSlice';
 import { useModal } from '@/hooks/useModal/useModal';
 import { useAppSelector } from '@/redux/store';
-import getMyInfo from '@/api/getMyInfo';
 import MyNotifications from '@/components/MyNotifications';
 import HeaderDropDown from './HeaderDropdown';
-import Loading from '@/pages/Loading';
 
 export default function HeaderButtons() {
   const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
   const defaultProfileImage = '/assets/images/profile-default.png';
 
-  const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleTempLogin = async () => {
-    const id = prompt('이메일');
-    const password = prompt('비밀번호');
-    setIsLoading(true);
-    dispatch(setMyInfo(await getMyInfo(id, password)));
-    setIsLoading(false);
-  };
-
-  //TODO 이미지 앞에 public 앞에 삭제
-
   return (
     <>
-      {isLoading && <Loading />}
       {userData.id !== null ? (
         <div className="header-login">
           <img
@@ -57,9 +38,9 @@ export default function HeaderButtons() {
         </div>
       ) : (
         <div className="header-buttons">
-          <button className="header-button" onClick={handleTempLogin}>
-            로그인
-          </button>
+          <Link to="/sign-in">
+            <button className="header-button">로그인</button>
+          </Link>
           <Link to="/sign-up">
             <button className="header-button">회원가입</button>
           </Link>
