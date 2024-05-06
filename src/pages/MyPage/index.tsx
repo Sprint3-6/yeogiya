@@ -25,18 +25,16 @@ export default function MyPage() {
     passwordCheck: '',
   };
 
+  // 필수인풋값
   const requiredValue = {};
 
   const handleEditMyInfo = async (value: InputValue): Promise<void> => {
+    // 값이 비어있을 경우 해당 key값 삭제
     for (const key in value) {
       if (value[key] === '' || value[key] === null) {
         delete value[key];
       }
-      // if (value.hasOwnProperty(key) && (value[key] === '' || value[key] === null)) {
-      //   delete value[key];
-      // }
     }
-    console.log(value);
     try {
       const response = await myInfoEditApi(value);
 

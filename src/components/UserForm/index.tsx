@@ -74,6 +74,8 @@ export const UserForm = (props: LoginFormProps) => {
   const handleClickForm = () => {
     console.log('로그인컴포넌트 버튼 클릭함', inputValue);
     onClickForm(inputValue);
+    // 버튼 클릭 후 인풋값 비어주기
+    setInputValue({});
   };
 
   const contextValue: LoginContextProps = {
