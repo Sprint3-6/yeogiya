@@ -1,8 +1,3 @@
-@mixin status($bg-color, $text-color) {
-  background: $bg-color;
-  color: $text-color;
-}
-
 .reservation-information-wrapper {
   display: flex;
   flex-direction: column;
@@ -125,6 +120,16 @@ div.active {
     padding: 30px;
     height: 200px;
   }
+
+  .confirmed {
+    background-color: var(--reservation);
+    color: var(--white);
+  }
+
+  .declined {
+    background-color: var(--red20);
+    color: var(--red40);
+  }
 }
 
 .reservation-information-content-booking-history-content {
@@ -180,14 +185,6 @@ div.active {
   border-radius: 26px;
   font-size: 1.3rem;
   font-weight: bold;
-}
-
-.approve {
-  @include status(var(--reservation), var(--white));
-}
-
-.reject {
-  @include status(var(--red20), var(--red40));
 }
 
 .reservation-information-content-reservation-status {

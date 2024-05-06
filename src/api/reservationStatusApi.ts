@@ -3,7 +3,7 @@ import { BASE_URL } from './constants/url';
 import axiosBaseQuery from './instance/axiosBaseQuery';
 import { format } from 'date-fns';
 
-enum UpdateStatus {
+export const enum UpdateStatus {
   declined = 0,
   confirmed = 1,
 }
@@ -33,9 +33,10 @@ export const reservationStatusApi = createApi({
         `my-activities/${activityId}/reservations?scheduleId=${scheduleId}&status=${status}`, // 내 체험 예약 시간대별 예약 내역 조회 엔드포인트
     }),
     // mutation은 데이터 조작을 정의합니다. POST, PUT, DELETE, PATCH 등의 요청을 보낼 수 있습니다.
-    updateReservationStatus: builder.mutation<UpdateReservation, { activityId: number; reservationId: UpdateStatus }>({
-      query: ({ activityId, reservationId }) => ({
-        url: `my-activities/${activityId}/reservation-status/${reservationId}`, // 내 체험 예약 상태 업데이트 엔드포인트
+    updateReservationStatus: builder.mutation<UpdateReservation, UpdateReservationParams>({
+      query: ({ activityId, reservationId, status }) => ({
+        url: `my-activities/${activityId}/reservations/${reservationId}`, // 내 체험 예약 상태 업데이트 엔드포인트
+        body: { status },
         method: 'PATCH',
       }),
     }),
@@ -45,8 +46,8 @@ export const reservationStatusApi = createApi({
 // 정의된 endpoints를 기반으로 자동 생성됩니다. getPost => useGetPostQuery
 export const {
   useGetActivityListQuery,
-  useGetReservationDashboardQuery,
   useGetReservedScheduleQuery,
-  useGetTimeReservationsQuery,
+  useLazyGetTimeReservationsQuery,
+  useLazyGetReservationDashboardQuery,
   useUpdateReservationStatusMutation,
 } = reservationStatusApi;

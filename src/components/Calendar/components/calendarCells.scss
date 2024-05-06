@@ -163,19 +163,19 @@
       height: 8px;
     }
   }
-}
 
-.confirmed {
-  @extend .calendar-icon-circle;
-  background-color: var(--approve);
-}
+  .confirmed {
+    @extend .calendar-icon-circle;
+    background-color: var(--approve);
+  }
 
-.completed {
-  @extend .calendar-icon-circle;
-  background-color: var(--success);
-}
+  .completed {
+    @extend .calendar-icon-circle;
+    background-color: var(--success);
+  }
 
-.pending {
-  @extend .calendar-icon-circle;
-  background-color: var(--reservation);
+  .pending {
+    @extend .calendar-icon-circle;
+    background-color: var(--reservation);
+  }
 }

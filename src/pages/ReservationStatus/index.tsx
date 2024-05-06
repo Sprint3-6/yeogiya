@@ -1,4 +1,4 @@
-import { useGetActivityListQuery, useGetReservationDashboardQuery } from '@/api/reservationStatusApi';
+import { useGetActivityListQuery, useLazyGetReservationDashboardQuery } from '@/api/reservationStatusApi';
 import CalendarReservationChip from '@/components/Calendar/components/CalendarReservationChip';
 import ReservationInformation from '@/components/Calendar/components/ReservationInformation';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
@@ -13,15 +13,18 @@ import './style.scss';
 
 export default function ReservationStatus() {
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
-  const { data: myActivities, isLoading, isFetching, isError } = useGetActivityListQuery(); // 내 체험 리스트 조회
-  const [activityId, setActivityId] = useState<number>(myActivities?.activities[0]?.id ?? 0); // 체험명 선택
+  const { data: myActivities, ...myActivitiesQuery } = useGetActivityListQuery(); // 내 체험 리스트 조회
+  const [activityId, setActivityId] = useState<number | undefined>(); // 체험명 선택
   const [selectedChip, setSelectedChip] = useState<ReservationChip>('pending'); // 예약 상태 선택
-  const { data: myDashboard } = useGetReservationDashboardQuery({
-    activityId,
-    year: getYear(selectedDate),
-    month: format(selectedDate, 'MM'),
-  });
+  const [getReservationDashboard, { data: myDashboard, ...myDashboardQuery }] = useLazyGetReservationDashboardQuery();
   const { Modal, openModal, closeModal } = useModal();
+
+  const isError = myActivitiesQuery.isError || myDashboardQuery.isError;
+  const isLoading =
+    myActivitiesQuery.isFetching ||
+    myActivitiesQuery.isLoading ||
+    myDashboardQuery.isFetching ||
+    myDashboardQuery.isLoading;
 
   const handleTagClick = (date: Date, chip: ReservationChip) => {
     setSelectedDate(date);
@@ -40,12 +43,21 @@ export default function ReservationStatus() {
   };
 
   useEffect(() => {
+    if (activityId) {
+      getReservationDashboard({
+        activityId,
+        year: getYear(selectedDate),
+        month: format(selectedDate, 'MM'),
+      });
+    }
+  }, [activityId]);
+
+  useEffect(() => {
     if (isError) openModal('error');
   }, [isError]);
 
-  if (isLoading || isFetching) return <Loading type="loading-screen" />;
+  if (isLoading) return <Loading type="loading-screen" />;
   if (isError) {
-    // TODO: Response 401 에러 처리
     return (
       <Modal name="error">
         <ErrorModal onClose={closeModal} />
@@ -124,7 +136,9 @@ export default function ReservationStatus() {
           {/* 내 체험 예약 시간대별 예약 내역 조회 */}
           {/* 내 체험 예약 상태(승인, 거절) 업데이트 */}
           <Modal name="reservation">
-            <ReservationInformation activityId={activityId} chip={selectedChip} selectedDate={selectedDate} />
+            {activityId && (
+              <ReservationInformation activityId={activityId} chip={selectedChip} selectedDate={selectedDate} />
+            )}
           </Modal>
         </>
       )}

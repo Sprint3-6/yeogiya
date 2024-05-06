@@ -96,3 +96,9 @@ interface TimeReservationList extends Reservation {
 interface UpdateReservation {
   status: UpdateReservationStatus;
 }
+
+interface UpdateReservationParams {
+  activityId: number;
+  reservationId: number;
+  status: 'confirmed' | 'declined';
+}
