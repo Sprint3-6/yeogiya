@@ -13,12 +13,6 @@ import Button from '../../Button';
 import './reservationInformation.scss';
 import toast from '@/utils/toast';
 
-interface HistoryProps {
-  activityId: number;
-  reservation: ReservationMoreInfo;
-  selectedTab: UpdateReservationStatus;
-}
-
 export default function ReservationInformation({ chip, selectedDate, activityId }: ReservationInformationProps) {
   const [selectedTab, setSelectedTab] = useState<UpdateReservationStatus>(
     chip === 'completed' ? 'pending' : chip ?? 'pending',
