@@ -5,13 +5,13 @@ import './spaceCardList.scss';
 import { CATEGORIES } from '@/api/constants/categories';
 import Button from '@/components/Button';
 import categoryFilter from '@/utils/categoryFilter';
-import { DropDown, DropdownItem } from '@/components/Dropdown';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 
 interface SpaceCardListProps {
   searchResult: string;
   spaces: Spaces[];
   handleClickCategory: (category: Category) => void;
-  handleSortSpaces: (value: string) => void;
+  handleSortSpaces: (value: DropDownValue) => void;
 }
 
 export default function SpaceCardList({
