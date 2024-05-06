@@ -9,7 +9,7 @@ async function getMyInfo(id: string | null, password: string | null) {
       email: id,
       password: password,
     });
-    toast.success(`${id}로 로그인 되었습니다.(자세한건 콘솔창)`);
+    toast.success(`${id}로 로그인 되었습니다.`);
     console.log(response);
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);

@@ -1,11 +1,12 @@
 import { SignLogo } from '@/components/SignLogo';
 import './style.scss';
-import { InputValue, UserForm } from '@/components/UserForm';
+import { UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpApi } from '@/api/UsersApi';
 import toast from '@/utils/toast';
+import { InputValue } from '@/components/UserForm/types';
 
 export default function SignUp() {
   const SignUpValue = {

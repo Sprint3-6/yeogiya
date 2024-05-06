@@ -66,8 +66,8 @@ import { TokenResponse } from './types/auth';
 import { BASE_URL } from './constants/url';
 import instance from './instance/defaultInstance';
 import { ErrorType } from './types/axiosErrorType';
-import { InputValue } from '@/components/UserForm';
 import toast from '@/utils/toast';
+import { InputValue } from '@/components/UserForm/types';
 
 export const login = async (value: InputValue) => {
   try {

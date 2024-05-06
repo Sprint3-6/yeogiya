@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './style.scss';
-import { InputValue, UserForm } from '@/components/UserForm';
+import { UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
 import { UserButtonItem } from '@/components/UserForm/components/UserButtonItem';
 import { SignLogo } from '@/components/SignLogo';
@@ -8,6 +8,7 @@ import { login } from '@/api/authApi';
 import { setMyInfo } from '@/redux/myInfoSlice';
 import getMyInfo from '@/api/getMyInfo';
 import { useDispatch } from 'react-redux';
+import { InputValue } from '@/components/UserForm/types';
 
 export interface LoginResponse<T> {
   data: string;
@@ -32,16 +33,14 @@ export default function SignIn() {
     const password: string = value.password || '';
 
     try {
-      // const response = await login(email, password);
       const response = await login(value);
       console.log('로그인 시도', response);
 
       if (response?.status === 201) {
-        console.log('로그인성공선영');
         navigate('/');
         dispatch(setMyInfo(await getMyInfo(email, password)));
       } else {
-        console.log('로그인실패선영');
+        console.log('로그인실패');
       }
 
       console.log('메시지', response);
