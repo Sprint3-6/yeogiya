@@ -1,6 +1,6 @@
 interface ImageData {
   id: number;
-  url: string;
+  imageUrl: string;
 }
 
 interface PreSchedule {
@@ -20,8 +20,8 @@ export function findMissingImgIds(a: ImageData[], b: string[]): number[] {
   const missingIds: number[] = [];
   const bUrlsSet: Set<string> = new Set(b);
 
-  for (const { id, url } of a) {
-    if (!bUrlsSet.has(url)) {
+  for (const { id, imageUrl } of a) {
+    if (!bUrlsSet.has(imageUrl)) {
       missingIds.push(id);
     }
   }
@@ -31,7 +31,7 @@ export function findMissingImgIds(a: ImageData[], b: string[]): number[] {
 
 export function findNewImgUrl(a: ImageData[], b: string[]) {
   const newUrl: string[] = [];
-  const aUrls = a.map((arr) => arr.url);
+  const aUrls = a.map((arr) => arr.imageUrl);
   const aUrlsSet: Set<string> = new Set(aUrls);
   for (const url of b) {
     if (!aUrlsSet.has(url)) {

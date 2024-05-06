@@ -3,8 +3,9 @@ import { useState } from 'react';
 import DateInput from './DateInput';
 import './style.scss';
 import TimeDropdown from './TimeDropdown';
-import compareTime from '@/utils/compareTime';
+
 import toast from '@/utils/toast';
+import { compareTime, isNonOverlappingSchedule } from '@/utils/compareTime';
 
 interface SchedulesProps {
   schedules: Schedule[];
@@ -28,6 +29,9 @@ export default function Schedules({ schedules, setSchedules }: SchedulesProps) {
       return;
     } else if (!compareTime(inputValue.startTime, inputValue.endTime)) {
       toast.warning('시간을 확인해 주세요!');
+      return;
+    } else if (!isNonOverlappingSchedule(schedules, inputValue)) {
+      toast.warning('겹치는 예약 가능 시간대가 존재합니다!');
       return;
     }
     setSchedules([...schedules, inputValue]);

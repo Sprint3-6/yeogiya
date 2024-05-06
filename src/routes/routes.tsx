@@ -16,6 +16,7 @@ import MyReservation from '@/pages/MyReservation';
 import EditSpace from '@/pages/EditSpace';
 import AddSpace from '@/pages/AddSpace';
 import MypageLayout from './mypagelayout';
+import SignLayout from './signLayout';
 
 const PrimaryRoute = (
   <>
@@ -32,8 +33,10 @@ const PrimaryRoute = (
       </Route>
     </Route>
     <Route path="loading" element={<Loading />} />
-    <Route path="sign-up" element={<SignUp />} />
-    <Route path="sign-in" element={<SignIn />} />
+    <Route element={<SignLayout />}>
+      <Route path="sign-up" element={<SignUp />} />
+      <Route path="sign-in" element={<SignIn />} />
+    </Route>
     <Route path="*" element={<NotFound />} />
   </>
 );

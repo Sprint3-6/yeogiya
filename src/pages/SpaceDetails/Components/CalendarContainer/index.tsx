@@ -71,7 +71,7 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
   return (
     <>
       <div className="space-detail-container-calendar">
-        {loading && <Loading />}
+        {loading && <Loading type="none" />}
         <h2>
           ₩ {detail?.price.toLocaleString()} <span>/ 인</span>
         </h2>
