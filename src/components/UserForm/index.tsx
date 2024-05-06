@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { InputValue, LoginContextProps, LoginFormProps, errorCheck, errorMessage } from './types';
 
 export const LoginContext = createContext<LoginContextProps>({
   handleInput: () => {},
   handleError: () => {},
   handleClickForm: () => {},
+  handleKeyDown: () => {},
   isValid: false,
   inputValue: {},
   error: {},
@@ -78,10 +79,35 @@ export const UserForm = (props: LoginFormProps) => {
     setInputValue({});
   };
 
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    inputRef: React.MutableRefObject<HTMLInputElement | null>,
+  ) => {
+    const key: string = e.key;
+    const currentInput: string | undefined = inputRef.current?.id;
+
+    if (key === 'Enter') {
+      const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.userinput-box input');
+      const inputsValue: string[] = Array.from(inputs).map((input) => input.id);
+      const currentIndex: number = inputsValue.findIndex((input: string) => input === currentInput);
+      if (currentIndex === inputs.length - 1) {
+        handleClickForm();
+      } else {
+        const nextIndex = currentIndex + 1;
+        const nextValue = inputsValue[nextIndex];
+        const currentValue = document.getElementById(nextValue);
+        if (currentValue) {
+          currentValue.focus();
+        }
+      }
+    }
+  };
+
   const contextValue: LoginContextProps = {
     handleInput,
     handleError,
     handleClickForm,
+    handleKeyDown,
     isValid,
     inputValue,
     error,

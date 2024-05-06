@@ -25,6 +25,10 @@ export interface LoginFormProps {
 export interface LoginContextProps {
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleError: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown: (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    inputRef: React.MutableRefObject<HTMLInputElement | null>,
+  ) => void;
   handleClickForm: () => void;
   isValid: boolean;
   inputValue: InputValue;
