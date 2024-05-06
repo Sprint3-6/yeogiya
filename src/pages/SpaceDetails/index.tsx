@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/redux/store';
 import { useModal } from '../../hooks/useModal/useModal';
-import { DropDown, DropdownItem } from '@/components/Dropdown';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import getUserReview from '@/api/getUserReview';
@@ -14,6 +14,7 @@ import Loading from '../Loading';
 import CalendarContainer from './Components/CalendarContainer';
 import Pagination from '@/components/Pagination';
 import './style.scss';
+import toast from '@/utils/toast';
 
 export default function SpaceDetails() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function SpaceDetails() {
     setReviews(reviewData);
   };
 
-  const handleKebabButton = (value: string) => {
+  const handleKebabButton = (value: DropDownValue) => {
     if (value === 'edit') {
       navigate(`/mypage/admin/edit/${id}`);
     } else if (value === 'delete') {
@@ -68,6 +69,11 @@ export default function SpaceDetails() {
     }
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(detail?.address as string);
+    toast.success(`${detail?.address}가 클립보드에 복사되었습니다.`);
+  };
+
   useEffect(() => {
     setDetailData();
     setTotalImages(detail?.subImages.length ? detail.subImages.length + 1 : 1);
@@ -91,7 +97,7 @@ export default function SpaceDetails() {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading type="loading-screen" />;
   }
 
   return (
@@ -146,7 +152,10 @@ export default function SpaceDetails() {
             <KakaoMap address={detail?.address} title={detail?.title} />
             <div>
               <img src="/favicon.svg" />
-              <h3>{detail?.address}</h3>
+              <h3>
+                {detail?.address}
+                <img src="/assets/images/copy.png" onClick={handleCopy} />
+              </h3>
             </div>
           </section>
 

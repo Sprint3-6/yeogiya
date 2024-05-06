@@ -8,24 +8,24 @@ import Button from '@/components/Button';
 import toast from '@/utils/toast';
 
 interface DropDownProp {
-  onClose: () => void;
   nickname: string;
   profile: string;
 }
 
 export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
-  // const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
   const dispatch = useDispatch();
 
   console.log(nickname);
 
+  // 다시 한 번 로그아웃 할건지 묻는 모달
   const handleLogoutCheck = (value: DropDownValue) => {
     if (value === 'logout') {
       openModal('logout-checking');
     }
   };
 
+  // 로그아웃 했을 때
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
@@ -33,6 +33,7 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
     toast.success('다음번에도 이용해주세요');
   };
 
+  // 로그아웃 취소 했을 때
   const handleLogoutCancel = () => {
     closeModal();
     toast.success('계속 이용해주셔서 감사합니다!');
@@ -60,12 +61,5 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
         </div>
       </Modal>
     </div>
-
-    // <ul className="header-dropdown-list">
-    //   <Link to="mypage" onClick={onClose}>
-    //     <li>마이페이지</li>
-    //   </Link>
-    //   <li onClick={handleLogout}>로그아웃</li>
-    // </ul>
   );
 }
