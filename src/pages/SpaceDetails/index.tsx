@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/redux/store';
 import { useModal } from '../../hooks/useModal/useModal';
-import { DropDown, DropdownItem } from '@/components/Dropdown';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { DetailType, ReviewType } from './Types/DetailTypes';
 import getSpaceDetail from '@/api/getSpaceDetail';
 import getUserReview from '@/api/getUserReview';
@@ -40,7 +40,7 @@ export default function SpaceDetails() {
     setReviews(reviewData);
   };
 
-  const handleKebabButton = (value: string) => {
+  const handleKebabButton = (value: DropDownValue) => {
     if (value === 'edit') {
       navigate(`/mypage/admin/edit/${id}`);
     } else if (value === 'delete') {
@@ -91,7 +91,7 @@ export default function SpaceDetails() {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading type="loading-screen" />;
   }
 
   return (
