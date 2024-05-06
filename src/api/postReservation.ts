@@ -12,7 +12,11 @@ async function postReservation(id: number | undefined, scheduleId: number | null
     toast.success('예약이 완료되었습니다.');
   } catch (err) {
     const error = err as ErrorType;
-    toast.warning(error.response.data.message);
+    if (error.response.status === 401) {
+      toast.error('로그인이 필요합니다.');
+    } else {
+      toast.error(error.response.data.message);
+    }
   }
 }
 
