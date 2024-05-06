@@ -14,6 +14,7 @@ import Loading from '../Loading';
 import CalendarContainer from './Components/CalendarContainer';
 import Pagination from '@/components/Pagination';
 import './style.scss';
+import toast from '@/utils/toast';
 
 export default function SpaceDetails() {
   const navigate = useNavigate();
@@ -66,6 +67,11 @@ export default function SpaceDetails() {
       setImagePosition((state) => state + 375);
       setCurrentImage((state) => state - 1);
     }
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(detail?.address as string);
+    toast.success(`${detail?.address}가 클립보드에 복사되었습니다.`);
   };
 
   useEffect(() => {
@@ -146,7 +152,10 @@ export default function SpaceDetails() {
             <KakaoMap address={detail?.address} title={detail?.title} />
             <div>
               <img src="/favicon.svg" />
-              <h3>{detail?.address}</h3>
+              <h3>
+                {detail?.address}
+                <img src="/assets/images/copy.png" onClick={handleCopy} />
+              </h3>
             </div>
           </section>
 

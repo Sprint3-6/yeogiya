@@ -184,6 +184,16 @@
             font-size: 1.4rem;
             font-weight: 400;
             opacity: 0.75;
+
+            img {
+              width: 15px;
+              height: 15px;
+              margin-left: 5px;
+              position: relative;
+              top: 3px;
+              opacity: 0.75;
+              cursor: pointer;
+            }
           }
         }
       }
