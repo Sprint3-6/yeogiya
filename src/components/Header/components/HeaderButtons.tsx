@@ -7,7 +7,7 @@ import { useModal } from '@/hooks/useModal/useModal';
 import { useAppSelector } from '@/redux/store';
 import getMyInfo from '@/api/getMyInfo';
 import MyNotifications from '@/components/MyNotifications';
-import HeaderDropDown from './HeaderDropdown';
+// import HeaderDropDown from './HeaderDropdown';
 import Loading from '@/pages/Loading';
 
 export default function HeaderButtons() {
@@ -40,7 +40,9 @@ export default function HeaderButtons() {
             className="header-notifications-icon"
           />
           <img src="/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
-          <div className="header-login-user" onClick={() => openModal('header-dropdown')}>
+          {/* <div className="header-login-user" onClick={() => openModal('header-dropdown')}> */}
+          <div className="header-login-user">
+            {/* <HeaderDropDown profile={userData.profileImageUrl} nickname={userData.nickname} /> */}
             <img src={userData.profileImageUrl || defaultProfileImage} alt="프로필 사진" />
             <span>{userData.nickname}</span>
           </div>
@@ -50,9 +52,7 @@ export default function HeaderButtons() {
             </div>
           </Modal>
           <Modal name="header-dropdown">
-            <div className="header-dropdown-container">
-              <HeaderDropDown onClose={closeModal} />
-            </div>
+            <div className="header-dropdown-container">{/* <HeaderDropDown onClose={closeModal} /> */}</div>
           </Modal>
         </div>
       ) : (
