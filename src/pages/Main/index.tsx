@@ -9,6 +9,7 @@ import Pagination from '@/components/Pagination';
 import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
 import SearchBar from './components/SearchBar';
 import { FormEvent, MouseEvent, ChangeEvent } from 'react';
+import { DropDownValue } from '@/components/Dropdown';
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -40,7 +41,7 @@ export default function MainPage() {
     setSelectedCategory((prev) => (prev === name ? '' : name));
   };
 
-  const handleSortSpaces = (value: string) => {
+  const handleSortSpaces = (value: DropDownValue) => {
     if (value === '') {
       return;
     } else if (value === 'high') {
