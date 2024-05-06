@@ -1,6 +1,7 @@
 import { DropDown, DropdownItem } from '@/components/Dropdown';
 import categoryFilter from '@/utils/categoryFilter';
 import { InputHTMLAttributes } from 'react';
+import './styles.scss';
 
 interface CategoryDropdownProps extends InputHTMLAttributes<HTMLInputElement> {
   initValue?: string;
@@ -15,7 +16,7 @@ export default function CategoryDropdown({ setCategory, initValue }: CategoryDro
   const changedInitValue = categoryFilter(initValue);
 
   return (
-    <div>
+    <div className="input-category">
       <DropDown
         id="category"
         title={initValue ? changedInitValue : `카테고리`}
