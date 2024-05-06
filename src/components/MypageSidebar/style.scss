@@ -109,7 +109,9 @@
   }
 }
 
-.mapage-side-list {
+.mapage-side-list,
+.mapage-side-list-user,
+.mapage-side-list-admin {
   display: flex;
   // justify-content: center;
   // align-items: center;
@@ -118,10 +120,62 @@
   gap: 8px;
   align-self: stretch;
   height: auto;
+  // background-color: black;
+}
+
+// 유저 영역
+// .mapage-side-list-user {
+//   // margin: 0 10px;
+//   // display: flex;
+//   // flex-direction: column;
+//   // gap: 8px;
+//   // background-color: green;
+// }
+
+.mapage-side-list-user .mypage-side-item {
+  padding: 0 20px;
+}
+
+.mapage-side-list-user .mypage-side-item-current {
+  padding: 0 20px;
+}
+
+// 관리자 영역
+.mapage-side-list-admin {
+  padding: 10px 0;
+  background-color: var(--gray20);
+  border-radius: 6px;
+}
+
+.mapage-side-list-admin .mypage-side-item {
+  margin: 0 10px;
+  background-color: var(--gray20);
+}
+
+.mapage-side-list-admin .mypage-side-item-current {
+  margin: 0 10px;
+  background-color: var(--white);
+}
+
+.mapage-side-list-admin-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gray-gray_A1A1A1, #a1a1a1);
+
+  /* [협] GlobalNomad/body-Bold */
+  // font-family: Pretendard;
+  font-size: 16px;
+  // font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 162.5% */
+
+  padding: 10px 20px;
 }
 
 .mypage-side-item {
   display: flex;
+
   // align-items: center;
   // justify-content: center;
   height: 44px;

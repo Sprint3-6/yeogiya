@@ -18,49 +18,57 @@ export default function MypageSidebar() {
 
   // 내 공간 관리
   const myspageAdminLink = `${MYPAGE_BASIC_URL}/admin`;
-  const myspageAdminIcon = `${MYPAGE_BASIC_ICON}/icon-setting.svg`;
+  // const myspageAdminIcon = `${MYPAGE_BASIC_ICON}/icon-setting.svg`;
   const myspageAdminIconHover = `${MYPAGE_BASIC_ICON}/icon-setting-hover.svg`;
 
   // 내 공간 등록
   const myspageAddLink = `${MYPAGE_BASIC_URL}/admin/add`;
-  const myspageAddIcon = `${MYPAGE_BASIC_ICON}/icon-setting.svg`;
+  // const myspageAddIcon = `${MYPAGE_BASIC_ICON}/icon-setting.svg`;
   const myspageAddIconHover = `${MYPAGE_BASIC_ICON}/icon-setting-hover.svg`;
 
   // 예약 현황
   const reservationStatusLink = `${MYPAGE_BASIC_URL}/admin/status`;
   const reservationStatusIcon = `${MYPAGE_BASIC_ICON}/icon-relstatus.svg`;
-  const reservationStatusIconHover = `${MYPAGE_BASIC_ICON}/icon-relstatus-hover.svg`;
+  // const reservationStatusIconHover = `${MYPAGE_BASIC_ICON}/icon-relstatus-hover.svg`;
 
   return (
     <div className="mypage-side-container">
       <MypageProfile />
-
       <div className="mapage-side-list">
-        <MyPageSideList text={'내정보'} link={mypageLink} image={mypageIcon} clickImage={mypageIconHover} />
-        <MyPageSideList
-          text={'예약 내역'}
-          link={reservationLink}
-          image={reservationIcon}
-          clickImage={reservationIconHover}
-        />
-        <MyPageSideList
-          text={'내 공간 관리'}
-          link={myspageAdminLink}
-          image={myspageAdminIcon}
-          clickImage={myspageAdminIconHover}
-        />
-        <MyPageSideList
-          text={'내 공간 등록'}
-          link={myspageAddLink}
-          image={myspageAddIcon}
-          clickImage={myspageAddIconHover}
-        />
-        <MyPageSideList
-          text={'예약 현황'}
-          link={reservationStatusLink}
-          image={reservationStatusIcon}
-          clickImage={reservationStatusIconHover}
-        />
+        <div className="mapage-side-list-user">
+          <MyPageSideList text={'내정보'} link={mypageLink} image={mypageIcon} clickImage={mypageIconHover} />
+          <MyPageSideList
+            text={'예약 내역'}
+            link={reservationLink}
+            image={reservationIcon}
+            clickImage={reservationIconHover}
+          />
+        </div>
+
+        <div className="mapage-side-list-admin">
+          {/* <div className="mapage-side-list-admin-title">
+            <img src={myspageAdminIcon} />
+            관리 모드
+          </div> */}
+          <MyPageSideList
+            text={'예약 현황'}
+            link={reservationStatusLink}
+            image={reservationStatusIcon}
+            clickImage={myspageAdminIconHover}
+          />
+          <MyPageSideList
+            text={'내 공간 등록'}
+            link={myspageAddLink}
+            image={reservationIcon}
+            clickImage={myspageAddIconHover}
+          />
+          <MyPageSideList
+            text={'내 공간 관리'}
+            link={myspageAdminLink}
+            image={reservationIcon}
+            clickImage={myspageAdminIconHover}
+          />
+        </div>
       </div>
     </div>
   );
