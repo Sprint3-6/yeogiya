@@ -8,6 +8,7 @@ import { BASE_URL } from '@/api/constants/url';
 /**
 TODO 체험완료 문구 변경
 TODO 무한스크롤 추가
+TODO 로딩 상태 추가
 */
 
 export default function MyReservation() {
@@ -57,20 +58,38 @@ export default function MyReservation() {
   };
 
   return (
-    <div className="my-reservation-container">
-      <h1>예약 내역</h1>
-      <DropDown id="my-reservation-list" title="예약 상태" onClickItem={handleClickCategory}>
-        <DropdownItem value="all">전체</DropdownItem>
-        <DropdownItem value="pending">예약 완료</DropdownItem>
-        <DropdownItem value="canceled">예약 취소</DropdownItem>
-        <DropdownItem value="confirmed">예약 승인</DropdownItem>
-        <DropdownItem value="declined">예약 거절</DropdownItem>
-        <DropdownItem value="completed">이용 완료</DropdownItem>
-      </DropDown>
-
-      {myReservation.map((reservation) => (
-        <MyReservationCard key={reservation.id} data={reservation} handleCancelReservation={handleCancelReservation} />
-      ))}
-    </div>
+    <main>
+      <div className="my-space-container">
+        <div className="my-space-header">
+          <h1 className="my-space-title">예약 내역</h1>
+          <DropDown id="my-reservation-list" title="예약 상태" onClickItem={handleClickCategory}>
+            <DropdownItem value="all">전체</DropdownItem>
+            <DropdownItem value="pending">예약 완료</DropdownItem>
+            <DropdownItem value="canceled">예약 취소</DropdownItem>
+            <DropdownItem value="confirmed">예약 승인</DropdownItem>
+            <DropdownItem value="declined">예약 거절</DropdownItem>
+            <DropdownItem value="completed">이용 완료</DropdownItem>
+          </DropDown>
+        </div>
+        <div>
+          {myReservation.length > 0 ? (
+            <div className="my-space-list-box">
+              {myReservation.map((reservation) => (
+                <MyReservationCard
+                  key={reservation.id}
+                  data={reservation}
+                  handleCancelReservation={handleCancelReservation}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="not-found-file-box">
+              <img src="/assets/images/not-found-file.svg" alt="관리할 방이 없습니다" />
+              <span>아직 예약한 공간이 없어요</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </main>
   );
 }
