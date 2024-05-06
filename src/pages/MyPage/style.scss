@@ -1,33 +1,4 @@
-.mypage-list {
-  margin-top: 16px;
-
-  // width: 344px;
-
-  // // 태블릿
-  // @media (min-width: 768px) {
-  //   width: 429px;
-  // }
-  // // 데스크탑
-  // @media (min-width: 1024px) {
-  //   width: 792px;
-  // }
-
-  label {
-    color: var(--black-black_1B1B1B, #1b1b1b);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 26px; /* 108.333% */
-    gap: 16px;
-  }
-}
-
-.mypage-list .userinput-container {
-  margin: 0 0 32px 0;
-}
-
-.mypage-list .userform-box {
+.mypage-space {
   width: 344px;
 
   // 태블릿
@@ -38,4 +9,109 @@
   @media (min-width: 1024px) {
     width: 792px;
   }
+}
+
+.mypage-list {
+  margin-top: 16px;
+
+  label {
+    color: var(--black20);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 108.333% */
+    gap: 16px;
+  }
+}
+
+.mypage-space .userinput-container {
+  margin: 0 0 32px 0;
+}
+
+.mypage-space .userform-box {
+  width: 100%;
+}
+
+.my-profile-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  @media (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  h2 {
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+  }
+
+  h3 {
+    margin: 6px 0;
+    font-size: 1.4rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.8rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.my-profile-header-title {
+  display: flex;
+  gap: 10px;
+}
+
+.my-profile-show-Image {
+  border: 0;
+
+  .side-profile {
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+  .side-icon {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    // display: none;
+    // &:hover {
+    //   // width: 100%;
+    //   // height: 100%;
+    // }
+  }
+
+  // 태블릿
+  @media (min-width: 768px) {
+    display: none;
+  }
+  // 데스크탑
+  @media (min-width: 1024px) {
+  }
+}
+.my-profile-header-button .sign-button {
+  display: flex;
+  height: 48px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+  border-radius: 4px;
+  // background: var(--black20, #1b1b1b);
+  // background: var(--black20, red);
+  color: var(--white);
 }
