@@ -1,3 +1,18 @@
+.signin-main,
+.signup-main {
+  background-image: url(/public/assets/images/background-emptyRoom.jpg);
+  background-size: 100% 100%;
+
+  @media (min-width: 768px) {
+    // background-size: contain;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    // background-size: cover;
+  }
+}
+
 .signin-main {
   display: flex;
   flex-direction: column;
@@ -5,6 +20,19 @@
   // justify-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+  // background-image: url(/public/assets/images/background-emptyRoom.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  // 태블릿
+  @media (min-width: 768px) {
+    // background-size: contain;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    // background-size: cover;
+  }
 }
 
 .signin-logo {

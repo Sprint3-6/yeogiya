@@ -52,11 +52,7 @@ export const myInfoEditApi = async (value: myInfoValue) => {
       profileImageUrl: value.profileImageUrl,
       newPassword: value.password,
     });
-
-    console.log('내정보 수정요청값', value);
-
     console.log('내 정보 수정 api', response);
-
     return response;
   } catch (error) {
     const responseError = error as ErrorType;

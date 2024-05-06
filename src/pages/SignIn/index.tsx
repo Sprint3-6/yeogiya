@@ -33,16 +33,14 @@ export default function SignIn() {
     const password: string = value.password || '';
 
     try {
-      // const response = await login(email, password);
       const response = await login(value);
       console.log('로그인 시도', response);
 
       if (response?.status === 201) {
-        console.log('로그인성공선영');
         navigate('/');
         dispatch(setMyInfo(await getMyInfo(email, password)));
       } else {
-        console.log('로그인실패선영');
+        console.log('로그인실패');
       }
 
       console.log('메시지', response);
