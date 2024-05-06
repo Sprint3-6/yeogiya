@@ -22,7 +22,7 @@ const calculateLimit = (deviceType: string | undefined) => {
     case 'tablet':
       return 9;
     default:
-      return 4;
+      return 6;
   }
 };
 
@@ -102,12 +102,6 @@ export default function MainPage() {
 
   return (
     <main className="main-container">
-      메인페이지 입니다.
-      <br />
-      <Link to={'sign-in'}>로그인</Link>
-      <br />
-      <Link to={'sign-up'}>회원가입</Link>
-      <br />
       <Link to={'mypage'}>내정보</Link>
       <br />
       <Link to={'mypage/reservation'}>예약내역</Link>
@@ -122,6 +116,7 @@ export default function MainPage() {
       />
       {data?.activities && (
         <SpaceCardList
+          searchResult={searchResult}
           spaces={data.activities}
           handleClickCategory={handleClickCategory}
           handleSortSpaces={handleSortSpaces}
