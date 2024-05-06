@@ -14,19 +14,8 @@
 .mypage-list {
   margin-top: 16px;
 
-  // width: 344px;
-
-  // // 태블릿
-  // @media (min-width: 768px) {
-  //   width: 429px;
-  // }
-  // // 데스크탑
-  // @media (min-width: 1024px) {
-  //   width: 792px;
-  // }
-
   label {
-    color: var(--black-black_1B1B1B, #1b1b1b);
+    color: var(--black20);
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
@@ -42,18 +31,8 @@
 
 .mypage-space .userform-box {
   width: 100%;
-
-  // // 태블릿
-  // @media (min-width: 768px) {
-  //   width: 429px;
-  // }
-  // // 데스크탑
-  // @media (min-width: 1024px) {
-  //   width: 792px;
-  // }
 }
 
-// 추가
 .my-profile-header {
   display: flex;
   justify-content: space-between;
@@ -65,14 +44,6 @@
   width: 100%;
   margin: 0 auto;
   padding: 0;
-
-  // @media (min-width: 768px) {
-  //   width: 430px;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   width: 792px;
-  // }
 
   h2 {
     font-size: 3.2rem;
@@ -141,32 +112,6 @@
   align-self: stretch;
   border-radius: 4px;
   // background: var(--black20, #1b1b1b);
-  background: var(--black20, red);
-  color: var(--white, #fff);
+  // background: var(--black20, red);
+  color: var(--white);
 }
-
-// .space-management {
-//   margin: 0 auto;
-//   padding: 0;
-
-//   h2 {
-//     font-size: 3.2rem;
-//     font-style: normal;
-//     font-weight: 700;
-//     line-height: normal;
-//     margin: 0;
-//   }
-
-//   h3 {
-//     margin: 6px 0;
-//     font-size: 1.4rem;
-
-//     @media (min-width: 768px) {
-//       font-size: 1.8rem;
-//     }
-
-//     @media (min-width: 1024px) {
-//       font-size: 2rem;
-//     }
-//   }
-// }

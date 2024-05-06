@@ -1,38 +1,19 @@
+// 로그인 & 회원가입 페이지 배경 이미지
 .signin-main,
 .signup-main {
   background-image: url(/public/assets/images/background-emptyRoom.jpg);
   background-size: 100% 100%;
-
-  @media (min-width: 768px) {
-    // background-size: contain;
-  }
-
-  // 데스크탑
-  @media (min-width: 1024px) {
-    // background-size: cover;
-  }
 }
 
 .signin-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-  // background-image: url(/public/assets/images/background-emptyRoom.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  // 태블릿
-  @media (min-width: 768px) {
-    // background-size: contain;
-  }
-
-  // 데스크탑
-  @media (min-width: 1024px) {
-    // background-size: cover;
-  }
 }
 
 .signin-logo {
@@ -41,7 +22,6 @@
   @media (min-width: 768px) {
     margin-bottom: 72px;
   }
-
   // 데스크탑
   @media (min-width: 1024px) {
     margin-bottom: 48px;
@@ -50,9 +30,9 @@
 
 .signin-text {
   margin-top: 24px;
-  color: var(--black-black_333236, #333236);
+  color: var(--black10);
   text-align: center;
-  font-family: Pretendard;
+  // font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -65,8 +45,8 @@
 }
 
 .sign-link {
-  color: var(--green-gray_1b1b1b, #1b1b1b);
-  font-family: Pretendard;
+  color: var(--black20);
+  // font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

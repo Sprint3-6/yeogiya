@@ -13,6 +13,7 @@ import toast from '@/utils/toast';
 
 export default function MyPage() {
   const userData = useAppSelector((state) => state.myInfo);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log('정보 변경됨 useEffect');
@@ -24,47 +25,15 @@ export default function MyPage() {
     passwordCheck: '',
   };
 
-  console.log('유저데이터', userData);
-
-  // const [myInfoValue, setMyInfoValue] = useState({
-  //   nickname: userData.nickname,
-  //   email: userData.email,
-  // });
-
-  // updateInfo(updateInfoValue);
-
-  // useEffect(() => {
-  //   const myInfoGet = async () => {
-  //     try {
-  //       const response = await myInfoGetApi();
-
-  //       setMyInfoValue({
-  //         nickname: response.nickname,
-  //         email: response.email,
-  //         profileImageUrl: response.profileImageUrl,
-  //       });
-  //       console.log('내 정보 조회', response);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   myInfoGet();
-  // }, []);
-
-  const dispatch = useDispatch();
-
   const handleEditMyInfo = async (value: myInfoValue): Promise<void> => {
-    // const email: string = userData.email;
     try {
       const response = await myInfoEditApi(value);
 
       console.log('내 정보 수정 페이지 성공', response);
       if (response?.status === 200) {
-        console.log('내 정보 수정 완료');
         toast.success('내 정보 변경 완료');
         dispatch(setMyInfo(await myInfoGetApi()));
       }
-      // updateMyInfo
     } catch (error) {
       console.log('내 정보 수정 페이지 실패', error);
     }
@@ -77,13 +46,9 @@ export default function MyPage() {
           <div className="my-profile-header">
             <div className="my-profile-header-title">
               <h2>내 정보</h2>
-
-              {/* <Button className="my-profile-show-Image" onClick={handleShowProfile}>
-                <img src={mypageIcon} /> */}
               <div className="my-profile-show-Image">
                 <MypageProfile />
               </div>
-              {/* </Button> */}
             </div>
             <div className="my-profile-header-button">
               <UserButtonItem>저장하기</UserButtonItem>
