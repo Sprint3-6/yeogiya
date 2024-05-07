@@ -37,6 +37,14 @@ export const UserForm = (props: LoginFormProps) => {
       });
     }
 
+    if (id === 'password') {
+      setRequiredValue({
+        passwordCheck: '',
+        ...requiredValue,
+        password: value,
+      });
+    }
+
     if (isErrorCheck) {
       handleError(e);
     }
