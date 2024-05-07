@@ -35,9 +35,7 @@ export const UserForm = (props: LoginFormProps) => {
         ...requiredValue,
         [id]: value,
       });
-    }
-
-    if (id === 'password') {
+    } else if (id === 'password') {
       setRequiredValue({
         passwordCheck: '',
         ...requiredValue,
