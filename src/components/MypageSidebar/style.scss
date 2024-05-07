@@ -80,6 +80,10 @@
   &:hover {
     background: var(--black20);
   }
+  input {
+    display: none;
+    visibility: hidden;
+  }
   label {
     display: flex;
 

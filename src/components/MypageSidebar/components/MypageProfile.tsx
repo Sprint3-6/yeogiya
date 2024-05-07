@@ -82,7 +82,7 @@ export const MypageProfile: FC = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                style={{ display: 'none', visibility: 'hidden' }}
+                // style={{ display: 'none', visibility: 'hidden' }}
               />
               <img src="/assets/icons/icon-pen.svg" />
             </div>
