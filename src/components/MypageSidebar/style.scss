@@ -8,14 +8,12 @@
   align-items: flex-start;
   gap: 24px;
   top: 94px;
-  // height: 100%;
 
   border-radius: 12px;
-  border: 1px solid var(--gray30);
+  border: 1px solid var(--gray40);
   background: var(--white);
   box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 
-  // background-color: green;
   // 태블릿
   @media (min-width: 768px) {
     width: 251px;
@@ -24,14 +22,8 @@
   // 데스크탑
   @media (min-width: 1024px) {
     width: 384px;
-    // top: 142 px;
   }
 }
-
-// .mypage-side-container > * {
-//   height: 100%;
-//   border: 1px solid red;
-// }
 
 .mypage-side-profile-container {
   display: flex;
@@ -39,7 +31,6 @@
   align-items: flex-start;
   gap: 227px;
   align-self: stretch;
-  // height: 160px;
   height: auto;
 }
 
@@ -54,7 +45,6 @@
 
 .side-profile {
   flex-shrink: 0;
-  // z-index: 999;
 
   border-radius: 160px;
   background:
@@ -68,7 +58,6 @@
 
   img {
     width: 100%;
-    // height: 100%;
     object-fit: cover;
   }
 }
@@ -83,8 +72,6 @@
 
   bottom: 0px;
   right: 0px;
-  // width: 100%;
-  // height: 100%;
   overflow: initial;
 
   border-radius: 45px;
@@ -98,13 +85,10 @@
 
     width: 100%;
     height: 100%;
-    // background-color: green;
 
     img {
       width: 100%;
       height: 100%;
-      // background-color: red;
-      // background-size: auto;
     }
   }
 }
@@ -113,24 +97,11 @@
 .mapage-side-list-user,
 .mapage-side-list-admin {
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   flex-direction: column;
-  // align-items: flex-start;
   gap: 8px;
   align-self: stretch;
   height: auto;
-  // background-color: black;
 }
-
-// 유저 영역
-// .mapage-side-list-user {
-//   // margin: 0 10px;
-//   // display: flex;
-//   // flex-direction: column;
-//   // gap: 8px;
-//   // background-color: green;
-// }
 
 .mapage-side-list-user .mypage-side-item {
   padding: 0 20px;
@@ -143,26 +114,24 @@
 // 관리자 영역
 .mapage-side-list-admin {
   padding: 10px 0;
-  // background-color: var(--gray20);
   border-radius: 6px;
 }
 
 .mapage-side-list-admin .mypage-side-item {
   margin: 0 10px;
-  // background-color: var(--gray20);
 }
 
 .mapage-side-list-admin .mypage-side-item-current {
   margin: 0 10px;
   background-color: var(--gray20);
-  // background-color: var(--white);
 }
 
 .mapage-side-list-admin-title {
   display: flex;
   align-items: center;
   gap: 14px;
-  color: var(--gray-gray_A1A1A1, #a1a1a1);
+  // color: var(--gray-gray_A1A1A1, #a1a1a1);
+  color: var(--gray30);
 
   /* [협] GlobalNomad/body-Bold */
   // font-family: Pretendard;
@@ -227,11 +196,11 @@
 }
 
 .mypage-side-item-text {
-  color: var(--gray-gray_A1A1A1, #a1a1a1);
+  color: var(--gray50);
 
   /* [협] GlobalNomad/body-Bold */
   font-size: 16px;
-  font-style: normal;
+  // font-style: normal;
   font-weight: 700;
   line-height: 26px; /* 162.5% */
 }

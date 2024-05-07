@@ -31,9 +31,7 @@
   align-items: flex-start;
   gap: 8px;
   color: var(--black20);
-  // font-family: Pretendard;
   font-size: 16px;
-  // font-style: normal;
   font-weight: 400;
   line-height: 26px; /* 162.5% */
 }
@@ -47,7 +45,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 6px;
-  border: 1px solid var(--gray60);
+  border: 1px solid var(--gray50);
   background: var(--white);
 
   &:focus-within {
@@ -56,7 +54,6 @@
 
   input {
     color: var(--black20);
-    // font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -75,7 +72,6 @@
 
 .userinput-error {
   color: var(--red40);
-  // font-family: Pretendard;
   font-size: 13px;
   // font-style: normal;
   font-weight: 400;
@@ -102,5 +98,10 @@
 
   &:disabled {
     background-color: gray;
+    border: 0;
+    &:hover {
+      color: var(--white);
+      border: 0;
+    }
   }
 }
