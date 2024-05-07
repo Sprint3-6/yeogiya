@@ -3,7 +3,6 @@
 .signup-main {
   background-image: url(../assets/images/background-emptyRoom.jpg);
   background-size: 100% 100%;
-  // background: url(../assets/images/background-emptyRoom.jpg) no-repeat center center/cover;
   padding: 50px 0;
 }
 
@@ -12,10 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // height: 100%;
   width: 100%;
-  // background-size: cover;
-  // background-repeat: no-repeat;
 }
 
 .signin-logo {
@@ -34,8 +30,7 @@
   margin-top: 24px;
   color: var(--black10);
   text-align: center;
-  // font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -48,8 +43,7 @@
 
 .sign-link {
   color: var(--black20);
-  // font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

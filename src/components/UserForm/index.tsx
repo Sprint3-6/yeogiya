@@ -30,7 +30,6 @@ export const UserForm = (props: LoginFormProps) => {
     });
 
     // 필수값일 경우
-
     if (id in requiredValue) {
       setRequiredValue({
         ...requiredValue,
@@ -73,7 +72,6 @@ export const UserForm = (props: LoginFormProps) => {
   };
 
   const handleClickForm = () => {
-    console.log('로그인컴포넌트 버튼 클릭함', inputValue);
     onClickForm(inputValue);
     // 버튼 클릭 후 인풋값 비어주기
     setInputValue({});

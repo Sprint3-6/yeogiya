@@ -31,23 +31,17 @@ export default function SignIn() {
   const dispatch = useDispatch();
 
   const handleSignIn = async (value: InputValue): Promise<void> => {
-    console.log('로그인페이지 함수', SignInValue);
-
     const email: string = value.email || '';
     const password: string = value.password || '';
 
     try {
       const response = await login(value);
-      console.log('로그인 시도', response);
-
       if (response?.status === 201) {
         navigate('/');
         dispatch(setMyInfo(await getMyInfo(email, password)));
       } else {
         console.log('로그인실패');
       }
-
-      console.log('메시지', response);
     } catch (error) {
       console.log('로그인 실패');
     }

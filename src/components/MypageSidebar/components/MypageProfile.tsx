@@ -45,26 +45,21 @@ export const MypageProfile: FC = () => {
       const response = await myInfoEditApi(newProfile);
 
       if (response?.status === 200) {
-        console.log('프로필 변경 완료');
         dispatch(setMyInfo(await myInfoGetApi()));
       }
       closeModal();
-
-      console.log('프로필 이미지 변경', response);
     } catch (error) {
       console.log('프로필변경시도 실패');
     }
   };
 
+  // 프로필 이미지 변경 취소시
   const handleProfileUploadCancel = () => {
     setIsPrevProfile(null);
     setUploadProfile(null);
-
-    console.log('프로필 이미지 변경 취소');
     closeModal();
     // 모달 외부 눌렀을 때 변경 취소 함수 실행
   };
-  // "/assets/images/profile-image.svg"
 
   useEffect(() => {
     if (userData.profileImageUrl !== null) {
@@ -79,16 +74,18 @@ export const MypageProfile: FC = () => {
           <img src={isPrevProfile ? isPrevProfile : isProfile} alt="프로필" />
         </div>
 
-        <div className="side-icon">
+        <div className="side-icon-container">
           <label htmlFor="profile">
-            <input
-              id="profile"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-            <img src="/assets/icons/icon-pen.svg" />
+            <div className="side-icon">
+              <input
+                id="profile"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+              <img src="/assets/icons/icon-pen.svg" />
+            </div>
           </label>
         </div>
       </div>

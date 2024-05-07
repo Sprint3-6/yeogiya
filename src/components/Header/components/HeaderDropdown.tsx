@@ -18,8 +18,6 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(nickname);
-
   // 다시 한 번 로그아웃 할건지 묻는 모달
   const handleLogoutCheck = (value: DropDownValue) => {
     if (value === 'logout') {

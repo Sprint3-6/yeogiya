@@ -37,8 +37,6 @@ export default function MyPage() {
     }
     try {
       const response = await myInfoEditApi(value);
-
-      console.log('내 정보 수정 페이지 성공', response);
       if (response?.status === 200) {
         toast.success('내 정보 변경 완료');
         dispatch(setMyInfo(await myInfoGetApi()));
