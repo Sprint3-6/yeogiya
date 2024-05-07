@@ -1,13 +1,15 @@
 .search-bar-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  margin-top: -130px;
   padding: 16px 24px;
   gap: 15px;
   border-radius: 10px 10px 0 0;
-  background: var(--gray30);
+  background: var(--gray10);
   box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 
   @media (min-width: 768px) {
@@ -79,6 +81,12 @@
     font-size: 1.6rem;
     font-weight: 700;
   }
+}
+
+.search-bar-delete-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* WebKit 기반 브라우저에서 input[type="search"]의 "x" 버튼을 없앱니다. */
