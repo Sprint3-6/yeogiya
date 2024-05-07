@@ -1,0 +1,21 @@
+.my-reservation-button {
+  padding: 5px 10px;
+  height: 30px;
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    padding: 10px 20px;
+    height: 30px;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 1024px) {
+    height: 40px;
+  }
+}
+
+.no-margin {
+  margin: 0;
+}

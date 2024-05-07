@@ -1,0 +1,46 @@
+.my-notifications-modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--gray30);
+  padding: 12px;
+  border-radius: 5px;
+  gap: 14px;
+}
+
+.my-notifications-modal-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+
+.my-notifications-modal-alert {
+  display: flex;
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  margin-left: 3px;
+  border-radius: 100%;
+}
+
+.my-notifications-modal-content {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.my-notifications-modal-time {
+  font-size: 1.2rem;
+}
+
+.red-background {
+  background-color: var(--red40);
+}
+
+.blue-background {
+  background-color: var(--blue30);
+}
