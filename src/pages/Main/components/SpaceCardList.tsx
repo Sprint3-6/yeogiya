@@ -27,25 +27,41 @@ export default function SpaceCardList({
     handleClickCategory(category);
   };
 
-  //TODO 드롭다운 밸류 설정
+  const renderCategoryButtons = () => {
+    return CATEGORIES.map((category) => {
+      const isActive = category === selectedCategory; // 선택된 카테고리인지 확인
+
+      return (
+        <Button
+          key={category}
+          // 선택된 카테고리일 경우 추가 클래스를 부여하고 disabled 상태 설정
+          className={isActive ? 'button-black' : 'button-white'}
+          onClick={() => handleCategoryClick(category)}
+          disabled={isActive} // 선택된 카테고리의 버튼은 비활성화
+        >
+          {categoryFilter(category)}
+        </Button>
+      );
+    });
+  };
+
   return (
     <section className="main-space-card-list-container">
       {/* searchValue가 없을 때만 드롭다운과 카테고리 버튼을 렌더링 */}
-      {searchResult === '' && (
-        <div className="space-categories-wrapper">
-          {CATEGORIES.map((category) => (
-            <Button key={category} className="button-white" onClick={() => handleCategoryClick(category)}>
-              {categoryFilter(category)}
-            </Button>
-          ))}
-        </div>
-      )}
+      {searchResult === '' && <div className="space-categories-wrapper">{renderCategoryButtons()}</div>}
       {/* 검색어가 있으면 검색어를, 그렇지 않으면 카테고리 이름을 표시 */}
       <div className="space-list-selected-wrapper">
         {searchResult !== '' ? (
           <div className="space-list-search-result">
-            {searchResult}
-            <span>으로 검색한 결과입니다</span>
+            <div className="space-list-search-result-word">
+              <h3>{searchResult}</h3>
+              <p>으로 검색한 결과입니다</p>
+            </div>
+            <div className="space-list-search-result-count">
+              <span>총 </span>
+              <span className="highlighted-count">{spaces.length}</span>
+              <span>개의 공간이 있습니다</span>
+            </div>
           </div>
         ) : (
           <>

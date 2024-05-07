@@ -1,6 +1,6 @@
 .main-space-card-list-container {
   width: 100%;
-  padding: 16px;
+  padding: 0 16px;
 }
 
 .space-card-list-container {
@@ -31,17 +31,35 @@
 .space-list-selected-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 35px;
   font-size: 2.8rem;
   font-weight: 700;
 
+  p {
+    font-weight: 400;
+  }
+
   span {
+    font-size: 1.6rem;
     font-weight: 400;
   }
 }
 
 .space-list-search-result {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
+}
+
+.space-list-search-result-word {
+  display: flex;
+  align-items: center;
+}
+
+.space-list-search-result-count .highlighted-count {
+  font-weight: 700;
+  color: var(--blue30);
 }
 
 .space-list-sort-dropdown {
