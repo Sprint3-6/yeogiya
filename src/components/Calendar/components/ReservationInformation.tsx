@@ -106,7 +106,7 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
                 />
               ))}
               <div className="reservation-information-top" onClick={scrollToTop}>
-                <img src="/assets/icons/icon-top.svg" alt="위로 가기" />
+                <img src="/assets/icons/icon-top.gif" alt="위로 가기" />
               </div>
               {totalCount > 1 && <div className="shadow-box"></div>}
             </div>
