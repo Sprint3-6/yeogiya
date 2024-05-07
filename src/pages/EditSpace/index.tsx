@@ -1,10 +1,10 @@
-import TitleInput from '../AddSpace/comnponents/TitleInput';
-import DescriptionInput from '../AddSpace/comnponents/DescriptionInput';
-import PriceInput from '../AddSpace/comnponents/PriceInput';
-import KakaoPostSearch from '../AddSpace/comnponents/KakaoPostSearch';
-import ImageUploader from '../AddSpace/comnponents/ImageUploader';
-import CategoryDropdown from '../AddSpace/comnponents/CategoryDropdown';
-import Schedules from '../AddSpace/comnponents/Schdules';
+import TitleInput from '../AddSpace/components/TitleInput';
+import DescriptionInput from '../AddSpace/components/DescriptionInput';
+import PriceInput from '../AddSpace/components/PriceInput';
+import KakaoPostSearch from '../AddSpace/components/KakaoPostSearch';
+import ImageUploader from '../AddSpace/components/ImageUploader';
+import CategoryDropdown from '../AddSpace/components/CategoryDropdown';
+import Schedules from '../AddSpace/components/Schdules';
 import './styles.scss';
 import useEditSpaceForm from '@/hooks/useEditSpaceForm';
 
