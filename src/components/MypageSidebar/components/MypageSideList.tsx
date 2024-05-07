@@ -39,9 +39,7 @@ export const MyPageSideList = ({ image, clickImage, link, text }: mypagesideProp
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="mypage-side-item-image">
-          <img src={isIcon} alt={text} />
-        </div>
+        <div className="mypage-side-item-image">{isIcon && <img src={isIcon} alt={text} />}</div>
         <div className="mypage-side-item-text">{text}</div>
       </div>
     </Link>

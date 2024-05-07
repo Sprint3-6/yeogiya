@@ -84,24 +84,38 @@ export const UserForm = (props: LoginFormProps) => {
     inputRef: React.MutableRefObject<HTMLInputElement | null>,
   ) => {
     const key: string = e.key;
-    const currentInput: string | undefined = inputRef.current?.id;
+    const currentInput: string = inputRef.current?.id ?? '';
 
-    if (key === 'Enter') {
+    if (key === 'Enter' || key === 'ArrowLeft' || key === 'ArrowRight') {
       const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.userinput-box input');
       const inputsValue: string[] = Array.from(inputs)
         .filter((input) => !input.disabled)
         .map((input) => input.id);
       const currentIndex: number = inputsValue.findIndex((input: string) => input === currentInput);
-      console.log(inputs[currentIndex].disabled);
-      if (currentIndex === inputsValue.length - 1) {
-        handleClickForm();
-      } else {
-        const nextIndex = currentIndex + 1;
-        const nextValue = inputsValue[nextIndex];
-        console.log('다음값', nextValue);
-        const currentValue = document.getElementById(nextValue);
-        if (currentValue) {
-          currentValue.focus();
+      // Enter or 오른쪽 화살표 눌렀을 때
+      if (key === 'Enter' || key === 'ArrowRight') {
+        if (currentIndex === inputsValue.length - 1) {
+          handleClickForm();
+        } else {
+          const nextIndex = currentIndex + 1;
+          const nextValue = inputsValue[nextIndex];
+          const currentValue = document.getElementById(nextValue);
+          if (currentValue) {
+            currentValue.focus();
+          }
+        }
+      }
+      // 왼쪽 화살표 눌렀을 때
+      if (key === 'ArrowLeft') {
+        if (currentIndex === 0) {
+          return;
+        } else {
+          const nextIndex = currentIndex - 1;
+          const nextValue = inputsValue[nextIndex];
+          const currentValue = document.getElementById(nextValue);
+          if (currentValue) {
+            currentValue.focus();
+          }
         }
       }
     }

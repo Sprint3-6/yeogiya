@@ -65,7 +65,7 @@ export default function SignIn() {
         <UserInputItem id="password" type="password" text="비밀번호를 입력해 주세요">
           비밀번호
         </UserInputItem>
-        <UserButtonItem>로그인 버튼</UserButtonItem>
+        <UserButtonItem>로그인</UserButtonItem>
       </UserForm>
       <div className="signin-text">
         회원이 아니신가요?{' '}
