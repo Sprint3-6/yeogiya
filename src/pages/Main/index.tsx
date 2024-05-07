@@ -101,7 +101,7 @@ export default function MainPage() {
   }, [deviceType]);
 
   return (
-    <main className="main-container">
+    <div className="main-container">
       <SearchBar
         searchValue={searchValue}
         handleSearchText={handleSearchText}
@@ -116,6 +116,6 @@ export default function MainPage() {
         />
       )}
       <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
-    </main>
+    </div>
   );
 }
