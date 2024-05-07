@@ -18,8 +18,6 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(nickname);
-
   // 다시 한 번 로그아웃 할건지 묻는 모달
   const handleLogoutCheck = (value: DropDownValue) => {
     if (value === 'logout') {
@@ -56,10 +54,16 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
       </div>
       <Modal name="logout-checking">
         <div className="logout-checking-modal">
-          진짜 로그아웃 하실건가요?
+          <div className="logout-checking-modal-title">
+            <h3>진짜 로그아웃 하실건가요?</h3>
+          </div>
           <div className="logout-checking-modal-button">
-            <Button onClick={handleLogout}>로그아웃</Button>
-            <Button onClick={handleLogoutCancel}>취소</Button>
+            <Button onClick={handleLogout} className="button-black">
+              로그아웃
+            </Button>
+            <Button onClick={handleLogoutCancel} className="button-white">
+              취소
+            </Button>
           </div>
         </div>
       </Modal>

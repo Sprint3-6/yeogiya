@@ -9,12 +9,14 @@ export interface LoginItem extends InputHTMLAttributes<HTMLInputElement> {
 
 export interface InputValue {
   email?: string;
-  nickname?: string;
-  password?: string;
+  nickname?: string | null;
+  password?: string | null;
   passwordCheck?: string;
+  [key: string]: string | null | undefined;
 }
 
 export interface LoginFormProps {
+  requiredValue: InputValue;
   value: InputValue;
   onClickForm: (value: InputValue) => void;
   children: React.ReactNode;
@@ -23,6 +25,10 @@ export interface LoginFormProps {
 export interface LoginContextProps {
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleError: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown: (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    inputRef: React.MutableRefObject<HTMLInputElement | null>,
+  ) => void;
   handleClickForm: () => void;
   isValid: boolean;
   inputValue: InputValue;
