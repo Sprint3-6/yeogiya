@@ -2,7 +2,7 @@ import { Schedule } from '@/api/types/myActivities';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 import './style.scss';
 
 interface DateInput extends InputHTMLAttributes<HTMLInputElement> {
@@ -13,8 +13,26 @@ interface DateInput extends InputHTMLAttributes<HTMLInputElement> {
 export default function DateInput({ preViewValue, setPreViewValue }: DateInput) {
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLLabelElement>(null);
   const openCalendar = () => {
     setIsOpenCalendar((pre) => !pre);
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      calendarRef.current &&
+      !calendarRef.current.contains(event.target as Node) &&
+      !labelRef.current?.contains(event.target as Node)
+    ) {
+      setIsOpenCalendar(false);
+    }
   };
   const handleDateChange = (date: Date) => {
     const formattedDate = format(date, 'yyyy-MM-dd');
@@ -30,7 +48,7 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
   return (
     <div className="calendar-box">
       <div className="calendar-input-title">날짜</div>
-      <label className="calendar-label" htmlFor="date-input">
+      <label ref={labelRef} className="calendar-label" htmlFor="date-input">
         <input
           className="calendar-input"
           value={preViewValue.date}
@@ -42,7 +60,7 @@ export default function DateInput({ preViewValue, setPreViewValue }: DateInput) 
         <img className="calendar-icon-img" src="/assets/icons/icon-calendar-minimalistic.svg" alt="달력 불러오기" />
       </label>
       {isOpenCalendar && (
-        <div className="calendar-popup-box">
+        <div className="calendar-popup-box" ref={calendarRef}>
           <Calendar
             onChange={handleDateChange} // 날짜 클릭했을 때 동작하는 핸들러
             onChangeMonth={handleMonthChange}

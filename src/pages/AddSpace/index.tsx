@@ -1,4 +1,4 @@
-import AddPlaceForm from './comnponents/AddPlaceForm';
+import AddPlaceForm from './components/AddPlaceForm';
 
 export default function AddSpace() {
   return (

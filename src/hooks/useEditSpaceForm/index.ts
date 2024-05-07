@@ -9,6 +9,7 @@ import removeCommas from '@/utils/removeCommas';
 import getSpaceDetail, { SchedulePlusId, SpaceDetail } from '@/api/getSpaceDetail';
 import { editMyActivities } from '@/api/myActivitiesApi';
 import { PlaceInputValue } from '@/pages/AddSpace/types';
+import { ErrorType } from '@/api/types/axiosErrorType';
 
 interface UrlSubData {
   id: number;
@@ -61,7 +62,7 @@ export default function useEditSpaceForm() {
     getValues,
   } = useForm<PlaceInputValue>({ mode: 'onSubmit' });
 
-  const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
+  const onSubmit: SubmitHandler<PlaceInputValue> = async (data) => {
     setIsSubmitted(true);
     if (!category) {
       toast.warning('카테고리를 선택해주세요!');
@@ -82,10 +83,14 @@ export default function useEditSpaceForm() {
         subImageIdsToRemove: findMissingImgIds(preSubimages.current, subimages),
         scheduleIdsToRemove: findMissingScheduleIds(preSchedules.current, schedules),
       };
-      editMyActivities(id!, body).then(() => {
+      try {
+        await editMyActivities(id!, body);
         toast.success('수정이 되었습니다!');
         navigate('/mypage/admin');
-      });
+      } catch (err) {
+        const error = err as ErrorType;
+        toast.error(error.response.data.message);
+      }
     }
     return;
   };

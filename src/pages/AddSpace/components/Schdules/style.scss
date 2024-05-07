@@ -11,13 +11,19 @@
 
   input {
     display: flex;
-    border: 1px solid var(--gray60, #79747e);
+    border: 1px solid var(--gray50);
     width: 100%;
     height: 100%;
     padding: 8px 16px;
     border-radius: 4px;
     justify-content: center;
     align-items: center;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      border: 2px solid black;
+    }
   }
 }
 
@@ -111,8 +117,13 @@
     width: 140px;
   }
   .dropdown-select {
+    border: 1px solid var(--gray50);
+    box-shadow: 0 0 0 0;
     height: 100%;
     justify-content: center;
+    &:active {
+      border: 2px solid black;
+    }
   }
   .dropdown-list {
     max-height: 300px;

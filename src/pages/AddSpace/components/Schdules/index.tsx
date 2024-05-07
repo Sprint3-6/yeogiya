@@ -6,6 +6,7 @@ import TimeDropdown from './TimeDropdown';
 
 import toast from '@/utils/toast';
 import { compareTime, isNonOverlappingSchedule } from '@/utils/compareTime';
+import { DropDownValue } from '@/components/Dropdown';
 
 interface SchedulesProps {
   schedules: Schedule[];
@@ -15,12 +16,16 @@ interface SchedulesProps {
 export default function Schedules({ schedules, setSchedules }: SchedulesProps) {
   const [inputValue, setInputValue] = useState<Schedule>({ date: '', startTime: '00:00', endTime: '00:00' });
 
-  const handleStartTime = (value: string) => {
-    setInputValue((prev) => ({ ...prev, startTime: value }));
+  const handleStartTime = (value: DropDownValue) => {
+    if (typeof value === 'string') {
+      setInputValue((prev) => ({ ...prev, startTime: value }));
+    }
   };
 
-  const handleEndTime = (value: string) => {
-    setInputValue((prev) => ({ ...prev, endTime: value }));
+  const handleEndTime = (value: DropDownValue) => {
+    if (typeof value === 'string') {
+      setInputValue((prev) => ({ ...prev, endTime: value }));
+    }
   };
 
   const handleScheduleButton = () => {
