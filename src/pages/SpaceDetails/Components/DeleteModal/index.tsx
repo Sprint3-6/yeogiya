@@ -30,7 +30,7 @@ const DeleteModal = ({ closeModal, title, id }: DeleteModalType) => {
       <div>
         <h3>정말 삭제하시겠습니까?</h3>
         <p>
-          <span className="delete-modal-title">'{title}'</span>의 <br />
+          <span className="delete-modal-title">[{title}]</span>의 <br />
           모든 데이터가 <span className="delete-modal-special">사라집니다.</span>
         </p>
       </div>

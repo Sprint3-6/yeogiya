@@ -183,11 +183,15 @@
 }
 
 .profile-change-modal {
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  width: 100%;
+  width: 350px;
   height: 100%;
-  padding: 20px;
+  padding: 40px 20px;
+  gap: 10px;
   border-radius: 6px;
+  align-items: center;
 }
 
 .profile-change-modal-title {
@@ -196,6 +200,6 @@
 
 .profile-change-modal-button {
   display: flex;
-  // flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }
