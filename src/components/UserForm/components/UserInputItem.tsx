@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { LoginContext } from '@/components/UserForm';
 import '../style.scss';
 import { LoginItem } from '../types';
 
 export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem) => {
-  const { handleInput, handleError, inputValue, error } = useContext(LoginContext);
+  const { handleInput, handleError, handleKeyDown, inputValue, error } = useContext(LoginContext);
 
   const [isType, setIsType] = useState(type);
   const noEyeImage = '/assets/icons/icon-eye-no.svg';
@@ -12,6 +12,7 @@ export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem)
 
   const [isPassword, setIsPassword] = useState(true);
   const [isEye, setIsEye] = useState(noEyeImage);
+  const inputRef = useRef(null);
 
   const handleIsPassword = () => {
     setIsPassword(!isPassword);
@@ -32,10 +33,12 @@ export const UserInputItem = ({ children, id, type, text, ...props }: LoginItem)
           <input
             id={id}
             type={isType}
-            value={inputValue[id as keyof typeof inputValue]}
+            value={inputValue[id as keyof typeof inputValue] || ''}
             placeholder={text}
             onChange={(e) => handleInput(e)}
             onBlur={(e) => handleError(e)}
+            onKeyDown={(e) => handleKeyDown(e, inputRef)}
+            ref={inputRef}
             {...props}
           />
           {type === 'password' ? <img src={isEye} alt="비밀번호 표시" onClick={() => handleIsPassword()} /> : null}

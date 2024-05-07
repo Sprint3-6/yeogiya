@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
-interface mypagesideProps {
-  image: string;
-  clickImage: string;
-  link: string;
-  text: string;
-}
+import { mypagesideProps } from '../types';
 
 export const MyPageSideList = ({ image, clickImage, link, text }: mypagesideProps) => {
   const [isIcon, setIsIcon] = useState(image);
@@ -23,8 +17,6 @@ export const MyPageSideList = ({ image, clickImage, link, text }: mypagesideProp
   };
 
   useEffect(() => {
-    console.log('현재 위치', location.pathname);
-    console.log('현재 링크', link);
     if (`/${link}` === location.pathname) {
       setIsIcon(clickImage);
     } else {
@@ -39,9 +31,7 @@ export const MyPageSideList = ({ image, clickImage, link, text }: mypagesideProp
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="mypage-side-item-image">
-          <img src={isIcon} alt={text} />
-        </div>
+        <div className="mypage-side-item-image">{isIcon && <img src={isIcon} alt={text} />}</div>
         <div className="mypage-side-item-text">{text}</div>
       </div>
     </Link>

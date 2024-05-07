@@ -1,3 +1,3 @@
 export interface LoadingProps {
-  type: string;
+  type?: string;
 }

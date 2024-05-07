@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './style.scss';
 import { useState, useEffect } from 'react';
 import instance from '@/api/instance/defaultInstance';
@@ -9,6 +8,7 @@ import Pagination from '@/components/Pagination';
 import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
 import SearchBar from './components/SearchBar';
 import { FormEvent, MouseEvent, ChangeEvent } from 'react';
+import { DropDownValue } from '@/components/Dropdown';
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -22,7 +22,7 @@ const calculateLimit = (deviceType: string | undefined) => {
     case 'tablet':
       return 9;
     default:
-      return 4;
+      return 6;
   }
 };
 
@@ -40,7 +40,7 @@ export default function MainPage() {
     setSelectedCategory((prev) => (prev === name ? '' : name));
   };
 
-  const handleSortSpaces = (value: string) => {
+  const handleSortSpaces = (value: DropDownValue) => {
     if (value === '') {
       return;
     } else if (value === 'high') {
@@ -102,19 +102,6 @@ export default function MainPage() {
 
   return (
     <main className="main-container">
-      메인페이지 입니다.
-      <br />
-      <Link to={'sign-in'}>로그인</Link>
-      <br />
-      <Link to={'sign-up'}>회원가입</Link>
-      <br />
-      <Link to={'mypage'}>내정보</Link>
-      <br />
-      <Link to={'mypage/reservation'}>예약내역</Link>
-      <br />
-      <Link to={'mypage/admin/status'}>예약현황</Link>
-      <br />
-      <Link to={'mypage/admin'}>내 공간 관리</Link>
       <SearchBar
         searchValue={searchValue}
         handleSearchText={handleSearchText}
@@ -122,6 +109,7 @@ export default function MainPage() {
       />
       {data?.activities && (
         <SpaceCardList
+          searchResult={searchResult}
           spaces={data.activities}
           handleClickCategory={handleClickCategory}
           handleSortSpaces={handleSortSpaces}

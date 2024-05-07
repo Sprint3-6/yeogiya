@@ -8,16 +8,10 @@ import { useModal } from '@/hooks/useModal/useModal';
 import ErrorModal from '@/pages/ErrorModal';
 import { translateMap } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Button from '../../Button';
 import './reservationInformation.scss';
 import toast from '@/utils/toast';
-
-interface HistoryProps {
-  activityId: number;
-  reservation: ReservationMoreInfo;
-  selectedTab: UpdateReservationStatus;
-}
 
 export default function ReservationInformation({ chip, selectedDate, activityId }: ReservationInformationProps) {
   const [selectedTab, setSelectedTab] = useState<UpdateReservationStatus>(
@@ -25,7 +19,10 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
   ); // 예약 상태 선택
   const { data: scheduleList } = useGetReservedScheduleQuery({ activityId, date: selectedDate }); // 내 체험 날짜별 예약 정보 조회 엔드포인트
   const [getTimeReservations, { data, originalArgs }] = useLazyGetTimeReservationsQuery(); // 내 체험 예약 시간대별 예약 내역 조회
-  const reservationList = originalArgs?.status === selectedTab ? data : { reservations: [], totalCount: 0 };
+  const { reservations, totalCount } = (originalArgs?.status === selectedTab && data) || {
+    reservations: [] as ReservationMoreInfo[],
+    totalCount: 0,
+  };
 
   const handleTabClick = (tab: UpdateReservationStatus) => {
     setSelectedTab(tab);
@@ -37,6 +34,15 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
       scheduleId: scheduleId as number,
       status: selectedTab,
     });
+  };
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTop = () => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = 0;
+    }
   };
 
   return (
@@ -77,24 +83,40 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
               arrowDown={'∨'}
               onClickItem={onClickTimeItem}
             >
-              {scheduleList?.map((reservation) => (
-                <DropdownItem key={`${selectedTab}-${reservation.scheduleId}`} value={reservation.scheduleId}>
-                  {selectedTab}-{reservation.scheduleId} {reservation.startTime + ' ~ ' + reservation.endTime}
-                </DropdownItem>
-              ))}
+              {scheduleList
+                ?.filter((schedule) => schedule.count[selectedTab] > 0)
+                .map((schedule) => (
+                  <DropdownItem key={`${selectedTab}-${schedule.scheduleId}`} value={schedule.scheduleId}>
+                    {schedule.startTime + ' ~ ' + schedule.endTime + ' / ' + schedule.count[selectedTab] + '건'}
+                  </DropdownItem>
+                ))}
             </DropDown>
           </div>
           <div className="reservation-information-content-item">예약 내역</div>
-          {reservationList?.reservations.map((reservation) => (
-            <History activityId={activityId} key={reservation.id} reservation={reservation} selectedTab={selectedTab} />
-          ))}
-          {reservationList?.reservations.length === 0 && '예약 내역이 없습니다.'}
+          {reservations.length === 0 ? (
+            '예약 내역이 없습니다.'
+          ) : (
+            <div className="reservation-information-list-box" ref={containerRef}>
+              {reservations.map((reservation) => (
+                <History
+                  activityId={activityId}
+                  key={reservation.id}
+                  reservation={reservation}
+                  selectedTab={selectedTab}
+                />
+              ))}
+              <div className="reservation-information-top" onClick={scrollToTop}>
+                <img src="/assets/icons/icon-top.gif" alt="위로 가기" />
+              </div>
+              {totalCount > 1 && <div className="shadow-box"></div>}
+            </div>
+          )}
         </div>
       </div>
       <div className="reservation-information-content-reservation-status">
         <div className="reservation-information-content-item">예약 현황</div>
         <div className="reservation-information-content-item">
-          {reservationList?.totalCount}개 / {scheduleList?.reduce((prev, cur) => prev + cur.count[selectedTab], 0)}개
+          {totalCount}건 / {scheduleList?.reduce((prev, cur) => prev + cur.count[selectedTab], 0)}건
         </div>
       </div>
     </div>
@@ -143,7 +165,6 @@ function History({ activityId, reservation, selectedTab }: HistoryProps) {
             type="button"
             className="button-black button-booking-approve"
             onClick={() => handleApproveClick(reservation.id)}
-            onClose={closeModal}
           >
             승인하기
           </Button>
@@ -151,7 +172,6 @@ function History({ activityId, reservation, selectedTab }: HistoryProps) {
             type="button"
             className="button-white button-booking-reject"
             onClick={() => handleRejectClick(reservation.id)}
-            onClose={closeModal}
           >
             거절하기
           </Button>

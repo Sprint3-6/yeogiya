@@ -13,6 +13,7 @@ export const reservationStatusApi = createApi({
   baseQuery: axiosBaseQuery({ baseUrl: BASE_URL }), // API의 기본 URL 설정
   reducerPath: 'reservationStatusApi',
   refetchOnMountOrArgChange: true, // 컴포넌트가 마운트되거나 매개변수가 변경될 때마다 새로고침
+  tagTypes: ['Reservation'],
   // 각각의 query/mutation 동작을 여기서 정의합니다.
   endpoints: (builder) => ({
     getActivityList: builder.query<MyActivities, void>({
@@ -31,6 +32,7 @@ export const reservationStatusApi = createApi({
     getTimeReservations: builder.query<TimeReservationList, TimeReservationParams>({
       query: ({ activityId, scheduleId, status }) =>
         `my-activities/${activityId}/reservations?scheduleId=${scheduleId}&status=${status}`, // 내 체험 예약 시간대별 예약 내역 조회 엔드포인트
+      providesTags: ['Reservation'],
     }),
     // mutation은 데이터 조작을 정의합니다. POST, PUT, DELETE, PATCH 등의 요청을 보낼 수 있습니다.
     updateReservationStatus: builder.mutation<UpdateReservation, UpdateReservationParams>({
@@ -39,6 +41,7 @@ export const reservationStatusApi = createApi({
         body: { status },
         method: 'PATCH',
       }),
+      invalidatesTags: ['Reservation'],
     }),
   }),
 });

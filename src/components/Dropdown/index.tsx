@@ -66,7 +66,7 @@ export const DropDown = (props: DropDwonProps) => {
           <div className="dropdown-image">
             <img src={image} />
           </div>
-          {title ? <div className="dropdown-title">title</div> : null}
+          {title ? <div className="dropdown-title">{title}</div> : null}
         </div>
       );
     } else if (title) {

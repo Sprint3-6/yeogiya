@@ -8,14 +8,12 @@
   align-items: flex-start;
   gap: 24px;
   top: 94px;
-  // height: 100%;
 
   border-radius: 12px;
-  border: 1px solid var(--gray30);
+  border: 1px solid var(--gray40);
   background: var(--white);
   box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 
-  // background-color: green;
   // 태블릿
   @media (min-width: 768px) {
     width: 251px;
@@ -24,14 +22,8 @@
   // 데스크탑
   @media (min-width: 1024px) {
     width: 384px;
-    // top: 142 px;
   }
 }
-
-// .mypage-side-container > * {
-//   height: 100%;
-//   border: 1px solid red;
-// }
 
 .mypage-side-profile-container {
   display: flex;
@@ -39,7 +31,6 @@
   align-items: flex-start;
   gap: 227px;
   align-self: stretch;
-  // height: 160px;
   height: auto;
 }
 
@@ -54,7 +45,6 @@
 
 .side-profile {
   flex-shrink: 0;
-  // z-index: 999;
 
   border-radius: 160px;
   background:
@@ -68,23 +58,20 @@
 
   img {
     width: 100%;
-    // height: 100%;
     object-fit: cover;
   }
 }
-
-.side-icon {
+.side-icon-container {
   position: absolute;
-
+  bottom: 0px;
+  right: 0px;
+}
+.side-icon {
   display: inline-flex;
   padding: 10px;
   align-items: flex-start;
   gap: 10px;
 
-  bottom: 0px;
-  right: 0px;
-  // width: 100%;
-  // height: 100%;
   overflow: initial;
 
   border-radius: 45px;
@@ -93,69 +80,91 @@
   &:hover {
     background: var(--black20);
   }
+  input {
+    display: none;
+    visibility: hidden;
+  }
   label {
     display: flex;
 
     width: 100%;
     height: 100%;
-    // background-color: green;
 
     img {
+      cursor: pointer;
       width: 100%;
       height: 100%;
-      // background-color: red;
-      // background-size: auto;
     }
   }
 }
 
-.mapage-side-list {
+.mapage-side-list,
+.mapage-side-list-user,
+.mapage-side-list-admin {
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   flex-direction: column;
-  // align-items: flex-start;
   gap: 8px;
   align-self: stretch;
   height: auto;
 }
 
+.mapage-side-list-user .mypage-side-item {
+  padding: 0 20px;
+}
+
+.mapage-side-list-user .mypage-side-item-current {
+  padding: 0 20px;
+}
+
+// 관리자 영역
+.mapage-side-list-admin {
+  padding: 10px 0;
+  border-radius: 6px;
+}
+
+.mapage-side-list-admin .mypage-side-item {
+  margin: 0 10px;
+}
+
+.mapage-side-list-admin .mypage-side-item-current {
+  margin: 0 10px;
+  background-color: var(--gray20);
+}
+
+.mapage-side-list-admin-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gray30);
+
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 26px; /* 162.5% */
+
+  padding: 10px 20px;
+}
+
 .mypage-side-item {
   display: flex;
-  // align-items: center;
-  // justify-content: center;
   height: 44px;
-  // padding: 9px 0px 9px 16px;
-  // padding: 9px 0px 16px;
   padding-left: 10px;
   align-items: center;
-  // align-self: stretch;
-  // align-items: center;
-  // justify-items: center;
   gap: 14px;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 6px;
 
   &:hover {
     .mypage-side-item-text {
       color: var(--black20);
     }
-    // background-color: var(--gray20);
   }
 }
 
 .mypage-side-item-current {
   display: flex;
-  // align-items: center;
-  // justify-content: center;
   height: 44px;
-  // padding: 9px 0px 9px 16px;
-  // padding: 9px 0px 16px;
   padding-left: 10px;
   align-items: center;
-  // align-self: stretch;
-  // align-items: center;
-  // justify-items: center;
   gap: 14px;
   background-color: white;
   border-radius: 6px;
@@ -172,22 +181,22 @@
 }
 
 .mypage-side-item-text {
-  color: var(--gray-gray_A1A1A1, #a1a1a1);
-
-  /* [협] GlobalNomad/body-Bold */
-  // font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
+  color: var(--gray50);
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 26px; /* 162.5% */
 }
 
 .profile-change-modal {
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  width: 100%;
+  width: 350px;
   height: 100%;
-  padding: 20px;
+  padding: 40px 20px;
+  gap: 10px;
   border-radius: 6px;
+  align-items: center;
 }
 
 .profile-change-modal-title {
@@ -196,6 +205,6 @@
 
 .profile-change-modal-button {
   display: flex;
-  // flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }

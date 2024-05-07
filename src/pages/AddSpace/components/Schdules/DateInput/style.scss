@@ -24,4 +24,10 @@
 
 .calendar-input {
   width: 100%;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border: 2px solid black;
+  }
 }

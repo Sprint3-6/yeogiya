@@ -102,3 +102,9 @@ interface UpdateReservationParams {
   reservationId: number;
   status: 'confirmed' | 'declined';
 }
+
+interface HistoryProps {
+  activityId: number;
+  reservation: ReservationMoreInfo;
+  selectedTab: UpdateReservationStatus;
+}

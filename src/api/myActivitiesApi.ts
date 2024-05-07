@@ -17,9 +17,5 @@ export const getMyActivities = async (size: number, cursorId: number | null) => 
 };
 
 export const editMyActivities = async (id: string, body: EditActivityBody) => {
-  try {
-    await instance.patch(`my-activities/${id}`, body);
-  } catch (error) {
-    console.error('변경 오류:', error);
-  }
+  await instance.patch(`my-activities/${id}`, body);
 };

@@ -49,10 +49,16 @@
 
 .form-input {
   width: 100%;
-  border: 1px solid #a1a1a1;
+  border: 1px solid var(--gray50);
   padding: 8px 16px;
   height: 56px;
   border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border: 2px solid black;
+  }
 }
 
 input::-webkit-outer-spin-button,
@@ -63,10 +69,16 @@ input::-webkit-inner-spin-button {
 
 .form-textarea {
   resize: none;
-  border: 1px solid #a1a1a1;
+  border: 1px solid var(--gray50);
   padding: 16px;
   height: 346px;
   border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border: 2px solid black;
+  }
 }
 
 .post-search-box {
