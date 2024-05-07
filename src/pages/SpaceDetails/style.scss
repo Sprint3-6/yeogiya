@@ -455,6 +455,11 @@
           #kakao-map {
             width: 696px;
           }
+
+          .body-pagination {
+            position: relative;
+            left: 10px;
+          }
         }
 
         .body-description {
@@ -478,6 +483,8 @@
         }
 
         .body-pagination {
+          position: relative;
+          left: 140px;
           float: left;
         }
 
@@ -594,7 +601,7 @@
           }
 
           .body-pagination {
-            width: 100%;
+            width: 320px;
           }
         }
 
@@ -615,6 +622,11 @@
             margin: 0;
             margin-bottom: 8px;
           }
+        }
+
+        .body-pagination {
+          width: 375px;
+          left: -30px;
         }
       }
 
