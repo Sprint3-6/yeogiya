@@ -85,7 +85,7 @@ export default function MyReviewContents({ maxRating = 5, onReviewSubmit }: MyRe
           );
         })}
       </div>
-      <textarea placeholder="후기를 작성해주세요" value={reviewText} onChange={handleReviewTextChange}></textarea>
+      <textarea placeholder="후기를 작성해주세요" value={reviewText} onChange={handleReviewTextChange} />
       <Button className="button-black review-modal-button" onClick={handleReviewSubmit}>
         작성하기
       </Button>
