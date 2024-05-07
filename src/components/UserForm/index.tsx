@@ -88,7 +88,6 @@ export const UserForm = (props: LoginFormProps) => {
 
     if (key === 'Enter') {
       const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.userinput-box input');
-      // const inputsValue: string[] = Array.from(inputs).filter((input) =>{ !input.disabled return input.id;});
       const inputsValue: string[] = Array.from(inputs)
         .filter((input) => !input.disabled)
         .map((input) => input.id);
