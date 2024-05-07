@@ -32,11 +32,7 @@ export default function SpaceCardList({
     <>
       {/* searchValue가 없을 때만 드롭다운과 카테고리 버튼을 렌더링 */}
       {searchResult === '' && (
-        <>
-          <DropDown id="space-list-dropdown" title="가격" onClickItem={handleSortSpaces}>
-            <DropdownItem value="high">높은 순</DropdownItem>
-            <DropdownItem value="row">낮은 순</DropdownItem>
-          </DropDown>
+        <div className="space-selected-list-wrapper">
           <div className="space-categories-wrapper">
             {CATEGORIES.map((category) => (
               <Button key={category} className="button-black" onClick={() => handleCategoryClick(category)}>
@@ -44,10 +40,23 @@ export default function SpaceCardList({
               </Button>
             ))}
           </div>
-        </>
+          <DropDown id="space-list-dropdown" title="가격" onClickItem={handleSortSpaces}>
+            <DropdownItem value="high">높은 순</DropdownItem>
+            <DropdownItem value="row">낮은 순</DropdownItem>
+          </DropDown>
+        </div>
       )}
-      {/* selectedCategory가 null이면 빈 문자열을 전달하도록 수정 */}
-      <h1>{categoryFilter(selectedCategory || '')}</h1>
+      {/* 검색어가 있으면 검색어를, 그렇지 않으면 카테고리 이름을 표시 */}
+      <div className="space-list-search-result">
+        {searchResult !== '' ? (
+          <>
+            {searchResult}
+            <span>으로 검색한 결과입니다</span>
+          </>
+        ) : (
+          categoryFilter(selectedCategory || '')
+        )}
+      </div>
       <div className="space-card-list-container">
         {spaces.map((space) => (
           <SpaceCard key={space.id} item={space} />
