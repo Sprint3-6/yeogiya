@@ -10,6 +10,7 @@ export default function HeaderButtons() {
   const { Modal, openModal, closeModal } = useModal();
   const defaultProfileImage = '/assets/images/profile-default.png';
 
+  //TODO 프로필 사진 동그랗게
   return (
     <>
       {userData.id !== null ? (
@@ -21,18 +22,15 @@ export default function HeaderButtons() {
             className="header-notifications-icon"
           />
           <img src="/assets/icons/icon-vector.svg" alt="아이콘 구분선" />
-          <div className="header-login-user" onClick={() => openModal('header-dropdown')}>
-            <img src={userData.profileImageUrl || defaultProfileImage} alt="프로필 사진" />
-            <span>{userData.nickname}</span>
+          <div className="header-login-user">
+            <HeaderDropDown
+              profile={userData.profileImageUrl ? userData.profileImageUrl : defaultProfileImage}
+              nickname={userData.nickname}
+            />
           </div>
           <Modal name="header-notifications">
             <div className="header-notifications-container">
               <MyNotifications onClose={closeModal} />
-            </div>
-          </Modal>
-          <Modal name="header-dropdown">
-            <div className="header-dropdown-container">
-              <HeaderDropDown onClose={closeModal} />
             </div>
           </Modal>
         </div>
