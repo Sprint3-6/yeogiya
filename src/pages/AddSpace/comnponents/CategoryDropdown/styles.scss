@@ -3,9 +3,13 @@
     border-color: black;
   }
   .dropdown-select {
-    box-shadow: 0 0 1px var(--red40);
+    border: 1px solid var(--gray50);
+    box-shadow: 0 0 0 0;
     height: 56px;
     justify-content: center;
+    &:active {
+      border: 2px solid black;
+    }
   }
   .dropdown-list {
     max-height: 300px;
