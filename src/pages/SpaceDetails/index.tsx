@@ -13,19 +13,19 @@ import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 import Loading from '../Loading';
 import CalendarContainer from './Components/CalendarContainer';
 import Pagination from '@/components/Pagination';
-import './style.scss';
 import toast from '@/utils/toast';
+import './style.scss';
 
 export default function SpaceDetails() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const userInfo = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
+  const { id } = useParams();
   const [detail, setDetail] = useState<DetailType>();
   const [reviews, setReviews] = useState<ReviewType[]>();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const userInfo = useAppSelector((state) => state.myInfo);
-  const [imagePosition, setImagePosition] = useState(1);
+  const [imagePosition, setImagePosition] = useState(0);
   const [currentImage, setCurrentImage] = useState(1);
   const [totalImages, setTotalImages] = useState<number | undefined>(1);
 
