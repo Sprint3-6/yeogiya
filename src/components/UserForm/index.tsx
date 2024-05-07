@@ -98,7 +98,7 @@ export const UserForm = (props: LoginFormProps) => {
       const currentIndex: number = inputsValue.findIndex((input: string) => input === currentInput);
       // Enter or 오른쪽 화살표 눌렀을 때
       if (key === 'Enter' || key === 'ArrowRight') {
-        if (currentIndex === inputsValue.length - 1) {
+        if (key === 'Enter' && currentIndex === inputsValue.length - 1) {
           handleClickForm();
         } else {
           const nextIndex = currentIndex + 1;
