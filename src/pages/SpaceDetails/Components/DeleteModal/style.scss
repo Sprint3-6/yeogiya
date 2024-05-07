@@ -3,6 +3,7 @@
   height: 240px;
   padding: 28px;
   background-color: var(--gray20);
+  border: 1px solid var(--black);
   border-radius: 12px;
   text-align: center;
   display: flex;
@@ -10,19 +11,21 @@
   justify-content: space-between;
 
   h3 {
-    font-size: 2.4rem;
+    font-size: 2rem;
     padding-top: 20px;
   }
 
   p {
     padding-top: 20px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     .delete-modal-title {
-      font-size: 2rem;
+      font-size: 1.6rem;
+      font-weight: bold;
     }
     .delete-modal-special {
       color: var(--red40);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      font-weight: bold;
     }
   }
 
