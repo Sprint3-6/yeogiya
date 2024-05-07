@@ -44,3 +44,18 @@
   background: none;
   padding: 0;
 }
+
+/* WebKit 기반 브라우저에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Mozilla Firefox에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-moz-search-clear-button {
+  display: none;
+}
+
+/* Edge에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-ms-clear {
+  display: none;
+}
