@@ -257,6 +257,11 @@ div.active {
     width: 100%;
   }
 
+  ul.dropdown-list {
+    max-height: 170px;
+    overflow-y: scroll;
+  }
+
   div.dropdown-title {
     height: 30px;
     font-size: 1.4rem;
