@@ -98,8 +98,12 @@ export const MypageProfile: FC = () => {
             <h3>프로필을 변경하시겠습니까?</h3>
           </div>
           <div className="profile-change-modal-button">
-            <Button onClick={handleProfileUpload}>변경하기</Button>
-            <Button onClick={handleProfileUploadCancel}>취소하기</Button>
+            <Button onClick={handleProfileUpload} className="button-black">
+              변경하기
+            </Button>
+            <Button onClick={handleProfileUploadCancel} className="button-white">
+              취소하기
+            </Button>
           </div>
         </div>
       </Modal>
