@@ -90,14 +90,14 @@ export const UserForm = (props: LoginFormProps) => {
     const key: string = e.key;
     const currentInput: string = inputRef.current?.id ?? '';
 
-    if (key === 'Enter' || key === 'ArrowLeft' || key === 'ArrowRight') {
+    if (key === 'Enter' || key === 'ArrowUp' || key === 'ArrowDown') {
       const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.userinput-box input');
       const inputsValue: string[] = Array.from(inputs)
         .filter((input) => !input.disabled)
         .map((input) => input.id);
       const currentIndex: number = inputsValue.findIndex((input: string) => input === currentInput);
       // Enter or 오른쪽 화살표 눌렀을 때
-      if (key === 'Enter' || key === 'ArrowRight') {
+      if (key === 'Enter' || key === 'ArrowDown') {
         if (key === 'Enter' && currentIndex === inputsValue.length - 1) {
           handleClickForm();
         } else {
@@ -110,7 +110,7 @@ export const UserForm = (props: LoginFormProps) => {
         }
       }
       // 왼쪽 화살표 눌렀을 때
-      if (key === 'ArrowLeft') {
+      if (key === 'ArrowUp') {
         if (currentIndex === 0) {
           return;
         } else {
