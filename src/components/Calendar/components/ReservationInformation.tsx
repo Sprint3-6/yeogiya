@@ -83,11 +83,13 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
               arrowDown={'∨'}
               onClickItem={onClickTimeItem}
             >
-              {scheduleList?.map((reservation) => (
-                <DropdownItem key={`${selectedTab}-${reservation.scheduleId}`} value={reservation.scheduleId}>
-                  {reservation.startTime + ' ~ ' + reservation.endTime}
-                </DropdownItem>
-              ))}
+              {scheduleList
+                ?.filter((schedule) => schedule.count[selectedTab] > 0)
+                .map((schedule) => (
+                  <DropdownItem key={`${selectedTab}-${schedule.scheduleId}`} value={schedule.scheduleId}>
+                    {schedule.startTime + ' ~ ' + schedule.endTime + ' / ' + schedule.count[selectedTab] + '건'}
+                  </DropdownItem>
+                ))}
             </DropDown>
           </div>
           <div className="reservation-information-content-item">예약 내역</div>
@@ -104,7 +106,7 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
                 />
               ))}
               <div className="reservation-information-top" onClick={scrollToTop}>
-                <img src="/assets/icons/icon-top.svg" alt="위로 가기" />
+                <img src="/assets/icons/icon-top.gif" alt="위로 가기" />
               </div>
               {totalCount > 1 && <div className="shadow-box"></div>}
             </div>
@@ -114,7 +116,7 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
       <div className="reservation-information-content-reservation-status">
         <div className="reservation-information-content-item">예약 현황</div>
         <div className="reservation-information-content-item">
-          {totalCount}개 / {scheduleList?.reduce((prev, cur) => prev + cur.count[selectedTab], 0)}개
+          {totalCount}건 / {scheduleList?.reduce((prev, cur) => prev + cur.count[selectedTab], 0)}건
         </div>
       </div>
     </div>
