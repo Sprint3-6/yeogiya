@@ -6,6 +6,7 @@ import { postData } from '@/api/activitiesApi';
 import removeCommas from '@/utils/removeCommas';
 import { Schedule } from '@/api/types/myActivities';
 import { PlaceInputValue } from '@/pages/AddSpace/types';
+import { ErrorType } from '@/api/types/axiosErrorType';
 
 export default function useAddPlaceForm() {
   const [bannerImage, setBannerImage] = useState<string[]>([]);
@@ -22,7 +23,7 @@ export default function useAddPlaceForm() {
     getValues,
   } = useForm<PlaceInputValue>({ mode: 'onSubmit' });
 
-  const onSubmit: SubmitHandler<PlaceInputValue> = (data) => {
+  const onSubmit: SubmitHandler<PlaceInputValue> = async (data) => {
     setIsSubmitted(true);
     if (!category) {
       toast.warning('카테고리를 선택해주세요!');
@@ -41,10 +42,15 @@ export default function useAddPlaceForm() {
         bannerImageUrl: bannerImage[0],
         subImageUrls: subimages,
       };
-      postData(body).then(() => {
+      try {
+        await postData(body);
+        toast.success('등록이 완료되었습니다');
         // 업로드 성공 시 페이지 이동
         navigate('/mypage/admin');
-      });
+      } catch (err) {
+        const error = err as ErrorType;
+        toast.error(error.response.data.message);
+      }
     }
   };
 

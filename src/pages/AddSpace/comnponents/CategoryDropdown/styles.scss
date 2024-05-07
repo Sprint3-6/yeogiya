@@ -1,5 +1,9 @@
 .input-category .dropdown {
+  &:focus {
+    border-color: black;
+  }
   .dropdown-select {
+    box-shadow: 0 0 1px var(--red40);
     height: 56px;
     justify-content: center;
   }
@@ -8,5 +12,7 @@
   }
   .dropdown-item {
     padding: 12px 0;
+    padding-left: 60px;
+    align-items: flex-start;
   }
 }
