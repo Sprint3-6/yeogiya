@@ -9,6 +9,7 @@ import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
 import SearchBar from './components/SearchBar';
 import { FormEvent, MouseEvent, ChangeEvent } from 'react';
 import { DropDownValue } from '@/components/Dropdown';
+import Banner from './components/Banner';
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -102,6 +103,7 @@ export default function MainPage() {
 
   return (
     <div className="main-container">
+      <Banner />
       <SearchBar
         searchValue={searchValue}
         handleSearchText={handleSearchText}
