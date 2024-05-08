@@ -7,11 +7,11 @@ import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
 import ErrorModal from '@/pages/ErrorModal';
 import { translateMap } from '@/utils/calendarUtils';
+import toast from '@/utils/toast';
 import { format } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../../Button';
 import './reservationInformation.scss';
-import toast from '@/utils/toast';
 
 export default function ReservationInformation({ chip, selectedDate, activityId }: ReservationInformationProps) {
   const [selectedTab, setSelectedTab] = useState<UpdateReservationStatus>(
