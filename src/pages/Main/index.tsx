@@ -10,6 +10,8 @@ import SearchBar from './components/SearchBar';
 import { FormEvent, MouseEvent, ChangeEvent } from 'react';
 import { DropDownValue } from '@/components/Dropdown';
 import Banner from './components/Banner';
+import HotSpaceCardList from './components/HotSpaceCardList';
+
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -109,6 +111,7 @@ export default function MainPage() {
         handleSearchText={handleSearchText}
         handleSearchSubmit={handleSearchSubmit}
       />
+      {!searchResult && <HotSpaceCardList />}
       {data?.activities && (
         <SpaceCardList
           searchResult={searchResult}
