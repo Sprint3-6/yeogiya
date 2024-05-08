@@ -16,7 +16,6 @@ export function compareTime(startTime: string, endTime: string): boolean {
 export function isNonOverlappingSchedule(existingSchedules: Schedule[], newSchedule: Schedule): boolean {
   // 새로운 스케줄의 시작시간과 종료시간을 추출합니다.
   const { startTime: newStartTime, endTime: newEndTime, date: newDate } = newSchedule;
-  console.log(existingSchedules);
   // 기존 스케줄들을 순회하면서 겹치는 시간이 있는지 확인합니다.
   for (const existingSchedule of existingSchedules) {
     // 기존 스케줄의 시작시간과 종료시간을 추출합니다.
