@@ -24,7 +24,6 @@ export function isNonOverlappingSchedule(existingSchedules: Schedule[], newSched
 
     // 새로운 스케줄과 비교할 날짜가 기존 스케줄 중 첫 번째 스케줄의 날짜와 같은지 확인합니다.
     if (newDate !== existingDate) {
-      console.log('데이트 안겹침');
       continue;
     }
     // 겹치는 시간이 있는지 확인합니다.
