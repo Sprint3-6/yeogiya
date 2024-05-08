@@ -10,6 +10,7 @@ import Button from '@/components/Button';
 import postReservation from '@/api/postReservation';
 import Loading from '@/pages/Loading';
 import './style.scss';
+import ToLoginModal from '../ToLoginModal';
 //import CalendarTablet from '../CalendarTablet(Temp)';
 
 export default function CalendarContainer({ id, detail }: CalendarContainerType) {
@@ -48,7 +49,10 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
 
   const handleSubmitReservation = async () => {
     isLoading(true);
-    await postReservation(Number(id), selectedSchedule, howMany);
+    const responseCode = await postReservation(Number(id), selectedSchedule, howMany);
+    if (responseCode === 401) {
+      openModal('to-login');
+    }
     isLoading(false);
   };
 
@@ -200,6 +204,7 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
           handleSelectedSchedule={handleSelectedSchedule}
         /> */}
         </Modal>
+
         <Modal name="customer-counter-mobile" classNameModal="no-animation">
           <aside className="customer-counter-mobile">
             <h3>참여 인원 수</h3>
@@ -217,6 +222,10 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
               확인
             </Button>
           </aside>
+        </Modal>
+
+        <Modal name="to-login">
+          <ToLoginModal closeModal={closeModal} />
         </Modal>
       </div>
       <div className="calendar-mobile">

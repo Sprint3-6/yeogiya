@@ -1,0 +1,20 @@
+.to-login-container {
+  width: 300px;
+  height: 150px;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 30px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  div {
+    margin: 0 auto;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
