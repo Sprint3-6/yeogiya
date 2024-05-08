@@ -3,7 +3,6 @@ import MyReviewContents from '../MyReviewContents';
 import { MyReservationType } from '@/api/types/myReservation';
 import { formatPrice } from '@/utils/formatPrice';
 import instance from '@/api/instance/defaultInstance';
-import { BASE_URL } from '@/api/constants/url';
 import toast from '@/utils/toast';
 
 //TODO 데이터 불러오지 못했을 때
@@ -11,12 +10,13 @@ import toast from '@/utils/toast';
 interface MyReviewModalProps {
   item: MyReservationType;
   onClose: () => void;
+  handleWriteReview?: (data: MyReservationType) => void;
 }
 
-export default function MyReviewModal({ item, onClose }: MyReviewModalProps) {
+export default function MyReviewModal({ item, onClose, handleWriteReview }: MyReviewModalProps) {
   const handleReviewSubmit = async (rating: number, content: string) => {
     try {
-      const url = `${BASE_URL}my-reservations/${item.id}/reviews`;
+      const url = `my-reservations/${item.id}/reviews`;
       const body = {
         rating: rating,
         content: content,
@@ -24,6 +24,11 @@ export default function MyReviewModal({ item, onClose }: MyReviewModalProps) {
       const response = await instance.post(url, body);
       console.log('후기 제출 완료:', response.data);
       toast.success('후기 작성이 완료되었습니다!');
+
+      if (handleWriteReview) {
+        handleWriteReview({ ...item, reviewSubmitted: true });
+      }
+
       onClose();
     } catch (error: unknown) {
       const errorMessage = '후기 작성 중 오류가 발생했습니다.';
