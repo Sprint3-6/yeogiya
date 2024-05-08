@@ -120,7 +120,9 @@ export default function MainPage() {
           handleSortSpaces={handleSortSpaces}
         />
       )}
-      <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
+      <div className="main-pagination-wrapper">
+        <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
+      </div>
     </div>
   );
 }
