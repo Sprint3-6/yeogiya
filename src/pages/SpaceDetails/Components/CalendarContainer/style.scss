@@ -25,11 +25,16 @@
     height: auto;
     margin-bottom: 32px;
   }
+
   h3 {
     margin-bottom: 14px;
   }
+
   .time-box-parent {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 64px;
 
     .time-box {
       border: 1px solid black;
@@ -38,7 +43,6 @@
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 26px;
-      margin-bottom: 64px;
       cursor: pointer;
 
       &.selected {
@@ -55,6 +59,10 @@
 
   @media (max-width: 430px) {
     width: 100%;
+
+    .time-box-parent {
+      width: 256px;
+    }
   }
 }
 
