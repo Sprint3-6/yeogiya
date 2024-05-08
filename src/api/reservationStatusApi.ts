@@ -13,7 +13,7 @@ export const reservationStatusApi = createApi({
   baseQuery: axiosBaseQuery({ baseUrl: BASE_URL }), // API의 기본 URL 설정
   reducerPath: 'reservationStatusApi',
   refetchOnMountOrArgChange: true, // 컴포넌트가 마운트되거나 매개변수가 변경될 때마다 새로고침
-  tagTypes: ['Reservation'],
+  tagTypes: ['Reservation', 'Schedule'],
   // 각각의 query/mutation 동작을 여기서 정의합니다.
   endpoints: (builder) => ({
     getActivityList: builder.query<MyActivities, void>({
@@ -28,6 +28,7 @@ export const reservationStatusApi = createApi({
     getReservedSchedule: builder.query<ReservedSchedule[], ReservationScheduleParams>({
       query: (schedule) =>
         `my-activities/${schedule.activityId}/reserved-schedule?date=${format(schedule.date, 'yyyy-MM-dd')}`, // 내 체험 날짜별 예약 정보 조회 엔드포인트
+      providesTags: ['Schedule'],
     }),
     getTimeReservations: builder.query<TimeReservationList, TimeReservationParams>({
       query: ({ activityId, scheduleId, status }) =>
@@ -41,7 +42,7 @@ export const reservationStatusApi = createApi({
         body: { status },
         method: 'PATCH',
       }),
-      invalidatesTags: ['Reservation'],
+      invalidatesTags: ['Reservation', 'Schedule'],
     }),
   }),
 });
