@@ -7,6 +7,7 @@ import CategoryDropdown from '../AddSpace/components/CategoryDropdown';
 import Schedules from '../AddSpace/components/Schdules';
 import './styles.scss';
 import useEditSpaceForm from '@/hooks/useEditSpaceForm';
+import Button from '@/components/Button';
 
 export default function EditSpace() {
   const {
@@ -32,7 +33,7 @@ export default function EditSpace() {
   return (
     <form className="place-form-box" onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="form-header">
-        <h1 className="edit-space-title">편집하기</h1>
+        <h1 className="edit-space-title">수정하기</h1>
         <button className="form-button button-black" type="submit" disabled={isSubmitting}>
           등록하기
         </button>
@@ -56,6 +57,11 @@ export default function EditSpace() {
         />
         <span className="input-title">소개 이미지</span>
         <ImageUploader id="subImages" images={subimages} setImages={setSubImages} maxImageCount={4} />
+        <div className="form-button-bottom-box">
+          <Button className="form-button-bottom button-black" type="submit" disabled={isSubmitting}>
+            수정하기
+          </Button>
+        </div>
       </section>
     </form>
   );

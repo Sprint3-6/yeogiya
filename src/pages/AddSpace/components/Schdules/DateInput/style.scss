@@ -15,11 +15,17 @@
 }
 
 .calendar-icon-img {
+  width: 20px;
+  height: 20px;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  @media (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .calendar-input {
