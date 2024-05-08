@@ -51,7 +51,7 @@
       .dropdown {
         position: absolute;
         right: 0;
-        top: 45px;
+        top: 95px;
         width: 50px;
         height: 50px;
 
@@ -425,6 +425,10 @@
 
       .space-detail-container-header {
         padding: 24px 0 33px;
+
+        .dropdown {
+          top: 45px;
+        }
       }
 
       .space-detail-container-pictures {
@@ -539,7 +543,7 @@
         }
 
         .dropdown {
-          top: 30px;
+          top: 35px;
           right: 20px;
         }
       }
