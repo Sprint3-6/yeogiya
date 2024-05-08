@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { MyReservationType } from '@/api/types/myReservation';
 import instance from '@/api/instance/defaultInstance';
 import { BASE_URL } from '@/api/constants/url';
+import './style.scss';
 
 /**
 TODO 체험완료 문구 변경
@@ -62,14 +63,22 @@ export default function MyReservation() {
       <div className="my-space-container">
         <div className="my-space-header">
           <h1 className="my-space-title">예약 내역</h1>
-          <DropDown id="my-reservation-list" title="예약 상태" onClickItem={handleClickCategory}>
-            <DropdownItem value="all">전체</DropdownItem>
-            <DropdownItem value="pending">예약 완료</DropdownItem>
-            <DropdownItem value="canceled">예약 취소</DropdownItem>
-            <DropdownItem value="confirmed">예약 승인</DropdownItem>
-            <DropdownItem value="declined">예약 거절</DropdownItem>
-            <DropdownItem value="completed">이용 완료</DropdownItem>
-          </DropDown>
+          <div className="my-reservation-status-dropdown">
+            <DropDown
+              id="my-reservation-list"
+              title="예약 상태"
+              arrowUp={'∧'}
+              arrowDown={'∨'}
+              onClickItem={handleClickCategory}
+            >
+              <DropdownItem value="all">전체</DropdownItem>
+              <DropdownItem value="pending">예약 완료</DropdownItem>
+              <DropdownItem value="canceled">예약 취소</DropdownItem>
+              <DropdownItem value="confirmed">예약 승인</DropdownItem>
+              <DropdownItem value="declined">예약 거절</DropdownItem>
+              <DropdownItem value="completed">이용 완료</DropdownItem>
+            </DropDown>
+          </div>
         </div>
         <div>
           {myReservation.length > 0 ? (
