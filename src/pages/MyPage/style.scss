@@ -16,9 +16,7 @@
 
   label {
     color: var(--black20);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
+    font-size: 2.4rem;
     font-weight: 700;
     line-height: 26px; /* 108.333% */
     gap: 16px;
@@ -27,6 +25,10 @@
 
 .mypage-space .userinput-container {
   margin: 0 0 32px 0;
+}
+
+.mypage-space .userinput-container.error {
+  margin-bottom: 8px;
 }
 
 .mypage-space .userform-box {
@@ -80,18 +82,23 @@
     width: 40px;
     height: 40px;
   }
-  .side-icon {
+  .side-icon-container {
     width: 100%;
     height: 100%;
-    background-color: transparent;
-    background-size: contain;
-    background-repeat: no-repeat;
 
-    // display: none;
-    // &:hover {
-    //   // width: 100%;
-    //   // height: 100%;
-    // }
+    .side-icon {
+      background-color: transparent;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: var(--black20);
+      }
+    }
   }
 
   // 태블릿
@@ -111,7 +118,5 @@
   gap: 4px;
   align-self: stretch;
   border-radius: 4px;
-  // background: var(--black20, #1b1b1b);
-  // background: var(--black20, red);
   color: var(--white);
 }

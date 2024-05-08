@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { MySpaceCardProps } from '../../types';
 import './style.scss';
-import { DropDown, DropdownItem } from '@/components/Dropdown';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
 
 export default function MySpaceCard({ activity }: MySpaceCardProps) {
   const navigate = useNavigate();
-  const handleDropdown = (value: string) => {
+  const handleDropdown = (value: DropDownValue) => {
     switch (value) {
       case 'delete':
         openModal('delete');
@@ -37,7 +37,7 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
             </div>
             <div className="my-space-card-price">
               <span>
-                ￦{formattedPrice} <span className="price-person">/인</span>
+                ￦ {formattedPrice} <span className="price-person">/인</span>
               </span>
               <DropDown id="kabab" image="/assets/icons/icon-meatball.svg" onClickItem={handleDropdown}>
                 <DropdownItem value="edit">수정하기</DropdownItem>

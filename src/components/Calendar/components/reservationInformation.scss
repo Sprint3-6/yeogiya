@@ -16,6 +16,7 @@
 }
 
 .reservation-information-box {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -108,6 +109,63 @@ div.active {
   }
 }
 
+.reservation-information-list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 165px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 200px;
+  }
+
+  .shadow-box {
+    position: absolute;
+    width: 219px;
+    height: 30px;
+    bottom: 25px;
+    background: linear-gradient(to top, var(--gray20), transparent);
+
+    @media screen and (min-width: 768px) {
+      width: 379px;
+    }
+  }
+
+  .reservation-information-top {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 30px;
+
+    img {
+      cursor: pointer;
+      width: 30px;
+
+      &:hover,
+      &:active {
+        animation: moveUpDown 0.5s ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .reservation-information-content-booking-history {
   width: 100%;
   height: 175px;
@@ -197,6 +255,11 @@ div.active {
 .reservation-time-dropdown-box {
   div.dropdown {
     width: 100%;
+  }
+
+  ul.dropdown-list {
+    max-height: 170px;
+    overflow-y: scroll;
   }
 
   div.dropdown-title {

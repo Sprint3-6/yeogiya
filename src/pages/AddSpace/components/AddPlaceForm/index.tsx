@@ -56,6 +56,11 @@ export default function AddPlaceForm() {
         />
         <span className="input-title">소개 이미지</span>
         <ImageUploader id="subImages" images={subimages} setImages={setSubImages} maxImageCount={4} />
+        <div className="form-button-bottom-box">
+          <Button className="form-button-bottom button-black" type="submit" disabled={isSubmitting}>
+            등록하기
+          </Button>
+        </div>
       </section>
     </form>
   );

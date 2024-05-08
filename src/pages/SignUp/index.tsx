@@ -16,30 +16,32 @@ export default function SignUp() {
     passwordCheck: '',
   };
 
+  const requiredValue = {
+    email: '',
+    nickname: '',
+    password: '',
+    passwordCheck: '',
+  };
+
   const navigate = useNavigate();
 
   const handleSignUp = async (value: InputValue): Promise<void> => {
     try {
       const response = await signUpApi(value);
-      console.log('회원가입 시도', response);
-
       if (response?.status === 201) {
-        console.log('회원가입 성공');
         toast.success('회원가입을 축하합니다');
         navigate('/sign-in');
       }
     } catch (error) {
       console.log('회원가입 페이지 실패', error);
     }
-
-    console.log('회원가입 페이지 함수', SignUpValue);
   };
   return (
     <main className="signup-main">
       <div className="signup-logo">
         <SignLogo />
       </div>
-      <UserForm onClickForm={handleSignUp} value={SignUpValue}>
+      <UserForm onClickForm={handleSignUp} value={SignUpValue} requiredValue={requiredValue}>
         <UserInputItem id="email" type="email" text="이메일을 입력해 주세요">
           이메일
         </UserInputItem>
