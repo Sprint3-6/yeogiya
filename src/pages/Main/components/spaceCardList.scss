@@ -1,6 +1,11 @@
 .main-space-card-list-container {
   width: 100%;
-  padding: 0 16px;
+  padding: 0 10px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+    max-width: 1400px;
+  }
 }
 
 .space-card-list-container {
@@ -16,7 +21,7 @@
     row-gap: 32px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 24px;
     row-gap: 48px;
@@ -31,6 +36,7 @@
 .space-list-selected-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 30px;
   margin-bottom: 35px;
   font-size: 2.8rem;
@@ -78,4 +84,9 @@
   .dropdown-item {
     padding: 10px;
   }
+}
+
+.main-space-card-list-category-button {
+  width: 80px;
+  border-radius: 15px;
 }

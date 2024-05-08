@@ -35,7 +35,7 @@ export default function SpaceCardList({
         <Button
           key={category}
           // 선택된 카테고리일 경우 추가 클래스를 부여하고 disabled 상태 설정
-          className={isActive ? 'button-black' : 'button-white'}
+          className={`${isActive ? 'button-black' : 'button-white'} main-space-card-list-category-button`}
           onClick={() => handleCategoryClick(category)}
           disabled={isActive} // 선택된 카테고리의 버튼은 비활성화
         >
