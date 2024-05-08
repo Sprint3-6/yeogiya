@@ -1,4 +1,5 @@
 .head-profile-dropdown .dropdown {
+  position: relative;
   width: 100%;
 }
 
@@ -6,6 +7,10 @@
   border: 0;
   box-shadow: 0 0 0;
   width: 100%;
+}
+
+.head-profile-dropdown .dropdown-lst-box {
+  display: flex;
 }
 
 .head-profile-dropdown .dropdown-image {
@@ -24,11 +29,13 @@
 }
 
 .head-profile-dropdown .dropdown-list {
+  position: absolute;
+  transform: translateX(-50%);
+
   width: 150px;
-  left: -50px;
+  left: 50%;
   @media (min-width: 768px) {
     width: 200px;
-    left: -80px;
   }
 }
 

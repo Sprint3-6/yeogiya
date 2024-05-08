@@ -77,13 +77,7 @@ export const MypageProfile: FC = () => {
         <div className="side-icon-container">
           <label htmlFor="profile">
             <div className="side-icon">
-              <input
-                id="profile"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                // style={{ display: 'none', visibility: 'hidden' }}
-              />
+              <input id="profile" type="file" accept="image/*" onChange={handleImageChange} />
               <img src="/assets/icons/icon-pen.svg" />
             </div>
           </label>

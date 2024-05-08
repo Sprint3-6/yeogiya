@@ -106,7 +106,6 @@ export const DropDown = (props: DropDwonProps) => {
         ref={dropDownRef}
       >
         <div className="dropdown-select">{isOpen ? handleTitle(arrowUp) : handleTitle(arrowDown)}</div>
-        <div></div>
         <ul className="dropdown-list">{isOpen && array}</ul>
       </div>
     </DropdownContext.Provider>
