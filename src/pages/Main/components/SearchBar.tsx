@@ -28,7 +28,7 @@ function SearchBar({ searchValue, handleSearchText, handleSearchSubmit }: Search
       <h1>어떤 공간을 원하시나요?</h1>
       <div className="search-bar-search-box">
         <form className="search-bar-input-form" onSubmit={handleSearchSubmit}>
-          <img src="/favicon.svg" alt="favicon" />
+          <img src="/assets/icons/icon-map.svg" alt="핑" />
           <input
             type="search"
             value={searchValue}
