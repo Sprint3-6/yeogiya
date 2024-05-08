@@ -70,6 +70,15 @@
   }
 }
 
+.schduled-time-title {
+  color: var(--gray70, #4b4b4b);
+  font-size: 1.6rem;
+  font-weight: 500;
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
 .button-with-image {
   border: none;
   background: none;
@@ -85,7 +94,7 @@
   display: flex;
   flex-direction: column-reverse;
   gap: 8px;
-  max-height: 300px;
+  max-height: 280px;
   overflow: auto;
   scrollbar-width: none;
 }

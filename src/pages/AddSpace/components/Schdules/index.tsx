@@ -78,6 +78,7 @@ export default function Schedules({ schedules, setSchedules }: SchedulesProps) {
               </button>
             </li>
           ))}
+          <div className="schduled-time-title">추가된 시간</div>
         </ul>
       )}
     </div>
