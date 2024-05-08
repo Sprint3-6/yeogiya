@@ -1,9 +1,6 @@
 sub {
   display: flex;
-  // align-items: center;
   justify-content: center;
-  // flex-direction: column;
-  // color: red;
   margin-top: 24px;
   @media (min-width: 768px) {
     width: 744px;
@@ -12,25 +9,22 @@ sub {
 
   // 데스크탑
   @media (min-width: 1024px) {
-    // width: 100%;
     gap: 24px;
-    // margin-top: 72px;
   }
 }
 
 .mypage-side {
-  // position: sticky;
-
-  // display: inline-block;
-  // align-items: center;
-  // justify-content: center;
-
-  // width: 375px;
-  // height: 740px;
   display: none;
-  // background-color: green;
-  // 태블릿
   @media (min-width: 768px) {
     display: inline-block;
+  }
+}
+
+sub {
+  .mypage-header {
+    // 태블릿
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 }

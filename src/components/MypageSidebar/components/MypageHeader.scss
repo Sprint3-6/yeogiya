@@ -1,0 +1,42 @@
+.mypage-header {
+  display: flex;
+}
+
+.mypage-header .mapage-side-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  // overflow: scroll;
+  margin-bottom: 10px;
+}
+
+.mypage-header .mypage-side-item-image {
+  display: none;
+}
+
+.mypage-header .mypage-side-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 100px;
+  border-radius: 50px;
+  background-color: transparent;
+  height: auto;
+
+  .mypage-side-item-text {
+    padding: 0;
+  }
+}
+
+.mypage-header .mypage-side-item-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 100px;
+  border-radius: 50px;
+  height: auto;
+  padding: 5px;
+}

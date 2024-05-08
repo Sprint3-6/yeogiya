@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import './style.scss';
 import MypageSidebar from '@/components/MypageSidebar';
+import { MypageHeader } from '@/components/MypageSidebar/components/MypageHeader';
 
 export default function MypageLayout() {
   const accessToken = localStorage.getItem('accessToken');
@@ -16,7 +17,10 @@ export default function MypageLayout() {
         <div className="mypage-side">
           <MypageSidebar />
         </div>
-        <Outlet />
+        <div>
+          <MypageHeader />
+          <Outlet />
+        </div>
       </sub>
     </>
   );
