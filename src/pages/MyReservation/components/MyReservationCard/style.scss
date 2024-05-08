@@ -19,3 +19,27 @@
 .no-margin {
   margin: 0;
 }
+
+.reservation-status {
+  font-weight: 600;
+
+  &.pending {
+    color: var(--blue30);
+  }
+
+  &.confirmed {
+    color: var(--yellow20);
+  }
+
+  &.canceled {
+    color: var(--gray40);
+  }
+
+  &.declined {
+    color: var(--red40);
+  }
+
+  &.completed {
+    color: var(--gray60);
+  }
+}
