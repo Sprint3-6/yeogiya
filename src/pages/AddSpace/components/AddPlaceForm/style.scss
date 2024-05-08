@@ -1,3 +1,17 @@
+.form-input,
+.form-textarea,
+.calendar-input,
+.place-form-box .dropdown-title,
+.place-form-box .dropdown-item,
+.set-date,
+.set-start-time,
+.set-end-time {
+  font-size: 1.4rem;
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
 .place-form-box {
   width: 344px;
   margin: 0 auto;
