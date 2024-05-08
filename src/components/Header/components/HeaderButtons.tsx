@@ -25,7 +25,7 @@ export default function HeaderButtons() {
             <img src={userData.profileImageUrl || defaultProfileImage} alt="프로필 사진" />
             <span>{userData.nickname}</span>
           </div>
-          <Modal name="header-notifications">
+          <Modal name="header-notifications" classNameLayout="header-modal-layout" classNameModal="header-modal">
             <div className="header-notifications-container">
               <MyNotifications onClose={closeModal} />
             </div>
