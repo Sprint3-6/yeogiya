@@ -30,7 +30,9 @@
 
 .space-categories-wrapper {
   display: flex;
+  width: 100%;
   gap: 10px;
+  overflow: scroll;
 }
 
 .space-list-selected-wrapper {
@@ -87,6 +89,24 @@
 }
 
 .main-space-card-list-category-button {
+  display: flex;
   width: 80px;
+  height: 40px;
+  padding: 12px 20px;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    width: 120px;
+    height: 60px;
+    padding: 16px 25px;
+    font-size: 1.8rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 127px;
+  }
 }
