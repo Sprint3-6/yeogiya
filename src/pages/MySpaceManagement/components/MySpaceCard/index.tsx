@@ -37,7 +37,7 @@ export default function MySpaceCard({ activity }: MySpaceCardProps) {
             </div>
             <div className="my-space-card-price">
               <span>
-                ￦{formattedPrice} <span className="price-person">/인</span>
+                ￦ {formattedPrice} <span className="price-person">/인</span>
               </span>
               <DropDown id="kabab" image="/assets/icons/icon-meatball.svg" onClickItem={handleDropdown}>
                 <DropdownItem value="edit">수정하기</DropdownItem>

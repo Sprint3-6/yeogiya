@@ -1,3 +1,17 @@
+.form-input,
+.form-textarea,
+.calendar-input,
+.place-form-box .dropdown-title,
+.place-form-box .dropdown-item,
+.set-date,
+.set-start-time,
+.set-end-time {
+  font-size: 1.4rem;
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
 .place-form-box {
   width: 344px;
   margin: 0 auto;
@@ -29,10 +43,21 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background: var(--black20, #1b1b1b);
-  color: var(--white, #fff);
   font-size: 1.6rem;
   cursor: pointer;
+}
+
+.form-button-bottom-box {
+  display: flex;
+  justify-content: center;
+}
+
+.form-button-bottom {
+  width: 300px;
+  height: 48px;
+  @media (min-width: 1024px) {
+    width: 400px;
+  }
 }
 
 .form-content {
