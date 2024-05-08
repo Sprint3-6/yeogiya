@@ -14,11 +14,11 @@ import './style.scss';
 export default function ReservationStatus() {
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
   const { data: myActivities, ...myActivitiesQuery } = useGetActivityListQuery(); // 내 체험 리스트 조회
-  const [activityId, setActivityId] = useState<number | undefined>(); // 체험명 선택
+  const [activityId, setActivityId] = useState<number>(); // 체험명 선택
   const [selectedChip, setSelectedChip] = useState<ReservationChip>('pending'); // 예약 상태 선택
   const [getReservationDashboard, { data: myDashboard, ...myDashboardQuery }] = useLazyGetReservationDashboardQuery();
   const { Modal, openModal, closeModal } = useModal();
-  const [selectedActivity, setSelectedActivity] = useState<string>('');
+  const [selectedActivity, setSelectedActivity] = useState<string>();
 
   const isError = myActivitiesQuery.isError || myDashboardQuery.isError;
   const isLoading =
