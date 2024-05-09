@@ -1,52 +1,31 @@
-import {
-  useGetReservedScheduleQuery,
-  useLazyGetTimeReservationsQuery,
-  useUpdateReservationStatusMutation,
-} from '@/api/reservationStatusApi';
-import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
+import { useUpdateReservationStatusMutation } from '@/api/reservationStatusApi';
+import Button from '@/components/Button';
+import { DropDown, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
 import ErrorModal from '@/pages/ErrorModal';
 import { translateMap } from '@/utils/calendarUtils';
 import toast from '@/utils/toast';
 import { format } from 'date-fns';
-import { useEffect, useRef, useState } from 'react';
-import Button from '../../Button';
+import { useEffect } from 'react';
+import useReservationInformation from '../hooks/useReservationInformation';
 import './reservationInformation.scss';
 
-export default function ReservationInformation({ chip, selectedDate, activityId }: ReservationInformationProps) {
-  const [selectedScheduleId, setSelectedScheduleId] = useState<number>();
-  const [selectedTab, setSelectedTab] = useState<UpdateReservationStatus>(
-    chip === 'completed' ? 'pending' : chip ?? 'pending',
-  ); // 예약 상태 선택
-  const { data: scheduleList } = useGetReservedScheduleQuery({ activityId, date: selectedDate }); // 내 체험 날짜별 예약 정보 조회 엔드포인트
-  const [getTimeReservations, { data, originalArgs }] = useLazyGetTimeReservationsQuery(); // 내 체험 예약 시간대별 예약 내역 조회
-  const { reservations, totalCount } = (originalArgs?.status === selectedTab && data) || {
-    reservations: [] as ReservationMoreInfo[],
-    totalCount: 0,
-  };
-
-  const handleTabClick = (tab: UpdateReservationStatus) => {
-    setSelectedScheduleId(undefined);
-    setSelectedTab(tab);
-  };
-
-  const onClickTimeItem = (scheduleId: DropDownValue) => {
-    setSelectedScheduleId(scheduleId as number);
-    getTimeReservations({
-      activityId,
-      scheduleId: scheduleId as number,
-      status: selectedTab,
-    });
-  };
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const scrollToTop = () => {
-    const container = containerRef.current;
-    if (container) {
-      container.scrollTop = 0;
-    }
-  };
+export default function ReservationInformation({
+  activityId,
+  selectedDate,
+  reservationChip,
+}: ReservationInformationProps) {
+  const {
+    containerRef,
+    handleTabClick,
+    onClickTimeItem,
+    reservations,
+    scheduleList,
+    scrollToTop,
+    selectedScheduleId,
+    selectedTab,
+    totalCount,
+  } = useReservationInformation(activityId, selectedDate, reservationChip);
 
   return (
     <div className="reservation-information-wrapper">
