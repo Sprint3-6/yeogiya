@@ -11,6 +11,14 @@ sub {
   @media (min-width: 1024px) {
     gap: 24px;
   }
+
+  .mypage-header {
+    display: flex;
+    width: 375px;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 .mypage-side {
@@ -19,15 +27,5 @@ sub {
   display: none;
   @media (min-width: 768px) {
     display: inline-block;
-  }
-}
-
-sub {
-  .mypage-header {
-    display: flex;
-    width: 375px;
-    @media (min-width: 768px) {
-      display: none;
-    }
   }
 }
