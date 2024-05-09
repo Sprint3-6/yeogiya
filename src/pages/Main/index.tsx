@@ -9,6 +9,9 @@ import useDeviceType from '@/hooks/useDeviceType/useDeviceType';
 import SearchBar from './components/SearchBar';
 import { FormEvent, MouseEvent, ChangeEvent } from 'react';
 import { DropDownValue } from '@/components/Dropdown';
+import Banner from './components/Banner';
+import HotSpaceCardList from './components/HotSpaceCardList';
+
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -101,12 +104,14 @@ export default function MainPage() {
   }, [deviceType]);
 
   return (
-    <main className="main-container">
+    <div className="main-container">
+      <Banner />
       <SearchBar
         searchValue={searchValue}
         handleSearchText={handleSearchText}
         handleSearchSubmit={handleSearchSubmit}
       />
+      {!searchResult && <HotSpaceCardList />}
       {data?.activities && (
         <SpaceCardList
           searchResult={searchResult}
@@ -115,7 +120,9 @@ export default function MainPage() {
           handleSortSpaces={handleSortSpaces}
         />
       )}
-      <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
-    </main>
+      <div className="main-pagination-wrapper">
+        <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
+      </div>
+    </div>
   );
 }

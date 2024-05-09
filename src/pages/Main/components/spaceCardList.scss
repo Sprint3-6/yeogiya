@@ -1,9 +1,19 @@
+.main-space-card-list-container {
+  width: 100%;
+  padding: 0 10px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+    max-width: 1400px;
+  }
+}
+
 .space-card-list-container {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 8px;
   row-gap: 24px;
-  width: 100%;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
@@ -11,7 +21,7 @@
     row-gap: 32px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 24px;
     row-gap: 48px;
@@ -20,5 +30,83 @@
 
 .space-categories-wrapper {
   display: flex;
+  width: 100%;
   gap: 10px;
+  overflow: scroll;
+}
+
+.space-list-selected-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 35px;
+  font-size: 2.8rem;
+  font-weight: 700;
+
+  p {
+    font-weight: 400;
+  }
+
+  span {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+.space-list-search-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.space-list-search-result-word {
+  display: flex;
+  align-items: center;
+}
+
+.space-list-search-result-count .highlighted-count {
+  font-weight: 700;
+  color: var(--blue30);
+}
+
+.space-list-sort-dropdown {
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  div.dropdown {
+    width: 90px;
+    height: 41px;
+    @media (min-width: 768px) {
+      width: 127px;
+      height: 53px;
+    }
+  }
+
+  .dropdown-item {
+    padding: 10px;
+  }
+}
+
+.main-space-card-list-category-button {
+  display: flex;
+  width: 80px;
+  height: 40px;
+  padding: 12px 20px;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    width: 120px;
+    height: 60px;
+    padding: 16px 25px;
+    font-size: 1.8rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 127px;
+  }
 }

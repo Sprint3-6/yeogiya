@@ -1,14 +1,20 @@
-import { BASE_URL } from './constants/url';
 import instance from './instance/defaultInstance';
 import { NotificationsType } from './types/notifications';
 
-export default async function getMyNotifications(): Promise<NotificationsType | null> {
+export default async function getMyNotifications(
+  size: number,
+  cursorId: number | null,
+): Promise<NotificationsType | null> {
   try {
-    const response = await instance.get(`${BASE_URL}my-notifications?size=3`);
-    console.log(response);
-    return response.data as NotificationsType;
+    const response = await instance.get<NotificationsType>('my-notifications', {
+      params: {
+        cursorId: cursorId,
+        size: size,
+      },
+    });
+    return response.data;
   } catch (error) {
-    console.log(error);
-    return null;
+    console.log('알림 오류:', error);
+    throw error;
   }
 }

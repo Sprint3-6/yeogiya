@@ -1,31 +1,53 @@
 .search-bar-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  margin-top: -130px;
   padding: 16px 24px;
-  border-radius: 4px 4px 0 0;
-  background: var(--gray30);
-  box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
+  gap: 15px;
+  border-radius: 10px 10px 0 0;
+  background: var(--gray10);
+  box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.1);
+
+  @media (min-width: 768px) {
+    width: min(100%, 1000px);
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
 }
 
 .search-bar-search-box {
   display: flex;
-  align-items: center;
-  gap: 5px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 12px;
 }
 
 .search-bar-input-form {
   display: flex;
   align-items: center;
-  gap: 5px;
+  width: 100%;
+  height: 100%;
+  gap: 3px;
   border: 1px solid var(--black20);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 4px 8px 4px 10px;
+  background-color: var(--white);
 
   img {
-    width: 24px;
+    width: 22px;
     padding: 3px;
   }
 }
@@ -33,14 +55,51 @@
 .search-bar-input {
   width: 100%;
   border: none;
+  font-size: 1.4rem;
 
   &:focus {
     outline: none;
   }
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.search-bar-button {
+  width: auto;
+  height: 40px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  white-space: nowrap;
+
+  @media (min-width: 768px) {
+    height: 56px;
+    padding: 8px 40px;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
 }
 
 .search-bar-delete-search-button {
-  border: none;
   background: none;
-  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* WebKit 기반 브라우저에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Mozilla Firefox에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-moz-search-clear-button {
+  display: none;
+}
+
+/* Edge에서 input[type="search"]의 "x" 버튼을 없앱니다. */
+input[type='search']::-ms-clear {
+  display: none;
 }
