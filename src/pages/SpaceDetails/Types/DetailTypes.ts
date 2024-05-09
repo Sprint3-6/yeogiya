@@ -62,3 +62,7 @@ export interface CalendarContainerType {
   id: string | undefined;
   detail: DetailType | undefined;
 }
+
+export type ToLoginModalType = {
+  closeModal: () => void;
+};

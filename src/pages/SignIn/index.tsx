@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './style.scss';
 import { UserForm } from '@/components/UserForm';
 import { UserInputItem } from '@/components/UserForm/components/UserInputItem';
@@ -29,6 +29,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleSignIn = async (value: InputValue): Promise<void> => {
     const email: string = value.email || '';
@@ -37,7 +38,11 @@ export default function SignIn() {
     try {
       const response = await login(value);
       if (response?.status === 201) {
-        navigate('/');
+        if (location.state && location.state.from) {
+          navigate(location.state.from);
+        } else {
+          navigate('/');
+        }
         dispatch(setMyInfo(await getMyInfo(email, password)));
       } else {
         console.log('로그인실패');
