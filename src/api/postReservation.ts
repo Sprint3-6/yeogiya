@@ -13,7 +13,7 @@ async function postReservation(id: number | undefined, scheduleId: number | null
   } catch (err) {
     const error = err as ErrorType;
     if (error.response.status === 401) {
-      toast.error('로그인이 필요합니다.');
+      return 401;
     } else {
       toast.error(error.response.data.message);
     }

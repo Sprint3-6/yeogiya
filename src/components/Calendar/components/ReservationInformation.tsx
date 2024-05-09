@@ -7,13 +7,14 @@ import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
 import ErrorModal from '@/pages/ErrorModal';
 import { translateMap } from '@/utils/calendarUtils';
+import toast from '@/utils/toast';
 import { format } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../../Button';
 import './reservationInformation.scss';
-import toast from '@/utils/toast';
 
 export default function ReservationInformation({ chip, selectedDate, activityId }: ReservationInformationProps) {
+  const [selectedScheduleId, setSelectedScheduleId] = useState<number>();
   const [selectedTab, setSelectedTab] = useState<UpdateReservationStatus>(
     chip === 'completed' ? 'pending' : chip ?? 'pending',
   ); // 예약 상태 선택
@@ -25,10 +26,12 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
   };
 
   const handleTabClick = (tab: UpdateReservationStatus) => {
+    setSelectedScheduleId(undefined);
     setSelectedTab(tab);
   };
 
   const onClickTimeItem = (scheduleId: DropDownValue) => {
+    setSelectedScheduleId(scheduleId as number);
     getTimeReservations({
       activityId,
       scheduleId: scheduleId as number,
@@ -82,6 +85,7 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
               arrowUp={'∧'}
               arrowDown={'∨'}
               onClickItem={onClickTimeItem}
+              value={selectedScheduleId}
             >
               {scheduleList
                 ?.filter((schedule) => schedule.count[selectedTab] > 0)
@@ -108,7 +112,6 @@ export default function ReservationInformation({ chip, selectedDate, activityId 
               <div className="reservation-information-top" onClick={scrollToTop}>
                 <img src="/assets/icons/icon-top.gif" alt="위로 가기" />
               </div>
-              {totalCount > 1 && <div className="shadow-box"></div>}
             </div>
           )}
         </div>

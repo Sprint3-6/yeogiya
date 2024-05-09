@@ -109,7 +109,7 @@ export default function SpaceDetails() {
           <div>
             <img src="/assets/icons/icon-star.svg" />
             <h2>{`${detail && Math.floor(detail.rating * 10) / 10} (${detail?.reviewCount})`}</h2>
-            <img src="/favicon.svg" />
+            <img src="/assets/icons/icon-map.svg" />
             <h3>{detail?.address}</h3>
           </div>
 
@@ -151,7 +151,7 @@ export default function SpaceDetails() {
           <section className="body-map">
             <KakaoMap address={detail?.address} title={detail?.title} />
             <div>
-              <img src="/favicon.svg" />
+              <img src="/assets/icons/icon-map.svg" />
               <h3>
                 {detail?.address}
                 <img src="/assets/images/copy.png" onClick={handleCopy} />

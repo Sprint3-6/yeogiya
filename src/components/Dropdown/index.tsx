@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import './style.scss';
 
-interface DropDwonProps {
+interface DropDownProps {
   id: string;
   title?: string;
   image?: string;
@@ -9,6 +9,7 @@ interface DropDwonProps {
   arrowDown?: string;
   children: React.ReactNode;
   onClickItem?: (value: DropDownValue, id: string) => void;
+  value?: DropDownValue;
 }
 
 interface DropdownItem {
@@ -25,9 +26,10 @@ interface DropdownContextProps {
 
 export const DropdownContext = createContext<DropdownContextProps>({});
 
-export const DropDown = (props: DropDwonProps) => {
+export const DropDown = (props: DropDownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [select, setSelect] = useState<React.ReactNode | null>(null);
+  const [select, setSelect] = useState<React.ReactNode>();
+  const [selectedValue, setSelectedValue] = useState<DropDownValue>();
 
   const dropDownRef = useRef<HTMLDivElement>(null);
 
@@ -50,13 +52,13 @@ export const DropDown = (props: DropDwonProps) => {
   }, []);
 
   // 드롭다운 props
-  const title = props.title;
-  const image = props.image;
-  const arrowUp = props.arrowUp;
-  const arrowDown = props.arrowDown;
-  const array = props.children;
-  const id = props.id;
-  const onClickItem = props.onClickItem;
+  const { title, image, arrowUp, arrowDown, children: array, id, onClickItem, value } = props;
+
+  useEffect(() => {
+    if (selectedValue != value) {
+      setSelect(null);
+    }
+  }, [value]);
 
   // 드롭다운 셀렉터 보여주는 함수
   const handleShowTitle = () => {
@@ -87,6 +89,7 @@ export const DropDown = (props: DropDwonProps) => {
   // 드롭다운 클릭시 실행 함수
   const handleClickItem = (children: React.ReactNode, value: DropDownValue) => {
     setSelect(children);
+    setSelectedValue(value);
     onClickItem?.(value, id);
   };
 
