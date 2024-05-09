@@ -48,7 +48,12 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
             <MypageSideList />
           </DropdownItem>
           <div className="head-profile-logout">
-            <DropdownItem value={'logout'}>로그아웃</DropdownItem>
+            <DropdownItem value={'logout'}>
+              <div className="head-profile-logout-box">
+                <img src="/assets/icons/icon-logout.png" alt="로그아웃" />
+                로그아웃
+              </div>
+            </DropdownItem>
           </div>
         </DropDown>
       </div>

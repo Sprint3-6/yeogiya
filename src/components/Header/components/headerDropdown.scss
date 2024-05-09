@@ -116,6 +116,21 @@
 
   &:hover {
     color: var(--red40);
+
+    img {
+      content: url(/assets/icons/icon-logout-moving.gif);
+    }
+  }
+}
+
+.head-profile-logout-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  img {
+    width: 20px;
+    height: 20px;
   }
 }
 

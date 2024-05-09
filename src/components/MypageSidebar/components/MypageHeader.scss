@@ -1,13 +1,21 @@
 .mypage-header {
   display: flex;
+  justify-content: center;
+  overflow: hidden;
 }
 
+.mypage-header-box {
+  overflow-x: scroll;
+  white-space: nowrap;
+  width: 344px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .mypage-header .mapage-side-list {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  // overflow: scroll;
   margin-bottom: 10px;
 }
 
@@ -15,28 +23,68 @@
   display: none;
 }
 
-.mypage-header .mypage-side-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  width: 100px;
-  border-radius: 50px;
-  background-color: transparent;
-  height: auto;
-
-  .mypage-side-item-text {
-    padding: 0;
-  }
-}
-
+.mypage-header .mypage-side-item,
 .mypage-header .mypage-side-item-current {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  width: 100px;
+  margin: 0 10px;
+  width: 100%;
   border-radius: 50px;
   height: auto;
   padding: 5px;
+
+  .mypage-side-item-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.mypage-header .mypage-side-item {
+  overflow: hidden;
+  // border-radius: 50px;
+  background-color: transparent;
+  // height: auto;
+
+  // .mypage-side-item-text {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   padding: 0;
+  //   width: 100%;
+  //   white-space: nowrap;
+  // }
+}
+
+.mypage-header .mypage-side-item-current {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // padding: 0;
+  // margin: 0 10px;
+  // width: 100%;
+  // border-radius: 50px;
+  // height: auto;
+  // padding: 5px;
+
+  // .mypage-side-item-text {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   padding: 0;
+  //   width: 100%;
+  //   white-space: nowrap;
+  // }
+}
+
+.slider {
+  margin-left: 100px;
+  background-color: green;
+  height: 100px;
+  color: red;
+  width: 100px;
 }
