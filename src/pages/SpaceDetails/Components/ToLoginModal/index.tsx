@@ -18,7 +18,7 @@ const ToLoginModal = ({ closeModal }: ToLoginModalType) => {
         <Button onClick={toLoginPage} className="button-black">
           로그인
         </Button>
-        <Button onClick={closeModal} className="button-black">
+        <Button onClick={closeModal} className="button-white">
           닫기
         </Button>
       </div>
