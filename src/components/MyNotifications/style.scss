@@ -99,3 +99,24 @@
 .notifications-content.has-notifications {
   scrollbar-width: none;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .header-modal {
+    /* 애니메이션 효과 추가 */
+    animation: fadeIn 0.3s ease-in-out forwards;
+    transition:
+      width 0.3s ease-in-out,
+      height 0.3s ease-in-out;
+  }
+}
