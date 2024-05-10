@@ -8,6 +8,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 
+//TODO 1100px 부터 화살표 표시
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -18,7 +19,6 @@ export default function HotSpaceCardList() {
 
   const settings = {
     arrows: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -27,7 +27,7 @@ export default function HotSpaceCardList() {
     draggable: true,
     swipeToSlide: true,
     touchMove: true,
-    centerMode: true,
+    centerMode: false,
     centerPadding: '60px',
     responsive: [
       {
@@ -35,6 +35,7 @@ export default function HotSpaceCardList() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          centerMode: true,
         },
       },
       {

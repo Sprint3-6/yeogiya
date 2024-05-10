@@ -115,7 +115,11 @@ export default function MainPage() {
             handleSearchSubmit={handleSearchSubmit}
           />
         </div>
-        {!searchResult && <HotSpaceCardList />}
+        {!searchResult && (
+          <div className="main-hot-space-wrapper">
+            <HotSpaceCardList />
+          </div>
+        )}
         {data?.activities && (
           <SpaceCardList
             searchResult={searchResult}
