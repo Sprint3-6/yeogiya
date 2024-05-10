@@ -16,6 +16,7 @@ export default function ReservationInformation({
   reservationChip,
 }: ReservationInformationProps) {
   const {
+    boxRef,
     containerRef,
     handleTabClick,
     onClickTimeItem,
@@ -24,6 +25,7 @@ export default function ReservationInformation({
     scrollToTop,
     selectedScheduleId,
     selectedTab,
+    sentinelRef,
     totalCount,
   } = useReservationInformation(activityId, selectedDate, reservationChip);
 
@@ -51,7 +53,7 @@ export default function ReservationInformation({
             거절
           </div>
         </div>
-        <div className="reservation-information-content-container">
+        <div className="reservation-information-content-container" ref={containerRef}>
           <div className="reservation-information-content-title-box">
             <div className="reservation-information-content-item">예약 날짜</div>
             <div className="reservation-information-content-title-content">{format(selectedDate, 'yyyy.MM.dd.')}</div>
@@ -79,7 +81,7 @@ export default function ReservationInformation({
           {reservations.length === 0 ? (
             '예약 내역이 없습니다.'
           ) : (
-            <div className="reservation-information-list-box" ref={containerRef}>
+            <div className="reservation-information-list-box" ref={boxRef}>
               {reservations.map((reservation) => (
                 <History
                   activityId={activityId}
@@ -88,7 +90,7 @@ export default function ReservationInformation({
                   selectedTab={selectedTab}
                 />
               ))}
-              <div className="reservation-information-top" onClick={scrollToTop}>
+              <div className="reservation-information-top" onClick={scrollToTop} ref={sentinelRef}>
                 <img src="/assets/icons/icon-top.gif" alt="위로 가기" />
               </div>
             </div>

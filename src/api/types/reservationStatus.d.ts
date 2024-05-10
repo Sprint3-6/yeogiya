@@ -83,7 +83,9 @@ interface ReservationMoreInfo extends ReservationInfo {
 
 interface TimeReservationParams {
   activityId: number;
+  cursorId?: number;
   scheduleId: number;
+  size?: number;
   status: UpdateReservationStatus;
 }
 
