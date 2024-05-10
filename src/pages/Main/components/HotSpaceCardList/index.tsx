@@ -31,7 +31,7 @@ export default function HotSpaceCardList() {
     centerPadding: '60px',
     responsive: [
       {
-        breakpoint: 1060,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
