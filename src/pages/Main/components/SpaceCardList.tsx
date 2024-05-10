@@ -6,6 +6,9 @@ import { CATEGORIES } from '@/api/constants/categories';
 import Button from '@/components/Button';
 import categoryFilter from '@/utils/categoryFilter';
 import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 interface SpaceCardListProps {
   searchResult: string;
@@ -21,6 +24,67 @@ export default function SpaceCardList({
   handleSortSpaces,
 }: SpaceCardListProps) {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const sliderSettings = {
+    infinite: false,
+    slidesToShow: 7, // 기본적으로 한 번에 보여줄 페이지 수
+    slidesToScroll: 1,
+    arrows: true,
+    adaptiveHeight: true,
+    centerMode: false,
+    centerPadding: '0',
+
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 6,
+          centerPadding: '0',
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          centerPadding: '0',
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 7,
+          centerPadding: '0',
+        },
+      },
+      {
+        breakpoint: 664,
+        settings: {
+          slidesToShow: 6,
+          centerPadding: '35px',
+        },
+      },
+      {
+        breakpoint: 574,
+        settings: {
+          slidesToShow: 5,
+          centerPadding: '0',
+        },
+      },
+      {
+        breakpoint: 468,
+        settings: {
+          slidesToShow: 4,
+          centerPadding: '0',
+        },
+      },
+      {
+        breakpoint: 365,
+        settings: {
+          slidesToShow: 3,
+          centerPadding: '35px',
+        },
+      },
+    ],
+  };
 
   const handleCategoryClick = (category: Category) => {
     setSelectedCategory(category);
@@ -32,23 +96,26 @@ export default function SpaceCardList({
       const isActive = category === selectedCategory; // 선택된 카테고리인지 확인
 
       return (
-        <Button
-          key={category}
-          // 선택된 카테고리일 경우 추가 클래스를 부여하고 disabled 상태 설정
-          className={`${isActive ? 'button-black' : 'button-white'} main-space-card-list-category-button`}
-          onClick={() => handleCategoryClick(category)}
-          disabled={isActive} // 선택된 카테고리의 버튼은 비활성화
-        >
-          {categoryFilter(category)}
-        </Button>
+        <div key={category} className="slider-item">
+          <Button
+            key={category}
+            // 선택된 카테고리일 경우 추가 클래스를 부여하고 disabled 상태 설정
+            className={`${isActive ? 'button-black' : 'button-white'} main-space-card-list-category-button`}
+            onClick={() => handleCategoryClick(category)}
+            disabled={isActive} // 선택된 카테고리의 버튼은 비활성화
+          >
+            {categoryFilter(category)}
+          </Button>
+        </div>
       );
     });
   };
 
   return (
     <section className="main-space-card-list-container">
-      {/* searchValue가 없을 때만 드롭다운과 카테고리 버튼을 렌더링 */}
-      {searchResult === '' && <div className="space-categories-wrapper">{renderCategoryButtons()}</div>}
+      {/* searchResult가 없을 때 카테고리 버튼과 슬라이더를 렌더링 */}
+      {searchResult === '' && <Slider {...sliderSettings}>{renderCategoryButtons()}</Slider>}
+
       {/* 검색어가 있으면 검색어를, 그렇지 않으면 카테고리 이름을 표시 */}
       <div className="space-list-selected-wrapper">
         {searchResult !== '' ? (
@@ -81,6 +148,7 @@ export default function SpaceCardList({
           </>
         )}
       </div>
+
       {/* spaces 데이터가 없을 때 조건부 렌더링 */}
       {spaces.length === 0 ? (
         <div className="not-found-file-box">
