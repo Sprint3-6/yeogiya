@@ -38,6 +38,7 @@ export default function SignIn() {
     try {
       const response = await login(value);
       if (response?.status === 201) {
+        console.log('로케이션스테이트', location.state);
         if (location.state && location.state.from) {
           navigate(location.state.from);
         } else {
