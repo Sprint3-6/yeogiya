@@ -41,6 +41,7 @@ export default function MainPage() {
 
   const handleClickCategory = (name: Category) => {
     setSelectedCategory((prev) => (prev === name ? '' : name));
+    setPage(1);
   };
 
   const handleSortSpaces = (value: DropDownValue) => {
