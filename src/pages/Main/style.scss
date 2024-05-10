@@ -3,9 +3,21 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 30px;
 }
 
 .main-pagination-wrapper {
   margin-top: 70px;
+}
+
+.main-search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.main-contents-container {
+  width: 100%;
+
+  @media (min-width: 1200px) {
+    width: 1200px;
+  }
 }
