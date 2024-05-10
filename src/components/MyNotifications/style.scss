@@ -18,8 +18,8 @@
   bottom: 0;
 
   @media (min-width: 768px) {
-    top: 60px;
-    right: 150px;
+    top: 70px;
+    right: 200px;
     left: auto;
     bottom: auto;
   }
@@ -28,7 +28,8 @@
 .header-notifications-container {
   width: 100%;
   height: 100%;
-  background-color: var(--gray20);
+  background-color: #ffffffd9;
+  border: 1px solid var(--gray50);
 
   @media (min-width: 768px) {
     display: flex;
@@ -36,6 +37,7 @@
     width: 360px;
     height: 400px;
     border-radius: 10px;
+    background-color: #ffffffa6;
   }
 }
 
@@ -96,4 +98,25 @@
 
 .notifications-content.has-notifications {
   scrollbar-width: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .header-modal {
+    /* 애니메이션 효과 추가 */
+    animation: fadeIn 0.3s ease-in-out forwards;
+    transition:
+      width 0.3s ease-in-out,
+      height 0.3s ease-in-out;
+  }
 }

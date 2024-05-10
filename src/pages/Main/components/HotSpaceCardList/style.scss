@@ -8,7 +8,11 @@
   align-items: flex-start;
   width: 100%;
   margin-bottom: 35px;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.4rem;
+  }
 }
 
 .slider {

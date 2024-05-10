@@ -3,7 +3,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 100px 40px 100px 70px;
+  padding: 50px 40px 30px 40px;
   background-color: var(--gray10);
   color: var(--gray60);
+
+  @media (min-width: 768px) {
+    padding: 100px 40px 30px 40px;
+  }
 }
