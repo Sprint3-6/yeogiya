@@ -72,15 +72,8 @@ export default function SpaceCardList({
       {
         breakpoint: 468,
         settings: {
-          slidesToShow: 4,
-          centerPadding: '0',
-        },
-      },
-      {
-        breakpoint: 365,
-        settings: {
           slidesToShow: 3,
-          centerPadding: '35px',
+          centerPadding: '0',
         },
       },
     ],
@@ -114,7 +107,12 @@ export default function SpaceCardList({
   return (
     <section className="main-space-card-list-container">
       {/* searchResult가 없을 때 카테고리 버튼과 슬라이더를 렌더링 */}
-      {searchResult === '' && <Slider {...sliderSettings}>{renderCategoryButtons()}</Slider>}
+      {/* searchResult가 없을 때 카테고리 버튼과 슬라이더를 렌더링 */}
+      {searchResult === '' && (
+        <div className="category-slider">
+          <Slider {...sliderSettings}>{renderCategoryButtons()}</Slider>
+        </div>
+      )}
 
       {/* 검색어가 있으면 검색어를, 그렇지 않으면 카테고리 이름을 표시 */}
       <div className="space-list-selected-wrapper">

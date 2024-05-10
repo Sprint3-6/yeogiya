@@ -7,11 +7,12 @@
   }
 
   .slick-prev {
-    left: -12px;
-    z-index: 1;
+    left: 0;
+    z-index: 2;
   }
   .slick-next {
-    right: -12px;
+    right: 0;
+    z-index: 2;
   }
 
   @media (min-width: 768px) {
@@ -135,5 +136,40 @@
 
   @media (min-width: 1024px) {
     width: 127px;
+  }
+}
+
+.category-slider {
+  position: relative; /* 유사 요소의 위치를 설정하기 위해 상대 위치 지정 */
+  overflow: hidden; /* 슬라이더의 요소들이 컨테이너 밖으로 벗어나지 않게 하기 위해 추가 */
+
+  /* 왼쪽 및 오른쪽 그라데이션 설정 */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px; /* 그라데이션 폭 조절 */
+    z-index: 1; /* 슬라이더 요소 위에 표시되도록 z-index 설정 */
+  }
+
+  /* 왼쪽 그라데이션 설정 */
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* 흰색에서 투명으로 전환 */
+
+    @media (min-width: 768px) {
+      background: none;
+    }
+  }
+
+  /* 오른쪽 그라데이션 설정 */
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* 흰색에서 투명으로 전환 */
+    @media (min-width: 768px) {
+      background: none;
+    }
   }
 }
