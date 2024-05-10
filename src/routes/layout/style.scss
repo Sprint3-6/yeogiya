@@ -2,4 +2,9 @@ main {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

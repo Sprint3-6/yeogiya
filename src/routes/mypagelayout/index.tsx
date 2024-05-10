@@ -17,7 +17,7 @@ export default function MypageLayout() {
         <div className="mypage-side">
           <MypageSidebar />
         </div>
-        <div>
+        <div className="mypage-main">
           <MypageHeader />
           <Outlet />
         </div>
