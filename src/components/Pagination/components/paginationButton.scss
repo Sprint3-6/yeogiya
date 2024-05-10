@@ -1,7 +1,7 @@
 .pagination-button {
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
   background: var(--white);
   border: 1px solid var(--black20);
   color: var(--black20);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
   cursor: pointer;
 
@@ -18,9 +18,9 @@
   }
 
   @media (min-width: 768px) {
-    width: 55px;
-    height: 55px;
-    padding: 17px;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
   }
 }
 
