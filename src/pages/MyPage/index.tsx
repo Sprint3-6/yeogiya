@@ -47,36 +47,34 @@ export default function MyPage() {
   };
 
   return (
-    <main>
-      <div className="mypage-space">
-        <UserForm onClickForm={handleEditMyInfo} value={UpdateInfoValue} requiredValue={requiredValue}>
-          <div className="my-profile-header">
-            <div className="my-profile-header-title">
-              <h2>내 정보</h2>
-              <div className="my-profile-show-Image">
-                <MypageProfile />
-              </div>
-            </div>
-            <div className="my-profile-header-button">
-              <UserButtonItem>저장하기</UserButtonItem>
+    <div className="mypage-space">
+      <UserForm onClickForm={handleEditMyInfo} value={UpdateInfoValue} requiredValue={requiredValue}>
+        <div className="my-profile-header">
+          <div className="my-profile-header-title">
+            <h2>내 정보</h2>
+            <div className="my-profile-show-Image">
+              <MypageProfile />
             </div>
           </div>
-          <div className="mypage-list">
-            <UserInputItem id="nickname" type="text" text={userData.nickname}>
-              닉네임
-            </UserInputItem>
-            <UserInputItem id="email" type="email" value={userData.email} disabled={true}>
-              이메일
-            </UserInputItem>
-            <UserInputItem id="password" type="password" text="8자 이상 입력해 주세요">
-              비밀번호
-            </UserInputItem>
-            <UserInputItem id="passwordCheck" type="password" text="비밀번호를 한 번 더 입력해주세요">
-              비밀번호 재입력
-            </UserInputItem>
+          <div className="my-profile-header-button">
+            <UserButtonItem>저장하기</UserButtonItem>
           </div>
-        </UserForm>
-      </div>
-    </main>
+        </div>
+        <div className="mypage-list">
+          <UserInputItem id="nickname" type="text" text={userData.nickname}>
+            닉네임
+          </UserInputItem>
+          <UserInputItem id="email" type="email" value={userData.email} disabled={true}>
+            이메일
+          </UserInputItem>
+          <UserInputItem id="password" type="password" text="8자 이상 입력해 주세요">
+            비밀번호
+          </UserInputItem>
+          <UserInputItem id="passwordCheck" type="password" text="비밀번호를 한 번 더 입력해주세요">
+            비밀번호 재입력
+          </UserInputItem>
+        </div>
+      </UserForm>
+    </div>
   );
 }

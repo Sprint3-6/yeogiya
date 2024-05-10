@@ -43,6 +43,15 @@ export const UserForm = (props: LoginFormProps) => {
       });
     }
 
+    // 닉네임 10자 이상 입력 안 됨
+    if (id === 'nickname') {
+      if (value.length > 10) {
+        setInputValue({
+          ...inputValue,
+        });
+      }
+    }
+
     if (isErrorCheck) {
       handleError(e);
     }
