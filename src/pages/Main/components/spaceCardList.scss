@@ -2,16 +2,32 @@
   width: 100%;
   padding: 0 15px;
 
+  .slick-list {
+    padding-left: 8px !important;
+  }
+
+  .slick-prev {
+    left: -12px;
+    z-index: 1;
+  }
+  .slick-next {
+    right: -12px;
+  }
+
   @media (min-width: 768px) {
     padding: 0 40px;
     max-width: 1400px;
+
+    .slick-prev {
+      left: -25px;
+    }
+    .slick-next {
+      right: -25px;
+    }
   }
 
   .slick-list {
     padding: 0;
-  }
-  .slick-prev {
-    z-index: 1;
   }
   .slick-arrow::before {
     color: black;
