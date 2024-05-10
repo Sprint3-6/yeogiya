@@ -118,6 +118,18 @@
   padding: 0 20px;
 }
 
+.mypage-side-line {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  hr {
+    // border-color: var(--gray20);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  color: var(--gray50);
+}
+
 // 관리자 영역
 .mapage-side-list-admin {
   padding: 10px 0;
