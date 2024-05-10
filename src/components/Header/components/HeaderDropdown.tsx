@@ -2,11 +2,11 @@ import './headerDropdown.scss';
 import { useDispatch } from 'react-redux';
 import { clearMyInfo } from '@/redux/myInfoSlice';
 import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
-import MypageSidebar from '@/components/MypageSidebar';
 import { useModal } from '@/hooks/useModal/useModal';
 import Button from '@/components/Button';
 import toast from '@/utils/toast';
 import { useNavigate } from 'react-router-dom';
+import MypageSideList from '@/components/MypageSidebar/components/MypageSideList';
 
 interface DropDownProp {
   nickname: string;
@@ -45,10 +45,16 @@ export default function HeaderDropDown({ profile, nickname }: DropDownProp) {
       <div className="head-profile-dropdown">
         <DropDown id="head-profile" image={profile} title={nickname} onClickItem={handleLogoutCheck}>
           <DropdownItem value={'link'}>
-            <MypageSidebar />
+            <MypageSideList />
           </DropdownItem>
+          <hr></hr>
           <div className="head-profile-logout">
-            <DropdownItem value={'logout'}>로그아웃</DropdownItem>
+            <DropdownItem value={'logout'}>
+              <div className="head-profile-logout-box">
+                <img src="/assets/icons/icon-logout.png" alt="로그아웃" />
+                로그아웃
+              </div>
+            </DropdownItem>
           </div>
         </DropDown>
       </div>

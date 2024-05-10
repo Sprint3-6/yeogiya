@@ -31,8 +31,14 @@ export const reservationStatusApi = createApi({
       providesTags: ['Schedule'],
     }),
     getTimeReservations: builder.query<TimeReservationList, TimeReservationParams>({
-      query: ({ activityId, scheduleId, status }) =>
-        `my-activities/${activityId}/reservations?scheduleId=${scheduleId}&status=${status}`, // 내 체험 예약 시간대별 예약 내역 조회 엔드포인트
+      query: ({ activityId, cursorId, scheduleId, size, status }) => {
+        const query = new URLSearchParams();
+        query.append('scheduleId', String(scheduleId));
+        query.append('status', status);
+        if (cursorId) query.append('cursorId', String(cursorId));
+        query.append('size', String(size ?? 5));
+        return `my-activities/${activityId}/reservations?${query}`; // 내 체험 예약 시간대별 예약 내역 조회 엔드포인트
+      },
       providesTags: ['Reservation'],
     }),
     // mutation은 데이터 조작을 정의합니다. POST, PUT, DELETE, PATCH 등의 요청을 보낼 수 있습니다.

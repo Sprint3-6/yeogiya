@@ -5,7 +5,6 @@ import { ErrorType } from './types/axiosErrorType';
 import toast from '@/utils/toast';
 import { InputValue } from '@/components/UserForm/types';
 import { myInfoValue } from '@/pages/MyPage/types';
-// import { myInfoValue } from '@/pages/MyPage/types';
 
 // 회원가입 api
 export const signUpApi = async (value: InputValue) => {
