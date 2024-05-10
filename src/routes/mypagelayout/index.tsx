@@ -16,9 +16,9 @@ export default function MypageLayout() {
       <sub>
         <div className="mypage-side">
           <MypageSidebar />
+          <MypageHeader />
         </div>
         <div className="mypage-main">
-          <MypageHeader />
           <Outlet />
         </div>
       </sub>

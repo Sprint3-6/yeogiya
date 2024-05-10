@@ -2,6 +2,7 @@
   position: sticky;
   display: flex;
   width: 344px;
+  // height: 500px;
   padding: 24px;
   flex-direction: column;
   justify-content: center;
@@ -31,6 +32,7 @@
   align-items: flex-start;
   gap: 227px;
   align-self: stretch;
+  // height: 160px;
   height: auto;
 }
 
@@ -105,7 +107,7 @@
   flex-direction: column;
   gap: 8px;
   align-self: stretch;
-  height: auto;
+  height: 100%;
 }
 
 .mapage-side-list-user .mypage-side-item {

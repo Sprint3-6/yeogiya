@@ -3,8 +3,12 @@ main {
   display: flex;
   justify-content: center;
 
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // overflow: scroll;
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+  // @media (min-width: 768px) {
+  //   overflow: scroll;
+  // }
 }
