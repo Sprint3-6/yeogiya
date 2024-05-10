@@ -10,7 +10,7 @@
   }
 
   @media (min-width: 1024px) {
-    width: 283px;
+    width: max(283px, 100%);
   }
 }
 

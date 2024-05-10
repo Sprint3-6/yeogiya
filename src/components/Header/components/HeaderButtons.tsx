@@ -28,7 +28,7 @@ export default function HeaderButtons() {
               nickname={userData.nickname}
             />
           </div>
-          <Modal name="header-notifications">
+          <Modal name="header-notifications" classNameLayout="header-modal-layout" classNameModal="header-modal">
             <div className="header-notifications-container">
               <MyNotifications onClose={closeModal} />
             </div>

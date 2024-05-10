@@ -1,0 +1,52 @@
+.canceled-modal-container {
+  width: 300px;
+  padding: 14px;
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.canceled-modal-check-icon {
+  width: 24px;
+  height: 24px;
+  background-color: var(--black);
+  border-radius: 100%;
+  padding: 4px;
+}
+
+.canceled-modal-container,
+.canceled-modal-space-wrapper,
+.canceled-modal-space-info,
+.canceled-modal-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.canceled-modal-space-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
+.canceled-modal-button-wrapper {
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.canceled-modal-button {
+  width: 98px;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+}
+
+.canceled-modal-space-count,
+.canceled-modal-space-date,
+.canceled-modal-space-price {
+  font-weight: 600;
+}

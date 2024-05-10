@@ -1,0 +1,18 @@
+.my-reservation-status-dropdown {
+  font-size: 1.6rem;
+  font-weight: 400;
+
+  div.dropdown {
+    width: 120px;
+    height: 41px;
+  }
+  ul.dropdown-list {
+    gap: 0;
+  }
+  div.dropdown-arrow {
+    font-weight: bold;
+  }
+  .dropdown-item {
+    padding: 10px;
+  }
+}
