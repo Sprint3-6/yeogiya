@@ -210,7 +210,12 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
             <h3>참여 인원 수</h3>
             <div className="customer-counter-mobile-control">
               <img src="/assets/icons/icon-minus.svg" onClick={() => handleHowManyCustomer('-')} />
-              <input value={howMany} type="number" onChange={(e) => setHowMany(Math.max(1, Number(e.target.value)))} />
+              <input
+                value={howMany}
+                type="number"
+                autoFocus
+                onChange={(e) => setHowMany(Math.max(1, Number(e.target.value)))}
+              />
               <img src="/assets/icons/icon-plus.svg" onClick={() => handleHowManyCustomer('+')} />
             </div>
             <Button
