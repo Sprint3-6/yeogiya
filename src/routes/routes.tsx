@@ -2,18 +2,19 @@
 
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-import AddSpace from '@/pages/AddSpace';
-import EditSpace from '@/pages/EditSpace';
+import SpaceDetails from '@/pages/SpaceDetails';
+import Loading from '@/pages/Loading';
 import MainPage from '@/pages/Main';
-import MyPage from '@/pages/MyPage';
-import MyReservation from '@/pages/MyReservation';
 import MySpaceManagement from '@/pages/MySpaceManagement';
 import NotFound from '@/pages/NotFound';
 import ReservationStatus from '@/pages/ReservationStatus';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
-import SpaceDetails from '@/pages/SpaceDetails';
 import Layout from './layout';
+import MyPage from '@/pages/MyPage';
+import MyReservation from '@/pages/MyReservation';
+import EditSpace from '@/pages/EditSpace';
+import AddSpace from '@/pages/AddSpace';
 import MypageLayout from './mypagelayout';
 import SignLayout from './signLayout';
 
@@ -31,6 +32,7 @@ const PrimaryRoute = (
         <Route path="mypage" element={<MyPage />} />
       </Route>
     </Route>
+    <Route path="loading" element={<Loading />} />
     <Route element={<SignLayout />}>
       <Route path="sign-up" element={<SignUp />} />
       <Route path="sign-in" element={<SignIn />} />
