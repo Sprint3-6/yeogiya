@@ -1,22 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
 
+import { lazy } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
-
-import SpaceDetails from '@/pages/SpaceDetails';
-import Loading from '@/pages/Loading';
-import MainPage from '@/pages/Main';
-import MySpaceManagement from '@/pages/MySpaceManagement';
-import NotFound from '@/pages/NotFound';
-import ReservationStatus from '@/pages/ReservationStatus';
-import SignIn from '@/pages/SignIn';
-import SignUp from '@/pages/SignUp';
 import Layout from './layout';
-import MyPage from '@/pages/MyPage';
-import MyReservation from '@/pages/MyReservation';
-import EditSpace from '@/pages/EditSpace';
-import AddSpace from '@/pages/AddSpace';
 import MypageLayout from './mypagelayout';
 import SignLayout from './signLayout';
+
+const SpaceDetails = lazy(() => import('@/pages/SpaceDetails'));
+const MainPage = lazy(() => import('@/pages/Main'));
+const MySpaceManagement = lazy(() => import('@/pages/MySpaceManagement'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+const ReservationStatus = lazy(() => import('@/pages/ReservationStatus'));
+const SignIn = lazy(() => import('@/pages/SignIn'));
+const SignUp = lazy(() => import('@/pages/SignUp'));
+const MyPage = lazy(() => import('@/pages/MyPage'));
+const MyReservation = lazy(() => import('@/pages/MyReservation'));
+const EditSpace = lazy(() => import('@/pages/EditSpace'));
+const AddSpace = lazy(() => import('@/pages/AddSpace'));
 
 const PrimaryRoute = (
   <>
@@ -32,7 +32,6 @@ const PrimaryRoute = (
         <Route path="mypage" element={<MyPage />} />
       </Route>
     </Route>
-    <Route path="loading" element={<Loading />} />
     <Route element={<SignLayout />}>
       <Route path="sign-up" element={<SignUp />} />
       <Route path="sign-in" element={<SignIn />} />
