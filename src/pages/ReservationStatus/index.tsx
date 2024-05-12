@@ -139,7 +139,11 @@ export default function ReservationStatus() {
           {/* 내 체험 예약 상태(승인, 거절) 업데이트 */}
           <Modal name="reservation">
             {activityId && (
-              <ReservationInformation activityId={activityId} chip={selectedChip} selectedDate={selectedDate} />
+              <ReservationInformation
+                activityId={activityId}
+                reservationChip={selectedChip}
+                selectedDate={selectedDate}
+              />
             )}
           </Modal>
         </>
