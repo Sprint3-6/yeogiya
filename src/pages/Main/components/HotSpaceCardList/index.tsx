@@ -17,32 +17,45 @@ export default function HotSpaceCardList() {
   const [data, setData] = useState<DataType | null>(null);
 
   const settings = {
-    slide: 'div',
-    arrows: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     vertical: false,
     draggable: true,
     swipeToSlide: true,
     touchMove: true,
+    centerMode: true,
+    centerPadding: '20px',
     responsive: [
-      // 반응형 웹 구현 옵션
       {
-        breakpoint: 960, //화면 사이즈 960px일 때
+        breakpoint: 1060,
         settings: {
-          //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-          slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToShow: 2,
+          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 768, //화면 사이즈 768px일 때
+        breakpoint: 960,
         settings: {
-          //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-          slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ],

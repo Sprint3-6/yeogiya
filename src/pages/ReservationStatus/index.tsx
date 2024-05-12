@@ -1,9 +1,9 @@
 import { useGetActivityListQuery, useLazyGetReservationDashboardQuery } from '@/api/reservationStatusApi';
 import CalendarReservationChip from '@/components/Calendar/components/CalendarReservationChip';
-import ReservationInformation from '@/components/Calendar/components/ReservationInformation';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
 import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
+import ReservationInformation from '@/pages/ReservationStatus/components/ReservationInformation';
 import { isSameDate, statusChips, statusMap, translateMap } from '@/utils/calendarUtils';
 import { format, getYear } from 'date-fns';
 import { useEffect, useState } from 'react';
@@ -139,7 +139,11 @@ export default function ReservationStatus() {
           {/* 내 체험 예약 상태(승인, 거절) 업데이트 */}
           <Modal name="reservation">
             {activityId && (
-              <ReservationInformation activityId={activityId} chip={selectedChip} selectedDate={selectedDate} />
+              <ReservationInformation
+                activityId={activityId}
+                reservationChip={selectedChip}
+                selectedDate={selectedDate}
+              />
             )}
           </Modal>
         </>

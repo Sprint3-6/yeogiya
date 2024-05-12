@@ -1,0 +1,57 @@
+.mypage-header {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mypage-header .mapage-side-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .mypage-side-line {
+    display: none;
+  }
+}
+
+.mypage-header .mypage-side-item-image {
+  display: none;
+}
+
+.mypage-header .mypage-side-item,
+.mypage-header .mypage-side-item-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 4px;
+  width: 100%;
+  border-radius: 50px;
+  height: auto;
+
+  .mypage-side-item-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    padding: 0 1.4px;
+    width: 100%;
+  }
+}
+
+.mypage-header .mypage-side-item {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.slider {
+  margin-left: 100px;
+  background-color: green;
+  height: 100px;
+  color: red;
+  width: 100px;
+}

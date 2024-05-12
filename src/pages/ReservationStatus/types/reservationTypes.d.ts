@@ -1,10 +1,10 @@
 type ReservationChip = 'pending' | 'confirmed' | 'completed';
 
 interface ReservationInformationProps {
+  activityId: number;
+  reservationChip?: ReservationChip;
   selectedDate: Date;
   status?: ReservationStatus;
-  chip?: ReservationChip;
-  activityId: number;
 }
 
 type UpdateReservationStatus = 'pending' | 'confirmed' | 'declined';

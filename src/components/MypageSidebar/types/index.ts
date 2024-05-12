@@ -1,4 +1,4 @@
-export interface mypagesideProps {
+export interface mypagesideitemProps {
   image: string;
   clickImage: string;
   link: string;

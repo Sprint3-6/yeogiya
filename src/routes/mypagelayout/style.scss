@@ -1,36 +1,46 @@
 sub {
   display: flex;
-  // align-items: center;
-  justify-content: center;
-  // flex-direction: column;
-  // color: red;
+  flex-direction: column;
   margin-top: 24px;
   @media (min-width: 768px) {
-    width: 744px;
+    flex-direction: row;
+    justify-content: center;
     gap: 16px;
   }
 
   // 데스크탑
   @media (min-width: 1024px) {
-    // width: 100%;
     gap: 24px;
-    // margin-top: 72px;
   }
 }
 
 .mypage-side {
-  // position: sticky;
+  .mypage-side-container {
+    display: none;
+    // 태블릿
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
 
-  // display: inline-block;
-  // align-items: center;
-  // justify-content: center;
+  .mypage-header {
+    width: 100%;
+    // 태블릿
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}
 
-  // width: 375px;
-  // height: 740px;
-  display: none;
-  // background-color: green;
-  // 태블릿
+.mypage-main {
+  width: 375px;
+  width: 344px;
   @media (min-width: 768px) {
-    display: inline-block;
+    width: 429px;
+  }
+
+  // 데스크탑
+  @media (min-width: 1024px) {
+    width: 792px;
   }
 }
