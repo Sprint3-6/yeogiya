@@ -1,62 +1,72 @@
+import { useState, useEffect, useRef } from 'react';
 import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import MyReservationCard from './components/MyReservationCard';
-import { useState, useEffect } from 'react';
 import { MyReservationType } from '@/api/types/myReservation';
 import instance from '@/api/instance/defaultInstance';
-import { BASE_URL } from '@/api/constants/url';
 import './style.scss';
-
-/**
-TODO 체험완료 문구 변경
-TODO 무한스크롤 추가
-TODO 로딩 상태 추가
-*/
+import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 
 export default function MyReservation() {
   const [myReservation, setMyReservation] = useState<MyReservationType[]>([]);
   const [statusCategory, setStatusCategory] = useState<DropDownValue>('');
+  const cursorIdRef = useRef<number | null>(null);
 
   const handleClickCategory = (value: DropDownValue) => {
     setStatusCategory(value);
+    cursorIdRef.current = null;
+    setMyReservation([]);
+  };
+
+  const getReservation = async (cursorId: number | null) => {
+    try {
+      let queryParams = `?size=5`;
+      if (statusCategory && statusCategory !== 'all') {
+        queryParams += `&status=${statusCategory}`;
+      }
+      if (cursorId !== null) {
+        queryParams += `&cursorId=${cursorId}`;
+      }
+
+      const res = await instance.get(`my-reservations${queryParams}`);
+      if (cursorId === null) {
+        setMyReservation(res.data.reservations);
+      } else {
+        setMyReservation((prevData) => [...prevData, ...res.data.reservations]);
+      }
+      if (res.data.reservations.length > 0) {
+        cursorIdRef.current = res.data.cursorId;
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
-    const getReservation = async () => {
-      try {
-        // statusCategory에 따라 쿼리 파라미터를 설정
-        let queryParams = '';
-        if (statusCategory && statusCategory !== 'all') {
-          queryParams = `?size=10&status=${statusCategory}`;
-        }
-
-        const res = await instance.get(`${BASE_URL}my-reservations${queryParams}`);
-        setMyReservation(res.data.reservations);
-        console.log(myReservation);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getReservation();
+    getReservation(null);
   }, [statusCategory]);
 
   const handleCancelReservation = async (id: number) => {
     try {
-      const body = {
-        status: 'canceled',
-      };
-      const res = await instance.patch(`${BASE_URL}my-reservations/${id}`, body);
+      const body = { status: 'canceled' };
+      const res = await instance.patch(`my-reservations/${id}`, body);
       console.log(res.data);
-
       setMyReservation((prevReservations) =>
         prevReservations.map((reservation) =>
           reservation.id === id ? { ...reservation, status: 'canceled' } : reservation,
         ),
       );
-      //성공 시 토스트, 실행 전 모달
     } catch (err) {
       console.error(err);
     }
   };
+
+  const handleIntersection = () => {
+    if (cursorIdRef.current !== null) {
+      getReservation(cursorIdRef.current);
+    }
+  };
+
+  const { sentinelRef } = useIntersectionObserver(handleIntersection);
 
   return (
     <main>
@@ -84,11 +94,9 @@ export default function MyReservation() {
           {myReservation.length > 0 ? (
             <div className="my-space-list-box">
               {myReservation.map((reservation) => (
-                <MyReservationCard
-                  key={reservation.id}
-                  data={reservation}
-                  handleCancelReservation={handleCancelReservation}
-                />
+                <div key={reservation.id}>
+                  <MyReservationCard data={reservation} handleCancelReservation={handleCancelReservation} />
+                </div>
               ))}
             </div>
           ) : (
@@ -97,6 +105,7 @@ export default function MyReservation() {
               <span>아직 예약한 공간이 없어요</span>
             </div>
           )}
+          <div ref={sentinelRef} />
         </div>
       </div>
     </main>
