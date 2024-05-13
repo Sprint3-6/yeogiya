@@ -287,7 +287,8 @@
           p {
             padding-left: 61px;
             font-size: 1.6rem;
-            line-height: 26px; /* 162.5% */
+            line-height: 26px;
+            white-space: pre-wrap;
           }
         }
       }
