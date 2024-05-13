@@ -4,12 +4,16 @@ import { router } from './routes/routes';
 import persistedStore, { store } from './redux/store';
 import './styles/_base.scss';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Suspense } from 'react';
+import Loading from './pages/Loading';
 
 export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </PersistGate>
     </Provider>
   );

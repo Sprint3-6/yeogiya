@@ -31,7 +31,7 @@ export const useModal = () => {
 
   // index.html에 root div 형제인 id가 modal인 div를 참조
   // createPortal을 이용하여 z-index 쌓임맥락으로 인한 예상치 못한 레이아웃 문제 해결
-  const modalRoot = document.body as HTMLElement;
+  const modalRoot = document.getElementById('modal-root') as HTMLElement;
 
   // 기본 스타일을 or 프롭스로 스타일을 바꿀 수 있다
   const Modal = ({ name, children, classNameModal, classNameLayout }: ModalProps) => {
