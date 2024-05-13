@@ -56,6 +56,16 @@
   .button-black {
     width: 100%;
     height: 56px;
+
+    &:disabled {
+      cursor: default;
+      background-color: var(--gray30);
+      border: 1px solid var(--gray30);
+    }
+
+    &:disabled:hover {
+      color: var(--white);
+    }
   }
 
   @media (max-width: 430px) {
