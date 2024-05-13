@@ -119,7 +119,7 @@ export default function SpaceCardList({
         {searchResult !== '' ? (
           <div className="space-list-search-result">
             <div className="space-list-search-result-word">
-              <h3>{searchResult}</h3>
+              <h1>{searchResult}</h1>
               <p>으로 검색한 결과입니다</p>
             </div>
             <div className="space-list-search-result-count">
