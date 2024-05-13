@@ -80,6 +80,7 @@
   border-radius: 4px;
   &:focus {
     outline: none;
+    border: 1px solid var(--black);
   }
   &:active {
     border: 2px solid black;
@@ -100,6 +101,7 @@ input::-webkit-inner-spin-button {
   border-radius: 4px;
   &:focus {
     outline: none;
+    border: 1px solid var(--black);
   }
   &:active {
     border: 2px solid black;
