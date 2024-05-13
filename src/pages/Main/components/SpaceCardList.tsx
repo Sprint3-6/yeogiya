@@ -135,8 +135,8 @@ export default function SpaceCardList({
               <DropDown
                 id="space-list-dropdown"
                 title="가격"
-                arrowUp={'▲'}
-                arrowDown={'▼'}
+                arrowUp={'∧'}
+                arrowDown={'∨'}
                 onClickItem={handleSortSpaces}
               >
                 <DropdownItem value="high">높은 순</DropdownItem>

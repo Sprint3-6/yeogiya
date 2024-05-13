@@ -102,16 +102,21 @@
 }
 
 .space-list-sort-dropdown {
-  font-size: 1.6rem;
-  font-weight: 500;
-
   div.dropdown {
-    width: 90px;
+    width: 96px;
     height: 41px;
+    font-size: 1.4rem;
+    font-weight: 500;
+
     @media (min-width: 768px) {
-      width: 127px;
+      width: 105px;
       height: 53px;
+      font-size: 1.6rem;
     }
+  }
+
+  div.dropdown-arrow {
+    font-weight: bold;
   }
 
   .dropdown-item {
