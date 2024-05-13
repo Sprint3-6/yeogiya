@@ -116,6 +116,10 @@
       div {
         height: 263px;
         border-radius: 12px;
+
+        img {
+          object-fit: cover;
+        }
       }
 
       .empty-image {
