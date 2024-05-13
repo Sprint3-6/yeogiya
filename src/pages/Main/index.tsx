@@ -41,6 +41,7 @@ export default function MainPage() {
 
   const handleClickCategory = (name: Category) => {
     setSelectedCategory((prev) => (prev === name ? '' : name));
+    setPage(1);
   };
 
   const handleSortSpaces = (value: DropDownValue) => {
@@ -106,22 +107,30 @@ export default function MainPage() {
   return (
     <div className="main-container">
       <Banner />
-      <SearchBar
-        searchValue={searchValue}
-        handleSearchText={handleSearchText}
-        handleSearchSubmit={handleSearchSubmit}
-      />
-      {!searchResult && <HotSpaceCardList />}
-      {data?.activities && (
-        <SpaceCardList
-          searchResult={searchResult}
-          spaces={data.activities}
-          handleClickCategory={handleClickCategory}
-          handleSortSpaces={handleSortSpaces}
-        />
-      )}
-      <div className="main-pagination-wrapper">
-        <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
+      <div className="main-contents-container">
+        <div className="main-search-bar-wrapper">
+          <SearchBar
+            searchValue={searchValue}
+            handleSearchText={handleSearchText}
+            handleSearchSubmit={handleSearchSubmit}
+          />
+        </div>
+        {!searchResult && (
+          <div className="main-hot-space-wrapper">
+            <HotSpaceCardList />
+          </div>
+        )}
+        {data?.activities && (
+          <SpaceCardList
+            searchResult={searchResult}
+            spaces={data.activities}
+            handleClickCategory={handleClickCategory}
+            handleSortSpaces={handleSortSpaces}
+          />
+        )}
+        <div className="main-pagination-wrapper">
+          <Pagination totalCount={data?.totalCount} size={size as number} page={page} setPage={setPage} />
+        </div>
       </div>
     </div>
   );

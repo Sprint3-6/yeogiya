@@ -7,10 +7,10 @@ import { FormEvent, MouseEvent, ChangeEvent } from 'react';
 [x] 검색 필터 기준 : 키워드가 제목에 일부라도 포함된 경우 모두 검색
 [x] 검색 할 때 카테고리 or 가격 순 필터 모두 초기화
 [x] category, sort 쿼리 X
-[] 검색된 결과 없을 때
+[x] 검색된 결과 없을 때
 [x] '검색어' 으로 검색한 결과 표시
-[] '검색어' 결과 개수
-[] 배경색 변경 (배너 추가 후 화이트로 변경할 예정)
+[x] '검색어' 결과 개수
+[x] 배경색 변경 (배너 추가 후 화이트로 변경할 예정)
 */
 
 interface SearchBarProps {

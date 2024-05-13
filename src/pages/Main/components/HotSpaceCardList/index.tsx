@@ -8,6 +8,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 
+//TODO 1100px 부터 화살표 표시
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -17,23 +18,24 @@ export default function HotSpaceCardList() {
   const [data, setData] = useState<DataType | null>(null);
 
   const settings = {
-    arrows: false,
-    infinite: true,
+    arrows: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     vertical: false,
+    focusOnSelect: true,
     draggable: true,
     swipeToSlide: true,
     touchMove: true,
-    centerMode: true,
-    centerPadding: '20px',
+    centerMode: false,
+    centerPadding: '60px',
     responsive: [
       {
-        breakpoint: 1060,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          centerMode: true,
         },
       },
       {
@@ -43,19 +45,35 @@ export default function HotSpaceCardList() {
           slidesToScroll: 1,
         },
       },
-
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 690,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 520,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: true,
         },
       },
     ],
@@ -86,7 +104,7 @@ export default function HotSpaceCardList() {
           {data?.activities.map((space) => (
             // 각 요소를 div 요소로 감싸고, 각 요소에 적절한 크기와 스타일을 지정하세요.
             <div key={space.id} className="hot-space-card-list-item">
-              <HotSpaceCard key={space.id} item={space} />
+              <HotSpaceCard item={space} />
             </div>
           ))}
         </Slider>

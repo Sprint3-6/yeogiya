@@ -1,6 +1,10 @@
 .hot-space-container {
   width: 100%;
-  padding-left: 24px;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
 }
 
 .hot-space-header {
@@ -28,6 +32,15 @@
 .slick-slide {
   height: 320px;
   box-sizing: border-box;
+  float: right;
+}
+
+.slick-list {
+  padding-left: 15px !important;
+
+  @media (min-width: 768px) {
+    padding-left: 0 !important;
+  }
 }
 
 .slick-prev:before {

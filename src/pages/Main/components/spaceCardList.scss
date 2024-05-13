@@ -1,10 +1,37 @@
 .main-space-card-list-container {
   width: 100%;
-  padding: 0 10px;
+  padding: 0 15px;
+
+  .slick-list {
+    padding-left: 8px !important;
+  }
+
+  .slick-prev {
+    left: 0;
+    z-index: 2;
+  }
+  .slick-next {
+    right: 0;
+    z-index: 2;
+  }
 
   @media (min-width: 768px) {
     padding: 0 40px;
     max-width: 1400px;
+
+    .slick-prev {
+      left: -25px;
+    }
+    .slick-next {
+      right: -25px;
+    }
+  }
+
+  .slick-list {
+    padding: 0;
+  }
+  .slick-arrow::before {
+    color: black;
   }
 }
 
@@ -41,8 +68,12 @@
   align-items: center;
   margin-top: 30px;
   margin-bottom: 35px;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 700;
+
+  @media (min-width: 768px) {
+    font-size: 2.8rem;
+  }
 
   p {
     font-weight: 400;
@@ -71,16 +102,21 @@
 }
 
 .space-list-sort-dropdown {
-  font-size: 1.6rem;
-  font-weight: 500;
-
   div.dropdown {
-    width: 90px;
+    width: 96px;
     height: 41px;
+    font-size: 1.4rem;
+    font-weight: 500;
+
     @media (min-width: 768px) {
-      width: 127px;
+      width: 105px;
       height: 53px;
+      font-size: 1.6rem;
     }
+  }
+
+  div.dropdown-arrow {
+    font-weight: bold;
   }
 
   .dropdown-item {
@@ -96,6 +132,7 @@
   border-radius: 15px;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
   font-size: 1.4rem;
   font-weight: 400;
 
@@ -108,5 +145,40 @@
 
   @media (min-width: 1024px) {
     width: 127px;
+  }
+}
+
+.category-slider {
+  position: relative; /* 유사 요소의 위치를 설정하기 위해 상대 위치 지정 */
+  overflow: hidden; /* 슬라이더의 요소들이 컨테이너 밖으로 벗어나지 않게 하기 위해 추가 */
+
+  /* 왼쪽 및 오른쪽 그라데이션 설정 */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px; /* 그라데이션 폭 조절 */
+    z-index: 1; /* 슬라이더 요소 위에 표시되도록 z-index 설정 */
+  }
+
+  /* 왼쪽 그라데이션 설정 */
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* 흰색에서 투명으로 전환 */
+
+    @media (min-width: 768px) {
+      background: none;
+    }
+  }
+
+  /* 오른쪽 그라데이션 설정 */
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* 흰색에서 투명으로 전환 */
+    @media (min-width: 768px) {
+      background: none;
+    }
   }
 }
