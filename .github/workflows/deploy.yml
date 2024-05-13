@@ -1,0 +1,23 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm install --ignore-scripts --non-interactive
+      - name: Remove Conflicting Dependencies
+        run: npm uninstall vite-plugin-html
+      - name: Install Optional Dependencies
+        run: npm install --save-dev vite-plugin-html @esbuild/linux-x64 @rollup/rollup-linux-x64-gnu
+      - name: Build React App
+        run: npm run build
