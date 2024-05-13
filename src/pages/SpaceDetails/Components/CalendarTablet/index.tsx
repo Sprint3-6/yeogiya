@@ -1,18 +1,9 @@
+import { useEffect } from 'react';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { ScheduleType } from '../../Types/DetailTypes';
+import { CalendarTabletType } from '../../Types/DetailTypes';
 import Button from '@/components/Button';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
-
-interface Temp {
-  closeModal: () => void;
-  setSelectedSchedule: React.Dispatch<React.SetStateAction<number | null>>;
-  setSelectedDateString: React.Dispatch<React.SetStateAction<string | undefined>>;
-  handleMonthChange: (month: Date) => void;
-  schedule: ScheduleType[] | undefined;
-  selectedSchedule: number | null;
-  handleSelectedSchedule: (id: number) => void;
-}
 
 const CalendarTablet = ({
   closeModal,
@@ -22,8 +13,27 @@ const CalendarTablet = ({
   schedule,
   selectedSchedule,
   handleSelectedSchedule,
-}: Temp) => {
+  setOpenedSchedule,
+  month,
+  setMonth,
+}: CalendarTabletType) => {
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
+
+  useEffect(() => {
+    setOpenedSchedule();
+  }, [month]);
+
+  useEffect(() => {
+    const days = document.getElementsByClassName('calendar-date-box');
+
+    for (let x = 0; x < days.length; x++) {
+      schedule?.map((item) => {
+        if (item.date.slice(8, 10) === days[x].innerHTML.padStart(2, '0')) {
+          days[x].classList.add('booked-date');
+        }
+      });
+    }
+  });
 
   return (
     <aside className="calendar-tablet">
@@ -36,12 +46,13 @@ const CalendarTablet = ({
             setSelectedSchedule(null);
             setSelectedDate(new Date());
             setSelectedDateString('');
+            setMonth((new Date().getMonth() + 1).toString().padStart(2, '0'));
           }}
         />
       </div>
       <Calendar
         onChange={() => setSelectedSchedule(null)}
-        onChangeMonth={() => handleMonthChange}
+        onChangeMonth={handleMonthChange}
         size="small"
         tileContent={(date: Date) => {
           return (
@@ -74,7 +85,7 @@ const CalendarTablet = ({
               )),
           )}
       </div>
-      <Button className="button-black" onClick={closeModal}>
+      <Button className="button-black" onClick={closeModal} disabled={selectedSchedule ? false : true}>
         예약하기
       </Button>
     </aside>
