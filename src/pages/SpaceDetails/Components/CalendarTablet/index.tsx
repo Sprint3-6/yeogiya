@@ -1,22 +1,9 @@
 import { useEffect } from 'react';
 import { isSameDate } from '@/utils/calendarUtils';
 import { format } from 'date-fns';
-import { ScheduleType } from '../../Types/DetailTypes';
+import { CalendarTabletType } from '../../Types/DetailTypes';
 import Button from '@/components/Button';
 import useCalendar from '@/components/Calendar/hooks/useCalendar';
-
-interface Temp {
-  closeModal: () => void;
-  setSelectedSchedule: React.Dispatch<React.SetStateAction<number | null>>;
-  setSelectedDateString: React.Dispatch<React.SetStateAction<string | undefined>>;
-  handleMonthChange: (month: Date) => void;
-  schedule: ScheduleType[] | undefined;
-  selectedSchedule: number | null;
-  handleSelectedSchedule: (id: number) => void;
-  setOpenedSchedule: () => Promise<void>;
-  month: string;
-  setMonth: React.Dispatch<React.SetStateAction<string>>;
-}
 
 const CalendarTablet = ({
   closeModal,
@@ -29,7 +16,7 @@ const CalendarTablet = ({
   setOpenedSchedule,
   month,
   setMonth,
-}: Temp) => {
+}: CalendarTabletType) => {
   const { Calendar, selectedDate, setSelectedDate } = useCalendar();
 
   useEffect(() => {

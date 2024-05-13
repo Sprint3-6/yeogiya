@@ -79,7 +79,6 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
         <h2>
           ₩ {detail?.price.toLocaleString()} <span>/ 인</span>
         </h2>
-
         <div className="calendar-box">
           <h3>날짜</h3>
           <h4
@@ -89,7 +88,6 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
           >
             {selectedDateString ? selectedDateString : '날짜 선택하기'}
           </h4>
-
           <Calendar
             onChange={() => setSelectedSchedule(null)}
             onChangeMonth={handleMonthChange}
@@ -123,7 +121,6 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
               )}
           </div>
         </div>
-
         <div className="howmany-box">
           <h3>참여 인원 수</h3>
           <div className="howmany-box-control">
@@ -135,12 +132,10 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
             예약하기
           </Button>
         </div>
-
         <div className="total-box">
           <h3>총 합계</h3>
           <h3>₩ {detail && (detail.price * howMany).toLocaleString()}</h3>
         </div>
-
         <Modal name="calendar-tablet" classNameModal="no-animation">
           <CalendarTablet
             closeModal={closeModal}
@@ -155,7 +150,6 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
             setMonth={setMonth}
           />
         </Modal>
-
         <Modal name="customer-counter-mobile" classNameModal="no-animation">
           <aside className="customer-counter-mobile">
             <h3>참여 인원 수</h3>
@@ -174,7 +168,6 @@ export default function CalendarContainer({ id, detail }: CalendarContainerType)
             </Button>
           </aside>
         </Modal>
-
         <Modal name="to-login">
           <ToLoginModal closeModal={closeModal} />
         </Modal>
