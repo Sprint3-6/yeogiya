@@ -23,7 +23,7 @@ export default function SpaceCardList({
   handleClickCategory,
   handleSortSpaces,
 }: SpaceCardListProps) {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>('');
   const sliderSettings = {
     infinite: false,
     slidesToShow: 7, // 기본적으로 한 번에 보여줄 페이지 수
