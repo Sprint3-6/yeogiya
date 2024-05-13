@@ -82,10 +82,6 @@
 .large {
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-    padding: 20px;
-  }
-
   .calendar-weekday,
   .calendar-date {
     justify-content: center;
@@ -166,7 +162,7 @@
 
   .confirmed {
     @extend .calendar-icon-circle;
-    background-color: var(--approve);
+    background-color: var(--pink10);
   }
 
   .completed {
