@@ -57,6 +57,7 @@ export default function EditSpace() {
         />
         <span className="input-title">소개 이미지</span>
         <ImageUploader id="subImages" images={subimages} setImages={setSubImages} maxImageCount={4} />
+        <span className="image-span">*이미지는 최대 4개까지 등록이 가능합니다</span>
         <div className="form-button-bottom-box">
           <Button className="form-button-bottom button-black" type="submit" disabled={isSubmitting}>
             수정하기
