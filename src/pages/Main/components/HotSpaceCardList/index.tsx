@@ -7,7 +7,7 @@ import './style.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
-import CarouselArrow from '../ArrowButton';
+import CarouselArrow from '../CarouselArrow';
 
 //TODO 1100px 부터 화살표 표시
 interface DataType {
