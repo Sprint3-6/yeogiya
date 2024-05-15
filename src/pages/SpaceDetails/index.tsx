@@ -112,7 +112,6 @@ export default function SpaceDetails() {
             <img src="/assets/icons/icon-map.svg" />
             <h3>{detail?.address}</h3>
           </div>
-
           {userInfo.id === detail?.userId && (
             <DropDown id="space-detail-kebab" image="/assets/icons/icon-meatball.svg" onClickItem={handleKebabButton}>
               <DropdownItem value="edit">수정하기</DropdownItem>
@@ -120,7 +119,6 @@ export default function SpaceDetails() {
             </DropDown>
           )}
         </div>
-
         <figure className="space-detail-container-pictures">
           <div className="images" style={{ transform: `translateX(${imagePosition}px)` }}>
             <img src={detail?.bannerImageUrl} />
@@ -141,13 +139,11 @@ export default function SpaceDetails() {
           <img src="/assets/icons/icon-left-slider.svg" className="slider left-button" onClick={handleImagesGoRight} />
           <img src="/assets/icons/icon-right-slider.svg" className="slider right-button" onClick={handleImagesGoLeft} />
         </figure>
-
         <div className={`space-detail-container-body ${userInfo.id === detail?.userId ? 'no-calendar' : ''}`}>
           <section className="body-description">
             <h2>공간 설명</h2>
             <p>{detail?.description}</p>
           </section>
-
           <section className="body-map">
             <KakaoMap address={detail?.address} title={detail?.title} />
             <div>
@@ -158,7 +154,6 @@ export default function SpaceDetails() {
               </h3>
             </div>
           </section>
-
           <section className="body-review">
             <h2>후기</h2>
             <div className="review-scoreboard">
@@ -190,13 +185,11 @@ export default function SpaceDetails() {
                 </div>
               ))}
           </section>
-
           <nav className="body-pagination">
             <Pagination totalCount={detail?.reviewCount} size={3} page={page} setPage={setPage} />
           </nav>
           <div className="bottom-space"> </div>
         </div>
-
         {userInfo.id !== detail?.userId && <CalendarContainer id={id} detail={detail} />}
       </section>
 

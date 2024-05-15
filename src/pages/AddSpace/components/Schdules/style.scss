@@ -20,6 +20,7 @@
     align-items: center;
     &:focus {
       outline: none;
+      border: 1px solid var(--black);
     }
     &:active {
       border: 2px solid black;

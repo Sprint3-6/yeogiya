@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './useModal.scss';
 import { ModalProps } from './types';
@@ -34,20 +34,23 @@ export const useModal = () => {
   const modalRoot = document.getElementById('modal-root') as HTMLElement;
 
   // 기본 스타일을 or 프롭스로 스타일을 바꿀 수 있다
-  const Modal = ({ name, children, classNameModal, classNameLayout }: ModalProps) => {
-    return ReactDOM.createPortal(
-      <>
-        {name === modalName && (
-          <div className={classNameLayout ? classNameLayout : 'defaultLayout'}>
-            <div className={classNameModal ? classNameModal : 'defaultModal'} ref={modalRef}>
-              {children}
+  const Modal = useCallback(
+    ({ name, children, classNameModal, classNameLayout }: ModalProps) => {
+      return ReactDOM.createPortal(
+        <>
+          {name === modalName && (
+            <div className={classNameLayout ? classNameLayout : 'defaultLayout'}>
+              <div className={classNameModal ? classNameModal : 'defaultModal'} ref={modalRef}>
+                {children}
+              </div>
             </div>
-          </div>
-        )}
-      </>,
-      modalRoot,
-    );
-  };
+          )}
+        </>,
+        modalRoot,
+      );
+    },
+    [modalName],
+  );
 
   // 상태 및 제어 함수를 포함하는 객체 반환
   return { Modal, openModal, closeModal };
