@@ -60,6 +60,11 @@
           box-shadow: 0 0 0;
           border: 0;
 
+          &:hover {
+            background-color: var(--gray20);
+            border-radius: 50%;
+          }
+
           div {
             justify-content: center;
           }
