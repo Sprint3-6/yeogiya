@@ -26,7 +26,7 @@ export default function CanceledModal({ item, onClose, handleCancelReservation }
       <div className="canceled-modal-space-wrapper">
         <img src={item.activity.bannerImageUrl} alt="공간 배너이미지" className="canceled-modal-space-image" />
         <div className="canceled-modal-space-info">
-          <h3>{item.activity.title}</h3>
+          <h3 className="canceled-modal-space-title">{item.activity.title}</h3>
           <span className="canceled-modal-space-date">
             {item.date} · {item.startTime} ~ {item.endTime}
           </span>

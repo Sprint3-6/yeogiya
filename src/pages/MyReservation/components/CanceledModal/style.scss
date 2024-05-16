@@ -34,6 +34,17 @@
   border-radius: 50px;
 }
 
+.canceled-modal-space-title {
+  max-height: 120px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-align: left;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
 .canceled-modal-button-wrapper {
   flex-direction: row;
   margin-top: 10px;
