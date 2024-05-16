@@ -22,7 +22,9 @@ export default function SpaceCard({ item }: SpaceCardProps) {
                 <span> ({item.reviewCount})</span>
               </p>
             </div>
-            <h1>{item.title}</h1>
+            <div className="space-card-detail-title-wrapper">
+              <h1 className="space-card-detail-title">{item.title}</h1>
+            </div>
           </div>
           <div className="space-card-detail-price-wrapper">
             <p>₩ {formatPrice(item.price)}</p>
