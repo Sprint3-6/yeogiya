@@ -79,3 +79,15 @@ export interface CalendarTabletType {
   month: string;
   setMonth: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export type BigPictureModalType = {
+  bannerImage: string | undefined;
+  subImages:
+    | [
+        {
+          id: number;
+          imageUrl: string;
+        },
+      ]
+    | undefined;
+};

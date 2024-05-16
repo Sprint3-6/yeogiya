@@ -60,6 +60,11 @@
           box-shadow: 0 0 0;
           border: 0;
 
+          &:hover {
+            background-color: var(--gray20);
+            border-radius: 50%;
+          }
+
           div {
             justify-content: center;
           }
@@ -119,6 +124,11 @@
 
         img {
           object-fit: cover;
+          cursor: pointer;
+        }
+
+        .picture-mobile {
+          cursor: default;
         }
       }
 
@@ -308,125 +318,6 @@
         height: 413px;
       }
     }
-
-    .space-detail-container-calendar {
-      float: right;
-      width: 384px;
-      height: auto;
-      padding: 24px;
-      background-color: var(--white);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
-      border-radius: 12px;
-
-      h2 {
-        font-size: 2.8rem;
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--gray30);
-
-        span {
-          color: var(--gray70);
-          font-size: 2rem;
-          font-weight: 400;
-        }
-      }
-
-      h3 {
-        font-size: 2rem;
-        line-height: 26px; /* 130% */
-        padding: 16px 0 16px;
-      }
-
-      .calendar-box {
-        border-bottom: 1px solid var(--gray30);
-        height: 100%;
-
-        h4 {
-          display: none;
-        }
-
-        .calendar-wrapper {
-          width: 305px;
-          margin: 0 auto;
-        }
-
-        & > div {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-bottom: 16px;
-
-          .time-box {
-            width: 123px;
-            border: 1px solid black;
-            border-radius: 8px;
-            padding: 10px 12px;
-            font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 26px;
-            cursor: pointer;
-
-            &.selected {
-              background-color: var(--black);
-              color: var(--white);
-            }
-          }
-        }
-      }
-
-      .howmany-box {
-        border-bottom: 1px solid var(--gray30);
-
-        .howmany-box-control {
-          width: 120px;
-          height: 40px;
-          border-radius: 6px;
-          border: 1px solid var(--gray50);
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          margin-bottom: 24px;
-
-          input {
-            width: 40px;
-            border: 0;
-            text-align: center;
-          }
-
-          img {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            user-select: none;
-          }
-        }
-
-        button {
-          width: 100%;
-          margin-bottom: 24px;
-
-          &:disabled {
-            cursor: default;
-            background-color: var(--gray30);
-            border: 1px solid var(--gray30);
-          }
-
-          &:disabled:hover {
-            color: var(--white);
-          }
-        }
-      }
-
-      .total-box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        h3 {
-          padding-bottom: 0;
-        }
-      }
-    }
   }
 
   @media (max-width: 1024px) {
@@ -507,33 +398,6 @@
           height: 265px;
         }
       }
-
-      .space-detail-container-calendar {
-        width: 251px;
-
-        .calendar-box {
-          h4 {
-            display: inherit;
-            text-decoration: underline;
-            font-size: 1.6rem;
-            font-weight: 600;
-            line-height: 26px;
-            cursor: pointer;
-          }
-
-          .time-box-pc {
-            display: none;
-          }
-
-          .calendar-wrapper {
-            display: none;
-          }
-
-          h3:nth-of-type(2) {
-            display: none;
-          }
-        }
-      }
     }
   }
 
@@ -549,7 +413,7 @@
         }
 
         h2 {
-          min-width: 30px;
+          min-width: 50px;
         }
 
         .dropdown {
@@ -642,10 +506,6 @@
           width: 375px;
           left: -30px;
         }
-      }
-
-      .space-detail-container-calendar {
-        display: none;
       }
     }
   }

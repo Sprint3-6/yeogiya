@@ -10,6 +10,7 @@ import KakaoMap from '@/components/KakaoMap';
 import categoryFilter from '@/utils/categoryFilter';
 import ratingFilter from '@/utils/ratingFilter';
 import DeleteModal from '@/pages/SpaceDetails/Components/DeleteModal';
+import BigPictureModal from './Components/BigPictureModal';
 import Loading from '../Loading';
 import CalendarContainer from './Components/CalendarContainer';
 import Pagination from '@/components/Pagination';
@@ -74,6 +75,10 @@ export default function SpaceDetails() {
     toast.success(`${detail?.address}가 클립보드에 복사되었습니다.`);
   };
 
+  const isMobile = () => {
+    return window.innerWidth <= 430;
+  };
+
   useEffect(() => {
     setDetailData();
     setTotalImages(detail?.subImages.length ? detail.subImages.length + 1 : 1);
@@ -121,7 +126,11 @@ export default function SpaceDetails() {
         </div>
         <figure className="space-detail-container-pictures">
           <div className="images" style={{ transform: `translateX(${imagePosition}px)` }}>
-            <img src={detail?.bannerImageUrl} />
+            <img
+              src={detail?.bannerImageUrl}
+              onClick={() => !isMobile() && openModal('big-picture')}
+              className={isMobile() ? 'picture-mobile' : ''}
+            />
           </div>
           {Array.from({ length: 4 }).map((_, index) => (
             <div
@@ -132,6 +141,8 @@ export default function SpaceDetails() {
               {
                 <img
                   src={detail?.subImages[index] ? detail.subImages[index].imageUrl : '/assets/logos/logo-icon.svg'}
+                  onClick={() => !isMobile() && openModal('big-picture')}
+                  className={isMobile() ? 'picture-mobile' : ''}
                 />
               }
             </div>
@@ -195,6 +206,9 @@ export default function SpaceDetails() {
 
       <Modal name="delete-modal">
         <DeleteModal closeModal={closeModal} title={detail?.title} id={id} />
+      </Modal>
+      <Modal name="big-picture">
+        <BigPictureModal bannerImage={detail?.bannerImageUrl} subImages={detail?.subImages} />
       </Modal>
     </div>
   );
