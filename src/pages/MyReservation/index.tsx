@@ -48,8 +48,7 @@ export default function MyReservation() {
   const handleCancelReservation = async (id: number) => {
     try {
       const body = { status: 'canceled' };
-      const res = await instance.patch(`my-reservations/${id}`, body);
-      console.log(res.data);
+      await instance.patch(`my-reservations/${id}`, body);
       setMyReservation((prevReservations) =>
         prevReservations.map((reservation) =>
           reservation.id === id ? { ...reservation, status: 'canceled' } : reservation,

@@ -41,7 +41,6 @@ export default function CanceledModal({ item, onClose, handleCancelReservation }
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
-            console.log('안녕');
             onClose();
           }}
           className="button-white canceled-modal-button"
