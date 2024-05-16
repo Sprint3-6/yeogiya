@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import SpaceCard from './SpaceCard';
+import SpaceCard from '../SpaceCard';
 import { Spaces, Category } from '@/api/types/activities';
-import './spaceCardList.scss';
+import './style.scss';
 import { CATEGORIES } from '@/api/constants/categories';
 import Button from '@/components/Button';
 import categoryFilter from '@/utils/categoryFilter';

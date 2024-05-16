@@ -78,7 +78,6 @@ export default function MainPage() {
     const getSpaces = async () => {
       try {
         let url = `${BASE_URL}activities?method=offset&page=${page}&size=${size}`;
-        // selectedCategory가 빈 문자열이 아닌 경우에만 카테고리 쿼리 파라미터를 추가
         if (selectedCategory) {
           url += `&category=${selectedCategory}`;
         }
