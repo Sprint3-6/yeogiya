@@ -1,4 +1,4 @@
-import './paginationButton.scss';
+import '../PageButton/style.scss';
 
 interface ArrowButtonProps {
   isDisabled?: boolean;

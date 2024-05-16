@@ -1,9 +1,9 @@
-import getMyNotifications from '@/api/getMyNotifications';
-import { NotificationsType, MyNotificationsProps } from '@/api/types/notifications';
-import { useEffect, useRef, useState } from 'react';
 import './style.scss';
-import Notification from './components/Notification';
+import { useEffect, useRef, useState } from 'react';
+import { NotificationsType, MyNotificationsProps } from '@/api/types/notifications';
+import getMyNotifications from '@/api/getMyNotifications';
 import instance from '@/api/instance/defaultInstance';
+import Notification from './components/Notification';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 
 export default function MyNotifications({ onClose }: MyNotificationsProps) {
