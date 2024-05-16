@@ -54,7 +54,7 @@ export default function MyReviewModal({ item, onClose, handleWriteReview }: MyRe
       <div className="review-modal-space-wrapper">
         <img src={item.activity.bannerImageUrl} alt="공간 배너이미지" className="review-modal-space-image" />
         <div className="review-modal-space-info">
-          <h3>{item.activity.title}</h3>
+          <h3 className="review-modal-title">{item.activity.title}</h3>
           <span>
             {item.date} · {item.startTime} ~ {item.endTime} · {item.headCount}명
           </span>
