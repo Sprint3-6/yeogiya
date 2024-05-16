@@ -68,11 +68,11 @@ export const DropDown = (props: DropDownProps) => {
           <div className="dropdown-image">
             <img src={image} />
           </div>
-          {title ? <div className="dropdown-title">{title}</div> : null}
+          {title ? <div className="dropdown-title dropdown-ellipsis">{title}</div> : null}
         </div>
       );
     } else if (title) {
-      return <div className="dropdown-title">{select ? select : title}</div>;
+      return <div className="dropdown-title dropdown-ellipsis">{select ? select : title}</div>;
     }
   };
 
