@@ -124,6 +124,11 @@
 
         img {
           object-fit: cover;
+          cursor: pointer;
+        }
+
+        .picture-mobile {
+          cursor: default;
         }
       }
 

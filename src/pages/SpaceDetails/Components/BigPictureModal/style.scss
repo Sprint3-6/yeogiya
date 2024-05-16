@@ -1,0 +1,51 @@
+.modal-image-container {
+  width: 130vh;
+  height: 80vh;
+  margin: 0 auto;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+
+  .arrow {
+    width: 30px;
+    position: absolute;
+    top: 45%;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .arrow.left {
+    left: 0;
+    margin-left: 15px;
+  }
+
+  .arrow.right {
+    right: 0;
+    margin-right: 15px;
+  }
+
+  .modal-image-box {
+    width: 100%;
+    transition: all 0.5s;
+
+    img {
+      width: 130vh;
+      height: 80vh;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: 80vh;
+    height: 60vh;
+
+    .modal-image-box {
+      img {
+        width: 80vh;
+        height: 60vh;
+      }
+    }
+  }
+}
