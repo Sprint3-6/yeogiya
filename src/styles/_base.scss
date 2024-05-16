@@ -18,6 +18,10 @@
   --pink-gradient: linear-gradient(to bottom, var(--pink10), var(--pink20));
   --blue-gradient: linear-gradient(to bottom, var(--blue20), var(--reservation-hover));
   --gray-gradient: linear-gradient(to bottom, var(--gray30), var(--gray50));
+  --orange-gradient: linear-gradient(to bottom, var(--orange10), var(--orange20));
+
+  --orange10: #f8cd9c;
+  --orange20: #f6b046;
 
   --red10: #ffe4e0;
   --red20: #ffdbdb;
@@ -33,6 +37,7 @@
   --blue10: #e5f3ff;
   --blue20: #8bc2e0;
   --blue30: #3b8fdd;
+  --blue40: #71e7ff;
 
   --success: #a4a4a4;
   --success-hover: #7f7f7f;

@@ -41,13 +41,13 @@ export default function ReservationInformation({
             신청
           </div>
           <div
-            className={`reservation-information-tab-item ${selectedTab === 'confirmed' ? 'active' : ''}`}
+            className={`reservation-information-tab-item ${selectedTab === 'confirmed' ? 'active-confirmed' : ''}`}
             onClick={() => handleTabClick('confirmed')}
           >
             승인
           </div>
           <div
-            className={`reservation-information-tab-item ${selectedTab === 'declined' ? 'active' : ''}`}
+            className={`reservation-information-tab-item ${selectedTab === 'declined' ? 'active-declined' : ''}`}
             onClick={() => handleTabClick('declined')}
           >
             거절

@@ -47,12 +47,30 @@
 }
 
 div.active {
-  background-color: var(--blue10);
+  background: var(--blue-gradient);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-top: var(--blue30);
   border-bottom: 2px solid var(--blue20);
-  color: var(--black);
+  color: var(--white);
+}
+
+div.active-confirmed {
+  background: var(--orange-gradient);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: var(--orange20);
+  border-bottom: 2px solid var(--orange20);
+  color: var(--white);
+}
+
+div.active-declined {
+  background: var(--pink-gradient);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: var(--red30);
+  border-bottom: 2px solid var(--red20);
+  color: var(--white);
 }
 
 .reservation-information-tab-item {
@@ -71,8 +89,7 @@ div.active {
   &:hover {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border-bottom: 2px solid var(--reservation-hover);
-    color: var(--black);
+    border-bottom: 2px solid var(--gray30);
   }
 }
 
@@ -174,7 +191,7 @@ div.active {
   }
 
   .confirmed {
-    background-color: var(--reservation);
+    background-color: var(--orange20);
     color: var(--white);
   }
 

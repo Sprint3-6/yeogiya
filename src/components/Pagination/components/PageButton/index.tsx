@@ -1,4 +1,4 @@
-import './paginationButton.scss';
+import './style.scss';
 
 interface PageButtonProps {
   isDisabled?: boolean;

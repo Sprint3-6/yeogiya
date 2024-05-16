@@ -1,7 +1,6 @@
 import './style.scss';
 import { useState, useEffect } from 'react';
 import instance from '@/api/instance/defaultInstance';
-import { BASE_URL } from '@/api/constants/url';
 import { Category, Spaces } from '@/api/types/activities';
 import SpaceCardList from './components/SpaceCardList';
 import Pagination from '@/components/Pagination';
@@ -37,7 +36,7 @@ export default function MainPage() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('');
   const [sortedSpaces, setSortedSpaces] = useState('');
   const [searchValue, setSearchValue] = useState('');
-  const [searchResult, setSearchResult] = useState(''); // 검색한 결과
+  const [searchResult, setSearchResult] = useState('');
 
   const handleClickCategory = (name: Category) => {
     setSelectedCategory((prev) => (prev === name ? '' : name));
@@ -77,8 +76,7 @@ export default function MainPage() {
   useEffect(() => {
     const getSpaces = async () => {
       try {
-        let url = `${BASE_URL}activities?method=offset&page=${page}&size=${size}`;
-        // selectedCategory가 빈 문자열이 아닌 경우에만 카테고리 쿼리 파라미터를 추가
+        let url = `activities?method=offset&page=${page}&size=${size}`;
         if (selectedCategory) {
           url += `&category=${selectedCategory}`;
         }
@@ -91,7 +89,6 @@ export default function MainPage() {
 
         const res = await instance.get(url);
         setData(res.data);
-        console.log(res.data);
       } catch (err) {
         console.error(err);
       }

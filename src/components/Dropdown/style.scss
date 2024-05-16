@@ -73,15 +73,17 @@
   height: 100%;
 }
 
+.dropdown-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 // 드롭다운 리스트 안의 아이템 영역
 .dropdown-item {
   list-style: none;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  // padding: 10px;
+  text-align: center;
 }
 
 .dropdown-item:hover {

@@ -39,13 +39,21 @@ div.reservation-status-wrapper {
     margin: 20px 0;
   }
 
-  div.dropdown-title {
+  div.dropdown-ellipsis {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
     height: 30px;
     font-size: 1.4rem;
+    width: 290px;
 
     @media screen and (min-width: 768px) {
+      display: inline-block;
       height: 40px;
-      padding: 0 5px;
+      line-height: 40px;
+      width: 720px;
+      height: 40px;
+      padding: 3px 8px 0;
       font-size: 1.6rem;
     }
   }
@@ -58,11 +66,17 @@ div.reservation-status-wrapper {
     }
 
     li.dropdown-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       padding: 10px 0;
       font-size: 1.4rem;
+      text-align: center;
+      width: 270px;
 
       @media screen and (min-width: 768px) {
         font-size: 1.6rem;
+        width: 745px;
       }
     }
   }

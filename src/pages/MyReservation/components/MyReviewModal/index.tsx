@@ -1,11 +1,9 @@
 import './style.scss';
-import MyReviewContents from '../MyReviewContents';
+import instance from '@/api/instance/defaultInstance';
 import { MyReservationType } from '@/api/types/myReservation';
 import { formatPrice } from '@/utils/formatPrice';
-import instance from '@/api/instance/defaultInstance';
 import toast from '@/utils/toast';
-
-//TODO 데이터 불러오지 못했을 때
+import MyReviewContents from '../MyReviewContents';
 
 interface MyReviewModalProps {
   item: MyReservationType;
@@ -21,8 +19,7 @@ export default function MyReviewModal({ item, onClose, handleWriteReview }: MyRe
         rating: rating,
         content: content,
       };
-      const response = await instance.post(url, body);
-      console.log('후기 제출 완료:', response.data);
+      await instance.post(url, body);
       toast.success('후기 작성이 완료되었습니다!');
 
       if (handleWriteReview) {
@@ -54,7 +51,7 @@ export default function MyReviewModal({ item, onClose, handleWriteReview }: MyRe
       <div className="review-modal-space-wrapper">
         <img src={item.activity.bannerImageUrl} alt="공간 배너이미지" className="review-modal-space-image" />
         <div className="review-modal-space-info">
-          <h3>{item.activity.title}</h3>
+          <h3 className="review-modal-title">{item.activity.title}</h3>
           <span>
             {item.date} · {item.startTime} ~ {item.endTime} · {item.headCount}명
           </span>

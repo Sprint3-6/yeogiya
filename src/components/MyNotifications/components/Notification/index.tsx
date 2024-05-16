@@ -1,6 +1,6 @@
+import './style.scss';
 import { NotificationContentsType } from '@/api/types/notifications';
 import calculateElapsedTime from '@/utils/calculateElapsedTime';
-import './notification.scss';
 
 type NotificationProps = { notifications: NotificationContentsType; onDelete: (id: number) => void };
 

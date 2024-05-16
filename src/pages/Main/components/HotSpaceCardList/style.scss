@@ -1,4 +1,5 @@
 .hot-space-container {
+  position: relative;
   width: 100%;
   overflow: hidden;
 
@@ -43,8 +44,22 @@
   }
 }
 
-.slick-prev:before {
-  opacity: 1;
-  color: black;
-  left: 0;
+.hot-space-card-list-arrow {
+  position: absolute;
+  top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &.prev {
+    right: 130px;
+  }
+
+  &.next {
+    right: 70px;
+  }
 }
