@@ -1,27 +1,136 @@
-.main-banner-image {
-  background-image: url('/assets/images/background-emptyRoom.jpg');
-  background-size: 100% 450px;
-  width: 100%;
-  height: 450px;
-  position: relative; /* 가상 요소의 위치를 조절할 수 있게 합니다 */
+.banner-container {
+  position: relative;
+  overflow: hidden;
 }
 
-.main-banner-image::before {
-  content: ''; /* 가상 요소를 추가합니다 */
-  position: absolute; /* `main-banner-image`의 상대 위치에 배치합니다 */
+.banner-slide-wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.banner-slide {
+  position: relative;
+  flex: 0 0 100%;
+}
+
+.image-wrapper {
+  position: relative;
+  height: 300px;
+
+  @media (min-width: 768px) {
+    height: 550px;
+  }
+}
+
+.main-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+}
+
+.main-banner-text {
+  position: absolute;
+  left: 20px;
+  color: var(--white);
+  white-space: pre-wrap;
+  text-shadow: 0px 1px 2px rgba(55, 55, 55, 0.5);
+}
+
+.main-banner-title {
+  @extend .main-banner-text;
+  top: 20%;
+  font-size: 2rem;
+  font-weight: 700;
+
+  @media (min-width: 768px) {
+    top: 30%;
+    left: 70px;
+    font-size: 3.6rem;
+  }
 }
 
 .main-banner-description {
-  display: flex;
-  flex-direction: column;
-  position: relative; /* 부모 요소의 상대 위치에 배치합니다 */
-  top: 130px;
-  left: 120px;
-  gap: 15px;
-  color: var(--white);
+  @extend .main-banner-text;
+  top: 40%;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @media (min-width: 768px) {
+    left: 70px;
+    font-size: 1.8rem;
+    line-height: 2;
+  }
+}
+
+.special-title {
+  width: 100%;
+  top: 20%;
+  left: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.special-description {
+  width: 100%;
+  top: 50%;
+  left: 0;
+  text-align: center;
+}
+
+.left-arrow,
+.right-arrow {
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
+
+.yeogiya-description-text,
+.yeogiya-title-text {
+  color: var(--blue40);
+  text-shadow: 1px 1px 5px rgb(100 100 100 / 50%);
+}
+
+.yeogiya-description-text {
+  font-size: 1.6rem;
+  font-weight: 800;
+  @media (min-width: 768px) {
+    font-size: 2.4rem;
+  }
+}
+
+.yeogiya-title-text {
+  font-size: 2.4rem;
+  font-weight: 900;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
 }
