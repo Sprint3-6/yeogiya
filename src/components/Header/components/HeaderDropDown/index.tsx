@@ -1,11 +1,11 @@
-import './headerDropdown.scss';
+import './style.scss';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearMyInfo } from '@/redux/myInfoSlice';
-import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import { useModal } from '@/hooks/useModal/useModal';
+import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import Button from '@/components/Button';
 import toast from '@/utils/toast';
-import { useNavigate } from 'react-router-dom';
 import MypageSideList from '@/components/MypageSidebar/components/MypageSideList';
 
 interface DropDownProp {

@@ -1,6 +1,6 @@
 import './style.scss';
 import { Link } from 'react-router-dom';
-import HeaderButtons from './components/HeaderButtons';
+import HeaderButtons from './components/HeaderButton';
 
 export default function Header() {
   return (
