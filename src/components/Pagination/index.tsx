@@ -1,5 +1,5 @@
 import './style.scss';
-import usePaginator from '@/hooks/usePaginator/usePaginator';
+import usePaginator from '@/hooks/usePaginator';
 import ArrowButton from './components/ArrowButton';
 import PageButton from './components/PageButton';
 
