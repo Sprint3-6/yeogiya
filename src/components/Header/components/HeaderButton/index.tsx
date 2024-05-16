@@ -1,16 +1,15 @@
-import './headerButton.scss';
+import './style.scss';
 import { Link } from 'react-router-dom';
 import { useModal } from '@/hooks/useModal/useModal';
 import { useAppSelector } from '@/redux/store';
 import MyNotifications from '@/components/MyNotifications';
-import HeaderDropDown from './HeaderDropdown';
+import HeaderDropDown from '../HeaderDropDown';
 
 export default function HeaderButtons() {
   const userData = useAppSelector((state) => state.myInfo);
   const { Modal, openModal, closeModal } = useModal();
   const defaultProfileImage = '/assets/images/profile-default.png';
 
-  //TODO 프로필 사진 동그랗게
   return (
     <>
       {userData.id !== null ? (

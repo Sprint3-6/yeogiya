@@ -53,9 +53,15 @@
   font-weight: 700;
 
   @media (min-width: 768px) {
-    top: 30%;
+    top: 40%;
     left: 70px;
     font-size: 3.6rem;
+  }
+  @media (min-width: 1300px) {
+    left: 170px;
+  }
+  @media (min-width: 1400px) {
+    left: 400px;
   }
 }
 
@@ -67,9 +73,16 @@
   line-height: 1.5;
 
   @media (min-width: 768px) {
+    top: 50%;
     left: 70px;
     font-size: 1.8rem;
-    line-height: 2;
+    line-height: 1.8;
+  }
+  @media (min-width: 1300px) {
+    left: 170px;
+  }
+  @media (min-width: 1400px) {
+    left: 400px;
   }
 }
 

@@ -1,16 +1,8 @@
-//TODO 기본 이미지 설정 , 조건부 렌더링 (인기 공간)
-// id: activityId 로 link 넘기기
-// title: 체험 이름
-// price: 가격
-// raiting: 별점
-// reviewCount: 리뷰개수
-// bannerImageUrl: 배너이미지
-
+import './style.scss';
 import { Link } from 'react-router-dom';
 import { Spaces } from '@/api/types/activities';
 import { intToFloat } from '@/utils/intToFloat';
 import { formatPrice } from '@/utils/formatPrice';
-import './spaceCard.scss';
 
 type SpaceCardProps = { item: Pick<Spaces, Exclude<keyof Spaces, 'address' | 'createdAt' | 'updatedAt'>> };
 
@@ -30,7 +22,9 @@ export default function SpaceCard({ item }: SpaceCardProps) {
                 <span> ({item.reviewCount})</span>
               </p>
             </div>
-            <h1>{item.title}</h1>
+            <div className="space-card-detail-title-wrapper">
+              <h1 className="space-card-detail-title">{item.title}</h1>
+            </div>
           </div>
           <div className="space-card-detail-price-wrapper">
             <p>₩ {formatPrice(item.price)}</p>

@@ -1,8 +1,10 @@
+import './style.scss';
 import React from 'react';
-import CarouselArrow from '../CarouselArrow';
 import useBanner from '@/hooks/useBanner';
 import { BANNER } from '@/hooks/useBanner';
-import './style.scss';
+import CarouselArrow from '../CarouselArrow';
+
+//TODO 배너 위치 조정
 
 export default function Banner() {
   const { handleSlide, handleMouseOnSlider, slideRef } = useBanner();

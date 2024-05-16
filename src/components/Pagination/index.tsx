@@ -1,7 +1,7 @@
-import ArrowButton from './components/ArrowButton';
-import usePaginator from '@/hooks/usePaginator/usePaginator';
-import PageButton from './components/PageButton';
 import './style.scss';
+import usePaginator from '@/hooks/usePaginator';
+import ArrowButton from './components/ArrowButton';
+import PageButton from './components/PageButton';
 
 interface PaginationProps {
   totalCount?: number; // 전체 데이터 개수

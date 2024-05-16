@@ -1,15 +1,13 @@
-import HotSpaceCard from '../HotSpaceCard';
-import { useEffect, useState, useRef } from 'react'; // useRef 추가
-import { BASE_URL } from '@/api/constants/url';
-import instance from '@/api/instance/defaultInstance';
-import { Spaces } from '@/api/types/activities';
 import './style.scss';
+import { useEffect, useState, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
+import instance from '@/api/instance/defaultInstance';
+import { Spaces } from '@/api/types/activities';
+import HotSpaceCard from '../HotSpaceCard';
 import CarouselArrow from '../CarouselArrow';
 
-//TODO 1100px 부터 화살표 표시
 interface DataType {
   activities: Spaces[];
   totalCount: number;
@@ -23,10 +21,9 @@ export default function HotSpaceCardList() {
   useEffect(() => {
     const getHotSpaces = async () => {
       try {
-        const url = `${BASE_URL}activities?method=cursor&sort=most_reviewed&size=10`;
+        const url = `activities?method=cursor&sort=most_reviewed&size=10`;
         const res = await instance.get(url);
         setData(res.data);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }

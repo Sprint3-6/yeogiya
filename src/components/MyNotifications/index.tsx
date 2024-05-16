@@ -1,9 +1,9 @@
-import getMyNotifications from '@/api/getMyNotifications';
-import { NotificationsType, MyNotificationsProps } from '@/api/types/notifications';
-import { useEffect, useRef, useState } from 'react';
 import './style.scss';
-import Notification from './components/Notification';
+import { useEffect, useRef, useState } from 'react';
+import { NotificationsType, MyNotificationsProps } from '@/api/types/notifications';
+import getMyNotifications from '@/api/getMyNotifications';
 import instance from '@/api/instance/defaultInstance';
+import Notification from './components/Notification';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 
 export default function MyNotifications({ onClose }: MyNotificationsProps) {
@@ -13,8 +13,12 @@ export default function MyNotifications({ onClose }: MyNotificationsProps) {
   const cursorId = useRef<number | null>(null); // 커서 ID 초기화
 
   const getMoreNoti = async () => {
-    // 요청 중이면 새로운 요청을 방지
-    if (isFetching || cursorId.current === null) {
+    // 이미 모든 데이터를 불러왔다면 더 이상 요청을 보내지 않음
+    if (
+      isFetching ||
+      cursorId.current === null ||
+      (myNotiInfo && myNotiInfo.notifications.length === myNotiInfo.totalCount)
+    ) {
       return;
     }
 

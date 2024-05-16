@@ -26,7 +26,7 @@ export default function MyReservationCard({ data, handleCancelReservation }: MyR
         </div>
         <div className="my-space-card-imf">
           <p className={statusClassName}>{reservationStatusFilter(data.status)}</p>
-          <h2 className="my-space-card-title no-margin">{data.activity.title}</h2>
+          <h2 className="my-reservation-card-title no-margin">{data.activity.title}</h2>
           <span>
             {data.date} · {data.startTime} ~ {data.endTime} · {data.headCount}명
           </span>
