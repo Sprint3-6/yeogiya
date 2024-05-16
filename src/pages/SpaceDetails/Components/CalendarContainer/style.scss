@@ -48,7 +48,7 @@
       .time-box {
         width: 123px;
         text-align: center;
-        border: 1px solid black;
+        border: 1px solid var(--gray30);
         border-radius: 8px;
         padding: 10px 12px;
         font-size: 1.6rem;
@@ -159,7 +159,7 @@
     .time-box {
       width: 123px;
       text-align: center;
-      border: 1px solid black;
+      border: 1px solid var(--gray30);
       border-radius: 8px;
       padding: 10px 12px;
       font-size: 1.6rem;
