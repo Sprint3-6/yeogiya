@@ -1,10 +1,10 @@
+import './style.scss';
 import { useState, useEffect, useRef } from 'react';
+import { MyReservationType } from '@/api/types/myReservation';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 import { DropDown, DropDownValue, DropdownItem } from '@/components/Dropdown';
 import MyReservationCard from './components/MyReservationCard';
-import { MyReservationType } from '@/api/types/myReservation';
 import instance from '@/api/instance/defaultInstance';
-import './style.scss';
-import useIntersectionObserver from '@/hooks/useIntersectionObserver/useIntersectionObserver';
 
 export default function MyReservation() {
   const [myReservation, setMyReservation] = useState<MyReservationType[]>([]);

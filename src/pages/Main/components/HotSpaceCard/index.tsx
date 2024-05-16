@@ -1,8 +1,8 @@
+import './style.scss';
 import { Link } from 'react-router-dom';
 import { Spaces } from '@/api/types/activities';
 import { intToFloat } from '@/utils/intToFloat';
 import { formatPrice } from '@/utils/formatPrice';
-import './style.scss';
 
 type SpaceCardProps = { item: Pick<Spaces, Exclude<keyof Spaces, 'address' | 'createdAt' | 'updatedAt'>> };
 
