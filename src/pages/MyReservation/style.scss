@@ -1,3 +1,62 @@
+.my-space-container {
+  width: 344px;
+  margin: 0 auto;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    width: 430px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 800px;
+  }
+}
+
+.my-space-title {
+  font-size: 3.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+}
+
+.my-space-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  @media (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+}
+
+.my-space-list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (min-width: 1024px) {
+    gap: 24px;
+  }
+}
+
+.not-found-file-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  img {
+    width: 110px;
+    @media (min-width: 1024px) {
+      width: 140px;
+    }
+  }
+  span {
+    color: var(--gray60, #79747e);
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+}
+
 .my-reservation-status-dropdown {
   font-size: 1.6rem;
   font-weight: 400;
